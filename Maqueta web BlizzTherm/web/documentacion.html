@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documentación de calefactores industriales | BlizzTherm</title>
+<meta name="description" content="Descarga la ficha técnica y el manual de uso de cada calefactor industrial BlizzTherm.">
+<link rel="stylesheet" href="css/site.css?v=8">
+</head>
+<body data-root="../" data-page="documentacion">
+<header id="hdr"></header>
+<main>
+<section class="hero grad">
+  <div class="in"><div class="box">
+    <h1 class="chg" data-t="mod" data-antes="Documentación equipos de refrigeración" data-porque="La página de documentación correspondía a productos de frío de otra marca (Sección 02 · Hallazgos críticos).">Documentación <span class="hl">equipos BlizzTherm</span></h1>
+    <hr class="divider">
+    <div class="lead w">Accede y descarga toda la documentación técnica, manuales de usuario y fichas de rendimiento de nuestros equipos en formato PDF. Selecciona tu modelo a continuación para obtener la información detallada sobre su uso y mantenimiento.</div>
+  </div></div>
+</section>
+
+<div class="chg" data-t="mod" id="docs" data-antes="Siete bloques de documentación de productos de refrigeración: enfriadores evaporativos, nebulizadores, ventiladores de techo, portátiles y de pared, aire acondicionado portátil y chalecos refrigerantes." data-porque="La documentación publicada era de productos de frío. Se sustituye por la ficha técnica y el manual de los 15 modelos BlizzTherm, los mismos del catálogo catalogo.blizztherm.es (Sección 02 · Hallazgos críticos y Sección 12 · Mismo dato en web, ficha, manual y catálogo)."></div>
+</main>
+<footer id="ftr"></footer>
+<script src="js/site.js?v=8"></script>
+<script>
+(function () {
+  var C = 'https://catalogo.blizztherm.es/';
+  var F = [
+    ['los calefactores eléctricos', [['BTE 50', 'BTE-50', 'Ficha BTE 50.pdf', 'MANUAL BTE 50.pdf'], ['BTE 90', 'BTE-90', 'Ficha BTE 90.pdf', 'MANUAL BTE 90.pdf'], ['BTE 150', 'BTE-150', 'Ficha BTE 150.pdf', 'MANUAL BTE 150.pdf'], ['BTE 150R', 'BTE-150R', 'Ficha BTE 150R.pdf', 'Manual BTE 150R.pdf']]],
+    ['los calefactores por infrarrojos', [['BTI 20', 'BTI-20', 'Ficha BTI 20.pdf', 'MANUAL BTI 20.pdf'], ['BTI 45', 'BTI-45', 'Ficha BTI 45.pdf', 'MANUAL BTI 45.pdf'], ['BTC 13', 'BTC-13', 'Ficha ténica BTC 13.pdf', 'MANUAL BTC 13.pdf'], ['BTC 18', 'BTC-18', 'Ficha BTC18.pdf', 'Manual BTC 18.pdf']]],
+    ['los cañones de calor a gas', [['BTG 15', 'BTG-15', 'Ficha Técnica BTG 15.pdf', 'MANUAL BTG 15.pdf'], ['BTG 30', 'BTG-30', 'Ficha Técnica BTG 30.pdf', 'MANUAL BGT 30.pdf']]],
+    ['los cañones de gasóleo de combustión directa', [['BTD 20', 'BTD-20', 'Ficha BTD 20.pdf', 'MANUAL BTD 20.pdf'], ['BTD 30', 'BTD-30', 'Ficha BTD 30.pdf', 'MANUAL BTD 30.pdf'], ['BTD 50', 'BTD-50', 'Ficha BTD 50.pdf', 'MANUAL BTD 50.pdf']]],
+    ['los cañones de gasóleo con extracción de humos', [['BTH 30', 'BTH-30', 'Ficha BTH 30.pdf', 'MANUAL BTH 30.pdf'], ['BTH 50', 'BTH-50', 'Ficha BTH 50.pdf', 'MANUAL BTH 50.pdf']]]
+  ];
+  var u = function (f) { return C + 'fichas/' + encodeURIComponent(f); };
+  document.getElementById('docs').innerHTML = F.map(function (fam) {
+    return '<section class="sec"><div class="in center"><h2 class="h2" style="max-width:640px">¿Necesitas más información sobre ' + fam[0] + '?</h2><div class="cards" style="max-width:' + (fam[1].length * 290) + 'px;margin:0 auto">' +
+      fam[1].map(function (m) {
+        return '<div class="card doc"><div class="top"><img src="' + C + 'img/' + m[1] + '.png" onerror="this.onerror=null;this.src=\'img/productos/' + m[1] + '.png\'" alt="' + m[0] + '" style="max-height:230px;width:auto"></div>' +
+          '<div class="body"><h3 class="h3" style="text-align:center">' + m[0] + '</h3><div class="btns"><a class="btn" href="' + u(m[2]) + '" target="_blank" rel="noopener">Ficha técnica</a><a class="btn" href="' + u(m[3]) + '" target="_blank" rel="noopener">Manual de uso</a></div></div></div>';
+      }).join('') + '</div></div></section>';
+  }).join('');
+})();
+</script>
+<script src="../../_inicio/volver.js"></script>
+</body>
+</html>

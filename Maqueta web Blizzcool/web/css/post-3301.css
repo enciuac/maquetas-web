@@ -1,0 +1,10 @@
+.elementor-3301 .elementor-element.elementor-element-196e7ec{--display:flex;--flex-direction:column;--container-widget-width:100%;--container-widget-height:initial;--container-widget-flex-grow:0;--container-widget-align-self:initial;--flex-wrap-mobile:wrap;--padding-top:0px;--padding-bottom:0px;--padding-left:0px;--padding-right:0px;}.elementor-3301 .elementor-element.elementor-element-196e7ec:not(.elementor-motion-effects-element-type-background), .elementor-3301 .elementor-element.elementor-element-196e7ec > .elementor-motion-effects-container > .elementor-motion-effects-layer{background-color:var( --e-global-color-primary );}.elementor-3301 .elementor-element.elementor-element-38f521a{width:100%;max-width:100%;}.elementor-3301 .elementor-element.elementor-element-38f521a > .elementor-widget-container{margin:0px 0px 0px 0px;padding:0px 0px 0px 0px;}#elementor-popup-modal-3301{background-color:rgba(0,0,0,.8);justify-content:center;align-items:center;pointer-events:all;}#elementor-popup-modal-3301 .dialog-message{width:640px;height:auto;}#elementor-popup-modal-3301 .dialog-close-button{display:flex;font-size:20px;}#elementor-popup-modal-3301 .dialog-widget-content{box-shadow:2px 8px 23px 3px rgba(0,0,0,0.2);}#elementor-popup-modal-3301 .dialog-close-button i{color:var( --e-global-color-text );}#elementor-popup-modal-3301 .dialog-close-button svg{fill:var( --e-global-color-text );}/* Start custom CSS for wpforms, class: .elementor-element-38f521a */.elementor-3301 .elementor-element.elementor-element-38f521a button[type=submit]{
+    width: 100%;
+    font-family: poppins;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.elementor-3301 .elementor-element.elementor-element-38f521a button[type=submit]:hover{
+    background: #68B551!important;
+}/* End custom CSS */

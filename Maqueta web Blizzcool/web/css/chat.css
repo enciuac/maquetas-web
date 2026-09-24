@@ -1,0 +1,718 @@
+.ava-ai-root {
+  line-height: normal;
+  --ava-ai-primary: #234a7c;
+  --ava-ai-launcher: #0f65d6;
+  --ava-ai-accent: #f4f7fa;
+  --ava-ai-panel-bg: #fff;
+  --ava-ai-assistant-bubble: #f3f6fa;
+  --ava-ai-user-bubble: #234a7c;
+  --ava-ai-text: #18212f;
+  --ava-ai-muted: #6b7280;
+  --ava-ai-header-title: #fff;
+  --ava-ai-header-subtitle: #dce8f5;
+  --ava-ai-status: #65d984;
+  --ava-ai-brand-bg: #2b4a70;
+  --ava-ai-brand-border: #527096;
+  --ava-ai-close-bg: #2b4a70;
+  --ava-ai-close-hover-bg: #355a86;
+  --ava-ai-close-icon: #fff;
+  --ava-ai-close-border: #527096;
+  --ava-ai-close-size: 38px;
+  --ava-ai-close-radius: 12px;
+  --ava-ai-close-icon-size: 18px;
+  --ava-ai-close-border-width: 1px;
+  --ava-ai-border: rgba(24, 33, 47, .09);
+  --ava-ai-panel-radius: 22px;
+
+  --ava-ai-desktop-panel-width: 400px;
+  --ava-ai-desktop-panel-height: 620px;
+  --ava-ai-desktop-panel-right: 20px;
+  --ava-ai-desktop-panel-bottom: 98px;
+  --ava-ai-desktop-launcher-size: 64px;
+  --ava-ai-desktop-right: 20px;
+  --ava-ai-desktop-bottom: 20px;
+
+  --ava-ai-tablet-panel-width: 390px;
+  --ava-ai-tablet-panel-height: 590px;
+  --ava-ai-tablet-panel-right: 18px;
+  --ava-ai-tablet-panel-bottom: 92px;
+  --ava-ai-tablet-launcher-size: 60px;
+  --ava-ai-tablet-right: 18px;
+  --ava-ai-tablet-bottom: 18px;
+
+  --ava-ai-mobile-panel-width: 360px;
+  --ava-ai-mobile-panel-height: 600px;
+  --ava-ai-mobile-panel-right: 14px;
+  --ava-ai-mobile-panel-bottom: 84px;
+  --ava-ai-mobile-launcher-size: 56px;
+  --ava-ai-mobile-right: 14px;
+  --ava-ai-mobile-bottom: 14px;
+  --ava-ai-mobile-landscape-panel-width: 390px;
+  --ava-ai-mobile-landscape-panel-right: 12px;
+
+  --ava-ai-panel-width: var(--ava-ai-desktop-panel-width);
+  --ava-ai-panel-height: var(--ava-ai-desktop-panel-height);
+  --ava-ai-panel-right: var(--ava-ai-desktop-panel-right);
+  --ava-ai-panel-bottom: var(--ava-ai-desktop-panel-bottom);
+  --ava-ai-launcher-size: var(--ava-ai-desktop-launcher-size);
+  --ava-ai-right: var(--ava-ai-desktop-right);
+  --ava-ai-bottom: var(--ava-ai-desktop-bottom);
+  position: fixed;
+  right: var(--ava-ai-right);
+  bottom: var(--ava-ai-bottom);
+  z-index: 2147483000;
+  font-family: inherit;
+  color: var(--ava-ai-text);
+}
+
+.ava-ai-root *, .ava-ai-root *::before, .ava-ai-root *::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.ava-ai-root button, .ava-ai-root textarea { font: inherit; }
+.ava-ai-root button::before, .ava-ai-root button::after { content: none !important; display: none !important; }
+
+.ava-ai-launcher {
+  width: var(--ava-ai-launcher-size) !important;
+  height: var(--ava-ai-launcher-size) !important;
+  min-width: var(--ava-ai-launcher-size) !important;
+  min-height: var(--ava-ai-launcher-size) !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  display: inline-grid !important;
+  place-items: center !important;
+  cursor: pointer !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  background: var(--ava-ai-launcher) !important;
+  background-image: none !important;
+  color: #fff !important;
+  box-shadow: 0 8px 22px rgba(15, 101, 214, .30), 0 2px 6px rgba(15, 23, 42, .16) !important;
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  text-indent: 0 !important;
+  overflow: hidden !important;
+}
+.ava-ai-launcher:hover { transform: translateY(-2px) scale(var(--ava-ai-launcher-hover-scale)) !important; background: var(--ava-ai-launcher-hover) !important; filter: none !important; box-shadow: 0 12px 28px color-mix(in srgb, var(--ava-ai-launcher-effect-color) 38%, transparent), 0 3px 8px rgba(15, 23, 42, .18) !important; }
+.ava-ai-launcher:focus-visible { outline: none !important; box-shadow: 0 8px 22px rgba(15, 23, 42, .18) !important; }
+.ava-ai-launcher svg { width: 31px !important; height: 31px !important; fill: none !important; stroke: currentColor !important; stroke-width: 1.8 !important; stroke-linecap: round !important; stroke-linejoin: round !important; }
+.ava-ai-launcher .ava-ai-mic-dot { fill: currentColor; stroke: none; }
+.ava-ai-launcher-close { display: none; width: 25px !important; height: 25px !important; }
+.ava-ai-root.is-open .ava-ai-launcher-headset { display: none; }
+.ava-ai-root.is-open .ava-ai-launcher-close { display: block; }
+
+
+/* Efectos configurables del botón lanzador. Solo se animan con el chat cerrado. */
+.ava-ai-root:not(.is-open).ava-ai-effect-pulse .ava-ai-launcher {
+  animation: avaAiLauncherPulse var(--ava-ai-launcher-effect-speed) ease-out infinite;
+}
+.ava-ai-root:not(.is-open).ava-ai-effect-glow .ava-ai-launcher {
+  animation: avaAiLauncherGlow var(--ava-ai-launcher-effect-speed) ease-in-out infinite;
+}
+.ava-ai-root:not(.is-open).ava-ai-effect-float .ava-ai-launcher {
+  animation: avaAiLauncherFloat var(--ava-ai-launcher-effect-speed) ease-in-out infinite;
+}
+.ava-ai-root.is-open .ava-ai-launcher,
+.ava-ai-launcher:hover,
+.ava-ai-launcher:focus-visible {
+  animation-play-state: paused !important;
+}
+
+@keyframes avaAiLauncherPulse {
+  0%, 100% {
+    box-shadow: 0 8px 22px rgba(15, 23, 42, .16), 0 0 0 0 color-mix(in srgb, var(--ava-ai-launcher-effect-color) var(--ava-ai-launcher-effect-alpha), transparent);
+  }
+  55% {
+    box-shadow: 0 8px 22px rgba(15, 23, 42, .16), 0 0 0 var(--ava-ai-launcher-effect-spread) color-mix(in srgb, var(--ava-ai-launcher-effect-color) 0%, transparent);
+  }
+}
+
+@keyframes avaAiLauncherGlow {
+  0%, 100% {
+    box-shadow: 0 8px 22px rgba(15, 23, 42, .16), 0 0 8px color-mix(in srgb, var(--ava-ai-launcher-effect-color) 18%, transparent);
+  }
+  50% {
+    box-shadow: 0 10px 28px rgba(15, 23, 42, .18), 0 0 var(--ava-ai-launcher-effect-spread) color-mix(in srgb, var(--ava-ai-launcher-effect-color) var(--ava-ai-launcher-effect-alpha), transparent);
+  }
+}
+
+@keyframes avaAiLauncherFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+.ava-ai-panel {
+  position: fixed;
+  right: var(--ava-ai-panel-right);
+  bottom: var(--ava-ai-panel-bottom);
+  width: min(var(--ava-ai-panel-width), calc(100vw - var(--ava-ai-panel-right) - 10px));
+  height: min(var(--ava-ai-panel-height), calc(100dvh - var(--ava-ai-panel-bottom) - 10px));
+  min-height: min(320px, calc(100dvh - var(--ava-ai-panel-bottom) - 10px));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--ava-ai-panel-bg);
+  border: 1px solid var(--ava-ai-border);
+  border-radius: var(--ava-ai-panel-radius);
+  box-shadow: 0 24px 64px rgba(15, 23, 42, .20), 0 4px 14px rgba(15, 23, 42, .08);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px) scale(.985);
+  transform-origin: bottom right;
+  transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+}
+.ava-ai-root.is-open .ava-ai-panel { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+
+.ava-ai-header {
+  min-height: 82px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 16px;
+  background: var(--ava-ai-primary);
+  color: #fff;
+}
+.ava-ai-brand {
+  width: 62px;
+  height: 44px;
+  flex: 0 0 62px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--ava-ai-brand-bg);
+  border: 1px solid var(--ava-ai-brand-border);
+  padding: 7px;
+}
+.ava-ai-brand img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.ava-ai-brand span { font-size: 13px; font-weight: 800; letter-spacing: .08em; }
+.ava-ai-header-copy { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.ava-ai-header-copy strong { font-size: 15px; line-height: 1.25; color: var(--ava-ai-header-title) !important; font-weight: 700; letter-spacing: -.01em; }
+.ava-ai-header-copy span { display: flex; align-items: center; gap: 7px; font-size: 11.5px; color: var(--ava-ai-header-subtitle) !important; opacity: 1; }
+.ava-ai-header-copy i { width: 7px; height: 7px; border-radius: 50%; background: var(--ava-ai-status) !important; box-shadow: 0 0 0 3px color-mix(in srgb, var(--ava-ai-status) 18%, transparent); }
+.ava-ai-close {
+  width: var(--ava-ai-close-size) !important;
+  height: var(--ava-ai-close-size) !important;
+  min-width: var(--ava-ai-close-size) !important;
+  min-height: var(--ava-ai-close-size) !important;
+  flex: 0 0 var(--ava-ai-close-size) !important;
+  border-radius: var(--ava-ai-close-radius) !important;
+  border: var(--ava-ai-close-border-width) solid var(--ava-ai-close-border) !important;
+  background: var(--ava-ai-close-bg) !important;
+  background-image: none !important;
+  color: var(--ava-ai-close-icon) !important;
+  display: grid !important;
+  place-items: center !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  transition: background .18s ease, transform .18s ease, border-color .18s ease !important;
+}
+.ava-ai-close:hover { background: var(--ava-ai-close-hover-bg) !important; transform: translateY(-1px) !important; }
+.ava-ai-close:focus-visible { outline: 2px solid var(--ava-ai-close-icon) !important; outline-offset: 2px !important; }
+.ava-ai-close svg { width: var(--ava-ai-close-icon-size) !important; height: var(--ava-ai-close-icon-size) !important; fill: none !important; stroke: currentColor !important; stroke-width: 1.8 !important; stroke-linecap: round !important; }
+
+.ava-ai-messages {
+  overflow-anchor: none;
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 16px 12px;
+  background: var(--ava-ai-panel-bg);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(24,33,47,.22) transparent;
+}
+.ava-ai-message { display: flex; margin: 0 0 12px; }
+.ava-ai-user { justify-content: flex-end; }
+.ava-ai-assistant { justify-content: flex-start; }
+.ava-ai-bubble {
+  max-width: 88%;
+  padding: 11px 13px;
+  border-radius: 16px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+.ava-ai-assistant .ava-ai-bubble { background: var(--ava-ai-assistant-bubble); color: var(--ava-ai-text); border-bottom-left-radius: 6px; }
+.ava-ai-user .ava-ai-bubble { background: var(--ava-ai-user-bubble); color: #fff; border-bottom-right-radius: 6px; box-shadow: 0 5px 16px rgba(35,74,124,.13); }
+.ava-ai-bubble p { margin: 0 0 8px; color: inherit; font: inherit; line-height: inherit; }
+.ava-ai-bubble p:last-child { margin-bottom: 0; }
+.ava-ai-bubble ul, .ava-ai-bubble ol { margin: 7px 0 8px 19px; padding: 0; }
+.ava-ai-bubble li { margin: 3px 0; padding-left: 2px; }
+.ava-ai-bubble strong { color: inherit; font-weight: 700; }
+.ava-ai-bubble em { color: inherit; }
+.ava-ai-bubble code { background: rgba(15,23,42,.06); border-radius: 5px; padding: 1px 4px; font-size: .92em; }
+.ava-ai-bubble a { color: #0b5fbe; font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+.ava-ai-user .ava-ai-bubble a { color: inherit; }
+
+.ava-ai-quick {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 8px;
+  padding: 11px 14px 12px;
+  background: var(--ava-ai-accent);
+  border-top: 1px solid rgba(24,33,47,.05);
+  transition: opacity .18s ease, max-height .22s ease, padding .22s ease, border-color .22s ease;
+  max-height: 180px;
+  overflow: hidden;
+}
+.ava-ai-quick.is-disabled { pointer-events: none; opacity: .55; }
+.ava-ai-quick.is-consumed {
+  opacity: 0;
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-top-color: transparent;
+  pointer-events: none;
+}
+.ava-ai-chip {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 44px;
+  border: 1px solid rgba(35,74,124,.12) !important;
+  background: rgba(255,255,255,.96) !important;
+  background-image: none !important;
+  color: var(--ava-ai-primary) !important;
+  padding: 9px 11px !important;
+  border-radius: 12px !important;
+  font: inherit !important;
+  font-size: 11.5px !important;
+  line-height: 1.25 !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  text-align: left !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 7px !important;
+  box-shadow: 0 1px 2px rgba(15,23,42,.025) !important;
+  transition: border-color .18s ease, background .18s ease, transform .18s ease, box-shadow .18s ease !important;
+}
+.ava-ai-chip::after {
+  content: '›' !important;
+  display: block !important;
+  flex: 0 0 auto;
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 400;
+  opacity: .45;
+}
+.ava-ai-chip:hover {
+  border-color: rgba(35,74,124,.28) !important;
+  background: #fff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15,23,42,.05) !important;
+}
+.ava-ai-chip:focus-visible { outline: 2px solid rgba(24,33,47,.14); outline-offset: 1px; }
+
+.ava-ai-inline-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 4px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: var(--ava-ai-primary);
+  color: #fff !important;
+  font-weight: 700 !important;
+  font-size: 12px;
+  line-height: 1.2;
+  text-decoration: none !important;
+  box-shadow: 0 4px 12px rgba(35,74,124,.14);
+}
+.ava-ai-inline-cta:hover { filter: brightness(1.04); transform: translateY(-1px); }
+.ava-ai-inline-cta::after { content: '→'; font-size: 14px; font-weight: 400; }
+
+.ava-ai-composer { display: flex; align-items: flex-end; gap: 9px; padding: 12px 12px 8px; background: var(--ava-ai-panel-bg); border-top: 1px solid var(--ava-ai-border); }
+.ava-ai-composer textarea {
+  width: 100%;
+  min-height: 44px;
+  max-height: 96px;
+  resize: none;
+  border: 1px solid rgba(24,33,47,.13);
+  border-radius: 14px;
+  outline: 0;
+  padding: 11px 12px;
+  background: #fff;
+  color: var(--ava-ai-text);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.45;
+  box-shadow: 0 1px 2px rgba(15,23,42,.02);
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+.ava-ai-composer textarea:focus { border-color: rgba(24,33,47,.18); box-shadow: 0 0 0 3px rgba(24,33,47,.05); }
+.ava-ai-send { width: 44px !important; height: 44px !important; flex: 0 0 44px !important; border: 0 !important; border-radius: 13px !important; display: grid !important; place-items: center !important; cursor: pointer !important; background: var(--ava-ai-launcher) !important; background-image: none !important; color: #fff !important; padding: 0 !important; transition: transform .18s ease, filter .18s ease !important; box-shadow:none !important; }
+.ava-ai-send:hover { transform: translateY(-1px); filter: brightness(1.04); }
+.ava-ai-send:disabled { opacity: .48; cursor: default; transform: none; }
+.ava-ai-send svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+.ava-ai-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 13px 11px; background: var(--ava-ai-panel-bg); }
+.ava-ai-privacy { color: var(--ava-ai-muted); font-size: 9.5px; line-height: 1.3; max-width: 230px; }
+.ava-ai-contact { flex: 0 0 auto; color: var(--ava-ai-primary); font-size: 10.5px; font-weight: 700; text-decoration: none; }
+.ava-ai-contact:hover { text-decoration: underline; text-underline-offset: 2px; }
+
+.ava-ai-typing { display: flex; align-items: center; gap: 4px; padding: 13px 15px; }
+.ava-ai-typing span { width: 6px; height: 6px; border-radius: 50%; background: #94a3b8; animation: cstAiPulse 1s infinite ease-in-out; }
+.ava-ai-typing span:nth-child(2) { animation-delay: .15s; }
+.ava-ai-typing span:nth-child(3) { animation-delay: .3s; }
+@keyframes cstAiPulse { 0%, 70%, 100% { transform: translateY(0); opacity: .42; } 35% { transform: translateY(-3px); opacity: 1; } }
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .ava-ai-root {
+    --ava-ai-panel-width: var(--ava-ai-tablet-panel-width);
+    --ava-ai-panel-height: var(--ava-ai-tablet-panel-height);
+    --ava-ai-panel-right: var(--ava-ai-tablet-panel-right);
+    --ava-ai-panel-bottom: var(--ava-ai-tablet-panel-bottom);
+    --ava-ai-launcher-size: var(--ava-ai-tablet-launcher-size);
+    --ava-ai-right: var(--ava-ai-tablet-right);
+    --ava-ai-bottom: var(--ava-ai-tablet-bottom);
+  }
+}
+
+@media (max-width: 600px) {
+  .ava-ai-root {
+    --ava-ai-panel-width: var(--ava-ai-mobile-panel-width);
+    --ava-ai-panel-height: var(--ava-ai-mobile-panel-height);
+    --ava-ai-panel-right: var(--ava-ai-mobile-panel-right);
+    --ava-ai-panel-bottom: var(--ava-ai-mobile-panel-bottom);
+    --ava-ai-launcher-size: var(--ava-ai-mobile-launcher-size);
+    --ava-ai-right: var(--ava-ai-mobile-right);
+    --ava-ai-bottom: var(--ava-ai-mobile-bottom);
+  }
+  .ava-ai-quick { grid-template-columns: 1fr !important; max-height: 260px; }
+  .ava-ai-panel {
+    min-height: 0;
+    border-radius: min(var(--ava-ai-panel-radius), 19px);
+    transform-origin: bottom right;
+  }
+  .ava-ai-header { min-height: 76px; padding: 13px 14px; }
+  .ava-ai-brand { width: 58px; height: 40px; flex-basis: 58px; }
+  .ava-ai-privacy { max-width: 190px; }
+}
+
+
+@media (max-width: 600px) {
+  /* Modo tipo app: el panel ocupa todo el viewport y el sitio queda inmóvil detrás. */
+  .ava-ai-root.ava-ai-mobile-fullscreen-enabled.is-open {
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    pointer-events: none;
+  }
+  .ava-ai-root.ava-ai-mobile-fullscreen-enabled.is-open .ava-ai-launcher {
+    display: none !important;
+  }
+  .ava-ai-root.ava-ai-mobile-fullscreen-enabled .ava-ai-panel {
+    transition: opacity .18s ease, transform .22s ease, visibility .18s ease;
+  }
+  .ava-ai-root.ava-ai-mobile-fullscreen-enabled.is-open .ava-ai-panel {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    max-width: none !important;
+    height: 100dvh !important;
+    max-height: none !important;
+    min-height: 100dvh !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    transform: none !important;
+    transform-origin: center !important;
+    box-shadow: none !important;
+    pointer-events: auto;
+  }
+  .ava-ai-root.ava-ai-mobile-fullscreen-enabled .ava-ai-header {
+    flex: 0 0 auto;
+    padding-top: max(13px, env(safe-area-inset-top));
+  }
+  .ava-ai-root.ava-ai-mobile-fullscreen-enabled .ava-ai-messages {
+    min-height: 0;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ava-ai-root.ava-ai-mobile-fullscreen-enabled .ava-ai-footer {
+    padding-bottom: max(11px, env(safe-area-inset-bottom));
+  }
+  .ava-ai-root.ava-ai-mobile-fullscreen-enabled .ava-ai-composer {
+    flex: 0 0 auto;
+  }
+}
+
+/* Móvil en horizontal: panel lateral a altura completa, sin ocupar todo el ancho. */
+@media (max-width: 1024px) and (max-height: 600px) and (orientation: landscape) {
+  .ava-ai-root.ava-ai-mobile-landscape-fullheight-enabled.is-open {
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    pointer-events: none;
+  }
+  .ava-ai-root.ava-ai-mobile-landscape-fullheight-enabled.is-open .ava-ai-launcher {
+    display: none !important;
+  }
+  .ava-ai-root.ava-ai-mobile-landscape-fullheight-enabled.is-open .ava-ai-panel {
+    position: fixed !important;
+    top: 0 !important;
+    right: var(--ava-ai-mobile-landscape-panel-right) !important;
+    bottom: 0 !important;
+    left: auto !important;
+    inset-inline-start: auto !important;
+    inset-inline-end: var(--ava-ai-mobile-landscape-panel-right) !important;
+    width: min(var(--ava-ai-mobile-landscape-panel-width), calc(100vw - var(--ava-ai-mobile-landscape-panel-right))) !important;
+    max-width: calc(100vw - var(--ava-ai-mobile-landscape-panel-right)) !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    min-height: 100dvh !important;
+    border-radius: 0 !important;
+    transform: none !important;
+    transform-origin: right center !important;
+    pointer-events: auto;
+  }
+  .ava-ai-root.ava-ai-mobile-landscape-fullheight-enabled .ava-ai-header {
+    flex: 0 0 auto;
+    min-height: 68px;
+    padding-top: max(10px, env(safe-area-inset-top));
+    padding-bottom: 10px;
+  }
+  .ava-ai-root.ava-ai-mobile-landscape-fullheight-enabled .ava-ai-brand {
+    width: 54px;
+    height: 38px;
+    flex-basis: 54px;
+  }
+  .ava-ai-root.ava-ai-mobile-landscape-fullheight-enabled .ava-ai-messages {
+    min-height: 0;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ava-ai-root.ava-ai-mobile-landscape-fullheight-enabled .ava-ai-quick {
+    max-height: 92px;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  .ava-ai-root.ava-ai-mobile-landscape-fullheight-enabled .ava-ai-composer {
+    flex: 0 0 auto;
+    padding-top: 8px;
+    padding-bottom: 6px;
+  }
+  .ava-ai-root.ava-ai-mobile-landscape-fullheight-enabled .ava-ai-footer {
+    flex: 0 0 auto;
+    padding-bottom: max(7px, env(safe-area-inset-bottom));
+  }
+}
+
+html.ava-ai-mobile-open,
+body.ava-ai-mobile-open {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ava-ai-panel, .ava-ai-launcher, .ava-ai-chip, .ava-ai-send { transition: none; animation: none !important; }
+  .ava-ai-typing span { animation: none; }
+}
+
+.ava-ai-product-card {
+  display: flex;
+  align-items: stretch;
+  gap: 11px;
+  width: min(100%, 330px);
+  margin: 10px 0 4px;
+  padding: 10px;
+  border: 1px solid rgba(24,33,47,.10);
+  border-radius: 16px;
+  background: #fff;
+  color: var(--ava-ai-text);
+  text-decoration: none !important;
+  box-shadow: 0 5px 18px rgba(15,23,42,.05);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.ava-ai-product-card:hover {
+  transform: translateY(-1px);
+  border-color: rgba(24,33,47,.16);
+  box-shadow: 0 8px 24px rgba(15,23,42,.08);
+}
+.ava-ai-product-image {
+  width: 82px;
+  min-width: 82px;
+  height: 82px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--ava-ai-accent);
+  display: grid;
+  place-items: center;
+}
+.ava-ai-product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.ava-ai-product-copy {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 3px;
+}
+.ava-ai-product-title {
+  color: var(--ava-ai-text);
+  font-size: 13px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+.ava-ai-product-price {
+  color: var(--ava-ai-primary);
+  font-size: 13px;
+  line-height: 1.3;
+  font-weight: 750;
+}
+.ava-ai-product-stock {
+  color: var(--ava-ai-muted);
+  font-size: 10.5px;
+  line-height: 1.3;
+}
+.ava-ai-product-link {
+  margin-top: 3px;
+  color: var(--ava-ai-primary);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .ava-ai-product-card { width: 100%; }
+  .ava-ai-product-image { width: 74px; min-width: 74px; height: 74px; }
+}
+
+.ava-ai-product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: 12px;
+}
+.ava-ai-product-list .ava-ai-product-card { margin: 0; }
+.ava-ai-product-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 3px 7px;
+  margin-bottom: 2px;
+  border-radius: 999px;
+  background: var(--ava-ai-accent);
+  color: var(--ava-ai-primary);
+  font-size: 9.5px;
+  line-height: 1.2;
+  font-weight: 750;
+}
+.ava-ai-product-reason {
+  color: var(--ava-ai-muted);
+  font-size: 10.5px;
+  line-height: 1.38;
+  margin-top: 2px;
+}
+
+/* Feedback anónimo de utilidad */
+.ava-ai-assistant { flex-direction: column; align-items: flex-start; }
+.ava-ai-feedback {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0 0 4px;
+  min-height: 30px;
+  color: var(--ava-ai-muted);
+  font-size: 11px;
+  line-height: 1.3;
+}
+.ava-ai-feedback-label { transition: opacity .18s ease; }
+.ava-ai-feedback-actions { display: inline-flex; gap: 5px; }
+.ava-ai-feedback-btn {
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  min-height: 30px !important;
+  display: inline-grid !important;
+  place-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 1px solid var(--ava-ai-feedback-border) !important;
+  border-radius: 9px !important;
+  background: var(--ava-ai-feedback-bg) !important;
+  background-image: none !important;
+  color: var(--ava-ai-feedback-icon) !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  transition: transform .16s ease, border-color .16s ease, color .16s ease, background .16s ease !important;
+}
+.ava-ai-feedback-btn:hover:not(:disabled) {
+  color: var(--ava-ai-feedback-active) !important;
+  border-color: var(--ava-ai-feedback-active) !important;
+  transform: translateY(-1px);
+}
+.ava-ai-feedback-btn:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--ava-ai-feedback-active) 35%, transparent) !important;
+  outline-offset: 2px !important;
+}
+.ava-ai-feedback-btn svg {
+  width: 16px !important;
+  height: 16px !important;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1.7 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+.ava-ai-feedback-btn.is-selected {
+  color: var(--ava-ai-feedback-active) !important;
+  border-color: var(--ava-ai-feedback-active) !important;
+  background: color-mix(in srgb, var(--ava-ai-feedback-active) 8%, var(--ava-ai-feedback-bg)) !important;
+}
+.ava-ai-feedback.is-voted .ava-ai-feedback-btn:not(.is-selected) { opacity: .38; }
+.ava-ai-feedback-btn:disabled { cursor: default !important; }
+
+@media (max-width: 600px) {
+  .ava-ai-feedback { font-size: 10.5px; margin-left: 2px; }
+  .ava-ai-feedback-btn { width: 32px !important; height: 32px !important; min-width: 32px !important; min-height: 32px !important; }
+}
+
+/* v1.5 · Nueva conversación */
+.ava-ai-reset {
+  width: var(--ava-ai-close-size) !important;
+  height: var(--ava-ai-close-size) !important;
+  flex: 0 0 var(--ava-ai-close-size) !important;
+  border-radius: var(--ava-ai-close-radius) !important;
+  border: var(--ava-ai-close-border-width) solid var(--ava-ai-close-border) !important;
+  background: var(--ava-ai-close-bg) !important;
+  color: var(--ava-ai-close-icon) !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+.ava-ai-reset:hover { background: var(--ava-ai-close-hover-bg) !important; }
+.ava-ai-reset svg { width: var(--ava-ai-close-icon-size) !important; height: var(--ava-ai-close-icon-size) !important; fill:none !important; stroke:currentColor !important; stroke-width:1.8 !important; stroke-linecap:round !important; stroke-linejoin:round !important; }
+
+
+/* v1.5.1 · Evita el auto-zoom de iOS en campos de formulario.
+   Safari/iOS amplía controles con tipografía inferior a 16px al recibir foco. */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 1024px) {
+    .ava-ai-root input,
+    .ava-ai-root textarea,
+    .ava-ai-root select {
+      font-size: 16px !important;
+    }
+  }
+}

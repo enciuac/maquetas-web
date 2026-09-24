@@ -1,0 +1,249 @@
+/* ===== Maqueta Blizzcool: comportamiento de la réplica sin JS de WordPress ===== */
+.elementor-location-header{position:sticky;top:0;z-index:999}
+.wpforms-error-noscript{display:none!important}
+/* desplegables del menú (smartmenus en la web real) */
+.elementor-nav-menu--main .elementor-nav-menu li{position:relative}
+.elementor-nav-menu--main .elementor-nav-menu ul.sub-menu{display:none;position:absolute;top:100%;left:0;min-width:12em;width:auto!important;white-space:nowrap;z-index:1000}
+.elementor-nav-menu--main .elementor-nav-menu li li>ul.sub-menu{top:0!important;left:100%!important;margin-top:0!important}
+.elementor-nav-menu--main .elementor-nav-menu li.bz-hover>ul.sub-menu{display:block}
+.elementor-nav-menu--main .elementor-nav-menu a.highlighted{color:var(--e-global-color-secondary)}
+.elementor-nav-menu--dropdown.elementor-nav-menu__container.bz-dd-open{transform:scaleY(1)!important;max-height:100vh!important;overflow-y:auto}
+nav.elementor-nav-menu--dropdown ul.sub-menu{display:none;position:static!important;width:auto!important}
+nav.elementor-nav-menu--dropdown li.bz-open>ul.sub-menu{display:block}
+nav.elementor-nav-menu--dropdown .sub-arrow{cursor:pointer;padding:0 14px}
+/* fondo en pase de diapositivas */
+.elementor-background-slideshow .swiper-wrapper{display:flex;height:100%;will-change:transform}
+.elementor-background-slideshow .swiper-slide{flex:0 0 100%;width:100%;height:100%}
+.elementor-widget-loop-carousel{width:100%;max-width:100%}
+.elementor-widget-loop-carousel .swiper{overflow:hidden}
+
+.wpforms-field:has(> label[aria-hidden="true"]){position:absolute!important;overflow:hidden!important;height:1px!important;width:1px!important;opacity:0!important;pointer-events:none}
+[data-id="02f239b"] .dgwt-wcas-layout-icon .dgwt-wcas-search-form{display:none}
+[data-id="02f239b"] .dgwt-wcas-layout-icon-open .dgwt-wcas-search-form{display:block;position:absolute;right:0;top:40px;width:300px;z-index:1000}
+nav.elementor-nav-menu--dropdown li.menu-item-has-children:not(.bz-open)>ul{display:none!important}
+
+/* =====================================================================
+   BLOQUES NUEVOS — mismos patrones visuales que blizzcool.es
+   ===================================================================== */
+.bz-sec{font-family:"Poppins",sans-serif;color:#000;background:#fff;padding:50px 75px}
+.bz-in{max-width:1430px;margin:0 auto}
+.bz-sec.bz-grey{background:#FAFAFA}
+.bz-sec.bz-black{background:#000}
+.bz-sec.bz-green{background:#68B551;padding:10px}
+.bz-sec.bz-green .bz-in{max-width:1140px;padding:10px 0}
+.bz-g{color:#68B551}
+.bz-h2{font-family:"Poppins",sans-serif;font-size:30px;font-weight:600;line-height:1.3em;color:#000;text-align:center;margin:0 0 10px}
+.bz-sub{font-family:"Poppins",sans-serif;font-size:18px;line-height:1.65em;color:#161616;text-align:center;max-width:760px;margin:0 auto 40px}
+.bz-h2.bz-on-dark{color:#fff}.bz-sub.bz-on-dark{color:#fff}
+.bz-center{text-align:center;margin-top:40px}
+.bz-btn,.bz-btn:hover,.bz-btn:focus{display:inline-block;font-family:"Poppins",sans-serif;font-size:14px;font-weight:500;line-height:14px;letter-spacing:2px;text-transform:uppercase;color:#fff!important;padding:15px 30px;border-radius:5px;border:0;text-decoration:none!important}
+.bz-btn-blue,.bz-btn-blue:hover{background:#6B8DC8!important}.bz-btn-green,.bz-btn-green:hover{background:#68B551!important}
+.bz-btn:hover{filter:brightness(.93)}
+.bz-link{color:#6B8DC8;font-size:14px;text-decoration:underline}
+.bz-note{font-size:13px;line-height:1.6;color:#555;margin:22px 0 0;text-align:center}
+.bz-grid{display:grid;gap:20px}
+.bz-g3{grid-template-columns:repeat(3,1fr)}.bz-g4{grid-template-columns:repeat(4,1fr)}.bz-g6{grid-template-columns:repeat(6,1fr)}
+/* tarjeta-imagen (como «Nuestras soluciones») */
+.bz-img-card{position:relative;display:flex;flex-direction:column;justify-content:flex-end;height:250px;padding:0 20px 20px;border-radius:5px;overflow:hidden;background-size:cover;background-position:center;text-decoration:none!important}
+.bz-img-card:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.88));transition:background .3s}
+.bz-img-card:hover:before{background:linear-gradient(180deg,rgba(0,0,0,.1) 20%,rgba(0,0,0,.85))}
+.bz-img-card h3{position:relative;margin:0;font-family:"Poppins",sans-serif;font-size:18px;font-weight:600;line-height:1.3em;color:#fff}
+.bz-img-eyebrow{position:relative;font-family:"Poppins",sans-serif;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#68B551;margin-bottom:4px}
+/* tarjeta caja negra + bloque inferior (como Post-venta / Plan Renove) */
+.bz-card{background:#FAFAFA;border:1px solid #ddd;display:flex;flex-direction:column}
+.bz-card-top{background:#000;height:200px;padding:20px;display:flex;align-items:center;justify-content:center}
+.bz-card-top svg{width:100px;height:100px;fill:#68B551}
+.bz-num{font-family:"Poppins",sans-serif;font-size:90px;font-weight:600;line-height:1;color:#68B551}
+.bz-card-low{padding:40px 20px;display:flex;flex-direction:column;gap:20px;flex:1}
+.bz-card-low h3{margin:0;font-family:"Poppins",sans-serif;font-size:18px;font-weight:600;line-height:1.3em;color:#68B551}
+.bz-card-txt p{margin:0;font-family:"Poppins",sans-serif;font-size:14px;line-height:1.65em;color:#000}
+.bz-card-txt a{color:#6B8DC8}
+.bz-card-btn{margin-top:auto}
+.bz-g6 .bz-card-top{height:150px}.bz-g6 .bz-num{font-size:70px}.bz-g6 .bz-card-low{padding:25px 18px;gap:12px}.bz-g6 .bz-card-low h3{font-size:16px}
+.bz-g-center{justify-content:center}
+/* comparador (tarjetas de producto como el carrusel de la web) */
+.bz-models{align-items:stretch}
+.bz-model{background:#fff;border:1px solid #ddd;display:flex;flex-direction:column;align-items:center;padding:0 0 30px}
+
+.bz-model-img{width:100%;background:#fff;display:flex;justify-content:center;padding:20px 0 0}
+.bz-model-img img{width:78%;height:auto;display:block}
+.bz-model h3{margin:10px 20px 0;font-family:"Poppins",sans-serif;font-size:18px;font-weight:600;text-transform:uppercase;color:#000;text-align:center}
+.bz-plug{margin:4px 0 16px;font-family:"Poppins",sans-serif;font-size:13px;font-weight:600;color:#68B551;text-transform:uppercase;letter-spacing:1px}
+.bz-spec{list-style:none;margin:0 0 24px;padding:0 24px;width:100%;box-sizing:border-box}
+.bz-spec li{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px solid #eee;font-family:"Poppins",sans-serif;font-size:14px;line-height:1.4}
+.bz-spec li span{color:#555}.bz-spec li strong{font-weight:600;color:#000;text-align:right}
+.bz-model-cta{margin-top:auto;display:flex;flex-direction:column;align-items:center;gap:12px}
+/* casos: fotos en sección negra */
+.bz-case{margin:0;height:380px;background-size:cover;background-position:center;position:relative;border-radius:5px;overflow:hidden}
+.bz-case figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 20px 18px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.92) 55%);font-family:"Poppins",sans-serif;color:#fff;display:flex;flex-direction:column}
+.bz-case figcaption strong{font-size:18px;font-weight:600;color:#68B551}
+.bz-case figcaption span{font-size:14px}
+.bz-caso-ficha{margin-top:24px;background:#111;border:1px dashed #555;border-radius:5px;padding:18px 20px}
+.bz-caso-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px 20px;font-family:"Poppins",sans-serif}
+.bz-caso-grid span{display:block;font-size:11px;color:#aaa;text-transform:uppercase;letter-spacing:.5px}
+.bz-caso-grid strong{font-size:14px;color:#fff;font-weight:600}
+/* banda verde de datos (como Distribuidores) */
+.bz-stat{padding:10px;text-align:center;font-family:"Poppins",sans-serif}
+.bz-stat strong{display:block;font-size:30px;white-space:nowrap;font-weight:900;line-height:1.3em;color:#000}
+.bz-stat p{margin:6px 0 0;font-size:16px;line-height:1.65em;color:#000}
+/* acordeón verde en sección negra (como «¿Por qué elegir…?») */
+.bz-acc-list{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.bz-acc summary{list-style:none;cursor:pointer;background:#68B551;border-radius:4px;padding:10px 14px;display:flex;align-items:center;gap:10px;font-family:"Poppins",sans-serif;font-size:16px;font-weight:500;color:#1F2124}
+.bz-acc summary::-webkit-details-marker{display:none}
+.bz-acc-ico{width:15px;height:15px;border-radius:50%;background:#1F2124;position:relative;flex:0 0 15px}
+.bz-acc-ico:before,.bz-acc-ico:after{content:"";position:absolute;background:#68B551;left:3px;right:3px;top:6.5px;height:2px}
+.bz-acc-ico:after{left:6.5px;right:auto;width:2px;top:3px;bottom:3px;height:auto}
+.bz-acc[open] .bz-acc-ico:after{display:none}
+.bz-acc>div{padding:12px 14px;font-family:"Poppins",sans-serif;font-size:16px;line-height:1.65em;color:#fff}
+.bz-acc>div p{margin:0}.bz-acc>div a{color:#68B551}
+/* pasos con círculo (como «Seis razones» de Distribuidores) */
+.bz-reason{border:1px solid #68B551;border-radius:25px;padding:25px;font-family:"Poppins",sans-serif}
+.bz-circle{display:inline-flex;width:44px;height:44px;border:2px solid #000;border-radius:50%;align-items:center;justify-content:center;font-weight:700;font-size:18px;color:#000;margin-bottom:12px}
+.bz-reason h3{margin:0 0 6px;font-size:20px;font-weight:700;color:#000}
+.bz-reason p{margin:0;font-size:14px;line-height:1.65em;color:#000}
+/* formulario oscuro (como los WPForms de la web) */
+.bz-wpf{max-width:915px;margin:0 auto;background:#000;border-radius:5px;padding:60px;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.bz-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.bz-f{margin-bottom:20px;display:flex;flex-direction:column}
+.bz-f label{font-size:16px;font-weight:700;line-height:19px;color:#fff;margin-bottom:11px}
+.bz-f em,.bz-check em{font-style:normal;color:#ff6565}
+.bz-wpf input[type=text],.bz-wpf input[type=email],.bz-wpf input[type=tel],.bz-wpf input[type=number],.bz-wpf select,.bz-wpf textarea{height:43px;background:#252628;border:1px solid rgba(104,181,81,.46);border-radius:6px;color:rgba(255,255,255,.7);font-size:16px;padding:0 14px;width:100%;box-sizing:border-box;font-family:inherit}
+.bz-wpf textarea{height:auto;padding:10px 14px}
+.bz-wpf input[type=file]{color:rgba(255,255,255,.7);font-size:14px;background:#252628;border:1px dashed rgba(104,181,81,.46);border-radius:6px;padding:14px}
+.bz-check{display:flex;gap:8px;align-items:center;color:#fff;font-size:14px;margin:6px 0 20px}
+.bz-wpf button{width:100%;height:48px;background:#6B8DC8;color:#fff;border:0;border-radius:5px;font:500 20px "Poppins",sans-serif;text-transform:uppercase;cursor:pointer}
+.bz-form-note{margin:16px 0 0;text-align:center;color:rgba(255,255,255,.7);font-size:14px}
+.bz-form-note a{color:#68B551}
+/* elementos solo visibles en «Ver cambios» */
+.bz-val,.bz-review-only{display:none}
+body.show-changes .bz-val{display:inline-block}
+body.show-changes .bz-review-only{display:block}
+p.bz-review-only{margin:16px 0 0;font:600 13px/1.4 "Poppins",sans-serif;color:#E0332E}
+.bz-black p.bz-review-only,.bz-wpf p.bz-review-only{color:#fca5a5}
+.bz-cta-apoyo .elementor-button{background-color:transparent!important;border:2px solid #fff!important;padding:13px 28px!important}
+@media (max-width:1024px){
+  .bz-sec{padding:50px 20px}
+  .bz-g4,.bz-g6{grid-template-columns:repeat(2,1fr)}.bz-g3{grid-template-columns:1fr 1fr}
+  .bz-caso-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:767px){
+  .bz-sec{padding:40px 20px}
+  .bz-h2{font-size:24px}.bz-sub{font-size:16px;margin-bottom:28px}
+  .bz-g3,.bz-g4{grid-template-columns:1fr}.bz-g6{grid-template-columns:1fr 1fr}
+  .bz-row{grid-template-columns:1fr;gap:0}
+  .bz-wpf{padding:30px 20px}
+  .bz-case{height:300px}
+  .bz-stat strong{font-size:28px}
+}
+
+/* =====================================================================
+   MODO «VER CAMBIOS» — mismo sistema que la maqueta de Jender
+   ===================================================================== */
+.review-toggle{position:fixed;left:50%;transform:translateX(-50%);bottom:22px;z-index:100000;background:#111827!important;color:#fff!important;border:0!important;border-radius:40px!important;padding:10px 18px 10px 14px!important;font:700 14px "Poppins",sans-serif!important;letter-spacing:0!important;text-transform:none!important;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.3);cursor:pointer;white-space:nowrap;line-height:1.2!important}
+.review-toggle .sw{width:36px;height:20px;border-radius:20px;background:#4b5563;position:relative;transition:background .2s}
+.review-toggle .sw::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .2s}
+body.show-changes .review-toggle .sw{background:#FFD400}
+body.show-changes .review-toggle .sw::after{left:18px}
+.review-toggle small{font-weight:500;opacity:.7;font-size:13px}
+.review-hint{display:none;position:fixed;left:50%;transform:translateX(-50%);bottom:74px;z-index:100000;background:#111827;color:#e5e7eb;font:500 12.5px "Poppins",sans-serif;padding:7px 12px;border-radius:8px;white-space:nowrap}
+body.show-changes .review-hint{display:block}
+.review-hint b{color:#fde68a}.review-hint i{color:#bbf7d0;font-style:normal;font-weight:700}.review-hint u{color:#fecaca;text-decoration:none;font-weight:700}.review-hint s{text-decoration:none;color:#9ca3af;font-weight:700}
+.replica-note{display:none}
+body.show-changes .replica-note{display:block;position:relative;z-index:1000;background:#450a0a;color:#fecaca;font:600 13px/1.4 "Poppins",sans-serif;text-align:center;padding:10px 16px}
+body.show-changes .replica-note.has-chg{background:#3f2d00;color:#fde68a}
+.blocked-tip{position:fixed;left:50%;top:130px;transform:translate(-50%,-8px);z-index:100001;background:#111827;color:#fde68a;font:600 13.5px "Poppins",sans-serif;padding:10px 16px;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
+.blocked-tip.on{opacity:1;transform:translate(-50%,0)}
+/* menú: páginas sin cambios en gris; con cambios, subrayadas */
+body.show-changes .elementor-location-header .elementor-nav-menu li.nochg>a{color:rgba(255,255,255,.34)!important;cursor:not-allowed}
+body.show-changes .elementor-location-header .elementor-nav-menu li.nochg>a svg{fill:rgba(255,255,255,.34)!important}
+body.show-changes .elementor-location-header .elementor-nav-menu--main ul.sub-menu li.nochg>a{background:rgba(255,255,255,.04)}
+body.show-changes .elementor-location-header .elementor-nav-menu--main>.elementor-nav-menu>li:not(.nochg)>a{text-decoration:underline;text-decoration-color:#FFD400;text-decoration-thickness:2px;text-underline-offset:5px}
+body.show-changes .elementor-location-header .elementor-nav-menu--main ul.sub-menu li:not(.nochg)>a{box-shadow:inset 3px 0 0 #FFD400}
+body.show-changes .elementor-location-header .nochg-w{opacity:.35;filter:grayscale(1);cursor:not-allowed}
+/* etiquetas */
+[data-chg],[data-new],[data-pend]{position:relative}
+body.show-changes [data-chg]{outline:2px dashed #FFD400;outline-offset:6px;border-radius:4px}
+body.show-changes [data-new]{outline:2px dashed #22c55e;outline-offset:6px;border-radius:4px}
+body.show-changes [data-pend]{outline:2px dashed #f87171;outline-offset:6px;border-radius:4px}
+body.show-changes section[data-new]{outline-offset:-6px}
+body.show-changes [data-chg]::after,body.show-changes [data-new]::after,body.show-changes [data-pend]::after{position:absolute;left:-8px;top:-12px;z-index:30;max-width:460px;font:600 11px/1.35 "Poppins",sans-serif;text-transform:none;letter-spacing:.04em;padding:3px 8px;border-radius:6px;white-space:normal;width:max-content;box-shadow:0 6px 16px rgba(0,0,0,.25);pointer-events:none;text-align:left;font-style:normal}
+body.show-changes [data-chg]::after{content:"CAMBIO";background:#111827;color:#fde68a}
+body.show-changes [data-new]::after{content:"NUEVO";background:#052e16;color:#bbf7d0}
+body.show-changes [data-pend]::after{content:"VALIDAR";background:#450a0a;color:#fecaca;z-index:31}
+body.show-changes section[data-new]::after{top:8px;left:8px}
+body.show-changes [data-chg]:hover::after,body.show-changes [data-new]:hover::after,body.show-changes .bz-val{font:0/0 a;color:transparent;width:0;height:14px;vertical-align:middle;margin-left:62px}
+body.show-changes .bz-val::after{top:-3px;left:-58px}
+body.show-changes .bz-inline{outline-offset:3px}
+@media (max-width:767px){
+  body.show-changes [data-chg]::after,body.show-changes [data-new]::after,body.show-changes [data-pend]::after{max-width:86vw}
+  .review-toggle small,.review-hint{display:none!important}
+  .review-toggle{bottom:14px;left:14px;transform:none}
+}
+
+/* ficha flotante de «Ver cambios» */
+.bz-hovercard{position:fixed;z-index:100003;display:none;max-width:420px;background:#111827;color:#e5e7eb;border-radius:8px;padding:12px 14px;box-shadow:0 12px 32px rgba(0,0,0,.35);font:400 13px/1.55 "Poppins",sans-serif;pointer-events:none;border-left:4px solid #FFD400}
+.bz-hovercard.on{display:block}
+.bz-hovercard b{display:inline-block;font:700 11px/1 "Poppins",sans-serif;letter-spacing:.06em;padding:4px 7px;border-radius:4px;margin-bottom:8px;background:#FFD400;color:#111827}
+.bz-hovercard.k-nuevo{border-left-color:#22c55e}.bz-hovercard.k-nuevo b{background:#22c55e;color:#052e16}
+.bz-hovercard.k-validar{border-left-color:#f87171}.bz-hovercard.k-validar b{background:#f87171;color:#450a0a}
+.bz-hovercard .r{margin-top:6px}
+.bz-hovercard .r span{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#9ca3af;margin-bottom:1px}
+body.show-changes [data-chg]:hover,body.show-changes [data-new]:hover,body.show-changes [data-pend]:hover{outline-style:solid}
+
+/* VALIDAR: solo recuadro rojo; el motivo aparece al pasar el ratón */
+body.show-changes [data-pend]::after{content:none!important;display:none!important}
+.bz-val,body.show-changes .bz-val{display:none!important}
+body.show-changes [data-pend]{outline:2px dashed #f87171;outline-offset:4px;background-color:rgba(248,113,113,.06)}
+body.show-changes .bz-black [data-pend],body.show-changes .bz-green [data-pend]{background-color:rgba(248,113,113,.12)}
+/* Cambios dentro de una frase: solo resaltado (sin etiqueta que tape el texto); el detalle sale al pasar el ratón */
+body.show-changes .bz-inline::after,body.show-changes span[data-chg]::after{content:none!important;display:none!important}
+body.show-changes span[data-chg]{outline:none!important;border-radius:3px;background-color:rgba(255,212,0,.28);box-shadow:0 0 0 2px rgba(255,212,0,.55);-webkit-box-decoration-break:clone;box-decoration-break:clone}
+/* Todas las marcas (CAMBIO, NUEVO, VALIDAR): solo recuadro de color, sin etiqueta encima; el detalle aparece al pasar el ratón */
+body.show-changes [data-chg]::after,body.show-changes [data-new]::after,body.show-changes [data-pend]::after{content:none!important;display:none!important}
+body.show-changes [data-chg]{outline:2px dashed #FFD400;outline-offset:4px;background-color:rgba(255,212,0,.07)}
+body.show-changes [data-new]{outline:2px dashed #22c55e;outline-offset:4px}
+body.show-changes section[data-new]{outline-offset:-6px;background-image:linear-gradient(rgba(34,197,94,.04),rgba(34,197,94,.04))}
+body.show-changes [data-chg],body.show-changes [data-new],body.show-changes [data-pend]{cursor:help}
+/* ===== Propuestas alternativas del bloque «Método» ===== */
+.bz-alts{position:relative}
+.bz-alt[data-alt="2"]{display:none}
+.bz-alts.show-2 .bz-alt[data-alt="1"]{display:none}
+.bz-alts.show-2 .bz-alt[data-alt="2"]{display:block}
+.bz-alt-switch{display:flex;justify-content:center;align-items:center;gap:6px;background:#111827;padding:8px 12px;font:600 12px "Poppins",sans-serif;color:#9ca3af;white-space:nowrap}
+.bz-alt-switch button,.bz-alt-switch button:hover,.bz-alt-switch button:focus{background:transparent!important;color:#e5e7eb!important;border:0!important;border-radius:20px!important;padding:6px 12px!important;font:600 12px "Poppins",sans-serif!important;letter-spacing:0!important;text-transform:none!important;cursor:pointer;line-height:1.2!important}
+.bz-alt-switch button.on{background:#68B551!important;color:#fff!important}
+/* Opción 1: foto + línea vertical */
+.bz-sec.bz-split{padding:0;display:grid;grid-template-columns:1fr 1fr;min-height:760px;background:#fff}
+.bz-split-img{background-size:cover;background-position:center}
+.bz-split-txt{padding:80px 75px 70px 70px;max-width:715px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center}
+.bz-eyebrow2{margin:0 0 10px;font:500 16px "Poppins",sans-serif;text-transform:uppercase;color:#68B551;letter-spacing:.5px}
+.bz-h2l{margin:0 0 12px;font:700 40px/1.2 "Poppins",sans-serif;color:#000}
+.bz-lead{margin:0 0 34px;font:400 18px/1.65 "Poppins",sans-serif;color:#161616}
+.bz-vline{list-style:none;margin:0 0 36px;padding:0;position:relative}
+.bz-vline:before{content:"";position:absolute;left:23px;top:24px;bottom:24px;width:2px;background:#68B551}
+.bz-vline li{position:relative;display:flex;gap:22px;align-items:flex-start;padding:0 0 22px}
+.bz-vline li:last-child{padding-bottom:0}
+.bz-dot{flex:0 0 48px;width:48px;height:48px;border-radius:50%;background:#000;color:#68B551;border:2px solid #68B551;display:flex;align-items:center;justify-content:center;font:700 16px "Poppins",sans-serif;position:relative;z-index:1;box-sizing:border-box}
+.bz-vline h3{margin:2px 0 2px;font:600 18px/1.3 "Poppins",sans-serif;color:#000}
+.bz-vline p{margin:0;font:400 15px/1.6 "Poppins",sans-serif;color:#333}
+.bz-split-txt .bz-btn{align-self:flex-start}
+/* Opción 2: línea horizontal sobre negro */
+.bz-hline{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:24px;position:relative}
+.bz-hline:before{content:"";position:absolute;top:31px;left:calc(100%/12);right:calc(100%/12);height:2px;background:linear-gradient(90deg,#68B551,#68B551)}
+.bz-hline li{text-align:center;position:relative}
+.bz-hline .bz-dot{width:64px;height:64px;margin:0 auto 22px;font-size:20px;background:#000}
+.bz-hline h3{margin:0 0 8px;font:600 18px/1.3 "Poppins",sans-serif;color:#68B551}
+.bz-hline p{margin:0;font:400 14px/1.65 "Poppins",sans-serif;color:#fff}
+@media (max-width:1024px){
+  .bz-sec.bz-split{grid-template-columns:1fr}.bz-split-img{min-height:320px}.bz-split-txt{padding:50px 20px;max-width:none}
+  .bz-hline{grid-template-columns:1fr;gap:0;max-width:520px;margin:0 auto}
+  .bz-hline:before{left:31px;right:auto;top:32px;bottom:32px;width:2px;height:auto}
+  .bz-hline li{display:grid;grid-template-columns:64px 1fr;column-gap:20px;text-align:left;padding-bottom:22px}
+  .bz-hline .bz-dot{margin:0;grid-row:span 2}
+}
+@media (max-width:767px){.bz-h2l{font-size:30px}.bz-alt-switch span{display:none}}
+
+.bz-alt[data-alt="2"]{padding-top:80px;padding-bottom:80px}
+/* Contenido eliminado: oculto en la versión final; en «Ver cambios» se ve tachado */
+body:not(.show-changes) .bz-removed{display:none!important}
+body.show-changes .bz-removed{opacity:.45;filter:grayscale(1);text-decoration:line-through;outline:2px dashed #FFD400!important;outline-offset:4px;position:relative}

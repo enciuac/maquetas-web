@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora térmica | BlizzTherm</title>
+<meta name="description" content="Calcula de forma orientativa la potencia de calefacción que necesita tu nave, taller u obra, la tecnología adecuada y el coste por hora.">
+<link rel="stylesheet" href="css/site.css?v=8">
+</head>
+<body data-root="../" data-page="calculadora">
+<header id="hdr"></header>
+<main>
+<section class="hero grad chg" data-t="new" data-porque="Página nueva: el informe pide una calculadora térmica basada en volumen, aislamiento, diferencia de temperatura y ventilación, y una calculadora de coste por hora, jornada y temporada (Sección 04 · Herramientas comerciales y Sección 10 · Datos del cálculo térmico).">
+  <div class="in"><div class="box">
+    <div class="crumbs"><a data-pg="home" href="../index.html">Inicio</a> » Soluciones » Calculadora térmica</div>
+    <h1>Calculadora <span class="hl">térmica</span></h1>
+    <hr class="divider">
+    <div class="lead w">Una primera estimación de la potencia, la tecnología y el coste de funcionamiento. Para un proyecto, te hacemos el cálculo completo sin compromiso.</div>
+  </div></div>
+</section>
+
+<section class="sec" style="background:#f6f6f4"><div class="in">
+  <div class="calc">
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <div class="calc-card">
+        <h3><span class="n">1</span>Tu espacio</h3>
+        <div class="cgrid">
+          <div class="cf full"><label>Tipo de espacio</label><div class="seg-opts" id="c-space"><button type="button" data-v="cerrado" class="on">Cerrado</button><button type="button" data-v="ventilado">Con ventilación abundante</button><button type="button" data-v="exterior">Obra o exterior</button></div></div>
+          <div class="cf full"><label>Uso</label><div class="seg-opts" id="c-use"><button type="button" data-v="industria" class="on">Taller, nave o almacén</button><button type="button" data-v="obra">Obra o evento</button><button type="button" data-v="ganaderia">Explotación ganadera</button></div></div>
+          <div class="cf"><label>Largo (m)</label><input id="c-l" type="number" min="1" value="20"></div>
+          <div class="cf"><label>Ancho (m)</label><input id="c-w" type="number" min="1" value="15"></div>
+          <div class="cf"><label>Alto (m)</label><input id="c-h" type="number" min="1" step="0.5" value="6"></div>
+          <div class="cf"><label>Aislamiento</label><select id="c-k"><option value="0.8">Bueno (panel sándwich, obra aislada)</option><option value="1.5" selected>Medio</option><option value="2.5">Escaso</option><option value="3.5">Sin aislar (chapa simple, lona)</option></select></div>
+          <div class="cf"><label>Temperatura exterior mínima (°C)</label><input id="c-te" type="number" value="0"></div>
+          <div class="cf"><label>Temperatura que quieres (°C)</label><input id="c-ti" type="number" value="16"></div>
+          <div class="cf full"><label>Puertas y renovación de aire</label><select id="c-r"><option value="1">Baja (puertas cerradas casi siempre)</option><option value="1.15" selected>Media (aperturas frecuentes)</option><option value="1.3">Alta (puertas abiertas o mucha ventilación)</option></select></div>
+        </div>
+      </div>
+      <div class="calc-card">
+        <h3><span class="n">2</span>Coste de funcionamiento</h3>
+        <div class="cgrid">
+          <div class="cf"><label>Horas al día</label><input id="c-hd" type="number" min="1" value="8"></div>
+          <div class="cf"><label>Días de temporada</label><input id="c-dt" type="number" min="1" value="100"></div>
+          <div class="cf"><label>Electricidad (€/kWh)</label><input id="c-pe" type="number" step="0.01" value="0.15"></div>
+          <div class="cf"><label>Gasóleo (€/litro)</label><input id="c-pg" type="number" step="0.01" value="1.10"></div>
+          <div class="cf"><label>Propano (€/kg)</label><input id="c-pp" type="number" step="0.01" value="1.60"></div>
+          <div class="cf"><label>Uso medio de la potencia (%)</label><input id="c-f" type="number" min="10" max="100" value="60"></div>
+        </div>
+        <p class="txt14" style="color:#666;margin-top:14px">Los precios son editables: pon los de tu factura. El termostato hace que el equipo no trabaje siempre a plena potencia.</p>
+      </div>
+    </div>
+
+    <div class="res chg" data-t="val" data-porque="La calculadora usa la regla habitual potencia = volumen × salto térmico × coeficiente de aislamiento, con un recargo por renovación de aire; el coste usa el poder calorífico de cada combustible (Sección 10 · Datos del cálculo térmico)." data-falta="Validar con el equipo técnico los coeficientes de aislamiento (0,8 / 1,5 / 2,5 / 3,5), el recargo por renovación de aire, los rendimientos y la potencia útil de cada modelo antes de publicar la calculadora.">
+      <span class="k">Potencia estimada</span>
+      <div class="big"><span id="r-kw">0</span><small>kW</small></div>
+      <div class="sub" id="r-sub"></div>
+      <div class="tech">
+        <span class="k">Tecnología recomendada</span>
+        <h4 id="r-tech"></h4>
+        <p id="r-why"></p>
+        <div class="chips" id="r-models"></div>
+      </div>
+      <div class="cost">
+        <div><b id="r-h">0 €</b><span>por hora</span></div>
+        <div><b id="r-d">0 €</b><span>por jornada</span></div>
+        <div><b id="r-t">0 €</b><span>por temporada</span></div>
+      </div>
+      <p class="warn" id="r-warn"></p>
+      <a class="btn" data-pg="contacto" href="contacto.html">Pedir el cálculo completo</a>
+    </div>
+  </div>
+</div></section>
+</main>
+<footer id="ftr"></footer>
+<script src="js/site.js?v=8"></script>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var state = {space: 'cerrado', use: 'industria'};
+  ['c-space', 'c-use'].forEach(function (g) {
+    $(g).addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      $(g).querySelectorAll('button').forEach(function (x) { x.classList.remove('on'); }); b.classList.add('on');
+      state[g === 'c-space' ? 'space' : 'use'] = b.getAttribute('data-v'); calc();
+    });
+  });
+  document.querySelectorAll('.calc input, .calc select').forEach(function (i) { i.addEventListener('input', calc); });
+  var fmt = function (n, d) { return n.toLocaleString('es-ES', {minimumFractionDigits: d || 0, maximumFractionDigits: d || 0, useGrouping: 'always'}); };
+  var chip = function (t) { return '<span class="chip">' + t + '</span>'; };
+  function calc() {
+    var v = (+$('c-l').value) * (+$('c-w').value) * (+$('c-h').value);
+    var dt = Math.max(0, (+$('c-ti').value) - (+$('c-te').value));
+    var kw = v * dt * (+$('c-k').value) * (+$('c-r').value) / 860;   // kcal/h → kW
+    $('r-kw').textContent = fmt(kw, 1);
+    $('r-sub').textContent = fmt(v) + ' m³ · salto térmico de ' + dt + ' °C';
+    var t, why, models, fuel, warn = '';
+    if (state.space === 'exterior' || state.use === 'obra') {
+      t = 'Cañón de combustión directa'; fuel = kw > 30 ? 'gasoleo' : 'gas';
+      why = 'Alta potencia y rapidez. Los gases quedan en el ambiente: solo en exterior o con ventilación abundante.';
+      models = ['BTG 15', 'BTG 30', 'BTD 20', 'BTD 30', 'BTD 50'];
+    } else if (state.space === 'ventilado') {
+      t = kw > 15 ? 'Combustión indirecta o directa con ventilación' : 'Eléctrico o infrarrojo';
+      fuel = kw > 15 ? 'gasoleo' : 'elec';
+      why = kw > 15 ? 'Con ventilación abundante un cañón directo es posible; si hay personas trabajando dentro de forma continuada, mejor indirecto con chimenea.' : 'Potencia moderada: calor sin combustión o calor dirigido a los puestos.';
+      models = kw > 15 ? ['BTH 30', 'BTH 50', 'BTD 30', 'BTD 50'] : ['BTE 90', 'BTE 150', 'BTI 20'];
+    } else {
+      if (kw <= 15) { t = 'Calefactor eléctrico'; fuel = 'elec'; why = 'Sin combustión ni humos en el punto de uso: la opción para interiores cerrados.'; models = ['BTE 50', 'BTE 90', 'BTE 150', 'BTE 150R']; }
+      else { t = 'Combustión indirecta con extracción de humos'; fuel = 'gasoleo_i'; why = 'Interior cerrado con potencia alta: los gases salen por chimenea y el aire se mantiene limpio.'; models = ['BTH 30', 'BTH 50', 'BTC 13', 'BTC 18']; }
+    }
+    if (state.use === 'ganaderia') warn = 'Explotación ganadera: la recomendación final requiere validar especie, fase, ventilación, IP y riesgo de incendio. ';
+    if (kw > 50) warn += 'Más de 50 kW: probablemente necesites varios equipos o un sistema dimensionado. Te lo calculamos.';
+    $('r-tech').textContent = t; $('r-why').textContent = why;
+    $('r-models').innerHTML = models.map(chip).join('');
+    // coste: electricidad directa; gasóleo ≈ 10 kWh/l; propano ≈ 12,8 kWh/kg; rendimiento indirecto ≈ 90 %
+    var use = kw * (+$('c-f').value) / 100, ch;
+    if (fuel === 'elec') ch = use * (+$('c-pe').value);
+    else if (fuel === 'gas') ch = use / 12.8 * (+$('c-pp').value);
+    else if (fuel === 'gasoleo_i') ch = use / (10 * 0.9) * (+$('c-pg').value);
+    else ch = use / 10 * (+$('c-pg').value);
+    $('r-h').textContent = fmt(ch, 2) + ' €';
+    $('r-d').textContent = fmt(ch * (+$('c-hd').value), 0) + ' €';
+    $('r-t').textContent = fmt(ch * (+$('c-hd').value) * (+$('c-dt').value), 0) + ' €';
+    $('r-warn').textContent = warn;
+  }
+  calc();
+})();
+</script>
+<script src="../../_inicio/volver.js"></script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 /* Botón flotante "Volver al inicio" del selector de maquetas */
 (function () {
+  try { if (window.top !== window.self) return; } catch (e) { return; }
   var s = document.currentScript, src = s && s.getAttribute('src') || '';
   var home = src.replace(/_inicio\/volver\.js.*$/, '') + 'index.html';
   function add() {

@@ -6,64 +6,178 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Maquetas web · Propuestas de mejora</title>
 <style>
-:root{--bg:#0f1115;--card:#181b22;--line:#262a33;--tx:#f3f4f6;--mu:#9aa0ab}
+:root{--bg:#0f1115;--card:#171a21;--line:#262a33;--tx:#f3f4f6;--mu:#9aa0ab;--mod:#F5C400;--new:#19A34A;--val:#E0262D}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;display:flex;flex-direction:column}
-.wrap{width:100%;max-width:1180px;margin:0 auto;padding:64px 20px 40px;flex:1}
+a{color:inherit}
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding:56px 20px 40px;flex:1}
+.top{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:40px}
 .eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:14px}
-h1{font-size:clamp(30px,4.4vw,48px);line-height:1.1;font-weight:800;letter-spacing:-.02em}
-.intro{color:var(--mu);font-size:17px;line-height:1.6;max-width:700px;margin:18px 0 44px}
+h1{font-size:clamp(30px,4.4vw,46px);line-height:1.1;font-weight:800;letter-spacing:-.02em}
+.intro{color:var(--mu);font-size:17px;line-height:1.6;max-width:720px;margin-top:16px}
+.upd{font-size:13px;color:var(--mu);border:1px solid var(--line);border-radius:30px;padding:8px 14px;white-space:nowrap}
+.upd b{color:var(--tx);font-weight:600}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .2s,border-color .2s,box-shadow .2s}
-.card:hover{transform:translateY(-4px);border-color:var(--ac);box-shadow:0 18px 40px rgba(0,0,0,.35)}
-.top{height:150px;background:linear-gradient(135deg,var(--ac),var(--ac2));display:flex;align-items:flex-end;padding:20px 24px;position:relative}
-.top b{font-size:32px;font-weight:800;color:#fff;letter-spacing:-.01em;text-shadow:0 2px 10px rgba(0,0,0,.2)}
-.top i{position:absolute;top:18px;right:20px;font-style:normal;font-size:12px;font-weight:600;background:rgba(0,0,0,.28);color:#fff;padding:6px 10px;border-radius:20px}
-.body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:12px;flex:1}
-.body h2{font-size:18px;font-weight:700}
-.body p{color:var(--mu);font-size:15px;line-height:1.55;flex:1}
-.go{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;background:var(--ac);color:#fff;font-weight:700;font-size:15px;padding:12px 18px;border-radius:10px}
-.go svg{width:16px;height:16px;transition:transform .2s}.card:hover .go svg{transform:translateX(4px)}
-.how{margin-top:44px;border:1px solid var(--line);border-radius:16px;padding:24px;display:grid;grid-template-columns:auto 1fr;gap:10px 28px;align-items:start}
-.how h3{font-size:15px;font-weight:700;grid-column:1/-1}
-.how ul{list-style:none;display:flex;flex-wrap:wrap;gap:10px 26px;color:var(--mu);font-size:14px;grid-column:1/-1}
-.how li{display:flex;align-items:center;gap:8px}
-.sw{width:14px;height:14px;border-radius:3px;border:3px solid}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .2s,box-shadow .2s,transform .2s}
+.card:hover{border-color:var(--ac);box-shadow:0 18px 40px rgba(0,0,0,.35);transform:translateY(-3px)}
+.thumb{display:block;position:relative;aspect-ratio:16/10;overflow:hidden;background:#000 center/cover no-repeat;border-bottom:1px solid var(--line)}
+.thumb iframe{position:absolute;top:0;left:0;width:1440px;height:900px;border:0;transform-origin:0 0;pointer-events:none;opacity:0;transition:opacity .5s}
+.thumb iframe.ok{opacity:1}
+.thumb::after{content:"";position:absolute;inset:0}
+.thumb .dom{position:absolute;z-index:2;bottom:12px;left:12px;font-size:12px;font-weight:600;background:rgba(0,0,0,.65);color:#fff;padding:6px 10px;border-radius:20px;backdrop-filter:blur(4px)}
+.body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:14px;flex:1}
+.logo{height:34px;display:flex;align-items:center}
+.logo img{max-height:100%;max-width:210px;width:auto;display:block}
+.sector{font-size:15px;font-weight:700}
+.body p{color:var(--mu);font-size:14.5px;line-height:1.55}
+.stats{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.stats .pg{width:100%;font-size:13px;color:var(--mu)}
+.stats .pg b{color:var(--tx)}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;border:1px solid var(--line);border-radius:20px;padding:5px 9px;color:#d1d5db}
+.chip i{width:10px;height:10px;border-radius:2px;border:2.5px solid;flex:none}
+.chip b{color:#fff}
+.btns{display:flex;flex-direction:column;gap:8px;margin-top:auto;padding-top:6px}
+.btn{display:flex;justify-content:center;align-items:center;gap:8px;font-weight:700;font-size:14px;padding:11px 14px;border-radius:10px;text-decoration:none;transition:filter .2s,background .2s}
+.btn.pri{background:var(--ac);color:#fff}
+.btn.pri:hover{filter:brightness(1.1)}
+.btn.sec{border:1px solid #3a3f4b;color:#e5e7eb}
+.btn.sec:hover{background:#222631}
+.btn svg{width:16px;height:16px;flex:none}
+.links{display:flex;flex-wrap:wrap;gap:6px 20px;border-top:1px solid var(--line);padding-top:14px;font-size:13.5px}
+.links a{color:var(--mu);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.links a:hover{color:#fff}
+.links svg{width:15px;height:15px}
+.links .na{color:#5f6570}
+.how{margin-top:40px;border:1px solid var(--line);border-radius:16px;padding:24px}
+.how h3{font-size:15px;font-weight:700;margin-bottom:14px}
+.how ol{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;list-style:none;counter-reset:s}
+.how li{counter-increment:s;color:var(--mu);font-size:14px;line-height:1.5;position:relative;padding-left:34px}
+.how li::before{content:counter(s);position:absolute;left:0;top:-1px;width:24px;height:24px;border-radius:50%;background:#262a33;color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+.how li b{color:var(--tx)}
+.leg{display:inline-flex;align-items:center;gap:6px;margin-right:10px;white-space:nowrap}
+.leg i{width:11px;height:11px;border-radius:2px;border:2.5px solid;display:inline-block}
 footer{color:#6b7280;font-size:13px;text-align:center;padding:24px 20px 32px}
-@media (max-width:900px){.grid{grid-template-columns:1fr}.wrap{padding-top:44px}.top{height:120px}}
+@media (max-width:1100px){.grid{grid-template-columns:1fr 1fr}.how ol{grid-template-columns:1fr 1fr}}
+@media (max-width:720px){.grid{grid-template-columns:1fr}.how ol{grid-template-columns:1fr}.wrap{padding-top:40px}.thumb iframe{display:none}}
 </style>
 </head>
 <body>
 <main class="wrap">
-  <div class="eyebrow">Propuestas de mejora web · Revisión</div>
-  <h1>Elige la maqueta que quieres revisar</h1>
-  <p class="intro">Cada maqueta reproduce la web actual con las mejoras propuestas aplicadas. Dentro de cada una, el botón <b>«Ver cambios»</b> señala qué se ha modificado y por qué. Desde cualquier página puedes volver aquí con el botón de la izquierda.</p>
+  <div class="top">
+    <div>
+      <div class="eyebrow">Propuestas de mejora web · Revisión</div>
+      <h1>Elige la maqueta que quieres revisar</h1>
+      <p class="intro">Cada maqueta reproduce la web actual con las mejoras del informe ya aplicadas. Puedes verla tal cual quedaría o con los cambios marcados, y desde cualquier página volver aquí con el botón de la izquierda.</p>
+    </div>
+    <div class="upd">Última actualización: <b>24/09/2026</b></div>
+  </div>
 
   <div class="grid">
-    <a class="card" href="Maqueta%20web%20BlizzTherm/index.html" style="--ac:#EB5C1B;--ac2:#b8360a">
-      <div class="top"><b>BlizzTherm</b><i>blizztherm.es</i></div>
-      <div class="body"><h2>Calefacción industrial</h2><p>Naves, talleres, industria y ganadería: calefactores eléctricos, infrarrojos y cañones de gas y gasóleo.</p><span class="go">Ver maqueta <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
-    </a>
-    <a class="card" href="Maqueta%20web%20Blizzcool/index.html" style="--ac:#1f8fd6;--ac2:#0b5b93">
-      <div class="top"><b>Blizzcool</b><i>blizzcool.es</i></div>
-      <div class="body"><h2>Climatización industrial</h2><p>Enfriadores evaporativos, ventilación y soluciones de frío para naves y espacios de trabajo.</p><span class="go">Ver maqueta <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
-    </a>
-    <a class="card" href="Maqueta%20web%20Jender/index.html" style="--ac:#1e3a6e;--ac2:#0f1f3d">
-      <div class="top"><b>Jender</b><i>jender.es</i></div>
-      <div class="body"><h2>Aire comprimido industrial</h2><p>Compresores y equipos de aire comprimido para la industria.</p><span class="go">Ver maqueta <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
-    </a>
+    <!-- BlizzTherm -->
+    <div class="card" style="--ac:#EB5C1B">
+      <a class="thumb" href="Maqueta%20web%20BlizzTherm/index.html" style="background-image:url(_inicio/img/blizztherm.jpg)" aria-label="Abrir maqueta BlizzTherm">
+        <iframe data-src="Maqueta%20web%20BlizzTherm/index.html" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        <span class="dom">blizztherm.es</span>
+      </a>
+      <div class="body">
+        <div class="logo"><img src="_inicio/img/logo-blizztherm.png" alt="BlizzTherm"></div>
+        <div class="sector">Calefacción industrial</div>
+        <p>Naves, talleres, industria y ganadería: calefactores eléctricos, infrarrojos y cañones de gas y gasóleo.</p>
+        <div class="stats">
+          <div class="pg"><b>20 páginas</b> · 19 con cambios propios</div>
+          <span class="chip"><i style="border-color:var(--mod)"></i><b>38</b> modificados</span>
+          <span class="chip"><i style="border-color:var(--new)"></i><b>37</b> nuevos</span>
+          <span class="chip"><i style="border-color:var(--val)"></i><b>57</b> por validar</span>
+        </div>
+        <div class="btns">
+          <a class="btn pri" href="Maqueta%20web%20BlizzTherm/index.html">Ver maqueta <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn sec" href="Maqueta%20web%20BlizzTherm/index.html#cambios">Con cambios marcados</a>
+        </div>
+        <div class="links">
+          <a href="_inicio/informes/Informe-mejoras-BlizzTherm.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg>Informe (PDF)</a>
+          <a href="mailto:alin@suministrointec.com?subject=Maqueta%20BlizzTherm%20%E2%80%93%20comentarios&amp;body=Visto%20bueno%20%2F%20cambios%20que%20pediría%3A%0A%0A"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"/><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Enviar comentarios</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blizzcool -->
+    <div class="card" style="--ac:#4CAF50">
+      <a class="thumb" href="Maqueta%20web%20Blizzcool/index.html" style="background-image:url(_inicio/img/blizzcool.jpg)" aria-label="Abrir maqueta Blizzcool">
+        <iframe data-src="Maqueta%20web%20Blizzcool/index.html" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        <span class="dom">blizzcool.es</span>
+      </a>
+      <div class="body">
+        <div class="logo"><img src="_inicio/img/logo-blizzcool.png" alt="Blizzcool"></div>
+        <div class="sector">Climatización industrial</div>
+        <p>Enfriadores evaporativos, nebulizadores, ventilación y aire acondicionado para naves y espacios de trabajo.</p>
+        <div class="stats">
+          <div class="pg"><b>41 páginas</b> · 23 con cambios propios</div>
+          <span class="chip"><i style="border-color:var(--mod)"></i><b>41</b> modificados</span>
+          <span class="chip"><i style="border-color:var(--new)"></i><b>12</b> nuevos</span>
+          <span class="chip"><i style="border-color:var(--val)"></i><b>51</b> por validar</span>
+        </div>
+        <div class="btns">
+          <a class="btn pri" href="Maqueta%20web%20Blizzcool/index.html">Ver maqueta <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn sec" href="Maqueta%20web%20Blizzcool/index.html#cambios">Con cambios marcados</a>
+        </div>
+        <div class="links">
+          <a href="mailto:alin@suministrointec.com?subject=Maqueta%20Blizzcool%20%E2%80%93%20comentarios&amp;body=Visto%20bueno%20%2F%20cambios%20que%20pediría%3A%0A%0A"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Enviar comentarios</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jender -->
+    <div class="card" style="--ac:#1f4ea3">
+      <a class="thumb" href="Maqueta%20web%20Jender/index.html" style="background-image:url(_inicio/img/jender.jpg)" aria-label="Abrir maqueta Jender">
+        <iframe data-src="Maqueta%20web%20Jender/index.html" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+        <span class="dom">jender.es</span>
+      </a>
+      <div class="body">
+        <div class="logo"><img src="_inicio/img/logo-jender.png" alt="Jender"></div>
+        <div class="sector">Aire comprimido industrial</div>
+        <p>Compresores y tratamiento de aire comprimido desarrollados bajo especificaciones Jender, con servicio técnico en toda España.</p>
+        <div class="stats">
+          <div class="pg"><b>36 páginas</b> · 32 con cambios propios</div>
+          <span class="chip"><i style="border-color:var(--mod)"></i><b>135</b> modificados</span>
+          <span class="chip"><i style="border-color:var(--new)"></i><b>14</b> nuevos</span>
+          <span class="chip"><i style="border-color:var(--val)"></i><b>15</b> por validar</span>
+        </div>
+        <div class="btns">
+          <a class="btn pri" href="Maqueta%20web%20Jender/index.html">Ver maqueta <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn sec" href="Maqueta%20web%20Jender/index.html#cambios">Con cambios marcados</a>
+        </div>
+        <div class="links">
+          <a href="mailto:alin@suministrointec.com?subject=Maqueta%20Jender%20%E2%80%93%20comentarios&amp;body=Visto%20bueno%20%2F%20cambios%20que%20pediría%3A%0A%0A"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Enviar comentarios</a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <section class="how">
-    <h3>Cómo leer los cambios (botón «Ver cambios» dentro de cada maqueta)</h3>
-    <ul>
-      <li><span class="sw" style="border-color:#F5C400"></span>Texto modificado</li>
-      <li><span class="sw" style="border-color:#19A34A"></span>Bloque nuevo</li>
-      <li><span class="sw" style="border-color:#E0262D"></span>Dato pendiente de validar</li>
-      <li>Pasa el ratón (o toca) sobre un cambio para ver el antes y el motivo. La leyenda exacta aparece dentro de cada maqueta.</li>
-    </ul>
+    <h3>Cómo revisar</h3>
+    <ol>
+      <li><b>Elige una maqueta</b> y navega por ella como si fuera la web publicada.</li>
+      <li><b>Ver con cambios marcados</b> (o el interruptor «Ver cambios» de abajo en cada web) recuadra lo que cambia:<br><span class="leg"><i style="border-color:var(--mod)"></i>modificado</span><span class="leg"><i style="border-color:var(--new)"></i>nuevo</span><span class="leg"><i style="border-color:var(--val)"></i>por validar</span></li>
+      <li><b>Pasa el ratón</b> (o toca en el móvil) sobre un recuadro para ver cómo estaba antes y por qué se cambia.</li>
+      <li><b>Los recuadros rojos</b> son datos que hay que confirmar antes de publicar. Envía tu visto bueno o comentarios desde cada tarjeta.</li>
+    </ol>
   </section>
 </main>
 <footer>Maquetas de trabajo · No indexadas · Uso interno</footer>
+<script>
+/* Miniaturas en vivo: la web real a escala dentro de cada tarjeta (solo en pantallas anchas) */
+(function () {
+  if (window.matchMedia('(max-width:720px)').matches) return;
+  var frames = [].slice.call(document.querySelectorAll('.thumb iframe'));
+  function fit() { frames.forEach(function (f) { f.style.transform = 'scale(' + (f.parentNode.clientWidth / 1440) + ')'; }); }
+  fit(); window.addEventListener('resize', fit);
+  frames.forEach(function (f, i) {
+    setTimeout(function () {
+      f.addEventListener('load', function () { setTimeout(function () { f.classList.add('ok'); }, 900); });
+      f.src = f.getAttribute('data-src');
+    }, 400 + i * 600);
+  });
+})();
+</script>
 </body>
 </html>

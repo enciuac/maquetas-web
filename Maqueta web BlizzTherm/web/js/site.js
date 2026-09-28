@@ -31,7 +31,6 @@
     faqs:          {h: W + 'faqs.html', chg: true},
     industria:     {h: W + 'industria.html', chg: true},
     ganaderia:     {h: W + 'ganaderia.html', chg: true},
-    calculadora:   {h: W + 'calculadora.html', chg: true},
     distribuidores:{h: W + 'distribuidores.html', chg: true}
   };
   window.BZT = {R: R, W: W, UP: UP, IMG: IMG, LIVE: LIVE, P: P};
@@ -70,8 +69,8 @@
         '<ul class="sub"><li>' + a('gas', 'Cañon de calor a gas') + '</li><li>' + a('gasoil', 'Cañon de calor de gasoil') + '</li></ul></li>' +
       '<li class="has">' + a('postventa', 'Post-Venta' + CARET) +
         '<ul class="sub"><li>' + a('mantenimiento', 'Mantenimiento') + '</li><li>' + a('garantia', 'Registro de Garantía') + '</li><li>' + a('renove', 'Plan Renove') + '</li></ul></li>' +
-      '<li class="has chg" data-t="new" data-porque="Nuevo acceso a las dos rutas que pide el informe (industria y ganadería) y a la calculadora térmica (Sección 07 · Industria / ganadería y Sección 04 · Herramientas comerciales).">' + a('industria', 'Soluciones' + CARET) +
-        '<ul class="sub"><li>' + a('industria', 'Industria') + '</li><li>' + a('ganaderia', 'Ganadería') + '</li><li>' + a('calculadora', 'Calculadora térmica') + '</li></ul></li>' +
+      '<li class="has chg" data-t="new" data-porque="Nuevo acceso a las dos rutas que pide el informe: industria y ganadería, cada una con su lenguaje y sus aplicaciones (Sección 07 · Industria / ganadería).">' + a('industria', 'Soluciones' + CARET) +
+        '<ul class="sub"><li>' + a('industria', 'Industria') + '</li><li>' + a('ganaderia', 'Ganadería') + '</li></ul></li>' +
       '<li>' + a('nosotros', 'Nosotros') + '</li>' +
       '<li>' + a('blog', 'Blog') + '</li>' +
       '<li>' + a('contacto', 'Contacto') + '</li>' +
@@ -82,7 +81,7 @@
       '<li>' + a('infrarrojos', 'Calefactores industriales por infrarrojos') + '</li>' +
       '<li>' + a('canones', 'Cañon de calor industrial') + '<ul class="sub"><li>' + a('gas', 'Cañon de calor a gas') + '</li><li>' + a('gasoil', 'Cañon de calor de gasoil') + '</li></ul></li>' +
       '<li>' + a('postventa', 'Post-Venta') + '<ul class="sub"><li>' + a('mantenimiento', 'Mantenimiento') + '</li><li>' + a('garantia', 'Registro de Garantía') + '</li><li>' + a('renove', 'Plan Renove') + '</li></ul></li>' +
-      '<li>' + a('industria', 'Soluciones') + '<ul class="sub"><li>' + a('industria', 'Industria') + '</li><li>' + a('ganaderia', 'Ganadería') + '</li><li>' + a('calculadora', 'Calculadora térmica') + '</li></ul></li>' +
+      '<li>' + a('industria', 'Soluciones') + '<ul class="sub"><li>' + a('industria', 'Industria') + '</li><li>' + a('ganaderia', 'Ganadería') + '</li></ul></li>' +
       '<li>' + a('nosotros', 'Nosotros') + '<ul class="sub"><li>' + a('documentacion', 'Documentación BlizzTherm') + '</li><li>' + a('blog', 'Blog') + '</li><li>' + a('videos', 'Videos') + '</li></ul></li>' +
       '<li>' + a('blog', 'Blog') + '</li>' +
       '<li>' + a('contacto', 'Contacto') + '</li>' +
@@ -171,12 +170,17 @@
   };
   function svg(k) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">' + (SI[k] || SI.info) + '</svg>'; }
   var LBL = {'combustión': 'flame', 'combustión y humos': 'flame', 'ventilación': 'wind', 'electricidad': 'bolt', 'ambiente': 'drop', 'tipo de calor': 'sun',
-    'distancias': 'ruler', 'combustible': 'fuel', 'instalación': 'wrench', 'duración': 'clock', 'cobertura': 'shield', 'exclusiones': 'xcircle', 'tramitación': 'clipboard'};
-  document.querySelectorAll('.safety .s').forEach(function (s, i) {
-    var lab = s.querySelector('span'); if (!lab) return;
-    var d = document.createElement('div'); d.className = 'ico'; d.innerHTML = svg(LBL[lab.textContent.trim().toLowerCase()]);
-    s.insertBefore(d, s.firstChild);
-    var n = document.createElement('div'); n.className = 'num'; n.textContent = ('0' + (i % 4 + 1)).slice(-2); s.appendChild(n);
+    'distancias': 'ruler', 'combustible': 'fuel', 'instalación': 'wrench', 'duración': 'clock', 'cobertura': 'shield', 'exclusiones': 'xcircle', 'tramitación': 'clipboard', 'protección térmica': 'shield', 'seguridad': 'shield',
+    'combustible y autonomía': 'fuel', 'cobertura y autonomía': 'clock'};
+  /* la numeración se reinicia en cada bloque, no cada cuatro tarjetas: así un bloque
+     de cinco numera 01–05 en lugar de volver a 01 en la quinta */
+  document.querySelectorAll('.safety').forEach(function (box) {
+    box.querySelectorAll('.s').forEach(function (s, i) {
+      var lab = s.querySelector('span'); if (!lab) return;
+      var d = document.createElement('div'); d.className = 'ico'; d.innerHTML = svg(LBL[lab.textContent.trim().toLowerCase()]);
+      s.insertBefore(d, s.firstChild);
+      var n = document.createElement('div'); n.className = 'num'; n.textContent = ('0' + (i + 1)).slice(-2); s.appendChild(n);
+    });
   });
   document.querySelectorAll('[data-ico]').forEach(function (e) { e.innerHTML = svg(e.getAttribute('data-ico')); });
   document.querySelectorAll('.safe-sec > .in > h2').forEach(function (h) {
@@ -188,30 +192,134 @@
     w.appendChild(p);
   });
 
+
+  /* ---------- tabla comparativa por familia (datos de ficha técnica) ---------- */
+  var SPECS = {
+    BTE: {
+      t: 'Compara los cuatro <span class="hl">calefactores eléctricos</span>',
+      s: 'Todos sin combustión, IP24 y con 85,0 % de eficiencia estacional. Lo que cambia es la potencia y la instalación que necesitan.',
+      m: ['BTE 50', 'BTE 90', 'BTE 150', 'BTE 150R'],
+      r: [
+        ['Potencia nominal', ['5 kW', '9 kW', '15 kW', '15 kW'], 1],
+        ['Potencia mínima', ['2,5 kW', '4,5 kW', '5 kW', '5 kW']],
+        ['Modos', ['Ventilación / 2,5 / 5 kW', 'Ventilación / 4,5 / 9 kW', 'Ventilación / 5 / 10 / 15 kW', '5 / 10 / 15 kW']],
+        ['Tensión', ['400 V ~ 50 Hz', '400 V 3~', '400 V 3~', '400 V 3~'], 1],
+        ['Corriente nominal', ['7,2 A', '13,0 A', '21,7 A', '21,7 A']],
+        ['Conexión', ['Fusible de 10 A', 'Acoplador industrial 5 polos', 'Acoplador industrial 5 polos', 'Acoplador industrial 5 polos'], 1],
+        ['Protección térmica', ['Rearme automático, 70 °C', 'Rearme manual, 80 °C', 'Rearme manual, 140 °C', 'Limitador térmico']],
+        ['Clase de protección', ['IP24', 'IP24', 'IP24', 'IP24']],
+        ['Dimensiones', ['270 × 255 × 400 mm', '355 × 300 × 490 mm', '410 × 360 × 550 mm', '322 × 600 × 555 mm']],
+        ['Peso', ['5,6 kg', '9,6 kg', '14,5 kg', '17,9 kg']]
+      ]
+    },
+    BTI: {
+      t: 'Compara los cuatro <span class="hl">infrarrojos</span>',
+      s: 'Los cuatro queman gasóleo o queroseno. La diferencia decisiva: los BTC evacuan los humos por chimenea y valen para interior; los BTI no los evacuan.',
+      m: ['BTI 20', 'BTI 45', 'BTC 13', 'BTC 18'],
+      r: [
+        ['Evacuación de humos', ['No', 'No', 'Chimenea', 'Chimenea'], 1],
+        ['Dónde se usa', ['Exterior o muy ventilado', 'Exterior o muy ventilado', 'También en interior', 'También en interior'], 1],
+        ['Potencia', ['20 kW', '40 kW', '13 kW', '18 kW'], 1],
+        ['Superficie', ['—', '—', '70–90 m²', '110–140 m²']],
+        ['Consumo', ['1,6 kg/h', '3,2 kg/h', '1 kg/h', '1,42 kg/h']],
+        ['Depósito', ['10,5 L', '38 L', '22 L', '60 L']],
+        ['Autonomía', ['—', '—', '~18 h', '~36 h']],
+        ['Distancia mínima', ['2,5 m frontal, 1,5 m al resto', 'Ver manual', 'Ver manual', 'Ver manual']],
+        ['Potencia eléctrica', ['110 W', '80 W', '60 W', '60 W']],
+        ['Peso', ['18,2 kg', '28,4 kg', '41,3 kg', '62 kg']]
+      ]
+    },
+    BTG: {
+      t: 'Compara los dos <span class="hl">cañones a gas</span>',
+      s: 'Los dos son de combustión directa: solo exterior o espacios muy ventilados. El BTG 30 se llama así por su potencia mínima, no por la nominal.',
+      m: ['BTG 15', 'BTG 30'],
+      r: [
+        ['Potencia nominal', ['15,0 kW', '50,0 kW'], 1],
+        ['Potencia mínima', ['-', '30,0 kW'], 1],
+        ['Potencia calorífica', ['51.180 BTU', '170.600 BTU']],
+        ['Consumo de gas', ['1,09 kg/h', '3,63 kg/h']],
+        ['Combustible', ['GLP (G30)', 'GLP (G30)']],
+        ['Categoría', ['I3B/P a 700 mbar', 'I3B/P a 700 mbar']],
+        ['Inyector', ['0,90 mm', '1,4 mm']],
+        ['Temperatura del aire', ['420 °C', '360 °C']],
+        ['Encendido', ['Piezoeléctrico', 'Piezoeléctrico']],
+        ['Corte por sobrecalentamiento', ['95 °C', '110 °C']],
+        ['Alimentación', ['220–240 V, 0,07 kW', '220–240 V, 0,07 kW']]
+      ]
+    },
+    BTD: {
+      t: 'Compara los <span class="hl">cañones de gasóleo</span>',
+      s: 'Cada potencia existe en dos versiones: <b>BTD</b> de combustión directa, para exterior o alta ventilación, y <b>BTH</b> con extracción de humos, que sí sirve en interior. Misma máquina base, con o sin chimenea.',
+      m: ['BTD 20', 'BTD 30', 'BTD 50', 'BTH 30', 'BTH 50'],
+      r: [
+        ['Combustión', ['Directa', 'Directa', 'Directa', 'Con chimenea', 'Con chimenea'], 1],
+        ['Dónde se usa', ['Exterior o muy ventilado', 'Exterior o muy ventilado', 'Exterior o muy ventilado', 'También en interior', 'También en interior'], 1],
+        ['Potencia', ['20 kW', '30 kW', '51 kW', '30 kW', '51 kW'], 1],
+        ['Caudal de aire', ['550 m³/h', '720 m³/h', '750 m³/h', '780 m³/h', '750 m³/h']],
+        ['Consumo', ['1,65 kg/h', '2,4 kg/h', '4 kg/h', '2,4 kg/h', '4 kg/h']],
+        ['Depósito', ['12 L', '19 L', '34 L', '50 L', '34 L']],
+        ['Autonomía', ['6 h', '7 h', '7 h', '18 h', '7 h'], 1],
+        ['Potencia eléctrica', ['230 W', '230 W', '340 W', '250 W', '340 W']],
+        ['Corriente nominal', ['0,9 A', '1,1 A', '1,5 A', '1,5 A', '1,5 A']],
+        ['Dimensiones', ['660 × 260 × 380 mm', '830 × 410 × 540 mm', '860 × 456 × 600 mm', '1110 × 490 × 750 mm', '860 × 456 × 600 mm']],
+        ['Peso', ['10 kg', '18 kg', '21,8 kg', '34,4 kg', '21,8 kg']]
+      ]
+    }
+  };
+  document.querySelectorAll('[data-specs]').forEach(function (sec) {
+    var k = sec.getAttribute('data-specs').trim(), d = SPECS[k];
+    if (!d) return;
+    sec.className = 'sec spec-sec chg';
+    sec.setAttribute('data-t', 'new');
+    sec.setAttribute('data-porque', 'Las cifras de cada modelo estaban repartidas entre la tarjeta de producto y la ficha en PDF, así que para comparar dos equipos había que abrir dos documentos. Esta tabla reúne los datos de las fichas técnicas oficiales en una sola vista, con la fila decisiva de cada familia destacada.');
+    sec.innerHTML = '<div class="in"><div class="safe-head" style="align-items:center;text-align:center;margin:0 auto 26px">' +
+        '<div class="eyebrow">Comparativa</div><h2 class="h2">' + d.t + '</h2><p>' + d.s + '</p></div>' +
+      '<div class="cmp-wrap"><table class="spec"><thead><tr><th></th>' +
+        d.m.map(function (m) { return '<th>' + m + '</th>'; }).join('') + '</tr></thead><tbody>' +
+        d.r.map(function (row) {
+          return '<tr' + (row[2] ? ' class="hi"' : '') + '><th scope="row">' + row[0] + '</th>' +
+            row[1].map(function (v) { return '<td>' + v + '</td>'; }).join('') + '</tr>';
+        }).join('') + '</tbody></table></div>' +
+      '<p class="spec-src">Datos de las fichas técnicas oficiales de cada modelo. <a class="hl" data-pg="documentacion" href="' + W + 'documentacion.html">Descargar fichas y manuales</a></p></div>';
+  });
+
   /* ---------- matriz de aplicación por familia ---------- */
   var APPS = ['Taller o nave cerrada', 'Nave con ventilación abundante', 'Obra o exterior', 'Explotación ganadera'];
-  var GAN = ['v', 'Validar por especie, fase y ventilación'];
-  var MX = {
-    BTE: ['Eléctricos · BTE 50, 90, 150, 150R', [['r', 'Sin combustión en el punto de uso'], ['r', 'Según potencia necesaria'], ['c', 'Necesita toma eléctrica adecuada'], GAN]],
-    BTI: ['Infrarrojos · BTI 20, 45', [['v', 'Según ficha: con o sin chimenea'], ['r', 'Calor dirigido a puestos'], ['r', 'Muelles, carpas y puestos exteriores'], GAN]],
-    BTC: ['Infrarrojos con extracción de humos · BTC 13, 18', [['r', 'Gases conducidos al exterior'], ['r', 'Calor dirigido'], ['c', 'Necesita instalación de chimenea'], GAN]],
-    BTG: ['Gas directo · BTG 15, 30', [['n', 'Los gases quedan en el ambiente'], ['c', 'Solo con aporte de aire suficiente'], ['r', 'Alta potencia y rapidez'], GAN]],
-    BTD: ['Gasóleo directo · BTD 20, 30, 50', [['n', 'Los gases quedan en el ambiente'], ['c', 'Solo con aporte de aire suficiente'], ['r', 'Máxima potencia y autonomía'], GAN]],
-    BTH: ['Gasóleo indirecto · BTH 30, 50', [['r', 'Gases evacuados por chimenea'], ['r', 'Aire limpio y alta potencia'], ['r', 'Con conducto de humos'], GAN]]
+  /* Columna de ganadería resuelta por familia: lo que decide es si la combustión queda
+     con los animales, y eso sí consta en las fichas. Lo que sigue abierto por modelo
+     (IP frente a amoniaco y lavado, distancias a cama y pienso) va en el tercer campo. */
+  var GAN = {
+    BTE: ['r', 'Sin combustión: no consume oxígeno ni emite gases',
+          'Confirmar por modelo el grado IP frente al amoniaco y al lavado a presión de la nave. Los BTE son IP24: resisten salpicaduras, no el chorro directo.'],
+    BTI: ['n', 'Sin evacuación: los gases se quedan con los animales', null],
+    BTC: ['c', 'Gases fuera por chimenea; vigilar la distancia a cama y pienso',
+          'Confirmar con el fabricante la distancia mínima a materiales combustibles y la protección frente al amoniaco.'],
+    BTG: ['n', 'Combustión directa: los gases se quedan con los animales', null],
+    BTD: ['n', 'Combustión directa: los gases se quedan con los animales', null],
+    BTH: ['r', 'La opción para naves con animales: aire limpio y gases fuera',
+          'Confirmar con el fabricante la protección frente al amoniaco y la distancia mínima a cama y pienso.']
   };
-  var BADGE = {r: ['ok', 'Recomendado'], c: ['cond', 'Con condiciones'], n: ['no', 'No recomendado'], v: ['val', 'Por validar']};
+  var MX = {
+    BTE: ['Eléctricos · 5 a 15 kW · BTE 50, 90, 150, 150R', [['r', 'Sin combustión en el punto de uso'], ['r', 'Según potencia necesaria'], ['c', 'Necesita toma eléctrica adecuada'], GAN.BTE]],
+    BTI: ['Infrarrojos sin evacuación · 20 y 40 kW · BTI 20, 45', [['n', 'Sin evacuación de humos: usa los BTC'], ['r', 'Calor dirigido a puestos'], ['r', 'Muelles, carpas y puestos exteriores'], GAN.BTI]],
+    BTC: ['Infrarrojos con extracción de humos · 13 y 18 kW · BTC 13, 18', [['r', 'Gases conducidos al exterior'], ['r', 'Calor dirigido'], ['c', 'Necesita instalación de chimenea'], GAN.BTC]],
+    BTG: ['Gas directo · 15 y 50 kW · BTG 15, 30', [['n', 'Los gases quedan en el ambiente'], ['c', 'Solo con aporte de aire suficiente'], ['r', 'Alta potencia y rapidez'], GAN.BTG]],
+    BTD: ['Gasóleo directo · 20 a 51 kW · BTD 20, 30, 50', [['n', 'Los gases quedan en el ambiente'], ['c', 'Solo con aporte de aire suficiente'], ['r', 'Máxima potencia y autonomía'], GAN.BTD]],
+    BTH: ['Gasóleo indirecto · 30 y 51 kW · BTH 30, 50', [['r', 'Gases evacuados por chimenea'], ['r', 'Aire limpio y alta potencia'], ['r', 'Con conducto de humos'], GAN.BTH]]
+  };
+  var BADGE = {r: ['ok', 'Recomendado'], c: ['cond', 'Con condiciones'], n: ['no', 'No recomendado'], v: ['val', 'Consultar']};
   document.querySelectorAll('[data-matrix]').forEach(function (sec) {
     var fams = sec.getAttribute('data-matrix').split(',');
     sec.className = 'sec w1200 matrix-sec chg';
     sec.setAttribute('data-t', 'new');
     sec.setAttribute('data-porque', 'El informe pide indicar para cada equipo si es recomendado, condicionado o no recomendado según la aplicación, y no presentar ninguno como «ideal para ganaderías» sin validar especie, fase y ventilación (Sección 10 · Comparador mínimo · Aplicación; Sección 06 · Regla comercial; Sección 12 · Matriz de aplicación).');
-    sec.innerHTML = '<div class="in"><div class="safe-head"><div class="eyebrow">Matriz de aplicación</div><h2 class="h2">¿Para qué uso es <span class="hl">cada equipo?</span></h2><p>Orientación general por tecnología. La decisión final depende del volumen, la ventilación y las condiciones de instalación.</p></div>' +
+    sec.innerHTML = '<div class="in"><div class="safe-head"><div class="eyebrow">Matriz de aplicación</div><h2 class="h2">¿Para qué uso es <span class="hl">cada equipo?</span></h2><p>Orientación por tecnología. En ganadería la regla es simple: si la combustión se queda en el aire que respiran los animales, el equipo no vale para una nave cerrada. La decisión final depende del volumen, la ventilación y las condiciones de instalación.</p></div>' +
       '<div class="cmp-wrap"><table class="mx"><thead><tr><th></th>' + APPS.map(function (x) { return '<th>' + x + '</th>'; }).join('') + '</tr></thead><tbody>' +
       fams.map(function (f) {
         var r = MX[f.trim()]; if (!r) return '';
         return '<tr><td class="fam">' + r[0] + '</td>' + r[1].map(function (c) {
           var b = BADGE[c[0]];
-          var val = c[0] === 'v' ? ' class="chg" data-t="val" data-porque="La aptitud debe validarse por modelo antes de publicarla (Sección 06 · Condiciones que deben validarse por modelo)." data-falta="Validación técnica por modelo: aptitud con animales, IP, amoniaco, distancias y riesgo de incendio."' : '';
+          var val = c[2] ? ' class="chg" data-t="prop" data-porque="La aptitud en ganadería se resuelve con lo que sí consta en ficha: si la combustión queda con los animales, el equipo no vale para una nave cerrada. Lo que sigue abierto por modelo es la resistencia al amoniaco y al lavado, y la distancia a cama y pienso." data-falta="' + esc(c[2]) + '"' : '';
           return '<td' + val + '><span class="bdg ' + b[0] + '">' + b[1] + '</span><small>' + c[1] + '</small></td>';
         }).join('') + '</tr>';
       }).join('') + '</tbody></table></div></div>';
@@ -292,36 +400,41 @@
   var lg = document.createElement('div');
   lg.id = 'rv-legend';
   var SUM = {
-    home: ['Diapositiva 2 con el nuevo encabezado y la propuesta de valor; «Solicitar cálculo térmico».', 'Gas y gasoil: aviso de ventilación y sin «100 %»; potencia de gas por validar.', 'Selector de temperatura: a partir de 26 °C recomienda mantenimiento y Plan Renove, con BlizzCool como enlace secundario.', 'Nuevo: rutas industria y ganadería, comparador de tecnologías, casos reales, posventa y confianza.', '«¿Por qué elegir…?»: potencias corregidas, calor rápido sin promesa, seguridad visible.', 'Nuevo: banda de revisión pretemporada; DISTRIBUIDOR enlaza a la página de distribuidores; accesos a industria, ganadería y calculadora.', 'Erratas «galor» y «productos climáticos»; texto del cálculo sin «superficie a climatizar».'],
-    electricos: ['Texto de cabecera propio de la tecnología eléctrica.', 'Nuevo bloque de seguridad y condiciones de uso (electricidad y ambiente por validar).', 'Nueva matriz de aplicación por uso.'],
-    infrarrojos: ['Texto de cabecera propio del infrarrojo.', 'Nuevo bloque de seguridad: combustión de BTI, distancias e IP por validar.', 'Nueva matriz de aplicación por uso.'],
+    home: ['Nuevo: bloque de presentación de marca. BlizzTherm se explica como la marca de calor de Toolsplace, hermana de BlizzCool, sin dar por supuesto que se conoce.', 'Se retiran de la home las dos calculadoras: la calculadora térmica y el selector de temperatura del espacio de trabajo.', 'Posventa presentada por beneficios y no por planes: garantía de 1 año ampliable a 2, respuesta en 24 h (8 h con animales), repuestos en 48 h y revisión de pretemporada. Se retiran los cuatro niveles de servicio.', 'Los tres casos reales vacíos se sustituyen por «Qué documentamos de cada instalación»: qué se mide y se deja por escrito, sin inventar clientes.', 'Confianza: origen, controles y cobertura redactados; potencias y «homologados» remitidos a la ficha técnica de cada modelo.', 'Comparador: se resuelve la familia de BTC 13 y 18 (infrarrojos con extracción de humos).', 'Nuevo: rutas industria y ganadería, comparador de tecnologías, posventa y confianza.', 'Banda de revisión pretemporada sin la coletilla «Plazas, fechas y precio por confirmar».', 'Erratas «galor» y «productos climáticos»; texto del cálculo sin «superficie a climatizar».'],
+    electricos: ['Nueva tabla comparativa de los cuatro modelos con los datos de ficha: potencia, modos, tensión, intensidad, conexión, protección térmica, IP, medidas y peso.', 'Texto de cabecera propio de la tecnología eléctrica.', 'Seguridad con datos de ficha: 5 / 9 / 15 kW, 400 V, intensidades, acoplador de 5 polos, IP24 y 85 % de eficiencia estacional.', 'Nuevo apartado de protección térmica: rearme automático en el BTE 50 y manual en el 90 y el 150.', 'Nueva matriz de aplicación por uso.'],
+    infrarrojos: ['Nueva tabla comparativa de los cuatro modelos, con la evacuación de humos y el uso permitido como primeras filas: es lo que decide entre un BTI y un BTC.', 'Texto de cabecera propio del infrarrojo.', 'Familia resuelta con las fichas: los BTC llevan extracción de humos y valen para interior; los BTI no la llevan y su ficha los limita a exterior o zonas muy ventiladas.', 'Distancias de seguridad del BTI 20 publicadas: 2,5 m por delante y 1,5 m al resto. Las del BTI 45 no vienen en su ficha.', 'Cobertura, depósito y autonomía de los BTC (70–90 m² / 18 h y 110–140 m² / 36 h).'],
     canones: ['Nuevo bloque «Directo o indirecto: ¿cuál necesitas?».', 'Nueva matriz de aplicación por uso.', 'Confirmación de ventilación antes de comprar BTG y BTD.'],
-    gas: ['Texto de cabecera con requisitos de ventilación.', 'Nuevo bloque de seguridad: ventilación, consumo y distancias por validar.', 'Nueva matriz de aplicación.', 'Confirmación de ventilación antes de comprar.'],
-    gasoil: ['Texto de cabecera que distingue directo e indirecto.', 'Explicación en cada pestaña (Directo / Indirecto).', 'Nuevo bloque de seguridad: ventilación, consumo, autonomía y chimenea por validar.', 'Nueva matriz de aplicación.', 'Confirmación de ventilación antes de comprar los BTD.'],
-    postventa: ['Tarjeta Mantenimiento: texto corregido (hablaba de recambios).', 'Nueva tabla «Qué incluye nuestra posventa» con compromisos por definir.', 'Nuevo programa de servicio en 4 niveles (condiciones por validar).'],
+    gas: ['Nueva tabla comparativa de BTG 15 y BTG 30 con los datos de ficha: potencias nominal y mínima, consumo, inyector, categoría y corte por sobrecalentamiento.', 'Texto de cabecera con requisitos de ventilación.', 'Potencias reales: BTG 15 a 15 kW y BTG 30 a 50 kW nominales / 30 mínimos. Resuelve el «de 15 a 50 kW» que chocaba con los nombres de modelo.', 'Consumos, inyectores, temperatura del aire de salida y protección contra sobrecalentamiento.', 'La presión de gas del BTG 30 no se publica: su ficha se contradice (700 mbar en la categoría, 1500 en la presión).'],
+    gasoil: ['Nueva tabla comparativa de los cinco modelos: cada potencia en sus dos versiones, BTD directa y BTH con extracción de humos.', 'Texto de cabecera que distingue directo e indirecto.', 'Tabla completa por modelo: potencia, caudal de aire, consumo, depósito y autonomía de BTD 20, 30, 50 y BTH 30.', 'Meta corregida: decía «De 51 a 20 kW», del revés.', 'Se explica que BTD y BTH del mismo número son la misma máquina con y sin chimenea: eso es lo que hace comparables sus cifras.'],
+    postventa: ['Tarjeta Mantenimiento: texto corregido (hablaba de recambios).', 'Tarjeta Garantía: 1 año ampliable a 2 con el registro del equipo.', 'La tabla «Qué incluye nuestra posventa» deja de ser siete «Por definir»: cada fila lleva un compromiso concreto propuesto.', 'Se retira el programa de servicio en cuatro niveles (Essential, Preventive, Priority, Farm / Industry): obligaba a elegir un plan antes de entender qué se gana. En su lugar, qué va incluido de serie: garantía, respuesta en 24 h, repuestos en 48 h y diagnóstico a distancia.'],
     mantenimiento: ['«Cumplimiento de normativas»: se quita la garantía absoluta de conformidad.'],
-    garantia: ['Nuevo bloque «Condiciones de la garantía» (duración, cobertura, exclusiones y tramitación por validar).'],
+    garantia: ['Se publica la garantía: 1 año, ampliable a 2 registrando el equipo.', 'El registro pasa a ofrecer algo a cambio: la ampliación encabeza la lista de motivos.', 'Condiciones completas: duración, cobertura, exclusiones y tramitación, con mano de obra incluida y 24 h de respuesta como propuesta a confirmar.'],
     renove: ['Título y descripción SEO sin «enfriadores».', '«Envío sin cargos» por validar.'],
-    nosotros: ['Presentación de la marca (identidad por validar).', 'Título «Misión, valores y visión» en lugar de «Nuestros productos más vendidos».', 'Visión: «marca referente» en lugar de «mejor empresa a nivel nacional».', 'Nuevo bloque «Cómo respaldamos cada equipo».', 'Stories: «calentar» en lugar de «combatir el calor».', 'Botón «Quiero ser distribuidor».'],
+    nosotros: ['Presentación de la marca: BlizzTherm como marca hermana de BlizzCool, para no dar por supuesto que ya se conoce.', 'Garantía y recambios: 1 año ampliable a 2, y piezas de desgaste en stock con expedición en 48 h.', '«Cómo respaldamos cada equipo»: procedencia, conformidad, controles y formación redactados; ya no hay seis apartados en rojo.', 'Título «Misión, valores y visión» en lugar de «Nuestros productos más vendidos».', 'Visión: «marca referente» en lugar de «mejor empresa a nivel nacional».', 'Botón «Quiero ser distribuidor».'],
     documentacion: ['Título sin «refrigeración».', 'Documentación de frío sustituida por ficha técnica y manual de los 15 modelos BlizzTherm.'],
-    faqs: ['Texto de cabecera: «de calefacción» en lugar de «climática».', '5 preguntas de refrigeración sustituidas por preguntas de calefacción.', 'Plazo «24/72 h» por validar.'],
+    faqs: ['Texto de cabecera: «de calefacción» en lugar de «climática».', '5 preguntas de refrigeración sustituidas por preguntas de calefacción.', 'Nueva: «¿Quién es BlizzTherm?», que sitúa la marca como hermana de BlizzCool.', 'Nueva: «¿Qué garantía tienen los equipos?» — 1 año ampliable a 2.', 'Plazo de entrega acotado a península.'],
     contacto: ['Dirección nº 45 (antes nº 38) y mapa corregido.', 'Desplegable con familias BlizzTherm (antes productos de frío).', 'Nuevo bloque opcional con datos para el cálculo térmico.', 'Errata «estas» → «estás».'],
-    videos: ['Título sin «refrigeración».', 'Vídeos de frío sustituidos por los de la campaña BlizzTherm (publicación por validar).'],
+    videos: ['Título sin «refrigeración».', 'Vídeos de frío sustituidos por los tres de la campaña BlizzTherm que ya existen en la carpeta de marca; falta el visto bueno de marketing para publicarlos.'],
     blog: [],
-    industria: ['Página nueva: segmentos industriales, mensajes clave y seguridad (Sección 05 del informe).'],
-    ganaderia: ['Página nueva: aplicaciones por especie, condiciones que se validan por modelo y regla comercial (Sección 06).'],
-    calculadora: ['Página nueva: calculadora térmica orientativa y coste por hora (Secciones 04 y 10). Coeficientes por validar.'],
-    distribuidores: ['Página nueva para la red de distribuidores (Sección 11 · prioridad 7). Condiciones por validar.']
+    industria: ['Página nueva: segmentos industriales, mensajes clave y seguridad (Sección 05 del informe).', 'La llamada pasa de la calculadora a «Solicitar cálculo térmico».', 'Tiempo de calentamiento y alcance: se explica que se calculan para el espacio del cliente, en lugar de anunciar cifras sin medir.'],
+    ganaderia: ['Página nueva: aplicaciones por especie, condiciones que se validan por modelo y regla comercial (Sección 06).', 'Las seis condiciones dejan de ser una bandera roja y pasan a ser la regla de la marca: ningún equipo se presenta como apto para ganadería sin comprobarlas en la instalación concreta.', 'El bloque de servicio deja de citar el «nivel Farm / Industry» y habla del beneficio: 8 h de respuesta y equipo de respaldo.'],
+    distribuidores: ['Página nueva para la red de distribuidores (Sección 11 · prioridad 7).', 'Formación, repuestos y requisitos con propuesta concreta en lugar de «por validar».']
   };
   var sum = SUM[CUR] || [];
-  lg.innerHTML = '<div><b style="background:#F5C400"></b>Texto modificado</div><div><b style="background:#19A34A"></b>Bloque nuevo</div><div><b style="background:#E0262D"></b>Dato por validar</div>' +
+  /* la leyenda solo lista los estados que de verdad aparecen en esta página */
+  var KEYS = [['mod', '#F5C400', 'Texto modificado'], ['new', '#19A34A', 'Bloque nuevo'],
+              ['prop', '#2F6FEB', 'Propuesta a confirmar'], ['val', '#E0262D', 'Dato por validar']];
+  lg.innerHTML = KEYS.filter(function (k) {
+      return document.querySelector(k[0] === 'mod' ? '.chg:not([data-t]),.chg[data-t="mod"]' : '.chg[data-t="' + k[0] + '"]');
+    }).map(function (k) { return '<div><b style="background:' + k[1] + '"></b>' + k[2] + '</div>'; }).join('') +
     '<div class="sum"><b>Cambios en esta página</b>' + (sum.length ? '<ul><li>' + sum.join('</li><li>') + '</li></ul>' : 'Sin cambios propios (solo el pie y la cabecera, comunes a todas).') + '</div>' +
-    '<div class="sum" style="margin-top:6px;padding-top:6px"><span style="color:#666">En todas: pie con © BlizzTherm y correo corregido. El icono de BlizzCool de la cabecera se mantiene como en la web actual.</span></div>';
+    '<div class="sum" style="margin-top:6px;padding-top:6px"><span style="color:#666">En todas: pie con © BlizzTherm y correo corregido. El icono de BlizzCool de la cabecera se mantiene como en la web actual.<br><br><b>En azul</b>, las propuestas de la agencia: plazos, coberturas y compromisos redactados para la maqueta que hay que confirmar con operaciones antes de publicar. Las cifras técnicas de cada equipo (potencia útil, consumo, IP, distancias mínimas y aporte de aire) no se publican inventadas: se remiten a la ficha técnica y el manual de cada modelo.</span></div>';
   var tip = document.createElement('div'); tip.id = 'rv-tip';
   var toast = document.createElement('div'); toast.id = 'rv-toast';
   lg.title = 'Clic para mostrar u ocultar el resumen';
   lg.addEventListener('click', function () { lg.classList.toggle('min'); });
-  if (window.innerWidth < 768) lg.classList.add('min');
+  /* el resumen arranca plegado: se abre solo si se pide, para no tapar la página */
+  lg.classList.add('min');
   body.appendChild(tg); body.appendChild(lg); body.appendChild(tip); body.appendChild(toast);
 
   function store(v) { try { localStorage.setItem(KEY, v ? '1' : '0'); } catch (e) {} }
@@ -365,43 +478,83 @@
   }, true);
 
   function esc(s) { return String(s).replace(/[&<>]/g, function (c) { return {'&': '&amp;', '<': '&lt;', '>': '&gt;'}[c]; }); }
-  var curEl = null;
+  var curEl = null, sideX = 1, sideY = 1, ancX = 0, pend = null, raf = 0;
+  var GAP = 28, MRG = 10;
+  var isTouch = window.matchMedia('(hover: none)').matches;
+
+  function hideTip() { tip.style.display = 'none'; curEl = null; }
+
+  function fill(el) {
+    var t = el.getAttribute('data-t') || 'mod';
+    var antes = el.getAttribute('data-antes') || 'No existía en la web actual.';
+    var h = '<h5>Antes</h5><div class="q">' + esc(antes) + '</div>' +
+      '<h5>Por qué</h5><div>' + esc(el.getAttribute('data-porque') || '') + '</div>';
+    if (el.getAttribute('data-falta')) h += '<h5>' + (t === 'prop' ? 'Qué hay que confirmar' : 'Qué falta') + '</h5><div>' + esc(el.getAttribute('data-falta')) + '</div>';
+    tip.innerHTML = h;
+    tip.className = (t === 'new' || t === 'val' || t === 'prop') ? t : '';
+    tip.style.display = 'block';
+  }
+
+  /* El lado de la ficha (derecha o izquierda, debajo o encima) se decide una sola vez,
+     al entrar en el elemento marcado. Mientras el cursor siga dentro del mismo bloque
+     la ficha solo se recorta contra el borde de la ventana: antes cambiaba de lado a
+     media pasada y daba un salto de más de 200 px dentro del mismo contenedor. */
+  /* Si el elemento marcado despliega un submenú (los «has» de la cabecera), la ficha
+     tiene que quedar más allá del desplegable: si no, lo tapa y no se puede elegir. */
+  function keepClear(el) {
+    var li = el.closest('li'), sub = li && li.querySelector('.sub');
+    if (!sub || !sub.offsetParent) return 0;
+    return sub.getBoundingClientRect().right + 14;
+  }
+
+  function place(cx, cy, el, fresh) {
+    var r = el.getBoundingClientRect();
+    var tw = tip.offsetWidth, th = tip.offsetHeight;
+    var vw = document.documentElement.clientWidth;
+    var vh = document.documentElement.clientHeight;
+    var big = r.height >= 140;
+    if (fresh) {
+      ancX = cx + GAP;
+      sideX = (cx + GAP + tw <= vw - MRG || cx - GAP - tw < MRG) ? 1 : -1;
+      sideY = big
+        ? ((cy + GAP + th <= vh - MRG || cy - GAP - th < MRG) ? 1 : -1)
+        : ((r.bottom + 12 + th <= vh - MRG || r.top - 12 - th < MRG) ? 1 : -1);
+    }
+    /* la ficha va siempre a la derecha del cursor; solo salta al otro lado si no cabe */
+    var x = sideX > 0 ? Math.max(big ? cx + GAP : ancX, keepClear(el)) : cx - tw - GAP;
+    var y = big ? (sideY > 0 ? cy + GAP : cy - th - GAP)
+                : (sideY > 0 ? r.bottom + 12 : r.top - th - 12);
+    tip.style.left = Math.max(MRG, Math.min(x, vw - tw - MRG)) + 'px';
+    tip.style.top = Math.max(MRG, Math.min(y, vh - th - MRG)) + 'px';
+  }
+
   function showTip(e) {
     if (!body.classList.contains('review')) return;
-    var el = e.target.closest('.chg');
-    if (!el) { tip.style.display = 'none'; curEl = null; return; }
-    if (el !== curEl) {
-      curEl = el;
-      var t = el.getAttribute('data-t') || 'mod';
-      var antes = el.getAttribute('data-antes') || 'No existía en la web actual.';
-      var h = '<h5>Antes</h5><div class="q">' + esc(antes) + '</div>' +
-        '<h5>Por qué</h5><div>' + esc(el.getAttribute('data-porque') || '') + '</div>';
-      if (t === 'val' && el.getAttribute('data-falta')) h += '<h5>Qué falta</h5><div>' + esc(el.getAttribute('data-falta')) + '</div>';
-      tip.innerHTML = h;
-      tip.className = t === 'new' ? 'new' : (t === 'val' ? 'val' : '');
-      tip.style.display = 'block';
-    }
-    // colocar la ficha junto al cursor sin tapar el elemento marcado
-    var r = el.getBoundingClientRect(), tw = tip.offsetWidth, th = tip.offsetHeight;
-    var vw = window.innerWidth, vh = window.innerHeight, x, y;
-    if (r.height < 140) {                     // elemento pequeño: debajo o encima
-      x = Math.min(Math.max(8, e.clientX - 30), vw - tw - 8);
-      y = r.bottom + 12;
-      if (y + th > vh - 8) y = r.top - th - 12;
-      if (y < 8) y = Math.min(vh - th - 8, e.clientY + 22);
-    } else {                                   // bloque grande: sigue al cursor
-      x = e.clientX + 22; y = e.clientY + 22;
-      if (x + tw > vw - 8) x = e.clientX - tw - 22;
-      if (y + th > vh - 8) y = e.clientY - th - 22;
-      if (x < 8) x = 8; if (y < 8) y = 8;
-    }
-    tip.style.left = x + 'px'; tip.style.top = y + 'px';
+    var t = e.target;
+    if (!t || !t.closest) return;
+    /* el panel de revisión flota sobre la página y tapa parte del contenido:
+       si el cursor lo cruza, la ficha se queda como está en lugar de apagarse */
+    if (t.closest('#rv-legend') || t.closest('#rv-toggle')) return;
+    var el = t.closest('.chg');
+    if (!el) { hideTip(); return; }
+    var fresh = el !== curEl;
+    if (fresh) { curEl = el; fill(el); }
+    place(e.clientX, e.clientY, el, fresh);
   }
-  document.addEventListener('mousemove', showTip);
+
+  document.addEventListener('mousemove', function (e) {
+    pend = e;
+    if (raf) return;
+    raf = requestAnimationFrame(function () { raf = 0; if (pend) showTip(pend); });
+  });
+  /* la ficha no se queda colgada al salir de la ventana o al cambiar de pestaña */
+  document.addEventListener('mouseleave', hideTip);
+  window.addEventListener('blur', hideTip);
+  window.addEventListener('resize', hideTip);
   /* en pantallas táctiles la ficha se abre al tocar el elemento marcado */
   document.addEventListener('click', function (e) {
-    if (!body.classList.contains('review') || !window.matchMedia('(hover: none)').matches) return;
+    if (!body.classList.contains('review') || !isTouch) return;
     if (e.target.closest('.chg')) { curEl = null; showTip(e); }
   });
-  document.addEventListener('scroll', function () { tip.style.display = 'none'; curEl = null; }, {passive: true});
+  document.addEventListener('scroll', hideTip, {passive: true});
 })();

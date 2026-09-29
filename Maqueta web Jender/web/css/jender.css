@@ -635,7 +635,7 @@ body.show-changes .menu li.nochg>a.active{color:rgba(255,255,255,.75)}
 @media (max-width:1680px){
   .gama-sec .spec-t th,.gama-sec .spec-t td{padding:9px 8px}
   .gama-sec .spec-t td{font-size:12.5px}
-  .gama-sec .spec-t th{font-size:11.5px}
+  .gama-sec .spec-t th{font-size:12.5px}
 }
 @media (max-width:1280px){
   .gama-sec .spec-t td{white-space:normal}
@@ -725,3 +725,9 @@ body.show-changes .menu li.nochg>a.active{color:rgba(255,255,255,.75)}
   background-attachment:local, local, scroll, scroll;
   -webkit-overflow-scrolling:touch;
 }
+
+/* Area tactil del boton de menu: mide 40x33, por debajo de los 44px
+   recomendados. Se amplia con un pseudo-elemento invisible centrado, asi que
+   el boton se pulsa mejor sin que cambie nada de sitio. */
+button.burger{position:relative}
+button.burger::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px}

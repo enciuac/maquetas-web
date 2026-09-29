@@ -715,3 +715,9 @@ table.spec tbody tr.hi td{background:rgba(235,92,27,.045);font-weight:600}
   background-attachment:local, local, scroll, scroll;
   -webkit-overflow-scrolling:touch;
 }
+
+/* Area tactil del boton de menu: el icono mide 33x33, por debajo de los 44px
+   recomendados. Se amplia con un pseudo-elemento invisible centrado, asi que
+   el boton se pulsa mejor sin que cambie nada de sitio. */
+button.burger{position:relative}
+button.burger::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px}

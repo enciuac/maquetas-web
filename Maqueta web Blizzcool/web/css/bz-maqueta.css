@@ -284,3 +284,9 @@ body.show-changes .bz-removed{opacity:.45;filter:grayscale(1);text-decoration:li
 @media (max-width:767px){.bz-lvls{grid-template-columns:1fr;margin-top:28px}.bz-lvl{padding:24px 20px}.bz-lvl h3{font-size:19px}}
 .bz-leg .bz-leg-l b a{color:#2E7CD6;text-decoration:none!important;border-bottom:1px solid rgba(46,124,214,.35)}
 .bz-leg .bz-leg-l b a:hover{border-bottom-color:#2E7CD6}
+
+/* Area tactil del boton de menu: el icono mide 33x33, por debajo de los 44px
+   recomendados. Se amplia con un pseudo-elemento invisible centrado, asi que
+   el boton se pulsa mejor sin que cambie nada de sitio. */
+.elementor-menu-toggle{position:relative}
+.elementor-menu-toggle::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px}

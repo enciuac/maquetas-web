@@ -690,3 +690,6 @@ table.spec tbody tr.hi td{background:rgba(235,92,27,.045);font-weight:600}
 }
 .cavi .cbtn{display:inline-block;margin-top:12px;background:var(--accent);color:#fff;border-radius:5px;padding:11px 20px;font:500 13px/1 Poppins,sans-serif;text-transform:uppercase;letter-spacing:.04em}
 .cavi .cbtn:hover{filter:brightness(1.12)}
+.btn2{display:inline-block;font:500 14px/1 Poppins,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#fff;border:2px solid rgba(255,255,255,.55);border-radius:5px;padding:13px 28px;margin-left:10px;transition:border-color .2s,background .2s}
+.btn2:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+@media (max-width:600px){.btn2{margin:10px 0 0;display:block;text-align:center}}

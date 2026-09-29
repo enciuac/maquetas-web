@@ -70,10 +70,9 @@
         '<ul class="sub"><li>' + a('gas', 'Cañon de calor a gas') + '</li><li>' + a('gasoil', 'Cañon de calor de gasoil') + '</li></ul></li>' +
       '<li class="has">' + a('postventa', 'Post-Venta' + CARET) +
         '<ul class="sub"><li>' + a('mantenimiento', 'Mantenimiento') + '</li><li>' + a('garantia', 'Registro de Garantía') + '</li><li>' + a('renove', 'Plan Renove') + '</li></ul></li>' +
-      '<li class="has chg" data-t="new" data-porque="Nuevo acceso a las dos rutas que pide el informe: industria y ganadería, cada una con su lenguaje y sus aplicaciones (Sección 07 · Industria / ganadería).">' + a('industria', 'Soluciones' + CARET) +
-        '<ul class="sub"><li>' + a('industria', 'Industria') + '</li><li>' + a('ganaderia', 'Ganadería') + '</li></ul></li>' +
-      '<li class="chg" data-t="new" data-porque="La tabla de selección de potencia solo existía como PDF descargable. Se publica como calculadora interactiva y se le da entrada propia en el menú, porque es la duda previa a cualquier compra.">' + a('calculadora', 'Calculadora de potencia') + '</li>' +
-      '<li>' + a('nosotros', 'Nosotros') + '</li>' +
+      '<li class="has chg" data-t="new" data-porque="Nuevo acceso a las dos rutas que pide el informe: industria y ganadería, cada una con su lenguaje y sus aplicaciones (Sección 07 · Industria / ganadería). Se suma la calculadora de potencia, que antes solo existía como PDF descargable.">' + a('industria', 'Soluciones' + CARET) +
+        '<ul class="sub"><li>' + a('industria', 'Industria') + '</li><li>' + a('ganaderia', 'Ganadería') + '</li><li>' + a('calculadora', 'Calculadora de potencia') + '</li></ul></li>' +
+            '<li>' + a('nosotros', 'Nosotros') + '</li>' +
       '<li>' + a('blog', 'Blog') + '</li>' +
       '<li>' + a('contacto', 'Contacto') + '</li>' +
       '</ul>';
@@ -83,9 +82,8 @@
       '<li>' + a('infrarrojos', 'Calefactores industriales por infrarrojos') + '</li>' +
       '<li>' + a('canones', 'Cañon de calor industrial') + '<ul class="sub"><li>' + a('gas', 'Cañon de calor a gas') + '</li><li>' + a('gasoil', 'Cañon de calor de gasoil') + '</li></ul></li>' +
       '<li>' + a('postventa', 'Post-Venta') + '<ul class="sub"><li>' + a('mantenimiento', 'Mantenimiento') + '</li><li>' + a('garantia', 'Registro de Garantía') + '</li><li>' + a('renove', 'Plan Renove') + '</li></ul></li>' +
-      '<li>' + a('industria', 'Soluciones') + '<ul class="sub"><li>' + a('industria', 'Industria') + '</li><li>' + a('ganaderia', 'Ganadería') + '</li></ul></li>' +
+      '<li>' + a('industria', 'Soluciones') + '<ul class="sub"><li>' + a('industria', 'Industria') + '</li><li>' + a('ganaderia', 'Ganadería') + '</li><li>' + a('calculadora', 'Calculadora de potencia') + '</li></ul></li>' +
       '<li>' + a('nosotros', 'Nosotros') + '<ul class="sub"><li>' + a('documentacion', 'Documentación BlizzTherm') + '</li><li>' + a('blog', 'Blog') + '</li><li>' + a('videos', 'Videos') + '</li></ul></li>' +
-      '<li>' + a('calculadora', 'Calculadora de potencia') + '</li>' +
       '<li>' + a('blog', 'Blog') + '</li>' +
       '<li>' + a('contacto', 'Contacto') + '</li>' +
       '</ul></nav>';

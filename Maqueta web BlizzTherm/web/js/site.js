@@ -29,6 +29,7 @@
     videos:        {h: W + 'videos.html', chg: true},
     contacto:      {h: W + 'contacto.html', chg: true},
     faqs:          {h: W + 'faqs.html', chg: true},
+    calculadora:   {h: W + 'calculadora.html', chg: true},
     industria:     {h: W + 'industria.html', chg: true},
     ganaderia:     {h: W + 'ganaderia.html', chg: true},
     distribuidores:{h: W + 'distribuidores.html', chg: true}
@@ -71,6 +72,7 @@
         '<ul class="sub"><li>' + a('mantenimiento', 'Mantenimiento') + '</li><li>' + a('garantia', 'Registro de Garantía') + '</li><li>' + a('renove', 'Plan Renove') + '</li></ul></li>' +
       '<li class="has chg" data-t="new" data-porque="Nuevo acceso a las dos rutas que pide el informe: industria y ganadería, cada una con su lenguaje y sus aplicaciones (Sección 07 · Industria / ganadería).">' + a('industria', 'Soluciones' + CARET) +
         '<ul class="sub"><li>' + a('industria', 'Industria') + '</li><li>' + a('ganaderia', 'Ganadería') + '</li></ul></li>' +
+      '<li class="chg" data-t="new" data-porque="La tabla de selección de potencia solo existía como PDF descargable. Se publica como calculadora interactiva y se le da entrada propia en el menú, porque es la duda previa a cualquier compra.">' + a('calculadora', 'Calculadora de potencia') + '</li>' +
       '<li>' + a('nosotros', 'Nosotros') + '</li>' +
       '<li>' + a('blog', 'Blog') + '</li>' +
       '<li>' + a('contacto', 'Contacto') + '</li>' +
@@ -83,6 +85,7 @@
       '<li>' + a('postventa', 'Post-Venta') + '<ul class="sub"><li>' + a('mantenimiento', 'Mantenimiento') + '</li><li>' + a('garantia', 'Registro de Garantía') + '</li><li>' + a('renove', 'Plan Renove') + '</li></ul></li>' +
       '<li>' + a('industria', 'Soluciones') + '<ul class="sub"><li>' + a('industria', 'Industria') + '</li><li>' + a('ganaderia', 'Ganadería') + '</li></ul></li>' +
       '<li>' + a('nosotros', 'Nosotros') + '<ul class="sub"><li>' + a('documentacion', 'Documentación BlizzTherm') + '</li><li>' + a('blog', 'Blog') + '</li><li>' + a('videos', 'Videos') + '</li></ul></li>' +
+      '<li>' + a('calculadora', 'Calculadora de potencia') + '</li>' +
       '<li>' + a('blog', 'Blog') + '</li>' +
       '<li>' + a('contacto', 'Contacto') + '</li>' +
       '</ul></nav>';

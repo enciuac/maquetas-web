@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora de potencia calorífica | BlizzTherm</title>
+<meta name="description" content="Calcula la potencia en kW que necesita tu nave, taller o granja y descubre qué calefactor BlizzTherm la cubre: eléctrico, infrarrojo, gas o gasoil.">
+<link rel="stylesheet" href="css/site.css?v=9">
+</head>
+<body data-root="../" data-page="calculadora">
+<header id="hdr"></header>
+<main>
+<section class="hero grad">
+  <div class="in"><div class="box">
+    <div class="eyebrow">Herramienta de selección</div>
+    <h1>¿Qué potencia <span class="hl">necesitas?</span></h1>
+    <hr class="divider">
+    <div class="lead w">Dinos cómo es tu espacio y qué temperatura quieres alcanzar. Calculamos los kW necesarios y te decimos qué equipos de la gama BlizzTherm los cubren.</div>
+  </div></div>
+</section>
+
+<section class="sec" data-t="new" data-porque="La tabla de selección existía solo como PDF descargable: obligaba a buscar tu volumen en una rejilla de 16 filas y cuatro columnas, y estaba calculada siempre para un salto de 30 °C. Aquí el visitante introduce su caso y obtiene la potencia y los modelos que la cubren."><div class="in">
+
+  <div class="calc" id="calc">
+    <div class="calc-form">
+
+      <div class="cstep">
+        <span class="cnum">1</span>
+        <div class="cbody">
+          <h3 class="calc-h">El espacio</h3>
+          <div class="cfields">
+            <label>Superficie<span>m²</span><input id="sup" type="number" min="1" step="1" value="400" inputmode="numeric"></label>
+            <label>Altura<span>m</span><input id="alt" type="number" min="1" step="0.5" value="5" inputmode="decimal"></label>
+          </div>
+          <p class="chint">Volumen a calentar: <b id="vol">2.000</b> m³</p>
+        </div>
+      </div>
+
+      <div class="cstep">
+        <span class="cnum">2</span>
+        <div class="cbody">
+          <h3 class="calc-h">El aislamiento</h3>
+          <div class="ciso" id="ciso">
+            <button type="button" class="iso on" data-k="0.5"><b>Muy bueno</b><span>Viviendas y locales bien aislados</span><i>K 0,5</i></button>
+            <button type="button" class="iso" data-k="1.5"><b>Medio</b><span>Garajes y talleres cerrados</span><i>K 1,5</i></button>
+            <button type="button" class="iso" data-k="2.5"><b>Bajo</b><span>Naves con pérdidas moderadas</span><i>K 2,5</i></button>
+            <button type="button" class="iso" data-k="3.5"><b>Sin aislamiento</b><span>Naves abiertas o chapa metálica</span><i>K 3,5</i></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="cstep">
+        <span class="cnum">3</span>
+        <div class="cbody">
+          <h3 class="calc-h">El salto térmico</h3>
+          <div class="cfields">
+            <label>Temperatura exterior<span>°C</span><input id="text" type="number" step="1" value="0" inputmode="numeric"></label>
+            <label>Temperatura deseada<span>°C</span><input id="tobj" type="number" step="1" value="18" inputmode="numeric"></label>
+          </div>
+          <p class="chint">Salto térmico: <b id="dt">18</b> °C</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="calc-out" id="out">
+      <div class="cres">
+        <span class="cres-k">Potencia necesaria</span>
+        <strong id="kw">—</strong>
+        <em id="formula"></em>
+      </div>
+      <div id="modelos"></div>
+      <p class="cavi" id="aviso"></p>
+    </div>
+  </div>
+
+  <p class="cnota">Resultado orientativo. La elección final debe considerar la altura real, las infiltraciones de aire, las aperturas, la ventilación y el tipo de equipo. Los equipos de combustión directa requieren espacios abiertos o bien ventilados; los indirectos permiten conducir los humos al exterior. <a class="hl" data-pg="contacto" href="contacto.html">Cuéntanos tu caso</a> y lo revisamos contigo.</p>
+
+</div></section>
+</main>
+<footer id="ftr"></footer>
+<script src="js/site.js?v=9"></script>
+<script src="js/calculadora.js?v=1"></script>
+<script src="../../_inicio/volver.js"></script>
+</body>
+</html>

@@ -693,3 +693,8 @@ table.spec tbody tr.hi td{background:rgba(235,92,27,.045);font-weight:600}
 .btn2{display:inline-block;font:500 14px/1 Poppins,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#fff;border:2px solid rgba(255,255,255,.55);border-radius:5px;padding:13px 28px;margin-left:10px;transition:border-color .2s,background .2s}
 .btn2:hover{border-color:#fff;background:rgba(255,255,255,.1)}
 @media (max-width:600px){.btn2{margin:10px 0 0;display:block;text-align:center}}
+.calc-band>.in{padding:0 0 10px!important;flex-direction:row;align-items:center;justify-content:space-between;gap:24px;background:#faf7f5;border:1px solid #f0e2d9;border-left:4px solid var(--secondary);border-radius:6px;padding:20px 24px!important;margin-bottom:6px}
+.calc-band p{margin:0;font:400 15.5px/1.55 Poppins,sans-serif;color:#333}
+.calc-band p b{color:#000;font-weight:700}
+.calc-band .btn{flex:none;white-space:nowrap}
+@media (max-width:760px){.calc-band>.in{flex-direction:column;align-items:flex-start;gap:14px}}

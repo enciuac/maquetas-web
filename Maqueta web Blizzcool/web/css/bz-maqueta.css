@@ -282,3 +282,5 @@ body.show-changes .bz-removed{opacity:.45;filter:grayscale(1);text-decoration:li
 .bz-war-cta{margin-top:34px;text-align:center}
 @media (max-width:1024px){.bz-lvls{grid-template-columns:1fr 1fr}}
 @media (max-width:767px){.bz-lvls{grid-template-columns:1fr;margin-top:28px}.bz-lvl{padding:24px 20px}.bz-lvl h3{font-size:19px}}
+.bz-leg .bz-leg-l b a{color:#2E7CD6;text-decoration:none!important;border-bottom:1px solid rgba(46,124,214,.35)}
+.bz-leg .bz-leg-l b a:hover{border-bottom-color:#2E7CD6}

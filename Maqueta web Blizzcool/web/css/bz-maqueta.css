@@ -247,3 +247,38 @@ body.show-changes [data-chg],body.show-changes [data-new],body.show-changes [dat
 /* Contenido eliminado: oculto en la versión final; en «Ver cambios» se ve tachado */
 body:not(.show-changes) .bz-removed{display:none!important}
 body.show-changes .bz-removed{opacity:.45;filter:grayscale(1);text-decoration:line-through;outline:2px dashed #FFD400!important;outline-offset:4px;position:relative}
+
+/* ---------- Soluciones: esquema isométrico de la nave ---------- */
+.bz-iso .bz-cases{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:34px}
+.bz-case-iso{margin:0;position:relative;background:#F4F8FC;border:1px solid #E1E9F2;border-radius:14px;overflow:hidden}
+.bz-case-iso img{display:block;width:100%;height:auto}
+.bz-case-tag{position:absolute;top:14px;left:14px;z-index:2;background:#E8611A;color:#fff;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:7px 13px;border-radius:20px}
+.bz-case-tag-2{background:#2E7CD6}
+.bz-case-iso figcaption{padding:20px 22px 24px;background:#fff;border-top:1px solid #E1E9F2}
+.bz-case-iso figcaption h3{margin:0 0 7px;font-size:19px;line-height:1.25}
+.bz-case-iso figcaption p{margin:0;font-size:15px;line-height:1.55;color:#5A6B80}
+.bz-leg{margin-top:30px;background:#F4F8FC;border:1px solid #E1E9F2;border-radius:14px;padding:24px 26px}
+.bz-leg-t{display:block;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#5A6B80;margin-bottom:16px}
+.bz-leg-l{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px 26px;counter-reset:bl}
+.bz-leg-l li{display:grid;grid-template-columns:28px 1fr;column-gap:11px;row-gap:3px;align-items:start}
+.bz-leg-l li::before{counter-increment:bl;content:counter(bl);width:26px;height:26px;border-radius:50%;background:#2E7CD6;color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center;grid-column:1;grid-row:span 2}
+.bz-leg-l b{grid-column:2;display:block;font-size:15px;line-height:1.3}
+.bz-leg-l span{grid-column:2;display:block;font-size:13.5px;color:#5A6B80;line-height:1.4}
+.bz-iso-foot{margin-top:26px;font-size:16px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+@media (max-width:900px){
+  .bz-iso .bz-cases{grid-template-columns:1fr}
+  .bz-leg-l{grid-template-columns:1fr}
+}
+
+/* ---------- Bloque de garantía (mismo patrón que la posventa de BlizzTherm) ---------- */
+.bz-war{border-top:1px solid rgba(255,255,255,.1)}
+.bz-war .bz-in{max-width:1240px}
+.bz-war .bz-sub{max-width:820px;margin-bottom:0}
+.bz-lvls{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:38px}
+.bz-lvl{background:#141414;border:1px solid rgba(255,255,255,.09);border-radius:5px;padding:30px 24px;display:flex;flex-direction:column;gap:10px;text-align:left}
+.bz-lvl .bz-k{font:600 12px/16px "Poppins",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#68B551}
+.bz-lvl h3{margin:0;font:700 21px/1.25 "Poppins",sans-serif;color:#fff}
+.bz-lvl p{margin:0;font:400 15px/1.6 "Poppins",sans-serif;color:#cfcfcf}
+.bz-war-cta{margin-top:34px;text-align:center}
+@media (max-width:1024px){.bz-lvls{grid-template-columns:1fr 1fr}}
+@media (max-width:767px){.bz-lvls{grid-template-columns:1fr;margin-top:28px}.bz-lvl{padding:24px 20px}.bz-lvl h3{font-size:19px}}

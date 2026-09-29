@@ -625,3 +625,16 @@ table.spec tbody tr.hi td{background:rgba(235,92,27,.045);font-weight:600}
   .spec-sec .cmp-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
   table.spec{min-width:620px}
 }
+
+/* variante de la banda naranja: degradado invertido y dos llamadas */
+.pretemp.alt{background:linear-gradient(100deg,#B8181F 0%,#EB5C1B 100%)}
+.pretemp .pct{white-space:nowrap}
+.pretemp .band-btns{flex:none;display:flex;flex-direction:column;align-items:center;gap:12px}
+.pretemp .band-btns .btn{background:#fff;color:#B8181F;display:inline-flex;align-items:center;gap:9px;white-space:nowrap}
+.pretemp .band-btns .btn svg{width:17px;height:17px;fill:currentColor}
+.pretemp .band-btns .lnk{font:500 14px Poppins,sans-serif;color:#fff;text-decoration:underline;text-underline-offset:4px}
+.pretemp .band-btns .lnk:hover{opacity:.85}
+@media (max-width:767px){
+  .pretemp .band-btns{align-items:flex-start;width:100%}
+  .pretemp .band-btns .btn{justify-content:center;width:100%}
+}

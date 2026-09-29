@@ -344,7 +344,10 @@ body.show-changes .menu li:not(.nochg)>a:not(.active){text-decoration:underline;
 .why5 .ic svg{width:22px;height:22px}
 .certs{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .certs span{font-family:"Barlow";font-weight:800;font-size:13px;border:1.5px solid var(--navy);border-radius:20px;padding:3px 10px}
-.cta-band{background:var(--navy);border-radius:14px;padding:44px 50px;display:flex;align-items:center;justify-content:space-between;gap:30px;color:#fff}
+.cta-band{background:var(--navy);border-radius:14px;padding:44px 50px;display:flex;align-items:center;justify-content:space-between;gap:34px;color:#fff}
+/* el boton de la banda no se parte en dos lineas ni se encoge */
+.cta-band>.btns{flex:none}
+.cta-band .btn{white-space:nowrap;flex:none;padding:14px 30px}
 .cta-band h2{color:#fff;font-size:clamp(26px,2.8vw,36px)}
 .cta-band p{margin:8px 0 0;color:#d9e3f2}
 
@@ -535,3 +538,173 @@ body.show-changes .menu li.nochg>a.active{color:rgba(255,255,255,.75)}
 .hero-slider .eyebrow{margin-bottom:14px}
 @media (max-width:1280px){.hero-slider .slide .wrap{width:62%}}
 @media (max-width:1020px){.hero-slider .slide .wrap{width:100%;padding:90px 24px 110px}.hero-slider .h1,.hero-slider h1{font-size:clamp(36px,7vw,70px);line-height:.95}}
+
+/* ---------- Ficha de gama (estructura tipo CompAir) ---------- */
+.gama-sec{background:#fff;border-top:1px solid var(--grey-2)}
+.gama-layout{display:grid;grid-template-columns:200px minmax(0,1fr);gap:34px;align-items:start}
+.gama-body{min-width:0}
+/* la tabla de modelos scrollea dentro de su contenedor en lugar de estirar la pagina */
+.tbl-wrap{width:100%;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.gama-nav{position:sticky;top:96px;max-height:calc(100vh - 120px);overflow-y:auto;overscroll-behavior:contain}
+.gama-nav::-webkit-scrollbar{width:6px}
+.gama-nav::-webkit-scrollbar-thumb{background:var(--grey-2);border-radius:3px}
+.gama-nav ul{list-style:none;margin:0 0 16px;padding:0;border-left:2px solid var(--grey-2)}
+/* el índice cabe entero en pantalla: una línea por entrada, con puntos suspensivos
+   si el título es largo (el texto completo queda en el title del enlace) */
+.gama-nav ul a{display:block;padding:9px 14px;font-size:13.5px;font-weight:600;color:var(--muted);text-decoration:none;border-left:2px solid transparent;margin-left:-2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gama-nav ul a:hover{color:var(--navy)}
+.gama-nav ul a.on{color:var(--navy);border-left-color:var(--yellow);background:var(--grey-1)}
+.gama-nav .btns{display:grid;gap:7px}
+.gama-nav .btns .btn{width:100%;justify-content:center;font-size:13px;padding:9px 12px}
+.btn-ghost-navy{background:#fff;color:var(--navy);border:1px solid var(--grey-2)}
+.btn-ghost-navy:hover{border-color:var(--navy)}
+.gama-intro .eyebrow{display:block;margin-bottom:10px}
+.gama-intro h2{margin-bottom:12px}
+.gama-intro .claim{font-weight:700;color:var(--navy);font-size:17px;margin-bottom:12px}
+.gama-intro .lead{max-width:820px}
+.gama-intro .keyfig{margin-top:30px}
+.keyfig{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.keyfig>div{background:var(--grey-1);border-radius:var(--radius);padding:22px 18px;text-align:center;border-top:4px solid var(--yellow)}
+.keyfig b{display:block;font-family:"Barlow",sans-serif;font-weight:900;font-size:clamp(19px,2vw,26px);line-height:1.05;color:var(--navy)}
+.keyfig span{display:block;margin-top:7px;font-size:13.5px;font-weight:600;color:var(--muted)}
+.keyfig small{display:block;font-weight:500;font-size:12px;opacity:.8}
+.gblock{border-top:1px solid var(--grey-2);margin-top:34px}
+.gblock>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;
+  padding:24px 0 18px;font-family:"Barlow",sans-serif;font-weight:900;font-size:clamp(21px,2.2vw,27px);
+  text-transform:uppercase;color:var(--navy)}
+.gblock>summary::-webkit-details-marker{display:none}
+.gblock>summary::after{content:"";width:11px;height:11px;border-right:2.5px solid var(--navy);border-bottom:2.5px solid var(--navy);transform:rotate(45deg);transition:transform .2s;flex:none;margin-right:6px}
+.gblock[open]>summary::after{transform:rotate(-135deg)}
+.gb{padding-bottom:12px}
+.bitem{padding:16px 0;border-bottom:1px solid var(--grey-2)}
+.bitem:last-child{border-bottom:0}
+.bitem h4{font-size:17px;color:var(--navy);margin-bottom:5px}
+.bitem p{font-size:15px;color:var(--muted);margin:0;max-width:880px}
+.dis{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.dis h4{font-size:16px;color:var(--navy);margin-bottom:10px}
+.dis ul{margin:0;padding-left:18px}
+.dis li{font-size:14.5px;color:var(--muted);margin-bottom:6px}
+.spec-t th{font-size:13.5px;line-height:1.3;vertical-align:bottom}
+.spec-t th .u{display:block;font-weight:500;opacity:.8;font-size:12px}
+.spec-t td{font-size:14.5px}
+.spec-t td:first-child{font-weight:700;color:var(--navy)}
+.fnote{font-size:12.5px;line-height:1.5;color:var(--muted);margin:10px 0 0}
+.fnote sup{color:var(--navy);font-weight:700}
+.dl{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.dlcard{display:flex;flex-direction:column;gap:5px;background:var(--grey-1);border-radius:var(--radius);padding:22px 20px;text-decoration:none;border:1px solid var(--grey-2)}
+.dlcard:hover{border-color:var(--navy)}
+.dlcard .ic{width:38px;height:38px;border-radius:8px;background:var(--navy);color:var(--yellow);display:grid;place-items:center;margin-bottom:6px}
+.dlcard .ic svg{width:19px;height:19px}
+.dlcard b{font-family:"Barlow",sans-serif;font-weight:800;font-size:16px;color:var(--navy);text-transform:uppercase}
+.dlcard small{font-size:12.5px;color:var(--muted)}
+.gama-foot{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+.gama-foot>div{background:var(--grey-1);border-radius:var(--radius);padding:26px 24px;display:flex;flex-direction:column;gap:9px;align-items:flex-start}
+.gama-foot h4{font-size:18px;color:var(--navy)}
+.gama-foot p{font-size:14.5px;color:var(--muted);margin:0;flex:1}
+.gama-foot .hl{background:var(--navy)}
+.gama-foot .hl h4{color:var(--yellow)}
+.gama-foot .hl p{color:#cfdcf0}
+@media (max-width:1024px){
+  .gama-layout{grid-template-columns:1fr;gap:26px}
+  .gama-nav{position:static}
+  .gama-nav ul{display:flex;flex-wrap:wrap;border-left:0;border-bottom:1px solid var(--grey-2);margin-bottom:16px}
+  .gama-nav ul a{border-left:0;border-bottom:2px solid transparent;margin-left:0}
+  .gama-nav ul a.on{border-left-color:transparent;border-bottom-color:var(--yellow)}
+  .gama-nav .btns{grid-template-columns:repeat(3,1fr)}
+  .keyfig{grid-template-columns:repeat(2,1fr)}
+  .dis{grid-template-columns:1fr}
+  .dl,.gama-foot{grid-template-columns:1fr}
+}
+@media (max-width:767px){
+  .keyfig{grid-template-columns:1fr}
+  .gama-nav .btns{grid-template-columns:1fr}
+}
+
+.spec-t tr.grp td{background:var(--navy);color:var(--yellow);font-family:"Barlow",sans-serif;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.06em;padding:9px 18px}
+.spec-t tr.grp td:first-child{color:var(--yellow)}
+.fnote.pend{color:#b91c1c}
+
+/* La ficha de gama se sale del ancho general del sitio para que la tabla de modelos
+   entre completa sin scroll: son 9-10 columnas de datos. */
+.gama-sec .wrap{max-width:1620px;padding:0 28px}
+.gama-sec .spec-t th,.gama-sec .spec-t td{padding:10px 11px}
+.gama-sec .spec-t th{font-size:12.5px}
+.gama-sec .spec-t td{font-size:13.5px;white-space:nowrap}
+.gama-sec .spec-t td:first-child{white-space:nowrap}
+.gama-sec .spec-t .u{font-size:11px}
+@media (max-width:1680px){
+  .gama-sec .spec-t th,.gama-sec .spec-t td{padding:9px 8px}
+  .gama-sec .spec-t td{font-size:12.5px}
+  .gama-sec .spec-t th{font-size:11.5px}
+}
+@media (max-width:1280px){
+  .gama-sec .spec-t td{white-space:normal}
+}
+
+/* buscador de gamas de la cabecera */
+.search input{border:0;outline:0;background:transparent;font:400 14px Poppins,sans-serif;color:var(--navy);width:100%;min-width:0}
+.search input::placeholder{color:#8a94a6}
+/* servicios de CST en la home */
+.cst-srv{margin-top:48px;background:var(--grey);border-radius:var(--radius);padding:34px 34px 30px}
+.cst-h .eyebrow{display:block;margin-bottom:8px}
+.cst-h h3{font-size:24px;color:var(--navy);margin-bottom:8px}
+.cst-h p{font-size:15.5px;color:var(--muted);max-width:760px;margin-bottom:24px}
+.cst-l{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.cst-l li{display:flex;flex-direction:column;gap:5px;background:#fff;border:1px solid var(--grey-2);border-radius:var(--radius);padding:20px 18px}
+.cst-l svg{width:24px;height:24px;color:var(--navy);margin-bottom:4px}
+.cst-l b{font-family:"Barlow",sans-serif;font-weight:800;font-size:16px;color:var(--navy);text-transform:uppercase;line-height:1.15}
+.cst-l span{font-size:13.5px;color:var(--muted);line-height:1.4}
+/* destacado del area de clientes */
+.dest{margin-top:46px;background:var(--navy);border-radius:var(--radius);padding:38px 36px;color:#fff}
+.dest-k{font:600 12px/1 Poppins,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--yellow);margin-bottom:12px}
+.dest h3{color:#fff;font-size:26px;margin-bottom:10px}
+.dest p{color:#cfdcf0;font-size:16px;max-width:820px;margin-bottom:22px}
+@media (max-width:1024px){.cst-l{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:767px){.cst-l{grid-template-columns:1fr}.dest{padding:28px 24px}}
+
+/* tarjeta blanca sobre fondo navy: recupera su propio color de texto, que si no
+   hereda el blanco de la seccion y el titulo queda invisible */
+.bg-navy .card-white h3,.bg-navy .card-white h4{color:var(--navy)}
+.bg-navy .card-white p,.bg-navy .card-white li,.bg-navy .card-white span{color:var(--muted)}
+
+/* ---------- Figuras tecnicas de la ficha de gama ---------- */
+.figs{display:grid;grid-template-columns:1.35fr 1fr;gap:38px;align-items:start}
+.fig{margin:0}
+.fig figcaption{margin-bottom:20px}
+.fig figcaption b{display:block;font-family:"Barlow",sans-serif;font-weight:800;font-size:17px;text-transform:uppercase;color:var(--navy);margin-bottom:5px}
+.fig figcaption span{display:block;font-size:13px;line-height:1.5;color:var(--muted)}
+/* barras: una sola serie, un solo tono, etiqueta directa al final */
+.bars{display:grid;gap:7px}
+.bar-row{display:grid;grid-template-columns:78px 1fr 52px;align-items:center;gap:12px;outline:0}
+.bar-row .bl{font-size:12.5px;font-weight:600;color:var(--navy);white-space:nowrap}
+.bar-row .bt{position:relative;height:16px;background:var(--grey);border-radius:4px;overflow:hidden}
+.bar-row .bt i{display:block;height:100%;background:var(--navy);border-radius:0 4px 4px 0;transition:background .15s}
+.bar-row .bv{font-size:12.5px;font-weight:700;color:var(--navy);text-align:right;font-variant-numeric:tabular-nums}
+.bar-row:hover .bt i,.bar-row:focus .bt i{background:var(--yellow)}
+.bar-row:focus .bl{text-decoration:underline;text-decoration-color:var(--yellow);text-underline-offset:3px}
+/* vista superior a escala */
+.huellas{display:flex;gap:30px;align-items:flex-end;flex-wrap:wrap}
+.hu{display:flex;flex-direction:column;gap:7px}
+.hu .pl{position:relative;border:2px dashed var(--navy);border-radius:3px;background:repeating-linear-gradient(45deg,transparent,transparent 7px,rgba(0,51,116,.05) 7px,rgba(0,51,116,.05) 14px)}
+.hu .wd{position:absolute;top:-17px;left:0;right:0;text-align:center;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.hu .ht{position:absolute;right:-8px;top:50%;transform:translate(100%,-50%);font-size:11px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.hu b{font-family:"Barlow",sans-serif;font-weight:800;font-size:14px;color:var(--navy);text-transform:uppercase;margin-top:6px}
+.hu span{font-size:12.5px;color:var(--muted)}
+/* tooltip propio de las figuras */
+.gama-sec{position:relative}
+.fig-tip{position:absolute;z-index:40;max-width:330px;background:var(--navy);color:#fff;border-radius:8px;padding:9px 12px;font:500 12.5px/1.5 Poppins,sans-serif;pointer-events:none;opacity:0;transition:opacity .12s;box-shadow:0 10px 26px rgba(0,0,0,.24)}
+.fig-tip.on{opacity:1}
+@media (max-width:1280px){.figs{grid-template-columns:1fr;gap:44px}}
+@media (max-width:767px){.bar-row{grid-template-columns:64px 1fr 46px;gap:8px}.hu .ht{display:none}}
+
+/* galeria de producto: varias fotos en rejilla, todas al mismo tamaño */
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin:6px 0 4px}
+.gal .gi{margin:0;background:var(--grey);border:1px solid var(--grey-2);border-radius:8px;padding:10px;display:grid;place-items:center}
+.gal .gi img{width:100%;height:auto;max-height:130px;object-fit:contain;display:block}
+@media (max-width:767px){.gal{grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:9px}}
+
+/* dentro de un bloque del índice, las dos columnas arrancan arriba: si se centran,
+   el texto queda flotando en medio de un hueco blanco junto a la galería */
+.gb .split,.gb .rsplit,.gb .feature-card{align-items:start}
+.gb > div:first-child{margin-top:0}
+.gb .media img{width:100%;height:auto;object-fit:contain}

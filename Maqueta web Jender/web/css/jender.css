@@ -708,3 +708,20 @@ body.show-changes .menu li.nochg>a.active{color:rgba(255,255,255,.75)}
 .gb .split,.gb .rsplit,.gb .feature-card{align-items:start}
 .gb > div:first-child{margin-top:0}
 .gb .media img{width:100%;height:auto;object-fit:contain}
+
+/* Tablas anchas: aviso de que se pueden deslizar.
+   Las sombras aparecen solas en el lado donde queda contenido oculto y
+   desaparecen al llegar al extremo (background-attachment local vs scroll).
+   En movil la barra de scroll esta oculta y sin esto la tabla parece cortada. */
+.table-scroll,.tbl-wrap{
+  background-image:
+    linear-gradient(to right, #fff, rgba(255,255,255,0)),
+    linear-gradient(to left, #fff, rgba(255,255,255,0)),
+    radial-gradient(farthest-side at 0 50%, rgba(0,0,0,.26), rgba(0,0,0,0)),
+    radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,.26), rgba(0,0,0,0));
+  background-position:left center, right center, left center, right center;
+  background-repeat:no-repeat;
+  background-size:40px 100%, 40px 100%, 18px 100%, 18px 100%;
+  background-attachment:local, local, scroll, scroll;
+  -webkit-overflow-scrolling:touch;
+}

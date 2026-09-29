@@ -698,3 +698,20 @@ table.spec tbody tr.hi td{background:rgba(235,92,27,.045);font-weight:600}
 .calc-band p b{color:#000;font-weight:700}
 .calc-band .btn{flex:none;white-space:nowrap}
 @media (max-width:760px){.calc-band>.in{flex-direction:column;align-items:flex-start;gap:14px}}
+
+/* Tablas anchas: aviso de que se pueden deslizar.
+   Las sombras aparecen solas en el lado donde queda contenido oculto y
+   desaparecen al llegar al extremo (background-attachment local vs scroll).
+   En movil la barra de scroll esta oculta y sin esto la tabla parece cortada. */
+.cmp-wrap{
+  background-image:
+    linear-gradient(to right, #fff, rgba(255,255,255,0)),
+    linear-gradient(to left, #fff, rgba(255,255,255,0)),
+    radial-gradient(farthest-side at 0 50%, rgba(0,0,0,.26), rgba(0,0,0,0)),
+    radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,.26), rgba(0,0,0,0));
+  background-position:left center, right center, left center, right center;
+  background-repeat:no-repeat;
+  background-size:40px 100%, 40px 100%, 18px 100%, 18px 100%;
+  background-attachment:local, local, scroll, scroll;
+  -webkit-overflow-scrolling:touch;
+}

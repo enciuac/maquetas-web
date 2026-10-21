@@ -731,3 +731,9 @@ body.show-changes .menu li.nochg>a.active{color:rgba(255,255,255,.75)}
    el boton se pulsa mejor sin que cambie nada de sitio. */
 button.burger{position:relative}
 button.burger::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px}
+
+/* Invitacion al catalogo al cierre de la gama: una linea discreta, no un banner.
+   Sustituye al bloque de Descargas. */
+.gama-cat{margin:26px 0 0;padding-top:16px;border-top:1px solid var(--grey-2);font:400 14.5px/1.6 "Poppins",sans-serif;color:var(--muted)}
+.gama-cat a{color:var(--navy);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(11,30,51,.25)}
+.gama-cat a:hover{border-bottom-color:var(--navy)}

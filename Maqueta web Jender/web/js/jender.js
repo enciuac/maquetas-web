@@ -118,30 +118,12 @@
   header.innerHTML = `<div class="nav">
       <a class="logo" href="${fix('index.html')}" aria-label="Jender inicio"><img src="${P}img/logo-header.svg" alt="JENDER · pensando en el profesional"></a>
       <ul class="menu">${menu.map(m => item(m, 0)).join('')}<li class="flag nochg"><a href="#" aria-label="Idioma" tabindex="-1"><i></i></a></li></ul>
-      <div class="search" data-k="new" data-porque="El buscador no hacía nada. Ahora lleva a la gama que corresponde, no a la ficha de producto: los productos con referencia y precio viven en el área de clientes, así que el buscador público resuelve «necesito un compresor de tornillo con variador» y deja la selección del modelo para el comercial o para el cliente registrado.">
-        ${svg('search')}<input type="search" list="jender-gamas" placeholder="Buscar gama de producto …" aria-label="Buscar gama de producto">
-        <datalist id="jender-gamas">${GAMAS.map(g => `<option value="${g[0]}">`).join('')}</datalist>
-      </div>
       <button class="burger" aria-label="Menú">${svg('menu')}</button>
     </div>`;
   document.body.prepend(header);
 
   /* Enlaces "#" (páginas que no forman parte de la maqueta) no saltan arriba */
   header.querySelectorAll('a[href="#"]').forEach(a => a.addEventListener('click', e => e.preventDefault()));
-  /* buscador: al elegir o pulsar Enter, va a la pagina de la gama */
-  const sIn = header.querySelector('.search input');
-  if (sIn) {
-    const irA = () => {
-      const v = sIn.value.trim().toLowerCase();
-      if (!v) return;
-      const m = GAMAS.find(g => g[0].toLowerCase() === v)
-             || GAMAS.find(g => g[0].toLowerCase().includes(v))
-             || GAMAS.find(g => g[2].split(' ').some(w => w && v.includes(w)));
-      if (m) location.href = fix(m[1]);
-    };
-    sIn.addEventListener('change', irA);
-    sIn.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); irA(); } });
-  }
 
   /* Menú móvil */
   const nav = header.querySelector('.nav');
@@ -3183,7 +3165,7 @@
     ]
   };
 
-  const SECS = [['beneficios', 'Beneficios'], ['diseno', 'Dise\u00f1o'], ['figuras', 'Dimensiones y caudal'], ['specs', 'Especificaciones t\u00e9cnicas'], ['descargas', 'Descargas']];
+  const SECS = [['beneficios', 'Beneficios'], ['diseno', 'Dise\u00f1o'], ['figuras', 'Dimensiones y caudal'], ['specs', 'Especificaciones t\u00e9cnicas']];
 
   /* Barras horizontales del caudal por modelo: una sola serie, un solo tono, etiquetas
      directas y tooltip con las tres presiones. Escala compartida con el eje en 0. */
@@ -3295,17 +3277,12 @@
           ${g.pend ? `<p class="fnote pend" data-k="val" data-porque="La tabla se queda a nivel de serie porque es el \u00fanico dato publicado por Jender. CompAir detalla cada modelo con su refrigeraci\u00f3n, FAD a dos presiones, dimensiones y peso." data-falta="Listado de modelos de la serie con potencia, FAD a 8 y 10 bar, nivel sonoro, dimensiones y peso.">${g.pend}</p>` : ''}
         </div></details>
 
-        <details class="gblock" id="g-descargas" open><summary>Descargas</summary><div class="gb">
-          <div class="dl">
-            <a class="dlcard" href="fichas-tecnicas.html"><span class="ic">${jIcon('file')}</span><b>Ficha t\u00e9cnica</b><small>Datos por modelo</small></a>
-            <a class="dlcard" href="catalogo.html"><span class="ic">${jIcon('file')}</span><b>Cat\u00e1logo de la gama</b><small>PDF</small></a>
-            <a class="dlcard" href="fichas-tecnicas.html"><span class="ic">${jIcon('shield')}</span><b>Declaraci\u00f3n de conformidad</b><small>Por modelo</small></a>
-          </div>
-          <div class="gama-foot">
+        <p class="gama-cat">Esta es la gama que publicamos en la web. <a href="catalogo.html">Ver el catálogo completo de Jender</a></p>
+        <div class="gama-foot">
             <div><h4>Garant\u00eda de 5 a\u00f1os</h4><p>Con contrato de mantenimiento de CST Ib\u00e9rica en vigor, revisiones en plazo y recambio original.</p><a class="btn btn-navy btn-sm" href="posventa.html">Ver condiciones</a></div>
             <div class="hl"><h4>\u00bfQu\u00e9 equipo te corresponde?</h4><p>Lo calculamos con tu caudal punta, tu presi\u00f3n de trabajo y tus horas de producci\u00f3n.</p><a class="btn btn-yellow btn-sm" href="#contacto">Solicitar estudio t\u00e9cnico</a></div>
           </div>
-        </div></details>
+        </div>
       </div>
     </div>`;
     sec.setAttribute('data-k', 'new');
@@ -3324,9 +3301,16 @@
     const despues = absorbibles.filter(x => todas.indexOf(x) > iF);
 
     const bloquear = (el, idx) => {
-      const h = el.querySelector('h1, h2, h3');
+      /* El titular del bloque solo puede ser el de la propia seccion: un h1/h2, o
+         un h3 que cuelgue directamente del wrap. Antes se cogia cualquier h3, y en
+         las secciones que son una rejilla de tarjetas acababa robando el titulo de
+         la primera tarjeta ("Accesorios" pasaba a ser el nombre del bloque y esa
+         tarjeta se quedaba sin titulo). */
+      const caja0 = el.querySelector('.wrap') || el;
+      const h = el.querySelector('h1, h2') ||
+                [...caja0.children].find(c => c.tagName === 'H3') || null;
       const tit = h ? h.textContent.trim() : '';
-      if (!tit) { el.remove(); return null; }
+      if (!tit) { return 'continua'; }
       const d = document.createElement('details');
       d.className = 'gblock'; d.id = 'g-p' + idx; d.open = true;
       const sum = document.createElement('summary'); sum.textContent = tit;
@@ -3341,8 +3325,28 @@
 
     const intro = sec.querySelector('.gama-intro');
     let punto = intro;                       // se va moviendo para conservar el orden original
-    antes.forEach((el, i) => { const d = bloquear(el, 'a' + i); if (d) { punto.after(d); punto = d; } });
-    despues.forEach((el, i) => { const d = bloquear(el, 'd' + i); if (d) cuerpo.appendChild(d); });
+    let ultimo = null;                       // ultimo bloque creado, para las continuaciones
+
+    /* Una seccion sin titular propio no es un bloque nuevo: es continuacion de la
+       anterior (p. ej. las rejillas de producto que siguen a su encabezado). Su
+       contenido se anade al bloque previo en lugar de crear uno sin nombre. */
+    const volcar = (el) => {
+      const dentro = el.querySelector('.wrap') || el;
+      const destino = ultimo ? ultimo.querySelector('.gb') : intro;
+      while (dentro.firstChild) destino.appendChild(dentro.firstChild);
+      el.remove();
+    };
+
+    antes.forEach((el, i) => {
+      const d = bloquear(el, 'a' + i);
+      if (d === 'continua') { volcar(el); return; }
+      if (d) { punto.after(d); punto = d; ultimo = d; }
+    });
+    despues.forEach((el, i) => {
+      const d = bloquear(el, 'd' + i);
+      if (d === 'continua') { volcar(el); return; }
+      if (d) { cuerpo.appendChild(d); ultimo = d; }
+    });
 
     /* la ficha pasa a ir inmediatamente despues del hero */
     if (hero && hero.parentNode) hero.parentNode.insertBefore(sec, hero.nextSibling);

@@ -737,3 +737,10 @@ button.burger::after{content:"";position:absolute;top:50%;left:50%;transform:tra
 .gama-cat{margin:26px 0 0;padding-top:16px;border-top:1px solid var(--grey-2);font:400 14.5px/1.6 "Poppins",sans-serif;color:var(--muted)}
 .gama-cat a{color:var(--navy);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(11,30,51,.25)}
 .gama-cat a:hover{border-bottom-color:var(--navy)}
+
+/* Frase de entrada dentro de un bloque de texto: mismo tratamiento que en la
+   ficha de gama, en vez de la tipografia a medida que llevaba en linea. */
+.prose .claim{font-weight:700;color:var(--navy);font-size:17px;margin:-2px 0 12px}
+/* Imagen suelta dentro de un bloque de gama: se le pone la misma medida
+   que al resto en lugar de dejarla al ancho natural del archivo. */
+.gb > img.rimg{display:block;width:100%;max-width:720px}

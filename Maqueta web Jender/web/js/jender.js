@@ -3207,7 +3207,7 @@
 
   /* Varias fotos de producto amontonadas dentro de un contenedor pensado para una sola:
      se descartan las repetidas y el resto se presenta como galeria en rejilla. */
-  document.querySelectorAll('.media, .prose, .rcol, .gb > div').forEach(box => {
+  const agruparGalerias = () => document.querySelectorAll('.media, .prose, .rcol, .gb, .gb > div').forEach(box => {
     const imgs = [...box.children].filter(c => c.tagName === 'IMG');
     if (imgs.length < 2) return;
     const gal = document.createElement('div');
@@ -3224,6 +3224,7 @@
       gal.appendChild(fig);
     });
   });
+  agruparGalerias();
 
   document.querySelectorAll('[data-gama]').forEach(sec => {
     const g = GAMA[sec.dataset.gama.trim()];
@@ -3317,7 +3318,18 @@
       const caja = document.createElement('div'); caja.className = 'gb';
       const dentro = el.querySelector('.wrap') || el;
       h.remove();
-      while (dentro.firstChild) caja.appendChild(dentro.firstChild);
+      /* Si el propio wrap lleva las clases de maquetacion (split, rsplit, rgrid),
+         mover solo sus hijos las perderia y el bloque se quedaria a una columna,
+         con la imagen a todo lo ancho. Se conserva envolviendolos en un div. */
+      const extra = [...dentro.classList].filter(c => c !== 'wrap' && c !== 'in');
+      if (extra.length) {
+        const env = document.createElement('div');
+        env.className = extra.join(' ');
+        while (dentro.firstChild) env.appendChild(dentro.firstChild);
+        caja.appendChild(env);
+      } else {
+        while (dentro.firstChild) caja.appendChild(dentro.firstChild);
+      }
       d.append(sum, caja);
       el.remove();
       return d;
@@ -3350,6 +3362,10 @@
 
     /* la ficha pasa a ir inmediatamente despues del hero */
     if (hero && hero.parentNode) hero.parentNode.insertBefore(sec, hero.nextSibling);
+
+    /* Las imagenes sueltas ya estan dentro de .gb, que no existia cuando se
+       agruparon las galerias la primera vez: se vuelve a pasar. */
+    agruparGalerias();
 
     /* el indice se rellena con los bloques que han quedado, en su orden */
     const lista = sec.querySelector('.gama-nav ul');

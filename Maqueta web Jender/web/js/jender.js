@@ -240,2479 +240,2721 @@
      La tabla declara las condiciones de medicion (ISO 1217 / ISO 2151) como hace CompAir.
      Para anadir una gama basta con una entrada mas en este objeto. */
   const GAMA = {
-    "JSC V": {
-      "cols": [
-        "Modelo",
-        "Potencia<br><span class=\"u\">kW / HP</span>",
-        "Caudal a 7,5 bar ¹ ²<br><span class=\"u\">m³/min</span>",
-        "Caudal a 10 bar ¹ ²<br><span class=\"u\">m³/min</span>",
-        "Caudal a 13 bar ¹ ²<br><span class=\"u\">m³/min</span>",
-        "Nivel sonoro<br><span class=\"u\">dB(A)</span>",
-        "Peso<br><span class=\"u\">kg</span>",
-        "Conexión",
-        "Dimensiones An × La × Al<br><span class=\"u\">mm</span>"
+  "JSC V": {
+    "cols": [
+      "Modelo",
+      "Potencia<br><span class=\"u\">kW / HP</span>",
+      "Caudal a 7,5 bar ¹ ²<br><span class=\"u\">m³/min</span>",
+      "Caudal a 10 bar ¹ ²<br><span class=\"u\">m³/min</span>",
+      "Caudal a 13 bar ¹ ²<br><span class=\"u\">m³/min</span>",
+      "Nivel sonoro<br><span class=\"u\">dB(A)</span>",
+      "Peso<br><span class=\"u\">kg</span>",
+      "Conexión",
+      "Dimensiones An × La × Al<br><span class=\"u\">mm</span>"
+    ],
+    "rows": [
+      [
+        "JSC3 V",
+        "3 / 4",
+        "0,42",
+        "0,35",
+        "0,29",
+        "68",
+        "172",
+        "1/2″",
+        "610 × 1110 × 1000"
       ],
-      "rows": [
+      [
+        "JSC4 V",
+        "4 / 5",
+        "0,57",
+        "0,48",
+        "0,35",
+        "69",
+        "202",
+        "1/2″",
+        "610 × 1110 × 1000"
+      ],
+      [
+        "JSC5 V",
+        "5,5 / 7",
+        "0,90",
+        "0,70",
+        "0,62",
+        "69",
+        "212",
+        "3/4″",
+        "750 × 1170 × 1120"
+      ],
+      [
+        "JSC7 V",
+        "7,5 / 10",
+        "1,23",
+        "0,97",
+        "0,82",
+        "69",
+        "248",
+        "3/4″",
+        "750 × 1170 × 1120"
+      ],
+      [
+        "JSC11 V",
+        "11 / 15",
+        "1,87",
+        "1,62",
+        "1,34",
+        "69",
+        "308",
+        "3/4″",
+        "750 × 1170 × 1120"
+      ],
+      [
+        "JSC15 V",
+        "15 / 20",
+        "2,43",
+        "2,11",
+        "1,80",
+        "70",
+        "368",
+        "3/4″",
+        "750 × 1170 × 1120"
+      ],
+      [
+        "JSC18 V",
+        "18,5 / 25",
+        "3,13",
+        "2,73",
+        "2,32",
+        "70",
+        "470",
+        "3/4″",
+        "900 × 1350 × 1255"
+      ],
+      [
+        "JSC 22V",
+        "22 / 30",
+        "3,67",
+        "3,22",
+        "2,77",
+        "70",
+        "530",
+        "3/4″",
+        "900 × 1350 × 1255"
+      ],
+      [
+        "JSC30 V",
+        "30 / 40",
+        "4,97",
+        "4,29",
+        "3,73",
+        "70",
+        "610",
+        "3/4″",
+        "900 × 1350 × 1255"
+      ],
+      [
+        "JSC37 V",
+        "37 / 50",
+        "6,21",
+        "5,40",
+        "4,61",
+        "70",
+        "660–740",
+        "1¼″",
+        "1020 × 1390 / 1700 × 1610"
+      ],
+      [
+        "JSC45 V",
+        "45 / 60",
+        "7,46",
+        "6,43",
+        "5,55",
+        "72",
+        "840–920",
+        "1¼″",
+        "1020 × 1390 / 1700 × 1610"
+      ]
+    ],
+    "eyebrow": "Serie JSC V",
+    "title": "Compresores de tornillo con variador 3–45 kW",
+    "claim": "Variador de frecuencia de serie en toda la gama, para instalaciones con consumo de aire variable.",
+    "lead": "La serie de referencia para taller industrial y planta media. El variador adapta las revoluciones del motor a la demanda real en lugar de arrancar y parar, que es donde se pierde la energía y donde sufre el equipo.",
+    "fig": [
+      [
+        "3–45 kW",
+        "Potencia",
+        "4–60 HP"
+      ],
+      [
+        "0,29–7,46 m³/min",
+        "Caudal según presión",
+        ""
+      ],
+      [
+        "7,5 / 10 / 13",
+        "Presión de trabajo",
+        "bar"
+      ],
+      [
+        "11 modelos",
+        "en la serie",
+        ""
+      ]
+    ],
+    "ben": [
+      [
+        "Variador de frecuencia de serie",
+        "No es una opción de catálogo: toda la serie lo lleva. El compresor sigue la demanda de la red en tiempo real y evita el consumo en vacío de los arranques y paradas."
+      ],
+      [
+        "Presión de red estable",
+        "Al ajustar la velocidad en lugar de conmutar entre carga y vacío, la presión no oscila. Las herramientas y los procesos trabajan siempre en el mismo punto."
+      ],
+      [
+        "Arranque suave",
+        "Sin picos de corriente en cada arranque: menos esfuerzo sobre el motor y sobre tu instalación eléctrica, y sin penalización por potencia contratada."
+      ],
+      [
+        "Mantenimiento accesible",
+        "Separador aire-aceite, refrigerador y filtros se alcanzan sin desmontar el carenado. Cada hora de intervención es una hora menos de parada."
+      ],
+      [
+        "Controlador con aviso de servicio",
+        "Lectura de horas, presión y temperatura, con preaviso de mantenimiento antes de que venza el intervalo."
+      ]
+    ],
+    "dis": [
+      [
+        "Elemento compresor",
         [
-          "JSC3 V",
-          "3 / 4",
-          "0,42",
-          "0,35",
-          "0,29",
-          "68",
-          "172",
-          "1/2″",
-          "610 × 1110 × 1000"
-        ],
-        [
-          "JSC4 V",
-          "4 / 5",
-          "0,57",
-          "0,48",
-          "0,35",
-          "69",
-          "202",
-          "1/2″",
-          "610 × 1110 × 1000"
-        ],
-        [
-          "JSC5 V",
-          "5,5 / 7",
-          "0,90",
-          "0,70",
-          "0,62",
-          "69",
-          "212",
-          "3/4″",
-          "750 × 1170 × 1120"
-        ],
-        [
-          "JSC7 V",
-          "7,5 / 10",
-          "1,23",
-          "0,97",
-          "0,82",
-          "69",
-          "248",
-          "3/4″",
-          "750 × 1170 × 1120"
-        ],
-        [
-          "JSC11 V",
-          "11 / 15",
-          "1,87",
-          "1,62",
-          "1,34",
-          "69",
-          "308",
-          "3/4″",
-          "750 × 1170 × 1120"
-        ],
-        [
-          "JSC15 V",
-          "15 / 20",
-          "2,43",
-          "2,11",
-          "1,80",
-          "70",
-          "368",
-          "3/4″",
-          "750 × 1170 × 1120"
-        ],
-        [
-          "JSC18 V",
-          "18,5 / 25",
-          "3,13",
-          "2,73",
-          "2,32",
-          "70",
-          "470",
-          "3/4″",
-          "900 × 1350 × 1255"
-        ],
-        [
-          "JSC 22V",
-          "22 / 30",
-          "3,67",
-          "3,22",
-          "2,77",
-          "70",
-          "530",
-          "3/4″",
-          "900 × 1350 × 1255"
-        ],
-        [
-          "JSC30 V",
-          "30 / 40",
-          "4,97",
-          "4,29",
-          "3,73",
-          "70",
-          "610",
-          "3/4″",
-          "900 × 1350 × 1255"
-        ],
-        [
-          "JSC37 V",
-          "37 / 50",
-          "6,21",
-          "5,40",
-          "4,61",
-          "70",
-          "660–740",
-          "1¼″",
-          "1020 × 1390 / 1700 × 1610"
-        ],
-        [
-          "JSC45 V",
-          "45 / 60",
-          "7,46",
-          "6,43",
-          "5,55",
-          "72",
-          "840–920",
-          "1¼″",
-          "1020 × 1390 / 1700 × 1610"
+          "Tornillo con inyección de aceite",
+          "Transmisión por correa, tensado accesible",
+          "Motor IE3"
         ]
       ],
-      "eyebrow": "Serie JSC V",
-      "title": "Compresores de tornillo con variador 3–45 kW",
-      "claim": "Variador de frecuencia de serie en toda la gama, para instalaciones con consumo de aire variable.",
-      "lead": "La serie de referencia para taller industrial y planta media. El variador adapta las revoluciones del motor a la demanda real en lugar de arrancar y parar, que es donde se pierde la energía y donde sufre el equipo.",
-      "fig": [
+      [
+        "Configuración",
         [
-          "3–45 kW",
-          "Potencia",
-          "4–60 HP"
-        ],
-        [
-          "0,29–7,46 m³/min",
-          "Caudal según presión",
-          ""
-        ],
-        [
-          "7,5 / 10 / 13",
-          "Presión de trabajo",
-          "bar"
-        ],
-        [
-          "11 modelos",
-          "en la serie",
-          ""
+          "Montaje sobre bastidor",
+          "Preparado para secador y calderín independientes",
+          "Carenado insonorizado"
         ]
       ],
-      "ben": [
+      [
+        "Opciones",
         [
-          "Variador de frecuencia de serie",
-          "No es una opción de catálogo: toda la serie lo lleva. El compresor sigue la demanda de la red en tiempo real y evita el consumo en vacío de los arranques y paradas."
-        ],
+          "Presión 7,5 / 10 / 13 bar",
+          "Secador frigorífico independiente",
+          "Calderín de 300 o 500 L",
+          "Filtración de línea y purga automática"
+        ]
+      ]
+    ],
+    "n1": "Rendimiento medido de acuerdo con la norma <strong>ISO 1217:2009, Anexo C</strong>, con referencia a 1 bar de presión de entrada y 20 °C de temperatura ambiente.",
+    "n2": "Según la presión de trabajo SHD: el rendimiento de 7,5 bar se midió a 7 bar, el de 10 bar a 9,5 bar y el de 13 bar a 12,5 bar.",
+    "pend": "",
+    "n3": "Disponibilidad de otras potencias y presiones bajo consulta. Todos los modelos tienen kit de mantenimiento.",
+    "aviso": ""
+  },
+  "JSC VD": {
+    "cols": [
+      "Modelo",
+      "Potencia<br><span class=\"u\">kW / HP</span>",
+      "Caudal a 7,5 bar ¹ ²<br><span class=\"u\">m³/min</span>",
+      "Caudal a 10 bar ¹ ²<br><span class=\"u\">m³/min</span>",
+      "Caudal a 13 bar ¹ ²<br><span class=\"u\">m³/min</span>",
+      "Nivel sonoro<br><span class=\"u\">dB(A)</span>",
+      "Peso<br><span class=\"u\">kg</span>",
+      "Conexión",
+      "Dimensiones An × La × Al<br><span class=\"u\">mm</span>"
+    ],
+    "rows": [
+      [
+        "JSC 18VD",
+        "18,5 / 25",
+        "3,27",
+        "2,85",
+        "2,43",
+        "71",
+        "470",
+        "3/4″",
+        "900 × 1600 × 1410"
+      ],
+      [
+        "JSC 22VD",
+        "22 / 30",
+        "3,82",
+        "3,36",
+        "2,89",
+        "71",
+        "500",
+        "3/4″",
+        "900 × 1600 × 1410"
+      ],
+      [
+        "JSC 30VD",
+        "30 / 40",
+        "5,04",
+        "4,47",
+        "3,89",
+        "71",
+        "700",
+        "1″",
+        "900 × 1600 × 1410"
+      ],
+      [
+        "JSC 37VD",
+        "37 / 50",
+        "6,42",
+        "5,58",
+        "4,77",
+        "71",
+        "840",
+        "1¼″",
+        "1150 × 1500 × 1610"
+      ],
+      [
+        "JSC 45VD",
+        "45 / 60",
+        "7,62",
+        "6,70",
+        "5,79",
+        "72",
+        "920",
+        "1½″",
+        "1150 × 1500 × 1610"
+      ],
+      [
+        "JSC 55VD",
+        "55 / 75",
+        "10,18",
+        "8,86",
+        "7,53",
+        "74",
+        "1450",
+        "1½″",
+        "1450 × 1600 × 1750"
+      ],
+      [
+        "JSC 75VD",
+        "75 / 100",
+        "13,29",
+        "11,74",
+        "10,17",
+        "75",
+        "2120",
+        "2″",
+        "1650 × 2000 × 1900"
+      ]
+    ],
+    "eyebrow": "Serie JSC VD",
+    "title": "Compresores de tornillo con variador y transmisión directa 18,5–315 kW",
+    "claim": "Acoplamiento directo motor–elemento compresor: sin correas, sin pérdidas por fricción y sin su mantenimiento.",
+    "lead": "La serie para producción continua de alto caudal. Al eliminar la transmisión por correa desaparecen las pérdidas mecánicas, el tensado periódico y la sustitución de correas de la lista de mantenimiento.",
+    "fig": [
+      [
+        "18,5–75 kW",
+        "Potencia en catálogo",
+        "25–100 HP"
+      ],
+      [
+        "2,43–13,29 m³/min",
+        "Caudal según presión",
+        ""
+      ],
+      [
+        "7,5 / 10 / 13",
+        "Presión de trabajo",
+        "bar"
+      ],
+      [
+        "7 modelos",
+        "en la serie",
+        ""
+      ]
+    ],
+    "ben": [
+      [
+        "Transmisión directa sin correas",
+        "El motor acciona el elemento compresor sin elementos intermedios: menos pérdidas por fricción y una tarea menos en cada revisión."
+      ],
+      [
+        "Pensado para 24/7",
+        "Dimensionado para trabajo continuo, con refrigeración y control preparados para no bajar el ritmo en turnos encadenados."
+      ],
+      [
+        "Funcionamiento en cascada",
+        "Varios equipos coordinados repartiendo carga: el caudal se cubre con la combinación más eficiente y uno puede entrar en mantenimiento sin parar la línea."
+      ],
+      [
+        "Variador de frecuencia de serie",
+        "La velocidad sigue la demanda de la red, que es donde está el ahorro real en una instalación con consumo variable."
+      ],
+      [
+        "Recuperación de calor opcional",
+        "El calor de la compresión se aprovecha para agua caliente o proceso en lugar de disiparse."
+      ]
+    ],
+    "dis": [
+      [
+        "Elemento compresor",
         [
-          "Presión de red estable",
-          "Al ajustar la velocidad en lugar de conmutar entre carga y vacío, la presión no oscila. Las herramientas y los procesos trabajan siempre en el mismo punto."
-        ],
-        [
-          "Arranque suave",
-          "Sin picos de corriente en cada arranque: menos esfuerzo sobre el motor y sobre tu instalación eléctrica, y sin penalización por potencia contratada."
-        ],
-        [
-          "Mantenimiento accesible",
-          "Separador aire-aceite, refrigerador y filtros se alcanzan sin desmontar el carenado. Cada hora de intervención es una hora menos de parada."
-        ],
-        [
-          "Controlador con aviso de servicio",
-          "Lectura de horas, presión y temperatura, con preaviso de mantenimiento antes de que venza el intervalo."
+          "Tornillo con inyección de aceite",
+          "Acoplamiento directo, sin correas",
+          "Motor IE3"
         ]
       ],
-      "dis": [
+      [
+        "Configuración",
         [
-          "Elemento compresor",
-          [
-            "Tornillo con inyección de aceite",
-            "Transmisión por correa, tensado accesible",
-            "Motor IE3"
-          ]
-        ],
-        [
-          "Configuración",
-          [
-            "Montaje sobre bastidor",
-            "Preparado para secador y calderín independientes",
-            "Carenado insonorizado"
-          ]
-        ],
-        [
-          "Opciones",
-          [
-            "Presión 7,5 / 10 / 13 bar",
-            "Secador frigorífico independiente",
-            "Calderín de 300 o 500 L",
-            "Filtración de línea y purga automática"
-          ]
+          "Montaje sobre bastidor",
+          "Preparado para sala de compresores",
+          "Carenado insonorizado"
         ]
       ],
-      "n1": "Rendimiento medido de acuerdo con la norma <strong>ISO 1217:2009, Anexo C</strong>, con referencia a 1 bar de presión de entrada y 20 °C de temperatura ambiente.",
-      "n2": "Según la presión de trabajo SHD: el rendimiento de 7,5 bar se midió a 7 bar, el de 10 bar a 9,5 bar y el de 13 bar a 12,5 bar.",
-      "pend": "",
-      "n3": "Disponibilidad de otras potencias y presiones bajo consulta. Todos los modelos tienen kit de mantenimiento.",
-      "aviso": ""
-    },
-    "JSC VD": {
-      "cols": [
-        "Modelo",
-        "Potencia<br><span class=\"u\">kW / HP</span>",
-        "Caudal a 7,5 bar ¹ ²<br><span class=\"u\">m³/min</span>",
-        "Caudal a 10 bar ¹ ²<br><span class=\"u\">m³/min</span>",
-        "Caudal a 13 bar ¹ ²<br><span class=\"u\">m³/min</span>",
-        "Nivel sonoro<br><span class=\"u\">dB(A)</span>",
-        "Peso<br><span class=\"u\">kg</span>",
-        "Conexión",
-        "Dimensiones An × La × Al<br><span class=\"u\">mm</span>"
+      [
+        "Opciones",
+        [
+          "Presión 7,5 / 10 / 13 bar",
+          "Secuenciador para varios compresores",
+          "Recuperación de calor",
+          "Secador y filtración dimensionados para la sala"
+        ]
+      ]
+    ],
+    "n1": "Rendimiento medido de acuerdo con la norma <strong>ISO 1217:2009, Anexo C</strong>, con referencia a 1 bar de presión de entrada y 20 °C de temperatura ambiente.",
+    "n2": "Según la presión de trabajo SHD: el rendimiento de 7,5 bar se midió a 7 bar, el de 10 bar a 9,5 bar y el de 13 bar a 12,5 bar.",
+    "pend": "",
+    "n3": "Disponibilidad de otras potencias y presiones bajo consulta. Todos los modelos tienen kit de mantenimiento.",
+    "aviso": "La serie se declara hasta 315 kW; el catálogo general 2026 tabula los modelos hasta JSC 75VD. Potencias superiores, bajo consulta."
+  },
+  "JSC VTD": {
+    "cols": [
+      "Modelo",
+      "Potencia<br><span class=\"u\">kW / HP</span>",
+      "Caudal a 7,5 bar ¹ ²<br><span class=\"u\">m³/min</span>",
+      "Caudal a 10 bar ¹ ²<br><span class=\"u\">m³/min</span>",
+      "Caudal a 13 bar ¹ ²<br><span class=\"u\">m³/min</span>",
+      "Calderín<br><span class=\"u\">L</span>",
+      "Secador",
+      "Nivel sonoro<br><span class=\"u\">dB(A)</span>",
+      "Peso<br><span class=\"u\">kg</span>",
+      "Dimensiones An × La × Al<br><span class=\"u\">mm</span>"
+    ],
+    "rows": [
+      [
+        "JSC 3VTD",
+        "3 / 4",
+        "0,42",
+        "0,35",
+        "0,29",
+        "300",
+        "JKE138",
+        "68",
+        "302",
+        "610 × 1690 × 1550"
       ],
-      "rows": [
+      [
+        "JSC 4VTD",
+        "4 / 5",
+        "0,57",
+        "0,48",
+        "0,35",
+        "300",
+        "JKE138",
+        "69",
+        "322",
+        "610 × 1690 × 1550"
+      ],
+      [
+        "JSC 5VTD",
+        "5 / 7",
+        "0,90",
+        "0,70",
+        "0,62",
+        "500",
+        "JKE153",
+        "69",
+        "448",
+        "750 × 1850 × 1770"
+      ],
+      [
+        "JSC 7VTD",
+        "8 / 10",
+        "1,23",
+        "0,97",
+        "0,82",
+        "500",
+        "JKE1100",
+        "69",
+        "493",
+        "750 × 1850 × 1770"
+      ],
+      [
+        "JSC 11VTD",
+        "11 / 15",
+        "1,87",
+        "1,62",
+        "1,34",
+        "500",
+        "JKE1155",
+        "69",
+        "528",
+        "750 × 1850 × 1770"
+      ],
+      [
+        "JSC 15VTD",
+        "15 / 20",
+        "2,43",
+        "2,11",
+        "1,80",
+        "500",
+        "JKE1155",
+        "70",
+        "603",
+        "750 × 1850 × 1770"
+      ]
+    ],
+    "eyebrow": "Serie JSC VTD",
+    "title": "Compresores de tornillo con variador y secador 3–15 kW",
+    "claim": "Compresor, calderín y secador en un solo bastidor: la sala de aire resuelta en el espacio de una máquina.",
+    "lead": "La serie para quien no tiene sala de compresores. Llega montado y se conecta en un solo punto: acometida eléctrica y salida de aire. El secador va dentro, así que el aire sale ya tratado.",
+    "fig": [
+      [
+        "3–15 kW",
+        "Potencia",
+        "4–20 HP"
+      ],
+      [
+        "0,29–2,43 m³/min",
+        "Caudal según presión",
+        ""
+      ],
+      [
+        "300 / 500 L",
+        "Calderín integrado",
+        ""
+      ],
+      [
+        "3 °C",
+        "Punto de rocío del secador",
+        ""
+      ]
+    ],
+    "ben": [
+      [
+        "Todo en un conjunto",
+        "Compresor, calderín y secador frigorífico montados y probados de fábrica. Sin proyecto de sala ni montaje de tubería entre elementos."
+      ],
+      [
+        "Instalación en un punto",
+        "Conexión eléctrica y salida de aire. Se pone en marcha el mismo día que llega."
+      ],
+      [
+        "Aire ya tratado",
+        "El secador integrado baja el punto de rocío antes de que el aire entre en la red: ni condensados en la tubería ni agua en las herramientas."
+      ],
+      [
+        "Variador de frecuencia de serie",
+        "El equipo sigue la demanda real en lugar de arrancar y parar, con la presión estable que agradece la herramienta neumática."
+      ],
+      [
+        "Ocupa lo mínimo",
+        "La superficie de una máquina para lo que normalmente son tres equipos y la tubería que los une."
+      ]
+    ],
+    "dis": [
+      [
+        "Elemento compresor",
         [
-          "JSC 18VD",
-          "18,5 / 25",
-          "3,27",
-          "2,85",
-          "2,43",
-          "71",
-          "470",
-          "3/4″",
-          "900 × 1600 × 1410"
-        ],
-        [
-          "JSC 22VD",
-          "22 / 30",
-          "3,82",
-          "3,36",
-          "2,89",
-          "71",
-          "500",
-          "3/4″",
-          "900 × 1600 × 1410"
-        ],
-        [
-          "JSC 30VD",
-          "30 / 40",
-          "5,04",
-          "4,47",
-          "3,89",
-          "71",
-          "700",
-          "1″",
-          "900 × 1600 × 1410"
-        ],
-        [
-          "JSC 37VD",
-          "37 / 50",
-          "6,42",
-          "5,58",
-          "4,77",
-          "71",
-          "840",
-          "1¼″",
-          "1150 × 1500 × 1610"
-        ],
-        [
-          "JSC 45VD",
-          "45 / 60",
-          "7,62",
-          "6,70",
-          "5,79",
-          "72",
-          "920",
-          "1½″",
-          "1150 × 1500 × 1610"
-        ],
-        [
-          "JSC 55VD",
-          "55 / 75",
-          "10,18",
-          "8,86",
-          "7,53",
-          "74",
-          "1450",
-          "1½″",
-          "1450 × 1600 × 1750"
-        ],
-        [
-          "JSC 75VD",
-          "75 / 100",
-          "13,29",
-          "11,74",
-          "10,17",
-          "75",
-          "2120",
-          "2″",
-          "1650 × 2000 × 1900"
+          "Tornillo con inyección de aceite",
+          "Transmisión por correa Poly-V",
+          "Motor IE3"
         ]
       ],
-      "eyebrow": "Serie JSC VD",
-      "title": "Compresores de tornillo con variador y transmisión directa 18,5–315 kW",
-      "claim": "Acoplamiento directo motor–elemento compresor: sin correas, sin pérdidas por fricción y sin su mantenimiento.",
-      "lead": "La serie para producción continua de alto caudal. Al eliminar la transmisión por correa desaparecen las pérdidas mecánicas, el tensado periódico y la sustitución de correas de la lista de mantenimiento.",
-      "fig": [
+      [
+        "Conjunto",
         [
-          "18,5–75 kW",
-          "Potencia en catálogo",
-          "25–100 HP"
-        ],
-        [
-          "2,43–13,29 m³/min",
-          "Caudal según presión",
-          ""
-        ],
-        [
-          "7,5 / 10 / 13",
-          "Presión de trabajo",
-          "bar"
-        ],
-        [
-          "7 modelos",
-          "en la serie",
-          ""
+          "Calderín de 300 o 500 L",
+          "Secador frigorífico integrado",
+          "Purga automática de condensados"
         ]
       ],
-      "ben": [
+      [
+        "Opciones",
         [
-          "Transmisión directa sin correas",
-          "El motor acciona el elemento compresor sin elementos intermedios: menos pérdidas por fricción y una tarea menos en cada revisión."
-        ],
+          "Presión 7,5 / 10 / 13 bar",
+          "Filtración de línea adicional",
+          "Separador aceite-agua para el condensado"
+        ]
+      ]
+    ],
+    "n1": "Rendimiento medido de acuerdo con la norma <strong>ISO 1217:2009, Anexo C</strong>, con referencia a 1 bar de presión de entrada y 20 °C de temperatura ambiente.",
+    "n2": "Según la presión de trabajo SHD: el rendimiento de 7,5 bar se midió a 7 bar, el de 10 bar a 9,5 bar y el de 13 bar a 12,5 bar.",
+    "pend": "",
+    "n3": "Disponibilidad de otras potencias y presiones bajo consulta. Todos los modelos tienen kit de mantenimiento.",
+    "aviso": ""
+  },
+  "PISTON": {
+    "eyebrow": "Compresores de pistón",
+    "title": "Compresores de pistón hasta 10 CV",
+    "claim": "Diez configuraciones, de la herramienta suelta a la línea con varias tomas simultáneas.",
+    "lead": "Se elige por tres datos: el caudal que vas a consumir a la vez, la presión que exige tu herramienta y el tamaño de calderín que te permite trabajar sin que el motor arranque continuamente.",
+    "fig": [
+      [
+        "2–10 HP",
+        "Potencia",
+        "1,5–7,5 kW"
+      ],
+      [
+        "24–500 L",
+        "Depósito",
+        ""
+      ],
+      [
+        "8–11 bar",
+        "Presión de trabajo",
+        ""
+      ],
+      [
+        "12 modelos",
+        "en la gama",
+        ""
+      ]
+    ],
+    "cols": [
+      "Modelo",
+      "Potencia<br><span class=\"u\">HP / kW</span>",
+      "Depósito<br><span class=\"u\">L</span>",
+      "Presión<br><span class=\"u\">bar</span>",
+      "Aire aspirado<br><span class=\"u\">l/min</span>",
+      "Alimentación<br><span class=\"u\">V / fase / Hz</span>",
+      "Nivel sonoro<br><span class=\"u\">dB(A)</span>",
+      "Peso<br><span class=\"u\">kg</span>",
+      "Dimensiones<br><span class=\"u\">mm</span>"
+    ],
+    "rows": [
+      [
+        "@Coaxial · gama bricolaje"
+      ],
+      [
+        "JP Atlanta 25",
+        "2 / 1,5",
+        "24",
+        "8",
+        "220",
+        "230 / 1 / 50",
+        "—",
+        "25",
+        "570 × 255 × 590"
+      ],
+      [
+        "JP Atlanta 50",
+        "2 / 1,5",
+        "50",
+        "8",
+        "220",
+        "230 / 1 / 50",
+        "—",
+        "35",
+        "790 × 310 × 670"
+      ],
+      [
+        "@Transmisión por correa · una etapa"
+      ],
+      [
+        "JP 248 / 100 M",
+        "2 / 1,5",
+        "100",
+        "10",
+        "255",
+        "230 / 1 / 50",
+        "73",
+        "56",
+        "1010 × 415 × 900"
+      ],
+      [
+        "JP 338 / 200 M",
+        "3 / 2,2",
+        "200",
+        "10",
+        "320",
+        "230 / 1 / 50",
+        "73",
+        "91",
+        "1500 × 470 × 1110"
+      ],
+      [
+        "JP 338 / 200 T",
+        "3 / 2,2",
+        "200",
+        "10",
+        "320",
+        "400 / 3 / 50",
+        "75",
+        "91",
+        "1500 × 470 × 1110"
+      ],
+      [
+        "@Transmisión por correa · dos etapas"
+      ],
+      [
+        "JP 480 / 300",
+        "4 / 3",
+        "270",
+        "11",
+        "553",
+        "400 / 3 / 50",
+        "73",
+        "120",
+        "1532 × 456 × 1005"
+      ],
+      [
+        "JP 550 / 300",
+        "5,5 / 4",
+        "270",
+        "11",
+        "595",
+        "400 / 3 / 50",
+        "75",
+        "124",
+        "1532 × 456 × 1005"
+      ],
+      [
+        "JP 850 / 500 T",
+        "7,5 / 5,5",
+        "500",
+        "11",
+        "827",
+        "400 / 3 / 50",
+        "77",
+        "196",
+        "2030 × 670 × 1400"
+      ],
+      [
+        "JP 981 / 500 T",
+        "10 / 7,5",
+        "500",
+        "11",
+        "1210",
+        "400 / 3 / 50",
+        "82",
+        "279",
+        "2030 × 670 × 1400"
+      ],
+      [
+        "JP 981 / 500 TE/T<br><span class=\"muted\">arrancador estrella-triángulo incluido</span>",
+        "10 / 7,5",
+        "500",
+        "11",
+        "1210",
+        "400 / 3 / 50",
+        "82",
+        "279",
+        "2030 × 670 × 1400"
+      ]
+    ],
+    "ben": [
+      [
+        "Dimensionado por consumo real",
+        "Suma el consumo en l/min de las herramientas que vayan a trabajar a la vez y añade un 20 % de margen: esa cifra marca la potencia mínima."
+      ],
+      [
+        "El calderín estabiliza la red",
+        "Un depósito mayor reduce los arranques del motor y mantiene la presión: alarga la vida del equipo y mejora el trabajo en el punto de uso."
+      ],
+      [
+        "Dos etapas cuando hace falta presión",
+        "Para arenado o pintura industrial que exigen 10–11 bar, la versión de dos etapas comprime en dos fases con menos esfuerzo térmico."
+      ],
+      [
+        "Monofásico o trifásico",
+        "Hasta 3 CV hay versión a 230 V. A partir de 4 CV, trifásico a 400 V: más eficiente y con menos intensidad de línea."
+      ],
+      [
+        "Calderín certificado",
+        "Equipos a presión con su certificado y su válvula de seguridad tarada, como exige la normativa."
+      ]
+    ],
+    "dis": [
+      [
+        "Grupo de compresión",
         [
-          "Pensado para 24/7",
-          "Dimensionado para trabajo continuo, con refrigeración y control preparados para no bajar el ritmo en turnos encadenados."
-        ],
-        [
-          "Funcionamiento en cascada",
-          "Varios equipos coordinados repartiendo carga: el caudal se cubre con la combinación más eficiente y uno puede entrar en mantenimiento sin parar la línea."
-        ],
-        [
-          "Variador de frecuencia de serie",
-          "La velocidad sigue la demanda de la red, que es donde está el ahorro real en una instalación con consumo variable."
-        ],
-        [
-          "Recuperación de calor opcional",
-          "El calor de la compresión se aprovecha para agua caliente o proceso en lugar de disiparse."
+          "Cabezal de pistón con refrigeración por aire",
+          "Versión de una o dos etapas",
+          "Filtro de aspiración accesible"
         ]
       ],
-      "dis": [
+      [
+        "Calderín y seguridad",
         [
-          "Elemento compresor",
-          [
-            "Tornillo con inyección de aceite",
-            "Acoplamiento directo, sin correas",
-            "Motor IE3"
-          ]
-        ],
-        [
-          "Configuración",
-          [
-            "Montaje sobre bastidor",
-            "Preparado para sala de compresores",
-            "Carenado insonorizado"
-          ]
-        ],
-        [
-          "Opciones",
-          [
-            "Presión 7,5 / 10 / 13 bar",
-            "Secuenciador para varios compresores",
-            "Recuperación de calor",
-            "Secador y filtración dimensionados para la sala"
-          ]
+          "25 a 500 L según configuración",
+          "Presostato y válvula de seguridad tarada",
+          "Manómetro de calderín y de línea"
         ]
       ],
-      "n1": "Rendimiento medido de acuerdo con la norma <strong>ISO 1217:2009, Anexo C</strong>, con referencia a 1 bar de presión de entrada y 20 °C de temperatura ambiente.",
-      "n2": "Según la presión de trabajo SHD: el rendimiento de 7,5 bar se midió a 7 bar, el de 10 bar a 9,5 bar y el de 13 bar a 12,5 bar.",
-      "pend": "",
-      "n3": "Disponibilidad de otras potencias y presiones bajo consulta. Todos los modelos tienen kit de mantenimiento.",
-      "aviso": "La serie se declara hasta 315 kW; el catálogo general 2026 tabula los modelos hasta JSC 75VD. Potencias superiores, bajo consulta."
-    },
-    "JSC VTD": {
-      "cols": [
-        "Modelo",
-        "Potencia<br><span class=\"u\">kW / HP</span>",
-        "Caudal a 7,5 bar ¹ ²<br><span class=\"u\">m³/min</span>",
-        "Caudal a 10 bar ¹ ²<br><span class=\"u\">m³/min</span>",
-        "Caudal a 13 bar ¹ ²<br><span class=\"u\">m³/min</span>",
-        "Calderín<br><span class=\"u\">L</span>",
-        "Secador",
-        "Nivel sonoro<br><span class=\"u\">dB(A)</span>",
-        "Peso<br><span class=\"u\">kg</span>",
-        "Dimensiones An × La × Al<br><span class=\"u\">mm</span>"
+      [
+        "Opciones",
+        [
+          "Secador frigorífico y filtración de línea",
+          "Purga automática de condensados",
+          "Kit de ruedas y asas para equipos móviles"
+        ]
+      ]
+    ],
+    "n1": "",
+    "n2": "",
+    "pend": "",
+    "n3": "Aire aspirado según catálogo. Todos los modelos tienen kit de mantenimiento.",
+    "aviso": ""
+  },
+  "TRATAMIENTO": {
+    "eyebrow": "Tratamiento de aire comprimido",
+    "title": "Tratamiento de aire comprimido",
+    "claim": "El aire que sale del compresor lleva agua, partículas y aceite. El tratamiento decide si tu proceso los recibe o no.",
+    "lead": "Sin tratamiento, esas impurezas llegan a las herramientas, corroen la tubería y acaban en el producto final. La combinación correcta depende del caudal, de la clase de calidad que exija tu proceso según ISO 8573-1 y de las condiciones de la planta.",
+    "fig": [
+      [
+        "ISO 8573-1",
+        "Norma de calidad de aire",
+        ""
       ],
-      "rows": [
+      [
+        "4 etapas",
+        "Cadena de tratamiento",
+        ""
+      ],
+      [
+        "Punto de rocío",
+        "Lo que fija el secador",
+        ""
+      ],
+      [
+        "1.500–28.000",
+        "Caudal de separadores",
+        "l/min"
+      ]
+    ],
+    "cols": [
+      "Equipo",
+      "Qué retira",
+      "Parámetro que lo dimensiona",
+      "Posición en la línea"
+    ],
+    "rows": [
+      [
+        "Separador ciclónico",
+        "Agua libre que arrastra el aire al salir del compresor",
+        "Caudal en l/min",
+        "Inmediatamente después del compresor"
+      ],
+      [
+        "Secador frigorífico",
+        "Humedad en suspensión, bajando el punto de rocío",
+        "Caudal y punto de rocío objetivo",
+        "Antes de la filtración fina"
+      ],
+      [
+        "Filtros de línea",
+        "Partículas sólidas y aerosoles de aceite según el grado",
+        "Grado de filtración y caudal",
+        "Después del secador, antes del consumo"
+      ],
+      [
+        "Purga de condensados",
+        "El agua acumulada, sin perder aire comprimido",
+        "Volumen de condensado",
+        "Calderín, secador y puntos bajos de la red"
+      ]
+    ],
+    "ben": [
+      [
+        "Protege la red antes que al equipo",
+        "La corrosión de la tubería no se ve hasta que hay fugas por toda la instalación. El tratamiento es lo que evita llegar a ese punto."
+      ],
+      [
+        "Calidad de aire según norma",
+        "ISO 8573-1 clasifica partículas, agua y aceite. Trabajar con clases y no con adjetivos es lo que permite comprometer una calidad de aire."
+      ],
+      [
+        "Cada elemento hace una cosa",
+        "Separador, secador, filtro y purga no son intercambiables: se colocan en orden y cada uno resuelve un problema distinto."
+      ],
+      [
+        "Purga sin pérdida de aire",
+        "Las purgas electrónicas evacuan el condensado sin soltar aire comprimido, que es dinero que se escapa en cada ciclo."
+      ],
+      [
+        "El condensado es un residuo",
+        "Lleva aceite: el separador aceite-agua permite verterlo cumpliendo la normativa en lugar de tirarlo a la red de saneamiento."
+      ]
+    ],
+    "dis": [
+      [
+        "Separación",
         [
-          "JSC 3VTD",
-          "3 / 4",
-          "0,42",
-          "0,35",
-          "0,29",
-          "300",
-          "JKE138",
-          "68",
-          "302",
-          "610 × 1690 × 1550"
-        ],
-        [
-          "JSC 4VTD",
-          "4 / 5",
-          "0,57",
-          "0,48",
-          "0,35",
-          "300",
-          "JKE138",
-          "69",
-          "322",
-          "610 × 1690 × 1550"
-        ],
-        [
-          "JSC 5VTD",
-          "5 / 7",
-          "0,90",
-          "0,70",
-          "0,62",
-          "500",
-          "JKE153",
-          "69",
-          "448",
-          "750 × 1850 × 1770"
-        ],
-        [
-          "JSC 7VTD",
-          "8 / 10",
-          "1,23",
-          "0,97",
-          "0,82",
-          "500",
-          "JKE1100",
-          "69",
-          "493",
-          "750 × 1850 × 1770"
-        ],
-        [
-          "JSC 11VTD",
-          "11 / 15",
-          "1,87",
-          "1,62",
-          "1,34",
-          "500",
-          "JKE1155",
-          "69",
-          "528",
-          "750 × 1850 × 1770"
-        ],
-        [
-          "JSC 15VTD",
-          "15 / 20",
-          "2,43",
-          "2,11",
-          "1,80",
-          "500",
-          "JKE1155",
-          "70",
-          "603",
-          "750 × 1850 × 1770"
+          "Separadores ciclónicos de 1.500 a 28.000 l/min",
+          "Cartuchos de repuesto de toda la gama"
         ]
       ],
-      "eyebrow": "Serie JSC VTD",
-      "title": "Compresores de tornillo con variador y secador 3–15 kW",
-      "claim": "Compresor, calderín y secador en un solo bastidor: la sala de aire resuelta en el espacio de una máquina.",
-      "lead": "La serie para quien no tiene sala de compresores. Llega montado y se conecta en un solo punto: acometida eléctrica y salida de aire. El secador va dentro, así que el aire sale ya tratado.",
-      "fig": [
+      [
+        "Secado y filtración",
         [
-          "3–15 kW",
-          "Potencia",
-          "4–20 HP"
-        ],
-        [
-          "0,29–2,43 m³/min",
-          "Caudal según presión",
-          ""
-        ],
-        [
-          "300 / 500 L",
-          "Calderín integrado",
-          ""
-        ],
-        [
-          "3 °C",
-          "Punto de rocío del secador",
-          ""
+          "Secadores frigoríficos dimensionados por caudal",
+          "Filtros de línea con distintos grados de retención",
+          "Manómetro diferencial de saturación"
         ]
       ],
-      "ben": [
+      [
+        "Condensados",
         [
-          "Todo en un conjunto",
-          "Compresor, calderín y secador frigorífico montados y probados de fábrica. Sin proyecto de sala ni montaje de tubería entre elementos."
-        ],
-        [
-          "Instalación en un punto",
-          "Conexión eléctrica y salida de aire. Se pone en marcha el mismo día que llega."
-        ],
-        [
-          "Aire ya tratado",
-          "El secador integrado baja el punto de rocío antes de que el aire entre en la red: ni condensados en la tubería ni agua en las herramientas."
-        ],
-        [
-          "Variador de frecuencia de serie",
-          "El equipo sigue la demanda real en lugar de arrancar y parar, con la presión estable que agradece la herramienta neumática."
-        ],
-        [
-          "Ocupa lo mínimo",
-          "La superficie de una máquina para lo que normalmente son tres equipos y la tubería que los une."
+          "Purgas automáticas electrónicas",
+          "Separadores aceite-agua para el vertido",
+          "By-pass para mantenimiento sin parar la línea"
         ]
+      ]
+    ],
+    "n1": "",
+    "n2": "",
+    "pend": "",
+    "n3": "",
+    "aviso": ""
+  },
+  "SECADOR": {
+    "eyebrow": "Secadores frigoríficos · Serie JKEP",
+    "title": "Secadores frigoríficos JKEP",
+    "claim": "De 23 a 3.330 m³/h, con punto de rocío estable y purga de cero pérdidas.",
+    "lead": "El aire comprimido sale del compresor cargado de vapor de agua. Al enfriarse dentro de la instalación condensa, y ese agua corroe la tubería y llega a las herramientas. El secador fija el punto de rocío antes de que eso ocurra. Se dimensiona por caudal, temperatura de entrada y temperatura ambiente.",
+    "fig": [
+      [
+        "23–3.330 m³/h",
+        "Caudal",
+        ""
       ],
-      "dis": [
-        [
-          "Elemento compresor",
-          [
-            "Tornillo con inyección de aceite",
-            "Transmisión por correa Poly-V",
-            "Motor IE3"
-          ]
-        ],
-        [
-          "Conjunto",
-          [
-            "Calderín de 300 o 500 L",
-            "Secador frigorífico integrado",
-            "Purga automática de condensados"
-          ]
-        ],
-        [
-          "Opciones",
-          [
-            "Presión 7,5 / 10 / 13 bar",
-            "Filtración de línea adicional",
-            "Separador aceite-agua para el condensado"
-          ]
-        ]
+      [
+        "19 modelos",
+        "en la serie",
+        ""
       ],
-      "n1": "Rendimiento medido de acuerdo con la norma <strong>ISO 1217:2009, Anexo C</strong>, con referencia a 1 bar de presión de entrada y 20 °C de temperatura ambiente.",
-      "n2": "Según la presión de trabajo SHD: el rendimiento de 7,5 bar se midió a 7 bar, el de 10 bar a 9,5 bar y el de 13 bar a 12,5 bar.",
-      "pend": "",
-      "n3": "Disponibilidad de otras potencias y presiones bajo consulta. Todos los modelos tienen kit de mantenimiento.",
-      "aviso": ""
-    },
-    "PISTON": {
-      "eyebrow": "Compresores de pistón",
-      "title": "Compresores de pistón hasta 10 CV",
-      "claim": "Diez configuraciones, de la herramienta suelta a la línea con varias tomas simultáneas.",
-      "lead": "Se elige por tres datos: el caudal que vas a consumir a la vez, la presión que exige tu herramienta y el tamaño de calderín que te permite trabajar sin que el motor arranque continuamente.",
-      "fig": [
-        [
-          "2–10 HP",
-          "Potencia",
-          "1,5–7,5 kW"
-        ],
-        [
-          "24–500 L",
-          "Depósito",
-          ""
-        ],
-        [
-          "8–11 bar",
-          "Presión de trabajo",
-          ""
-        ],
-        [
-          "12 modelos",
-          "en la gama",
-          ""
-        ]
+      [
+        "Digi-Pro",
+        "Control de punto de rocío",
+        ""
       ],
-      "cols": [
-        "Modelo",
-        "Potencia<br><span class=\"u\">HP / kW</span>",
-        "Depósito<br><span class=\"u\">L</span>",
-        "Presión<br><span class=\"u\">bar</span>",
-        "Aire aspirado<br><span class=\"u\">l/min</span>",
-        "Alimentación<br><span class=\"u\">V / fase / Hz</span>",
-        "Nivel sonoro<br><span class=\"u\">dB(A)</span>",
-        "Peso<br><span class=\"u\">kg</span>",
-        "Dimensiones<br><span class=\"u\">mm</span>"
+      [
+        "Cero pérdidas",
+        "Purga capacitiva",
+        ""
+      ]
+    ],
+    "cols": [
+      "Modelo",
+      "Caudal<br><span class=\"u\">m³/h</span>",
+      "Tensión",
+      "Conexión",
+      "Control",
+      "Dimensiones La × An × Al<br><span class=\"u\">mm</span>"
+    ],
+    "rows": [
+      [
+        "JKEP 123",
+        "23",
+        "230 V · 1~",
+        "1/2″",
+        "Digi-Pro",
+        "372 × 369 × 792"
       ],
-      "rows": [
-        [
-          "@Coaxial · gama bricolaje"
-        ],
-        [
-          "JP Atlanta 25",
-          "2 / 1,5",
-          "24",
-          "8",
-          "220",
-          "230 / 1 / 50",
-          "—",
-          "25",
-          "570 × 255 × 590"
-        ],
-        [
-          "JP Atlanta 50",
-          "2 / 1,5",
-          "50",
-          "8",
-          "220",
-          "230 / 1 / 50",
-          "—",
-          "35",
-          "790 × 310 × 670"
-        ],
-        [
-          "@Transmisión por correa · una etapa"
-        ],
-        [
-          "JP 248 / 100 M",
-          "2 / 1,5",
-          "100",
-          "10",
-          "255",
-          "230 / 1 / 50",
-          "73",
-          "56",
-          "1010 × 415 × 900"
-        ],
-        [
-          "JP 338 / 200 M",
-          "3 / 2,2",
-          "200",
-          "10",
-          "320",
-          "230 / 1 / 50",
-          "73",
-          "91",
-          "1500 × 470 × 1110"
-        ],
-        [
-          "JP 338 / 200 T",
-          "3 / 2,2",
-          "200",
-          "10",
-          "320",
-          "400 / 3 / 50",
-          "75",
-          "91",
-          "1500 × 470 × 1110"
-        ],
-        [
-          "@Transmisión por correa · dos etapas"
-        ],
-        [
-          "JP 480 / 300",
-          "4 / 3",
-          "270",
-          "11",
-          "553",
-          "400 / 3 / 50",
-          "73",
-          "120",
-          "1532 × 456 × 1005"
-        ],
-        [
-          "JP 550 / 300",
-          "5,5 / 4",
-          "270",
-          "11",
-          "595",
-          "400 / 3 / 50",
-          "75",
-          "124",
-          "1532 × 456 × 1005"
-        ],
-        [
-          "JP 850 / 500 T",
-          "7,5 / 5,5",
-          "500",
-          "11",
-          "827",
-          "400 / 3 / 50",
-          "77",
-          "196",
-          "2030 × 670 × 1400"
-        ],
-        [
-          "JP 981 / 500 T",
-          "10 / 7,5",
-          "500",
-          "11",
-          "1210",
-          "400 / 3 / 50",
-          "82",
-          "279",
-          "2030 × 670 × 1400"
-        ],
-        [
-          "JP 981 / 500 TE/T<br><span class=\"muted\">arrancador estrella-triángulo incluido</span>",
-          "10 / 7,5",
-          "500",
-          "11",
-          "1210",
-          "400 / 3 / 50",
-          "82",
-          "279",
-          "2030 × 670 × 1400"
-        ]
+      [
+        "JKEP 138",
+        "38",
+        "230 V · 1~",
+        "1/2″",
+        "Digi-Pro",
+        "372 × 369 × 792"
       ],
-      "ben": [
-        [
-          "Dimensionado por consumo real",
-          "Suma el consumo en l/min de las herramientas que vayan a trabajar a la vez y añade un 20 % de margen: esa cifra marca la potencia mínima."
-        ],
-        [
-          "El calderín estabiliza la red",
-          "Un depósito mayor reduce los arranques del motor y mantiene la presión: alarga la vida del equipo y mejora el trabajo en el punto de uso."
-        ],
-        [
-          "Dos etapas cuando hace falta presión",
-          "Para arenado o pintura industrial que exigen 10–11 bar, la versión de dos etapas comprime en dos fases con menos esfuerzo térmico."
-        ],
-        [
-          "Monofásico o trifásico",
-          "Hasta 3 CV hay versión a 230 V. A partir de 4 CV, trifásico a 400 V: más eficiente y con menos intensidad de línea."
-        ],
-        [
-          "Calderín certificado",
-          "Equipos a presión con su certificado y su válvula de seguridad tarada, como exige la normativa."
-        ]
+      [
+        "JKEP 153",
+        "53",
+        "230 V · 1~",
+        "1/2″",
+        "Digi-Pro",
+        "372 × 369 × 792"
       ],
-      "dis": [
-        [
-          "Grupo de compresión",
-          [
-            "Cabezal de pistón con refrigeración por aire",
-            "Versión de una o dos etapas",
-            "Filtro de aspiración accesible"
-          ]
-        ],
-        [
-          "Calderín y seguridad",
-          [
-            "25 a 500 L según configuración",
-            "Presostato y válvula de seguridad tarada",
-            "Manómetro de calderín y de línea"
-          ]
-        ],
-        [
-          "Opciones",
-          [
-            "Secador frigorífico y filtración de línea",
-            "Purga automática de condensados",
-            "Kit de ruedas y asas para equipos móviles"
-          ]
-        ]
+      [
+        "JKEP 170",
+        "70",
+        "230 V · 1~",
+        "1/2″",
+        "Digi-Pro",
+        "372 × 369 × 792"
       ],
-      "n1": "",
-      "n2": "",
-      "pend": "",
-      "n3": "Aire aspirado según catálogo. Todos los modelos tienen kit de mantenimiento.",
-      "aviso": ""
-    },
-    "TRATAMIENTO": {
-      "eyebrow": "Tratamiento de aire comprimido",
-      "title": "Tratamiento de aire comprimido",
-      "claim": "El aire que sale del compresor lleva agua, partículas y aceite. El tratamiento decide si tu proceso los recibe o no.",
-      "lead": "Sin tratamiento, esas impurezas llegan a las herramientas, corroen la tubería y acaban en el producto final. La combinación correcta depende del caudal, de la clase de calidad que exija tu proceso según ISO 8573-1 y de las condiciones de la planta.",
-      "fig": [
-        [
-          "ISO 8573-1",
-          "Norma de calidad de aire",
-          ""
-        ],
-        [
-          "4 etapas",
-          "Cadena de tratamiento",
-          ""
-        ],
-        [
-          "Punto de rocío",
-          "Lo que fija el secador",
-          ""
-        ],
-        [
-          "1.500–28.000",
-          "Caudal de separadores",
-          "l/min"
-        ]
+      [
+        "JKEP 1100",
+        "100",
+        "230 V · 1~",
+        "3/4″",
+        "Digi-Pro",
+        "454 × 473 × 932"
       ],
-      "cols": [
-        "Equipo",
-        "Qué retira",
-        "Parámetro que lo dimensiona",
-        "Posición en la línea"
+      [
+        "JKEP 1155",
+        "155",
+        "230 V · 1~",
+        "3/4″",
+        "Digi-Pro",
+        "454 × 473 × 932"
       ],
-      "rows": [
-        [
-          "Separador ciclónico",
-          "Agua libre que arrastra el aire al salir del compresor",
-          "Caudal en l/min",
-          "Inmediatamente después del compresor"
-        ],
-        [
-          "Secador frigorífico",
-          "Humedad en suspensión, bajando el punto de rocío",
-          "Caudal y punto de rocío objetivo",
-          "Antes de la filtración fina"
-        ],
-        [
-          "Filtros de línea",
-          "Partículas sólidas y aerosoles de aceite según el grado",
-          "Grado de filtración y caudal",
-          "Después del secador, antes del consumo"
-        ],
-        [
-          "Purga de condensados",
-          "El agua acumulada, sin perder aire comprimido",
-          "Volumen de condensado",
-          "Calderín, secador y puntos bajos de la red"
-        ]
+      [
+        "JKEP 1190",
+        "190",
+        "230 V · 1~",
+        "3/4″",
+        "Digi-Pro",
+        "454 × 473 × 932"
       ],
-      "ben": [
-        [
-          "Protege la red antes que al equipo",
-          "La corrosión de la tubería no se ve hasta que hay fugas por toda la instalación. El tratamiento es lo que evita llegar a ese punto."
-        ],
-        [
-          "Calidad de aire según norma",
-          "ISO 8573-1 clasifica partículas, agua y aceite. Trabajar con clases y no con adjetivos es lo que permite comprometer una calidad de aire."
-        ],
-        [
-          "Cada elemento hace una cosa",
-          "Separador, secador, filtro y purga no son intercambiables: se colocan en orden y cada uno resuelve un problema distinto."
-        ],
-        [
-          "Purga sin pérdida de aire",
-          "Las purgas electrónicas evacuan el condensado sin soltar aire comprimido, que es dinero que se escapa en cada ciclo."
-        ],
-        [
-          "El condensado es un residuo",
-          "Lleva aceite: el separador aceite-agua permite verterlo cumpliendo la normativa en lugar de tirarlo a la red de saneamiento."
-        ]
+      [
+        "JKEP 1210",
+        "210",
+        "230 V · 1~",
+        "1½″",
+        "Digi-Pro",
+        "556 × 556 × 975"
       ],
-      "dis": [
-        [
-          "Separación",
-          [
-            "Separadores ciclónicos de 1.500 a 28.000 l/min",
-            "Cartuchos de repuesto de toda la gama"
-          ]
-        ],
-        [
-          "Secado y filtración",
-          [
-            "Secadores frigoríficos dimensionados por caudal",
-            "Filtros de línea con distintos grados de retención",
-            "Manómetro diferencial de saturación"
-          ]
-        ],
-        [
-          "Condensados",
-          [
-            "Purgas automáticas electrónicas",
-            "Separadores aceite-agua para el vertido",
-            "By-pass para mantenimiento sin parar la línea"
-          ]
-        ]
+      [
+        "JKEP 1305",
+        "305",
+        "230 V · 1~",
+        "1½″",
+        "Digi-Pro",
+        "556 × 556 × 975"
       ],
-      "n1": "",
-      "n2": "",
-      "pend": "",
-      "n3": "",
-      "aviso": ""
-    },
-    "SECADOR": {
-      "eyebrow": "Secadores frigoríficos · Serie JKEP",
-      "title": "Secadores frigoríficos JKEP",
-      "claim": "De 23 a 3.330 m³/h, con punto de rocío estable y purga de cero pérdidas.",
-      "lead": "El aire comprimido sale del compresor cargado de vapor de agua. Al enfriarse dentro de la instalación condensa, y ese agua corroe la tubería y llega a las herramientas. El secador fija el punto de rocío antes de que eso ocurra. Se dimensiona por caudal, temperatura de entrada y temperatura ambiente.",
-      "fig": [
-        [
-          "23–3.330 m³/h",
-          "Caudal",
-          ""
-        ],
-        [
-          "19 modelos",
-          "en la serie",
-          ""
-        ],
-        [
-          "Digi-Pro",
-          "Control de punto de rocío",
-          ""
-        ],
-        [
-          "Cero pérdidas",
-          "Purga capacitiva",
-          ""
-        ]
+      [
+        "JKEP 1375",
+        "375",
+        "230 V · 1~",
+        "1½″",
+        "Digi-Pro",
+        "556 × 556 × 975"
       ],
-      "cols": [
-        "Modelo",
-        "Caudal<br><span class=\"u\">m³/h</span>",
-        "Tensión",
-        "Conexión",
+      [
+        "JKEP 1495",
+        "495",
+        "230 V · 1~",
+        "2″",
+        "Digi-Pro",
+        "648 × 678 × 1277"
+      ],
+      [
+        "JKEP 1623",
+        "623",
+        "230 V · 1~",
+        "2″",
+        "Digi-Pro",
+        "648 × 678 × 1277"
+      ],
+      [
+        "JKEP 1930",
+        "930",
+        "230 V · 1~",
+        "2″",
+        "Digi-Pro",
+        "947 × 727 × 1500"
+      ],
+      [
+        "JKEP 11200",
+        "1.200",
+        "230 V · 1~",
+        "2″",
+        "Digi-Pro",
+        "947 × 727 × 1500"
+      ],
+      [
+        "JKEP 11388",
+        "1.388",
+        "400 V · 3~",
+        "3″",
+        "Digi-Pro",
+        "948 × 798 × 1580"
+      ],
+      [
+        "JKEP 11800",
+        "1.800",
+        "400 V · 3~",
+        "3″",
+        "Digi-Pro",
+        "948 × 798 × 1580"
+      ],
+      [
+        "JKEP 12500",
+        "2.500",
+        "400 V · 3~",
+        "3″",
+        "Digi-Pro",
+        "1163 × 778 × 1842"
+      ],
+      [
+        "JKEP 12775",
+        "2.775",
+        "400 V · 3~",
+        "3″",
+        "Digi-Pro",
+        "1163 × 778 × 1842"
+      ],
+      [
+        "JKEP 113330",
+        "3.330",
+        "400 V · 3~",
+        "DN100 brida",
+        "Digi-Pro",
+        "1577 × 993 × 2026"
+      ]
+    ],
+    "n1": "",
+    "n2": "",
+    "n3": "Todos los modelos llevan filtros integrados y kit de elementos de repuesto propio. Caudales referidos a las condiciones de ensayo del catálogo.",
+    "pend": "",
+    "aviso": "",
+    "ben": [
+      [
+        "Punto de rocío estable",
+        "El control Digi-Pro monitoriza el punto de rocío real y mantiene el secador trabajando en su punto, en lugar de arrancar y parar a ciegas."
+      ],
+      [
+        "Purga de cero pérdidas",
+        "La purga capacitiva evacua el condensado sin soltar aire comprimido. Cada ciclo de una purga temporizada mal ajustada es aire que pagas y tiras."
+      ],
+      [
+        "Filtros integrados",
+        "El separador de agua y la filtración van dentro del secador: menos tubería, menos uniones y menos puntos de fuga."
+      ],
+      [
+        "Dimensionado por factores",
+        "El caudal útil depende de la temperatura de entrada, la ambiente y la presión. Se aplican los factores de corrección del catálogo, no el caudal nominal a secas."
+      ],
+      [
+        "Diseño compacto",
+        "Pensado para caber en la sala de compresores existente, junto al equipo, sin rehacer la instalación."
+      ]
+    ],
+    "dis": [
+      [
         "Control",
-        "Dimensiones La × An × Al<br><span class=\"u\">mm</span>"
-      ],
-      "rows": [
         [
-          "JKEP 123",
-          "23",
-          "230 V · 1~",
-          "1/2″",
-          "Digi-Pro",
-          "372 × 369 × 792"
-        ],
-        [
-          "JKEP 138",
-          "38",
-          "230 V · 1~",
-          "1/2″",
-          "Digi-Pro",
-          "372 × 369 × 792"
-        ],
-        [
-          "JKEP 153",
-          "53",
-          "230 V · 1~",
-          "1/2″",
-          "Digi-Pro",
-          "372 × 369 × 792"
-        ],
-        [
-          "JKEP 170",
-          "70",
-          "230 V · 1~",
-          "1/2″",
-          "Digi-Pro",
-          "372 × 369 × 792"
-        ],
-        [
-          "JKEP 1100",
-          "100",
-          "230 V · 1~",
-          "3/4″",
-          "Digi-Pro",
-          "454 × 473 × 932"
-        ],
-        [
-          "JKEP 1155",
-          "155",
-          "230 V · 1~",
-          "3/4″",
-          "Digi-Pro",
-          "454 × 473 × 932"
-        ],
-        [
-          "JKEP 1190",
-          "190",
-          "230 V · 1~",
-          "3/4″",
-          "Digi-Pro",
-          "454 × 473 × 932"
-        ],
-        [
-          "JKEP 1210",
-          "210",
-          "230 V · 1~",
-          "1½″",
-          "Digi-Pro",
-          "556 × 556 × 975"
-        ],
-        [
-          "JKEP 1305",
-          "305",
-          "230 V · 1~",
-          "1½″",
-          "Digi-Pro",
-          "556 × 556 × 975"
-        ],
-        [
-          "JKEP 1375",
-          "375",
-          "230 V · 1~",
-          "1½″",
-          "Digi-Pro",
-          "556 × 556 × 975"
-        ],
-        [
-          "JKEP 1495",
-          "495",
-          "230 V · 1~",
-          "2″",
-          "Digi-Pro",
-          "648 × 678 × 1277"
-        ],
-        [
-          "JKEP 1623",
-          "623",
-          "230 V · 1~",
-          "2″",
-          "Digi-Pro",
-          "648 × 678 × 1277"
-        ],
-        [
-          "JKEP 1930",
-          "930",
-          "230 V · 1~",
-          "2″",
-          "Digi-Pro",
-          "947 × 727 × 1500"
-        ],
-        [
-          "JKEP 11200",
-          "1.200",
-          "230 V · 1~",
-          "2″",
-          "Digi-Pro",
-          "947 × 727 × 1500"
-        ],
-        [
-          "JKEP 11388",
-          "1.388",
-          "400 V · 3~",
-          "3″",
-          "Digi-Pro",
-          "948 × 798 × 1580"
-        ],
-        [
-          "JKEP 11800",
-          "1.800",
-          "400 V · 3~",
-          "3″",
-          "Digi-Pro",
-          "948 × 798 × 1580"
-        ],
-        [
-          "JKEP 12500",
-          "2.500",
-          "400 V · 3~",
-          "3″",
-          "Digi-Pro",
-          "1163 × 778 × 1842"
-        ],
-        [
-          "JKEP 12775",
-          "2.775",
-          "400 V · 3~",
-          "3″",
-          "Digi-Pro",
-          "1163 × 778 × 1842"
-        ],
-        [
-          "JKEP 113330",
-          "3.330",
-          "400 V · 3~",
-          "DN100 brida",
-          "Digi-Pro",
-          "1577 × 993 × 2026"
+          "Unidad Digi-Pro con lectura de punto de rocío",
+          "Avisos de servicio y mantenimiento",
+          "ESD Control en los modelos que lo integran"
         ]
       ],
-      "n1": "",
-      "n2": "",
-      "n3": "Todos los modelos llevan filtros integrados y kit de elementos de repuesto propio. Caudales referidos a las condiciones de ensayo del catálogo.",
-      "pend": "",
-      "aviso": "",
-      "ben": [
+      [
+        "Circuito",
         [
-          "Punto de rocío estable",
-          "El control Digi-Pro monitoriza el punto de rocío real y mantiene el secador trabajando en su punto, en lugar de arrancar y parar a ciegas."
-        ],
-        [
-          "Purga de cero pérdidas",
-          "La purga capacitiva evacua el condensado sin soltar aire comprimido. Cada ciclo de una purga temporizada mal ajustada es aire que pagas y tiras."
-        ],
-        [
-          "Filtros integrados",
-          "El separador de agua y la filtración van dentro del secador: menos tubería, menos uniones y menos puntos de fuga."
-        ],
-        [
-          "Dimensionado por factores",
-          "El caudal útil depende de la temperatura de entrada, la ambiente y la presión. Se aplican los factores de corrección del catálogo, no el caudal nominal a secas."
-        ],
-        [
-          "Diseño compacto",
-          "Pensado para caber en la sala de compresores existente, junto al equipo, sin rehacer la instalación."
+          "Intercambiador y separador integrados",
+          "Purga capacitiva de cero pérdidas",
+          "Filtros de serie según modelo"
         ]
       ],
-      "dis": [
+      [
+        "Instalación",
         [
-          "Control",
-          [
-            "Unidad Digi-Pro con lectura de punto de rocío",
-            "Avisos de servicio y mantenimiento",
-            "ESD Control en los modelos que lo integran"
-          ]
-        ],
-        [
-          "Circuito",
-          [
-            "Intercambiador y separador integrados",
-            "Purga capacitiva de cero pérdidas",
-            "Filtros de serie según modelo"
-          ]
-        ],
-        [
-          "Instalación",
-          [
-            "Conexiones de 1/2″ a 3″ y brida DN100",
-            "230 V monofásico hasta JKEP 11200",
-            "400 V trifásico desde JKEP 11388"
-          ]
+          "Conexiones de 1/2″ a 3″ y brida DN100",
+          "230 V monofásico hasta JKEP 11200",
+          "400 V trifásico desde JKEP 11388"
         ]
       ]
-    },
-    "FILTRO": {
-      "eyebrow": "Filtros de línea",
-      "title": "Filtros de línea para aire comprimido",
-      "claim": "De 1.500 a 28.000 l/min, en separación ciclónica y prefiltración de 1 micra.",
-      "lead": "El aire sin tratar lleva partículas sólidas, humedad y aerosoles de aceite. Cada grado de filtración retira una cosa distinta y se colocan en orden: primero el separador, después el prefiltro, y el filtro fino o de carbón activo si el proceso lo exige.",
-      "fig": [
-        [
-          "1.500–28.000 l/min",
-          "Caudal",
-          ""
-        ],
-        [
-          "ISO 8573-1",
-          "Clases de calidad",
-          ""
-        ],
-        [
-          "1 micra",
-          "Prefiltro",
-          "1 ppm de aceite"
-        ],
-        [
-          "1/2″ a 2½″",
-          "Conexión BSP",
-          ""
-        ]
+    ]
+  },
+  "FILTRO": {
+    "eyebrow": "Filtros de línea",
+    "title": "Filtros de línea para aire comprimido",
+    "claim": "De 1.500 a 28.000 l/min, en separación ciclónica y prefiltración de 1 micra.",
+    "lead": "El aire sin tratar lleva partículas sólidas, humedad y aerosoles de aceite. Cada grado de filtración retira una cosa distinta y se colocan en orden: primero el separador, después el prefiltro, y el filtro fino o de carbón activo si el proceso lo exige.",
+    "fig": [
+      [
+        "1.500–28.000 l/min",
+        "Caudal",
+        ""
       ],
-      "cols": [
-        "Referencia",
+      [
+        "ISO 8573-1",
+        "Clases de calidad",
+        ""
+      ],
+      [
+        "1 micra",
+        "Prefiltro",
+        "1 ppm de aceite"
+      ],
+      [
+        "1/2″ a 2½″",
         "Conexión BSP",
-        "Caudal<br><span class=\"u\">l/min</span>",
-        "Dimensiones<br><span class=\"u\">mm</span>"
+        ""
+      ]
+    ],
+    "cols": [
+      "Referencia",
+      "Conexión BSP",
+      "Caudal<br><span class=\"u\">l/min</span>",
+      "Dimensiones<br><span class=\"u\">mm</span>"
+    ],
+    "rows": [
+      [
+        "@Filtro separador de condensados · incluye cartucho y purga automática"
       ],
-      "rows": [
+      [
+        "JFC025",
+        "1/2″",
+        "2.500",
+        "100 × 238 × 74"
+      ],
+      [
+        "JFC037",
+        "3/4″",
+        "3.700",
+        "100 × 238 × 74"
+      ],
+      [
+        "JFC055",
+        "1″",
+        "5.500",
+        "125 × 335 × 85"
+      ],
+      [
+        "JFC140",
+        "1½″",
+        "14.000",
+        "125 × 465 × 85"
+      ],
+      [
+        "JFC200",
+        "2″",
+        "20.000",
+        "155 × 610 × 100"
+      ],
+      [
+        "JFC280",
+        "2½″",
+        "28.000",
+        "180 × 670 × 115"
+      ],
+      [
+        "@Prefiltro 1 micra · partículas sólidas y 1 ppm de aceite · incluye cartucho, manómetro y purga"
+      ],
+      [
+        "JFP015",
+        "1/2″",
+        "1.500",
+        "100 × 200 × 235"
+      ],
+      [
+        "JFP025",
+        "3/4″",
+        "2.500",
+        "100 × 240 × 275"
+      ],
+      [
+        "JFP038",
+        "1″",
+        "3.800",
+        "125 × 290 × 335"
+      ],
+      [
+        "JFP085",
+        "1½″",
+        "8.500",
+        "125 × 420 × 465"
+      ],
+      [
+        "JFP150",
+        "2″",
+        "15.200",
+        "155 × 550 × 610"
+      ],
+      [
+        "JFP200",
+        "2½″",
+        "20.000",
+        "180 × 610 × 670"
+      ]
+    ],
+    "n1": "",
+    "n2": "",
+    "n3": "Cartuchos de repuesto disponibles para toda la gama (referencias terminadas en E y T). Clases de calidad de aire según ISO 8573-1:2010.",
+    "pend": "",
+    "aviso": "",
+    "ben": [
+      [
+        "Cada filtro, una función",
+        "El separador retira el agua libre; el prefiltro, las partículas y el aceite en aerosol. Montarlos al revés satura el fino en semanas."
+      ],
+      [
+        "Purga automática incluida",
+        "Los separadores vienen con cartucho y purga: no hay que añadir nada ni vaciarlos a mano."
+      ],
+      [
+        "Manómetro diferencial",
+        "El prefiltro lleva manómetro para ver la saturación del cartucho y cambiarlo cuando toca, no por calendario."
+      ],
+      [
+        "Carcasas para uso industrial",
+        "Anillo de sellado Vitón y conexión BSP gas, dimensionadas para trabajo continuo."
+      ],
+      [
+        "Repuesto por referencia",
+        "Cada carcasa tiene su cartucho identificado: se pide por referencia y no hay que medir nada."
+      ]
+    ],
+    "dis": [
+      [
+        "Separación",
         [
-          "@Filtro separador de condensados · incluye cartucho y purga automática"
-        ],
-        [
-          "JFC025",
-          "1/2″",
-          "2.500",
-          "100 × 238 × 74"
-        ],
-        [
-          "JFC037",
-          "3/4″",
-          "3.700",
-          "100 × 238 × 74"
-        ],
-        [
-          "JFC055",
-          "1″",
-          "5.500",
-          "125 × 335 × 85"
-        ],
-        [
-          "JFC140",
-          "1½″",
-          "14.000",
-          "125 × 465 × 85"
-        ],
-        [
-          "JFC200",
-          "2″",
-          "20.000",
-          "155 × 610 × 100"
-        ],
-        [
-          "JFC280",
-          "2½″",
-          "28.000",
-          "180 × 670 × 115"
-        ],
-        [
-          "@Prefiltro 1 micra · partículas sólidas y 1 ppm de aceite · incluye cartucho, manómetro y purga"
-        ],
-        [
-          "JFP015",
-          "1/2″",
-          "1.500",
-          "100 × 200 × 235"
-        ],
-        [
-          "JFP025",
-          "3/4″",
-          "2.500",
-          "100 × 240 × 275"
-        ],
-        [
-          "JFP038",
-          "1″",
-          "3.800",
-          "125 × 290 × 335"
-        ],
-        [
-          "JFP085",
-          "1½″",
-          "8.500",
-          "125 × 420 × 465"
-        ],
-        [
-          "JFP150",
-          "2″",
-          "15.200",
-          "155 × 550 × 610"
-        ],
-        [
-          "JFP200",
-          "2½″",
-          "20.000",
-          "180 × 610 × 670"
+          "Separación ciclónica y por colisión",
+          "Drenaje optimizado",
+          "Purga automática de serie"
         ]
       ],
-      "n1": "",
-      "n2": "",
-      "n3": "Cartuchos de repuesto disponibles para toda la gama (referencias terminadas en E y T). Clases de calidad de aire según ISO 8573-1:2010.",
-      "pend": "",
-      "aviso": "",
-      "ben": [
+      [
+        "Filtración",
         [
-          "Cada filtro, una función",
-          "El separador retira el agua libre; el prefiltro, las partículas y el aceite en aerosol. Montarlos al revés satura el fino en semanas."
-        ],
-        [
-          "Purga automática incluida",
-          "Los separadores vienen con cartucho y purga: no hay que añadir nada ni vaciarlos a mano."
-        ],
-        [
-          "Manómetro diferencial",
-          "El prefiltro lleva manómetro para ver la saturación del cartucho y cambiarlo cuando toca, no por calendario."
-        ],
-        [
-          "Carcasas para uso industrial",
-          "Anillo de sellado Vitón y conexión BSP gas, dimensionadas para trabajo continuo."
-        ],
-        [
-          "Repuesto por referencia",
-          "Cada carcasa tiene su cartucho identificado: se pide por referencia y no hay que medir nada."
+          "Prefiltro de 1 micra",
+          "Filtro fino de 0,01 micra",
+          "Filtro de carbón activo"
         ]
       ],
-      "dis": [
+      [
+        "Construcción",
         [
-          "Separación",
-          [
-            "Separación ciclónica y por colisión",
-            "Drenaje optimizado",
-            "Purga automática de serie"
-          ]
-        ],
-        [
-          "Filtración",
-          [
-            "Prefiltro de 1 micra",
-            "Filtro fino de 0,01 micra",
-            "Filtro de carbón activo"
-          ]
-        ],
-        [
-          "Construcción",
-          [
-            "Anillo de sellado Vitón (−20 °C a 250 °C)",
-            "Conexión BSP gas",
-            "Manómetro diferencial"
-          ]
+          "Anillo de sellado Vitón (−20 °C a 250 °C)",
+          "Conexión BSP gas",
+          "Manómetro diferencial"
         ]
       ]
-    },
-    "CALDERIN": {
-      "eyebrow": "Depósitos verticales",
-      "title": "Calderines de aire comprimido",
-      "claim": "De 270 a 900 litros, 11 bar, en acero al carbono y con documentación según la directiva 2014/29/UE.",
-      "lead": "El calderín estabiliza la presión de red y reduce los arranques del compresor. Cuanto más varía tu consumo, más trabajo le quitas al equipo y más le alargas la vida.",
-      "fig": [
+    ]
+  },
+  "CALDERIN": {
+    "eyebrow": "Depósitos verticales",
+    "title": "Calderines de aire comprimido",
+    "claim": "De 270 a 900 litros, 11 bar, en acero al carbono y con documentación según la directiva 2014/29/UE.",
+    "lead": "El calderín estabiliza la presión de red y reduce los arranques del compresor. Cuanto más varía tu consumo, más trabajo le quitas al equipo y más le alargas la vida.",
+    "fig": [
+      [
+        "270–900 L",
+        "Capacidad",
+        ""
+      ],
+      [
+        "11 bar",
+        "Presión máxima",
+        ""
+      ],
+      [
+        "−10 a +120 °C",
+        "Temperatura de trabajo",
+        ""
+      ],
+      [
+        "2014/29/UE",
+        "Directiva",
+        ""
+      ]
+    ],
+    "cols": [
+      "Código",
+      "Capacidad<br><span class=\"u\">L</span>",
+      "Presión máx.<br><span class=\"u\">bar</span>",
+      "Diámetro<br><span class=\"u\">mm</span>",
+      "Altura total<br><span class=\"u\">mm</span>",
+      "Peso<br><span class=\"u\">kg</span>"
+    ],
+    "rows": [
+      [
+        "0410000009",
+        "270",
+        "11",
+        "500",
+        "1648",
+        "67"
+      ],
+      [
+        "0410000002",
+        "500",
+        "11",
+        "600",
+        "2050",
+        "115"
+      ],
+      [
+        "0410000005",
+        "720",
+        "11",
+        "750",
+        "2030",
+        "178"
+      ],
+      [
+        "0410000010",
+        "900",
+        "11",
+        "800",
+        "2140",
+        "194"
+      ]
+    ],
+    "n1": "",
+    "n2": "",
+    "n3": "Acero al carbono con pintura exterior azul RAL 5015. Se entregan con la documentación que exige la normativa vigente. Otras capacidades y materiales, bajo consulta.",
+    "pend": "",
+    "aviso": "",
+    "ben": [
+      [
+        "Menos arranques del compresor",
+        "El calderín absorbe los picos de consumo: el motor arranca menos veces y sufre menos."
+      ],
+      [
+        "Presión de red estable",
+        "Las herramientas trabajan siempre en el mismo punto, sin caídas cuando entran varios consumos a la vez."
+      ],
+      [
+        "Documentación en regla",
+        "Equipos a presión con marcado y documentación según la directiva 2014/29/UE, entregada con el depósito."
+      ],
+      [
+        "Tomas para toda la línea",
+        "Conexiones previstas para entrada, salida, manómetro, válvula de seguridad y purga."
+      ],
+      [
+        "Acabado industrial",
+        "Pintura exterior RAL 5015 de serie, lista para sala de compresores."
+      ]
+    ],
+    "dis": [
+      [
+        "Material",
         [
-          "270–900 L",
-          "Capacidad",
-          ""
-        ],
-        [
-          "11 bar",
-          "Presión máxima",
-          ""
-        ],
-        [
-          "−10 a +120 °C",
-          "Temperatura de trabajo",
-          ""
-        ],
-        [
-          "2014/29/UE",
-          "Directiva",
-          ""
+          "Acero al carbono",
+          "Pintura exterior RAL 5015",
+          "Fluido: aire comprimido o nitrógeno (grupo 2)"
         ]
       ],
-      "cols": [
-        "Código",
-        "Capacidad<br><span class=\"u\">L</span>",
-        "Presión máx.<br><span class=\"u\">bar</span>",
-        "Diámetro<br><span class=\"u\">mm</span>",
-        "Altura total<br><span class=\"u\">mm</span>",
-        "Peso<br><span class=\"u\">kg</span>"
-      ],
-      "rows": [
+      [
+        "Condiciones",
         [
-          "0410000009",
-          "270",
-          "11",
-          "500",
-          "1648",
-          "67"
-        ],
-        [
-          "0410000002",
-          "500",
-          "11",
-          "600",
-          "2050",
-          "115"
-        ],
-        [
-          "0410000005",
-          "720",
-          "11",
-          "750",
-          "2030",
-          "178"
-        ],
-        [
-          "0410000010",
-          "900",
-          "11",
-          "800",
-          "2140",
-          "194"
+          "Presión máxima 11 bar",
+          "Temperatura de −10 a +120 °C",
+          "Directiva 2014/29/UE"
         ]
       ],
-      "n1": "",
-      "n2": "",
-      "n3": "Acero al carbono con pintura exterior azul RAL 5015. Se entregan con la documentación que exige la normativa vigente. Otras capacidades y materiales, bajo consulta.",
-      "pend": "",
-      "aviso": "",
-      "ben": [
+      [
+        "Accesorios",
         [
-          "Menos arranques del compresor",
-          "El calderín absorbe los picos de consumo: el motor arranca menos veces y sufre menos."
-        ],
-        [
-          "Presión de red estable",
-          "Las herramientas trabajan siempre en el mismo punto, sin caídas cuando entran varios consumos a la vez."
-        ],
-        [
-          "Documentación en regla",
-          "Equipos a presión con marcado y documentación según la directiva 2014/29/UE, entregada con el depósito."
-        ],
-        [
-          "Tomas para toda la línea",
-          "Conexiones previstas para entrada, salida, manómetro, válvula de seguridad y purga."
-        ],
-        [
-          "Acabado industrial",
-          "Pintura exterior RAL 5015 de serie, lista para sala de compresores."
-        ]
-      ],
-      "dis": [
-        [
-          "Material",
-          [
-            "Acero al carbono",
-            "Pintura exterior RAL 5015",
-            "Fluido: aire comprimido o nitrógeno (grupo 2)"
-          ]
-        ],
-        [
-          "Condiciones",
-          [
-            "Presión máxima 11 bar",
-            "Temperatura de −10 a +120 °C",
-            "Directiva 2014/29/UE"
-          ]
-        ],
-        [
-          "Accesorios",
-          [
-            "Kit de montaje para depósitos verticales",
-            "Purga temporizada o capacitiva",
-            "Manómetro y válvula de seguridad"
-          ]
+          "Kit de montaje para depósitos verticales",
+          "Purga temporizada o capacitiva",
+          "Manómetro y válvula de seguridad"
         ]
       ]
-    },
-    "ENCHUFE": {
-      "eyebrow": "Enchufes rápidos multipresa",
-      "title": "Enchufes rápidos multipresa y adaptadores",
-      "claim": "Un único enchufe para cuatro tipos de adaptador: se acabó tener cuatro racores distintos en el taller.",
-      "lead": "En una instalación con herramienta de varias procedencias conviven adaptadores de perfiles distintos. El enchufe multipresa los acepta todos, así que cualquier manguera encaja en cualquier toma.",
-      "fig": [
-        [
-          "4 perfiles",
-          "en un solo enchufe",
-          ""
-        ],
-        [
-          "1/4″ a 1/2″",
-          "Rosca",
-          ""
-        ],
-        [
-          "Latón niquelado",
-          "Cuerpo",
-          ""
-        ],
-        [
-          "Hembra y macho",
-          "Versiones",
-          ""
-        ]
+    ]
+  },
+  "ENCHUFE": {
+    "eyebrow": "Enchufes rápidos multipresa",
+    "title": "Enchufes rápidos multipresa y adaptadores",
+    "claim": "Un único enchufe para cuatro tipos de adaptador: se acabó tener cuatro racores distintos en el taller.",
+    "lead": "En una instalación con herramienta de varias procedencias conviven adaptadores de perfiles distintos. El enchufe multipresa los acepta todos, así que cualquier manguera encaja en cualquier toma.",
+    "fig": [
+      [
+        "4 perfiles",
+        "en un solo enchufe",
+        ""
       ],
-      "cols": [
-        "Medida",
-        "A<br><span class=\"u\">mm</span>",
-        "C<br><span class=\"u\">mm</span>",
-        "D<br><span class=\"u\">mm</span>",
-        "CH<br><span class=\"u\">mm</span>"
+      [
+        "1/4″ a 1/2″",
+        "Rosca",
+        ""
       ],
-      "rows": [
-        [
-          "@Enchufe rápido multipresa hembra"
-        ],
-        [
-          "1/4",
-          "11",
-          "51",
-          "24",
-          "21"
-        ],
-        [
-          "3/8",
-          "11,5",
-          "51",
-          "24",
-          "21"
-        ],
-        [
-          "1/2",
-          "14",
-          "55",
-          "24",
-          "24"
-        ],
-        [
-          "@Enchufe rápido multipresa macho"
-        ],
-        [
-          "1/4",
-          "8",
-          "49",
-          "24",
-          "21"
-        ],
-        [
-          "3/8",
-          "9",
-          "50",
-          "24",
-          "21"
-        ],
-        [
-          "1/2",
-          "10",
-          "51",
-          "24",
-          "24"
-        ],
-        [
-          "@Enchufe multipresa espiga"
-        ],
-        [
-          "6",
-          "—",
-          "61",
-          "24",
-          "21"
-        ],
-        [
-          "8",
-          "—",
-          "61",
-          "24",
-          "21"
-        ],
-        [
-          "10",
-          "—",
-          "61",
-          "24",
-          "21"
-        ],
-        [
-          "12",
-          "—",
-          "61",
-          "24",
-          "21"
-        ],
-        [
-          "@Enchufe multipresa tubo"
-        ],
-        [
-          "6/4",
-          "—",
-          "55",
-          "24",
-          "21"
-        ],
-        [
-          "8/6",
-          "—",
-          "55",
-          "24",
-          "21"
-        ],
-        [
-          "10/8",
-          "—",
-          "55",
-          "24",
-          "21"
-        ],
-        [
-          "12/10",
-          "—",
-          "55",
-          "24",
-          "21"
-        ]
+      [
+        "Latón niquelado",
+        "Cuerpo",
+        ""
       ],
-      "n1": "",
-      "n2": "",
-      "n3": "Medidas según los croquis del catálogo. Disponibles también en versión tubo muelle y portagoma.",
-      "pend": "",
-      "aviso": "",
-      "ben": [
-        [
-          "Un enchufe, cuatro adaptadores",
-          "Acepta los perfiles más habituales del mercado: no hay que cambiar las tomas de la instalación para usar una herramienta nueva."
-        ],
+      [
+        "Hembra y macho",
+        "Versiones",
+        ""
+      ]
+    ],
+    "cols": [
+      "Medida",
+      "A<br><span class=\"u\">mm</span>",
+      "C<br><span class=\"u\">mm</span>",
+      "D<br><span class=\"u\">mm</span>",
+      "CH<br><span class=\"u\">mm</span>"
+    ],
+    "rows": [
+      [
+        "@Enchufe rápido multipresa hembra"
+      ],
+      [
+        "1/4",
+        "11",
+        "51",
+        "24",
+        "21"
+      ],
+      [
+        "3/8",
+        "11,5",
+        "51",
+        "24",
+        "21"
+      ],
+      [
+        "1/2",
+        "14",
+        "55",
+        "24",
+        "24"
+      ],
+      [
+        "@Enchufe rápido multipresa macho"
+      ],
+      [
+        "1/4",
+        "8",
+        "49",
+        "24",
+        "21"
+      ],
+      [
+        "3/8",
+        "9",
+        "50",
+        "24",
+        "21"
+      ],
+      [
+        "1/2",
+        "10",
+        "51",
+        "24",
+        "24"
+      ],
+      [
+        "@Enchufe multipresa espiga"
+      ],
+      [
+        "6",
+        "—",
+        "61",
+        "24",
+        "21"
+      ],
+      [
+        "8",
+        "—",
+        "61",
+        "24",
+        "21"
+      ],
+      [
+        "10",
+        "—",
+        "61",
+        "24",
+        "21"
+      ],
+      [
+        "12",
+        "—",
+        "61",
+        "24",
+        "21"
+      ],
+      [
+        "@Enchufe multipresa tubo"
+      ],
+      [
+        "6/4",
+        "—",
+        "55",
+        "24",
+        "21"
+      ],
+      [
+        "8/6",
+        "—",
+        "55",
+        "24",
+        "21"
+      ],
+      [
+        "10/8",
+        "—",
+        "55",
+        "24",
+        "21"
+      ],
+      [
+        "12/10",
+        "—",
+        "55",
+        "24",
+        "21"
+      ]
+    ],
+    "n1": "",
+    "n2": "",
+    "n3": "Medidas según los croquis del catálogo. Disponibles también en versión tubo muelle y portagoma.",
+    "pend": "",
+    "aviso": "",
+    "ben": [
+      [
+        "Un enchufe, cuatro adaptadores",
+        "Acepta los perfiles más habituales del mercado: no hay que cambiar las tomas de la instalación para usar una herramienta nueva."
+      ],
+      [
+        "Cuerpo en latón niquelado",
+        "Resistente al desgaste del uso diario y a la corrosión del condensado."
+      ],
+      [
+        "Desconexión con una mano",
+        "Pensado para usarse con guante y sin soltar la herramienta."
+      ],
+      [
+        "Versiones para cada montaje",
+        "Rosca hembra y macho, espiga, tubo y tubo muelle, para resolver cualquier punto de la red."
+      ],
+      [
+        "Medidas normalizadas",
+        "Las cotas están publicadas: puedes comprobar que encaja antes de pedirlo."
+      ]
+    ],
+    "dis": [
+      [
+        "Materiales",
         [
           "Cuerpo en latón niquelado",
-          "Resistente al desgaste del uso diario y a la corrosión del condensado."
-        ],
-        [
-          "Desconexión con una mano",
-          "Pensado para usarse con guante y sin soltar la herramienta."
-        ],
-        [
-          "Versiones para cada montaje",
-          "Rosca hembra y macho, espiga, tubo y tubo muelle, para resolver cualquier punto de la red."
-        ],
-        [
-          "Medidas normalizadas",
-          "Las cotas están publicadas: puedes comprobar que encaja antes de pedirlo."
+          "Juntas para aire comprimido",
+          "Muelle de acero inoxidable"
         ]
       ],
-      "dis": [
+      [
+        "Versiones",
         [
-          "Materiales",
-          [
-            "Cuerpo en latón niquelado",
-            "Juntas para aire comprimido",
-            "Muelle de acero inoxidable"
-          ]
-        ],
+          "Hembra 1/4″, 3/8″ y 1/2″",
+          "Macho 1/4″, 3/8″ y 1/2″",
+          "Espiga de 6 a 12 mm"
+        ]
+      ],
+      [
+        "Compatibilidad",
         [
-          "Versiones",
-          [
-            "Hembra 1/4″, 3/8″ y 1/2″",
-            "Macho 1/4″, 3/8″ y 1/2″",
-            "Espiga de 6 a 12 mm"
-          ]
-        ],
-        [
-          "Compatibilidad",
-          [
-            "Cuatro perfiles de adaptador",
-            "Tubo y tubo muelle",
-            "Portagoma"
-          ]
+          "Cuatro perfiles de adaptador",
+          "Tubo y tubo muelle",
+          "Portagoma"
         ]
       ]
-    },
-    "RACOR": {
-      "eyebrow": "Redes de aire comprimido",
-      "title": "Tubería de aluminio y racorería",
-      "claim": "Sistema modular de aluminio de Ø20 a Ø63: se monta, se modifica y se amplía sin soldar.",
-      "lead": "Una red de aluminio no se oxida por dentro, así que no arrastra óxido a las herramientas ni pierde sección con los años. Y al ser desmontable, ampliar una línea o mover una toma es cuestión de minutos, no de un soldador.",
-      "fig": [
+    ]
+  },
+  "RACOR": {
+    "eyebrow": "Redes de aire comprimido",
+    "title": "Tubería de aluminio y racorería",
+    "claim": "Sistema modular de aluminio de Ø20 a Ø63: se monta, se modifica y se amplía sin soldar.",
+    "lead": "Una red de aluminio no se oxida por dentro, así que no arrastra óxido a las herramientas ni pierde sección con los años. Y al ser desmontable, ampliar una línea o mover una toma es cuestión de minutos, no de un soldador.",
+    "fig": [
+      [
+        "Ø20 a Ø63",
+        "Diámetros",
+        "mm"
+      ],
+      [
+        "Aluminio",
+        "Material",
+        "sin corrosión interna"
+      ],
+      [
+        "Desmontable",
+        "Montaje",
+        "sin soldadura"
+      ],
+      [
+        "Modular",
+        "Sistema",
+        "ampliable"
+      ]
+    ],
+    "cols": [
+      "Código",
+      "Ø<br><span class=\"u\">mm</span>",
+      "A<br><span class=\"u\">mm</span>",
+      "B<br><span class=\"u\">mm</span>",
+      "C<br><span class=\"u\">mm</span>"
+    ],
+    "rows": [
+      [
+        "@Manguito de unión reducido"
+      ],
+      [
+        "0210000092",
+        "25×20",
+        "52",
+        "91",
+        "44"
+      ],
+      [
+        "0210000035",
+        "32×25",
+        "62",
+        "103,5",
+        "52"
+      ],
+      [
+        "0210000039",
+        "40×32",
+        "72",
+        "121",
+        "62"
+      ],
+      [
+        "0210000232",
+        "50×40",
+        "86,5",
+        "145,5",
+        "72"
+      ],
+      [
+        "0210000024",
+        "63×50",
+        "105",
+        "167",
+        "86,5"
+      ],
+      [
+        "@Manguito de unión"
+      ],
+      [
+        "0210000206",
+        "20×20",
+        "44",
+        "85",
+        "—"
+      ],
+      [
+        "0210000138",
+        "25×25",
+        "52",
+        "97",
+        "—"
+      ],
+      [
+        "0210000079",
+        "32×32",
+        "62",
+        "113",
+        "—"
+      ],
+      [
+        "0210000179",
+        "40×40",
+        "72",
+        "129",
+        "—"
+      ],
+      [
+        "0210000072",
+        "50×50",
+        "86,5",
+        "157",
+        "—"
+      ],
+      [
+        "0210000244",
+        "63×63",
+        "105",
+        "182",
+        "—"
+      ],
+      [
+        "@Codo 90º"
+      ],
+      [
+        "0210000055",
+        "20×20",
+        "44",
+        "76",
+        "—"
+      ],
+      [
+        "0210000195",
+        "25×25",
+        "52",
+        "92",
+        "—"
+      ],
+      [
+        "0210000237",
+        "32×32",
+        "62",
+        "109",
+        "—"
+      ],
+      [
+        "0210000127",
+        "40×40",
+        "72",
+        "127,5",
+        "—"
+      ],
+      [
+        "0210000226",
+        "50×50",
+        "86,5",
+        "157,5",
+        "—"
+      ],
+      [
+        "0210000036",
+        "63×63",
+        "105",
+        "182",
+        "—"
+      ],
+      [
+        "@Tapón"
+      ],
+      [
+        "0210000014",
+        "20",
+        "44,5",
+        "64,5",
+        "—"
+      ],
+      [
+        "0210000166",
+        "25",
+        "53,5",
+        "88,5",
+        "—"
+      ],
+      [
+        "0210000007",
+        "32",
+        "63",
+        "98",
+        "—"
+      ],
+      [
+        "0210000176",
+        "40",
+        "68,5",
+        "103,5",
+        "—"
+      ],
+      [
+        "0210000099",
+        "50",
+        "82,5",
+        "117,5",
+        "—"
+      ],
+      [
+        "0210000220",
+        "63",
+        "94,5",
+        "129,5",
+        "—"
+      ]
+    ],
+    "n1": "",
+    "n2": "",
+    "n3": "Gama completa de racorería en el catálogo: bajantes, distribuidores, abrazaderas, injertos y taladros de toma en carga.",
+    "pend": "",
+    "aviso": "",
+    "ben": [
+      [
+        "No se oxida por dentro",
+        "El aluminio no genera óxido, así que la red no pierde sección ni envía partículas a las herramientas."
+      ],
+      [
+        "Se modifica sin obra",
+        "Añadir una toma o mover una bajante no exige soldador ni parar la producción más de lo imprescindible."
+      ],
+      [
+        "Menos pérdida de carga",
+        "Interior liso y curvas de radio amplio: llega más presión al punto de uso con el mismo compresor."
+      ],
+      [
+        "Ligera de montar",
+        "Tramos manejables por una persona, sujeción con abrazadera y sin equipo de soldadura en obra."
+      ],
+      [
+        "Toma en carga",
+        "Los taladros con presión permiten añadir una derivación sin vaciar la red."
+      ]
+    ],
+    "dis": [
+      [
+        "Tubería",
         [
-          "Ø20 a Ø63",
-          "Diámetros",
-          "mm"
-        ],
-        [
-          "Aluminio",
-          "Material",
-          "sin corrosión interna"
-        ],
-        [
-          "Desmontable",
-          "Montaje",
-          "sin soldadura"
-        ],
-        [
-          "Modular",
-          "Sistema",
-          "ampliable"
+          "Aluminio de Ø20 a Ø63 mm",
+          "Interior liso",
+          "Unión desmontable"
         ]
       ],
-      "cols": [
-        "Código",
-        "Ø<br><span class=\"u\">mm</span>",
-        "A<br><span class=\"u\">mm</span>",
-        "B<br><span class=\"u\">mm</span>",
-        "C<br><span class=\"u\">mm</span>"
-      ],
-      "rows": [
+      [
+        "Racorería",
         [
-          "@Manguito de unión reducido"
-        ],
-        [
-          "0210000092",
-          "25×20",
-          "52",
-          "91",
-          "44"
-        ],
-        [
-          "0210000035",
-          "32×25",
-          "62",
-          "103,5",
-          "52"
-        ],
-        [
-          "0210000039",
-          "40×32",
-          "72",
-          "121",
-          "62"
-        ],
-        [
-          "0210000232",
-          "50×40",
-          "86,5",
-          "145,5",
-          "72"
-        ],
-        [
-          "0210000024",
-          "63×50",
-          "105",
-          "167",
-          "86,5"
-        ],
-        [
-          "@Manguito de unión"
-        ],
-        [
-          "0210000206",
-          "20×20",
-          "44",
-          "85",
-          "—"
-        ],
-        [
-          "0210000138",
-          "25×25",
-          "52",
-          "97",
-          "—"
-        ],
-        [
-          "0210000079",
-          "32×32",
-          "62",
-          "113",
-          "—"
-        ],
-        [
-          "0210000179",
-          "40×40",
-          "72",
-          "129",
-          "—"
-        ],
-        [
-          "0210000072",
-          "50×50",
-          "86,5",
-          "157",
-          "—"
-        ],
-        [
-          "0210000244",
-          "63×63",
-          "105",
-          "182",
-          "—"
-        ],
-        [
-          "@Codo 90º"
-        ],
-        [
-          "0210000055",
-          "20×20",
-          "44",
-          "76",
-          "—"
-        ],
-        [
-          "0210000195",
-          "25×25",
-          "52",
-          "92",
-          "—"
-        ],
-        [
-          "0210000237",
-          "32×32",
-          "62",
-          "109",
-          "—"
-        ],
-        [
-          "0210000127",
-          "40×40",
-          "72",
-          "127,5",
-          "—"
-        ],
-        [
-          "0210000226",
-          "50×50",
-          "86,5",
-          "157,5",
-          "—"
-        ],
-        [
-          "0210000036",
-          "63×63",
-          "105",
-          "182",
-          "—"
-        ],
-        [
-          "@Tapón"
-        ],
-        [
-          "0210000014",
-          "20",
-          "44,5",
-          "64,5",
-          "—"
-        ],
-        [
-          "0210000166",
-          "25",
-          "53,5",
-          "88,5",
-          "—"
-        ],
-        [
-          "0210000007",
-          "32",
-          "63",
-          "98",
-          "—"
-        ],
-        [
-          "0210000176",
-          "40",
-          "68,5",
-          "103,5",
-          "—"
-        ],
-        [
-          "0210000099",
-          "50",
-          "82,5",
-          "117,5",
-          "—"
-        ],
-        [
-          "0210000220",
-          "63",
-          "94,5",
-          "129,5",
-          "—"
+          "Manguitos de unión y reducidos",
+          "Codos de 90º y 45º",
+          "Tapones y racores de purga"
         ]
       ],
-      "n1": "",
-      "n2": "",
-      "n3": "Gama completa de racorería en el catálogo: bajantes, distribuidores, abrazaderas, injertos y taladros de toma en carga.",
-      "pend": "",
-      "aviso": "",
-      "ben": [
+      [
+        "Derivación",
         [
-          "No se oxida por dentro",
-          "El aluminio no genera óxido, así que la red no pierde sección ni envía partículas a las herramientas."
-        ],
-        [
-          "Se modifica sin obra",
-          "Añadir una toma o mover una bajante no exige soldador ni parar la producción más de lo imprescindible."
-        ],
-        [
-          "Menos pérdida de carga",
-          "Interior liso y curvas de radio amplio: llega más presión al punto de uso con el mismo compresor."
-        ],
-        [
-          "Ligera de montar",
-          "Tramos manejables por una persona, sujeción con abrazadera y sin equipo de soldadura en obra."
-        ],
-        [
-          "Toma en carga",
-          "Los taladros con presión permiten añadir una derivación sin vaciar la red."
-        ]
-      ],
-      "dis": [
-        [
-          "Tubería",
-          [
-            "Aluminio de Ø20 a Ø63 mm",
-            "Interior liso",
-            "Unión desmontable"
-          ]
-        ],
-        [
-          "Racorería",
-          [
-            "Manguitos de unión y reducidos",
-            "Codos de 90º y 45º",
-            "Tapones y racores de purga"
-          ]
-        ],
-        [
-          "Derivación",
-          [
-            "Bajantes y manguitos de derivación",
-            "Distribuidores de 1 a 4 salidas",
-            "Taladro simple y con presión"
-          ]
+          "Bajantes y manguitos de derivación",
+          "Distribuidores de 1 a 4 salidas",
+          "Taladro simple y con presión"
         ]
       ]
-    },
-    "ENROLLADOR": {
-      "eyebrow": "Redes de aire comprimido",
-      "title": "Enrolladores automáticos",
-      "claim": "Manguera recogida, sin tropiezos y sin arrastrarla por el suelo del taller.",
-      "lead": "Una manguera por el suelo es un riesgo y un consumible: se pisa, se dobla y acaba con fugas. El enrollador la mantiene tensada, recogida y fuera del paso.",
-      "fig": [
-        [
-          "1/4″ y 3/8″",
-          "Racor",
-          ""
-        ],
-        [
-          "8×12 / 10×14",
-          "Tubo",
-          "mm"
-        ],
-        [
-          "15 y 12 m",
-          "Longitud",
-          ""
-        ],
-        [
-          "Automático",
-          "Recogida",
-          ""
-        ]
-      ],
-      "cols": [
+    ]
+  },
+  "ENROLLADOR": {
+    "eyebrow": "Redes de aire comprimido",
+    "title": "Enrolladores automáticos",
+    "claim": "Manguera recogida, sin tropiezos y sin arrastrarla por el suelo del taller.",
+    "lead": "Una manguera por el suelo es un riesgo y un consumible: se pisa, se dobla y acaba con fugas. El enrollador la mantiene tensada, recogida y fuera del paso.",
+    "fig": [
+      [
+        "1/4″ y 3/8″",
         "Racor",
-        "Ø tubo<br><span class=\"u\">mm</span>",
-        "Longitud<br><span class=\"u\">m</span>"
+        ""
       ],
-      "rows": [
-        [
-          "1/4″",
-          "8 × 12",
-          "15"
-        ],
-        [
-          "3/8″",
-          "10 × 14",
-          "12"
-        ]
+      [
+        "8×12 / 10×14",
+        "Tubo",
+        "mm"
       ],
-      "n1": "",
-      "n2": "",
-      "n3": "",
-      "pend": "",
-      "aviso": "",
-      "ben": [
+      [
+        "15 y 12 m",
+        "Longitud",
+        ""
+      ],
+      [
+        "Automático",
+        "Recogida",
+        ""
+      ]
+    ],
+    "cols": [
+      "Racor",
+      "Ø tubo<br><span class=\"u\">mm</span>",
+      "Longitud<br><span class=\"u\">m</span>"
+    ],
+    "rows": [
+      [
+        "1/4″",
+        "8 × 12",
+        "15"
+      ],
+      [
+        "3/8″",
+        "10 × 14",
+        "12"
+      ]
+    ],
+    "n1": "",
+    "n2": "",
+    "n3": "",
+    "pend": "",
+    "aviso": "",
+    "ben": [
+      [
+        "Menos accidentes",
+        "La manguera deja de estar por el suelo: es la causa más tonta de caída en un taller."
+      ],
+      [
+        "Alarga la vida de la manguera",
+        "Sin pisadas ni dobleces forzados, la manguera dura varias veces más."
+      ],
+      [
+        "Bloqueo por posiciones",
+        "Se saca la longitud que hace falta y queda fijada, sin tirar del carrete todo el rato."
+      ],
+      [
+        "Montaje en pared o techo",
+        "Se coloca sobre el puesto de trabajo y deja el suelo libre."
+      ],
+      [
+        "Dos medidas de racor",
+        "1/4″ para herramienta ligera y 3/8″ cuando hace falta más caudal."
+      ]
+    ],
+    "dis": [
+      [
+        "Tambor",
         [
-          "Menos accidentes",
-          "La manguera deja de estar por el suelo: es la causa más tonta de caída en un taller."
-        ],
-        [
-          "Alarga la vida de la manguera",
-          "Sin pisadas ni dobleces forzados, la manguera dura varias veces más."
-        ],
-        [
+          "Recogida automática por muelle",
           "Bloqueo por posiciones",
-          "Se saca la longitud que hace falta y queda fijada, sin tirar del carrete todo el rato."
-        ],
-        [
-          "Montaje en pared o techo",
-          "Se coloca sobre el puesto de trabajo y deja el suelo libre."
-        ],
-        [
-          "Dos medidas de racor",
-          "1/4″ para herramienta ligera y 3/8″ cuando hace falta más caudal."
+          "Soporte orientable"
         ]
       ],
-      "dis": [
+      [
+        "Manguera",
         [
-          "Tambor",
-          [
-            "Recogida automática por muelle",
-            "Bloqueo por posiciones",
-            "Soporte orientable"
-          ]
-        ],
+          "Tubo de 8×12 o 10×14 mm",
+          "12 o 15 m según modelo",
+          "Racor de 1/4″ o 3/8″"
+        ]
+      ],
+      [
+        "Montaje",
         [
-          "Manguera",
-          [
-            "Tubo de 8×12 o 10×14 mm",
-            "12 o 15 m según modelo",
-            "Racor de 1/4″ o 3/8″"
-          ]
-        ],
-        [
-          "Montaje",
-          [
-            "Pared o techo",
-            "Tope de manguera",
-            "Orientación libre"
-          ]
+          "Pared o techo",
+          "Tope de manguera",
+          "Orientación libre"
         ]
       ]
-    },
-    "PURGA": {
-      "eyebrow": "Tratamiento de aire comprimido",
-      "title": "Purgas de condensado",
-      "claim": "Tres tecnologías: temporizada, de boya y capacitiva de cero pérdidas.",
-      "lead": "Todo el agua que el aire deja por el camino hay que sacarla. La diferencia entre una purga y otra es cuánto aire comprimido se te escapa con ella: una temporizada mal ajustada tira aire en cada ciclo, todo el año.",
-      "fig": [
-        [
-          "10 m³/min",
-          "Capacidad de compresor",
-          "purga capacitiva"
-        ],
-        [
-          "45 l/h",
-          "Drenaje máximo",
-          "a 16 bar"
-        ],
-        [
-          "74 mm",
-          "Altura de entrada",
-          ""
-        ],
-        [
-          "0,5 kg",
-          "Peso",
-          ""
-        ]
+    ]
+  },
+  "PURGA": {
+    "eyebrow": "Tratamiento de aire comprimido",
+    "title": "Purgas de condensado",
+    "claim": "Tres tecnologías: temporizada, de boya y capacitiva de cero pérdidas.",
+    "lead": "Todo el agua que el aire deja por el camino hay que sacarla. La diferencia entre una purga y otra es cuánto aire comprimido se te escapa con ella: una temporizada mal ajustada tira aire en cada ciclo, todo el año.",
+    "fig": [
+      [
+        "10 m³/min",
+        "Capacidad de compresor",
+        "purga capacitiva"
       ],
-      "cols": [
-        "Tipo",
-        "Conexión",
-        "Alimentación",
-        "Cómo actúa",
-        "Pérdida de aire"
+      [
+        "45 l/h",
+        "Drenaje máximo",
+        "a 16 bar"
       ],
-      "rows": [
+      [
+        "74 mm",
+        "Altura de entrada",
+        ""
+      ],
+      [
+        "0,5 kg",
+        "Peso",
+        ""
+      ]
+    ],
+    "cols": [
+      "Tipo",
+      "Conexión",
+      "Alimentación",
+      "Cómo actúa",
+      "Pérdida de aire"
+    ],
+    "rows": [
+      [
+        "Purga capacitiva electrónica",
+        "1/2″",
+        "230 V AC",
+        "Detecta el nivel real de condensado",
+        "Ninguna"
+      ],
+      [
+        "Purga temporizada",
+        "1/2″",
+        "220 V",
+        "Abre a intervalos programados",
+        "Sí, en cada ciclo"
+      ],
+      [
+        "Purga de boya",
+        "1/2″",
+        "No necesita",
+        "Mecanismo de boya, totalmente automático",
+        "Mínima"
+      ]
+    ],
+    "n1": "",
+    "n2": "",
+    "n3": "Datos de la purga capacitiva: capacidad máxima de compresor 10 m³/min, drenaje de hasta 45 litros de condensado por hora a 16 bar.",
+    "pend": "",
+    "aviso": "",
+    "ben": [
+      [
+        "La capacitiva no tira aire",
+        "Solo se activa cuando hay condensado de verdad. Lo que se ahorra en aire comprimido amortiza la diferencia de precio."
+      ],
+      [
+        "Compacta",
+        "74 mm de altura de entrada y medio kilo: entra en cualquier hueco de la sala."
+      ],
+      [
+        "Sin intervención del usuario",
+        "Ni en la instalación ni en la operación: se monta y se olvida."
+      ],
+      [
+        "Una por punto bajo",
+        "Calderín, secador y puntos bajos de la red necesitan la suya: el condensado se acumula donde el aire se enfría."
+      ],
+      [
+        "El condensado es residuo",
+        "Lleva aceite. Conviene enviarlo a un separador aceite-agua antes de verterlo."
+      ]
+    ],
+    "dis": [
+      [
+        "Capacitiva",
         [
-          "Purga capacitiva electrónica",
-          "1/2″",
+          "Sensor de nivel, sin pérdida de aire",
           "230 V AC",
-          "Detecta el nivel real de condensado",
-          "Ninguna"
-        ],
-        [
-          "Purga temporizada",
-          "1/2″",
-          "220 V",
-          "Abre a intervalos programados",
-          "Sí, en cada ciclo"
-        ],
-        [
-          "Purga de boya",
-          "1/2″",
-          "No necesita",
-          "Mecanismo de boya, totalmente automático",
-          "Mínima"
+          "Hasta 10 m³/min de compresor"
         ]
       ],
-      "n1": "",
-      "n2": "",
-      "n3": "Datos de la purga capacitiva: capacidad máxima de compresor 10 m³/min, drenaje de hasta 45 litros de condensado por hora a 16 bar.",
-      "pend": "",
-      "aviso": "",
-      "ben": [
+      [
+        "Temporizada",
         [
-          "La capacitiva no tira aire",
-          "Solo se activa cuando hay condensado de verdad. Lo que se ahorra en aire comprimido amortiza la diferencia de precio."
-        ],
-        [
-          "Compacta",
-          "74 mm de altura de entrada y medio kilo: entra en cualquier hueco de la sala."
-        ],
-        [
-          "Sin intervención del usuario",
-          "Ni en la instalación ni en la operación: se monta y se olvida."
-        ],
-        [
-          "Una por punto bajo",
-          "Calderín, secador y puntos bajos de la red necesitan la suya: el condensado se acumula donde el aire se enfría."
-        ],
-        [
-          "El condensado es residuo",
-          "Lleva aceite. Conviene enviarlo a un separador aceite-agua antes de verterlo."
+          "Válvula solenoide con temporizador",
+          "Tiempo y frecuencia regulables",
+          "220 V"
         ]
       ],
-      "dis": [
+      [
+        "De boya",
         [
-          "Capacitiva",
-          [
-            "Sensor de nivel, sin pérdida de aire",
-            "230 V AC",
-            "Hasta 10 m³/min de compresor"
-          ]
-        ],
-        [
-          "Temporizada",
-          [
-            "Válvula solenoide con temporizador",
-            "Tiempo y frecuencia regulables",
-            "220 V"
-          ]
-        ],
-        [
-          "De boya",
-          [
-            "Mecanismo mecánico de boya",
-            "Sin alimentación eléctrica",
-            "Totalmente automática"
-          ]
+          "Mecanismo mecánico de boya",
+          "Sin alimentación eléctrica",
+          "Totalmente automática"
         ]
       ]
-    },
-    "PISTOLA": {
-      "eyebrow": "Redes de aire comprimido",
-      "title": "Pistolas de soplado",
-      "claim": "Cinco versiones, incluida la de seguridad con silenciador.",
-      "lead": "La pistola es la herramienta más usada de cualquier instalación y la que más aire gasta si no está bien elegida. Las versiones de seguridad limitan la presión de salida y reducen el ruido.",
-      "fig": [
-        [
-          "5 versiones",
-          "en la gama",
-          ""
-        ],
-        [
-          "100 a 300 mm",
-          "Boquilla de acero",
-          ""
-        ],
-        [
-          "Seguridad",
-          "Versión con silenciador",
-          ""
-        ],
-        [
-          "Progresiva",
-          "Gatillo",
-          ""
-        ]
+    ]
+  },
+  "PISTOLA": {
+    "eyebrow": "Redes de aire comprimido",
+    "title": "Pistolas de soplado",
+    "claim": "Cinco versiones, incluida la de seguridad con silenciador.",
+    "lead": "La pistola es la herramienta más usada de cualquier instalación y la que más aire gasta si no está bien elegida. Las versiones de seguridad limitan la presión de salida y reducen el ruido.",
+    "fig": [
+      [
+        "5 versiones",
+        "en la gama",
+        ""
       ],
-      "cols": [
-        "Modelo",
-        "Boquilla",
-        "Gatillo"
+      [
+        "100 a 300 mm",
+        "Boquilla de acero",
+        ""
       ],
-      "rows": [
-        [
-          "Pistola de soplar Pro estándar",
-          "Estándar",
-          "Estándar"
-        ],
-        [
-          "Pistola progresiva c/boquilla de acero 100 mm",
-          "Acero, 100 mm",
-          "Progresivo"
-        ],
-        [
-          "Pistola progresiva c/boquilla de acero 200 mm",
-          "Acero, 200 mm",
-          "Progresivo"
-        ],
-        [
-          "Pistola progresiva c/boquilla de acero 300 mm",
-          "Acero, 300 mm",
-          "Progresivo"
-        ],
-        [
-          "Pistola progresiva de seguridad con silenciador",
-          "Seguridad",
-          "Progresivo"
-        ]
+      [
+        "Seguridad",
+        "Versión con silenciador",
+        ""
       ],
-      "n1": "",
-      "n2": "",
-      "n3": "Espirales de poliuretano de 5×8 mm disponibles en 3, 5, 8 y 12 m.",
-      "pend": "",
-      "aviso": "",
-      "ben": [
+      [
+        "Progresiva",
+        "Gatillo",
+        ""
+      ]
+    ],
+    "cols": [
+      "Modelo",
+      "Boquilla",
+      "Gatillo"
+    ],
+    "rows": [
+      [
+        "Pistola de soplar Pro estándar",
+        "Estándar",
+        "Estándar"
+      ],
+      [
+        "Pistola progresiva c/boquilla de acero 100 mm",
+        "Acero, 100 mm",
+        "Progresivo"
+      ],
+      [
+        "Pistola progresiva c/boquilla de acero 200 mm",
+        "Acero, 200 mm",
+        "Progresivo"
+      ],
+      [
+        "Pistola progresiva c/boquilla de acero 300 mm",
+        "Acero, 300 mm",
+        "Progresivo"
+      ],
+      [
+        "Pistola progresiva de seguridad con silenciador",
+        "Seguridad",
+        "Progresivo"
+      ]
+    ],
+    "n1": "",
+    "n2": "",
+    "n3": "Espirales de poliuretano de 5×8 mm disponibles en 3, 5, 8 y 12 m.",
+    "pend": "",
+    "aviso": "",
+    "ben": [
+      [
+        "Gatillo progresivo",
+        "Dosifica el aire en lugar de abrir a tope: menos consumo y más control en el trabajo fino."
+      ],
+      [
+        "Boquillas de acero",
+        "De 100 a 300 mm para llegar al fondo de un alojamiento sin acercar la mano."
+      ],
+      [
+        "Versión de seguridad",
+        "Con silenciador y presión de salida limitada, para cumplir en puestos con exposición continua."
+      ],
+      [
+        "Menos ruido",
+        "El soplado es de las fuentes de ruido más altas del taller y la más fácil de reducir."
+      ],
+      [
+        "Espiral a juego",
+        "Poliuretano de 5×8 mm en cuatro longitudes, para que la manguera no arrastre."
+      ]
+    ],
+    "dis": [
+      [
+        "Cuerpo",
         [
           "Gatillo progresivo",
-          "Dosifica el aire en lugar de abrir a tope: menos consumo y más control en el trabajo fino."
-        ],
-        [
-          "Boquillas de acero",
-          "De 100 a 300 mm para llegar al fondo de un alojamiento sin acercar la mano."
-        ],
-        [
-          "Versión de seguridad",
-          "Con silenciador y presión de salida limitada, para cumplir en puestos con exposición continua."
-        ],
-        [
-          "Menos ruido",
-          "El soplado es de las fuentes de ruido más altas del taller y la más fácil de reducir."
-        ],
-        [
-          "Espiral a juego",
-          "Poliuretano de 5×8 mm en cuatro longitudes, para que la manguera no arrastre."
+          "Conexión rápida",
+          "Versión estándar y de seguridad"
         ]
       ],
-      "dis": [
+      [
+        "Boquillas",
         [
-          "Cuerpo",
-          [
-            "Gatillo progresivo",
-            "Conexión rápida",
-            "Versión estándar y de seguridad"
-          ]
-        ],
+          "Acero de 100, 200 y 300 mm",
+          "Boquilla estándar",
+          "Silenciador en la de seguridad"
+        ]
+      ],
+      [
+        "Espirales",
         [
-          "Boquillas",
-          [
-            "Acero de 100, 200 y 300 mm",
-            "Boquilla estándar",
-            "Silenciador en la de seguridad"
-          ]
-        ],
-        [
-          "Espirales",
-          [
-            "Poliuretano azul 5×8 mm",
-            "3, 5, 8 y 12 m",
-            "Recuperación elástica"
-          ]
+          "Poliuretano azul 5×8 mm",
+          "3, 5, 8 y 12 m",
+          "Recuperación elástica"
         ]
       ]
-    },
-    "SEPARADOR": {
-      "eyebrow": "Separadores agua-aceite · Serie JEP Premium",
-      "title": "Separadores agua-aceite JEP Premium",
-      "claim": "De 2 a 60 m³/min, con menos de 5 ppm de aceite residual en el vertido.",
-      "lead": "El condensado que sale de tu compresor lleva aceite, y verterlo al saneamiento sin tratar es una infracción. El separador lo filtra en varias etapas hasta dejar el efluente por debajo de <strong>5 ppm</strong>, que es lo que permite verterlo cumpliendo.",
-      "fig": [
-        [
-          "2–60 m³/min",
-          "Capacidad de compresor",
-          ""
-        ],
-        [
-          "< 5 ppm",
-          "Aceite residual",
-          "en el efluente"
-        ],
-        [
-          "6 modelos",
-          "en la serie",
-          ""
-        ],
-        [
-          "Carbón activado",
-          "Etapa final",
-          "según modelo"
-        ]
+    ]
+  },
+  "SEPARADOR": {
+    "eyebrow": "Separadores agua-aceite · Serie JEP Premium",
+    "title": "Separadores agua-aceite JEP Premium",
+    "claim": "De 2 a 60 m³/min, con menos de 5 ppm de aceite residual en el vertido.",
+    "lead": "El condensado que sale de tu compresor lleva aceite, y verterlo al saneamiento sin tratar es una infracción. El separador lo filtra en varias etapas hasta dejar el efluente por debajo de <strong>5 ppm</strong>, que es lo que permite verterlo cumpliendo.",
+    "fig": [
+      [
+        "2–60 m³/min",
+        "Capacidad de compresor",
+        ""
       ],
-      "cols": [
-        "Modelo",
-        "Capacidad máx. de compresor<br><span class=\"u\">m³/min</span>",
+      [
+        "< 5 ppm",
         "Aceite residual",
+        "en el efluente"
+      ],
+      [
+        "6 modelos",
+        "en la serie",
+        ""
+      ],
+      [
+        "Carbón activado",
+        "Etapa final",
+        "según modelo"
+      ]
+    ],
+    "cols": [
+      "Modelo",
+      "Capacidad máx. de compresor<br><span class=\"u\">m³/min</span>",
+      "Aceite residual",
+      "Indicador de desbordamiento",
+      "Sensor de monitorización"
+    ],
+    "rows": [
+      [
+        "JEP 2 Premium",
+        "2",
+        "—",
+        "—",
+        "—"
+      ],
+      [
+        "JEP 4.5 Premium",
+        "4,5",
+        "< 5 ppm",
+        "Opcional",
+        "Opcional"
+      ],
+      [
+        "JEP 10 Premium",
+        "10",
+        "< 5 ppm",
+        "Sí",
+        "Opcional"
+      ],
+      [
+        "JEP 20 Premium",
+        "20",
+        "< 5 ppm",
+        "Sí",
+        "Opcional"
+      ],
+      [
+        "JEP 30 Premium",
+        "30",
+        "< 5 ppm",
+        "Sí",
+        "Opcional"
+      ],
+      [
+        "JEP 60 Premium",
+        "60",
+        "< 5 ppm",
+        "Sí",
+        "Opcional"
+      ]
+    ],
+    "n1": "",
+    "n2": "",
+    "n3": "El JEP 2 Premium es la solución compacta para instalaciones pequeñas; a partir del JEP 4.5 la serie declara efluente por debajo de 5 ppm. Todos separan aceite mineral, sintético y emulsiones estables.",
+    "pend": "",
+    "aviso": "",
+    "ben": [
+      [
+        "Por debajo de 5 ppm",
+        "La filtración en varias etapas deja el efluente con menos de 5 ppm de aceite, que es el umbral que permite verterlo cumpliendo la normativa ambiental."
+      ],
+      [
+        "También con emulsiones",
+        "Separa aceite mineral, sintético y emulsiones estables, que son las que atascan los separadores por gravedad de toda la vida."
+      ],
+      [
         "Indicador de desbordamiento",
-        "Sensor de monitorización"
+        "Avisa antes de que el elemento sature. Sin él, el primer síntoma suele ser el vertido sin tratar."
       ],
-      "rows": [
+      [
+        "Válvula de prueba y botella",
+        "Permite comprobar el valor de salida en ppm cuando lo pida una inspección, sin equipo externo."
+      ],
+      [
+        "Cambio de elemento sencillo",
+        "Elementos ergonómicos y drenaje seccionado: el mantenimiento no obliga a parar la línea."
+      ]
+    ],
+    "dis": [
+      [
+        "Filtración",
         [
-          "JEP 2 Premium",
-          "2",
-          "—",
-          "—",
-          "—"
-        ],
-        [
-          "JEP 4.5 Premium",
-          "4,5",
-          "< 5 ppm",
-          "Opcional",
-          "Opcional"
-        ],
-        [
-          "JEP 10 Premium",
-          "10",
-          "< 5 ppm",
-          "Sí",
-          "Opcional"
-        ],
-        [
-          "JEP 20 Premium",
-          "20",
-          "< 5 ppm",
-          "Sí",
-          "Opcional"
-        ],
-        [
-          "JEP 30 Premium",
-          "30",
-          "< 5 ppm",
-          "Sí",
-          "Opcional"
-        ],
-        [
-          "JEP 60 Premium",
-          "60",
-          "< 5 ppm",
-          "Sí",
-          "Opcional"
+          "Varias etapas de adsorción",
+          "Etapa final de carbón activado en los modelos grandes",
+          "Elemento filtrante Jender de alta calidad"
         ]
       ],
-      "n1": "",
-      "n2": "",
-      "n3": "El JEP 2 Premium es la solución compacta para instalaciones pequeñas; a partir del JEP 4.5 la serie declara efluente por debajo de 5 ppm. Todos separan aceite mineral, sintético y emulsiones estables.",
-      "pend": "",
-      "aviso": "",
-      "ben": [
+      [
+        "Control",
         [
-          "Por debajo de 5 ppm",
-          "La filtración en varias etapas deja el efluente con menos de 5 ppm de aceite, que es el umbral que permite verterlo cumpliendo la normativa ambiental."
-        ],
-        [
-          "También con emulsiones",
-          "Separa aceite mineral, sintético y emulsiones estables, que son las que atascan los separadores por gravedad de toda la vida."
-        ],
-        [
-          "Indicador de desbordamiento",
-          "Avisa antes de que el elemento sature. Sin él, el primer síntoma suele ser el vertido sin tratar."
-        ],
-        [
-          "Válvula de prueba y botella",
-          "Permite comprobar el valor de salida en ppm cuando lo pida una inspección, sin equipo externo."
-        ],
-        [
-          "Cambio de elemento sencillo",
-          "Elementos ergonómicos y drenaje seccionado: el mantenimiento no obliga a parar la línea."
+          "Indicador visual de vida útil del elemento",
+          "Indicador luminoso de desbordamiento",
+          "Sensor opcional para monitorización remota"
         ]
       ],
-      "dis": [
+      [
+        "Instalación",
         [
-          "Filtración",
-          [
-            "Varias etapas de adsorción",
-            "Etapa final de carbón activado en los modelos grandes",
-            "Elemento filtrante Jender de alta calidad"
-          ]
-        ],
-        [
-          "Control",
-          [
-            "Indicador visual de vida útil del elemento",
-            "Indicador luminoso de desbordamiento",
-            "Sensor opcional para monitorización remota"
-          ]
-        ],
-        [
-          "Instalación",
-          [
-            "Múltiples entradas de condensado",
-            "Conectores de latón",
-            "Compatible con purgas temporizadas y de cero pérdidas"
-          ]
+          "Múltiples entradas de condensado",
+          "Conectores de latón",
+          "Compatible con purgas temporizadas y de cero pérdidas"
         ]
       ]
-    },
-    "HERRAMIENTA": {
-      "eyebrow": "Redes de aire comprimido",
-      "title": "Herramientas de montaje",
-      "claim": "Lo que hace falta para montar una red de aluminio bien: cortar recto, quitar rebaba y apretar al par.",
-      "lead": "La mayoría de las fugas de una red nueva no vienen del material, vienen del montaje: un corte torcido, una rebaba que muerde la junta o un racor apretado a ojo. Con la herramienta correcta eso no pasa.",
-      "fig": [
+    ]
+  },
+  "HERRAMIENTA": {
+    "eyebrow": "Redes de aire comprimido",
+    "title": "Herramientas de montaje",
+    "claim": "Lo que hace falta para montar una red de aluminio bien: cortar recto, quitar rebaba y apretar al par.",
+    "lead": "La mayoría de las fugas de una red nueva no vienen del material, vienen del montaje: un corte torcido, una rebaba que muerde la junta o un racor apretado a ojo. Con la herramienta correcta eso no pasa.",
+    "fig": [
+      [
+        "Ø6 a 67 mm",
+        "Corte",
+        ""
+      ],
+      [
+        "Toma en carga",
+        "Sin vaciar la red",
+        ""
+      ],
+      [
+        "Ø20 a 63",
+        "Llaves",
+        "bloqueo y apriete"
+      ],
+      [
+        "4 pasos",
+        "Marca, introduce, posiciona, cierra",
+        ""
+      ]
+    ],
+    "cols": [
+      "Herramienta",
+      "Medida",
+      "Para qué"
+    ],
+    "rows": [
+      [
+        "@Corte y preparación del tubo"
+      ],
+      [
+        "Cortatubo",
+        "Ø 6 a 42 mm",
+        "Corte perpendicular del tubo de aluminio"
+      ],
+      [
+        "Cortatubo",
+        "Ø 6 a 67 mm",
+        "Para los diámetros mayores de la red"
+      ],
+      [
+        "Quitarrebabas cónico",
+        "Ø 20 a 50 mm",
+        "Elimina la rebaba interior tras el corte"
+      ],
+      [
+        "Escariador ajustable",
+        "Ø 50 a 63 mm",
+        "Calibra el extremo antes de meter el racor"
+      ],
+      [
+        "@Toma en carga"
+      ],
+      [
+        "Taladro simple 1/2″",
+        "Ø 12 · L 150 mm",
+        "Derivación con la red despresurizada"
+      ],
+      [
+        "Taladro simple 1″",
+        "Ø 20 · L 205 mm",
+        "Derivación de mayor sección"
+      ],
+      [
+        "Taladro con presión 1/2″",
+        "L 202 mm",
+        "Añade una toma sin vaciar la red"
+      ],
+      [
+        "@Montaje del racor"
+      ],
+      [
+        "Llaves de bloqueo",
+        "Ø 20, 25, 32, 40, 50 y 63",
+        "Sujetan el racor mientras se aprieta"
+      ],
+      [
+        "Llaves de apriete",
+        "Ø 20, 25, 32, 40, 50 y 63",
+        "Cierran el racor a su par"
+      ]
+    ],
+    "n1": "",
+    "n2": "",
+    "n3": "Secuencia de montaje del racor: marcar la introducción del tubo, introducirlo hasta la señal, posicionar las llaves y cerrar el racor.",
+    "pend": "",
+    "aviso": "",
+    "ben": [
+      [
+        "El corte decide la estanqueidad",
+        "Un corte perpendicular y sin rebaba es lo que permite que la junta del racor asiente. Con sierra de mano no se consigue."
+      ],
+      [
+        "Toma en carga",
+        "El taladro con presión añade una derivación sin vaciar la red: se amplia la instalación sin parar la producción."
+      ],
+      [
+        "Apriete al par",
+        "Las llaves de bloqueo y apriete cierran el racor en su punto: ni flojo, que fuga, ni pasado, que deforma la junta."
+      ],
+      [
+        "Una medida por diámetro",
+        "Juegos de Ø20 a Ø63, los mismos diámetros que la tubería de aluminio de la gama."
+      ],
+      [
+        "Montaje repetible",
+        "Con la secuencia de cuatro pasos, cualquier operario monta la red igual de bien."
+      ]
+    ],
+    "dis": [
+      [
+        "Corte",
         [
-          "Ø6 a 67 mm",
-          "Corte",
-          ""
-        ],
-        [
-          "Toma en carga",
-          "Sin vaciar la red",
-          ""
-        ],
-        [
-          "Ø20 a 63",
-          "Llaves",
-          "bloqueo y apriete"
-        ],
-        [
-          "4 pasos",
-          "Marca, introduce, posiciona, cierra",
-          ""
+          "Cortatubos de Ø6 a 42 y de Ø6 a 67 mm",
+          "Quitarrebabas cónico de Ø20 a 50",
+          "Escariador ajustable de Ø50 a 63"
         ]
       ],
-      "cols": [
-        "Herramienta",
-        "Medida",
-        "Para qué"
-      ],
-      "rows": [
+      [
+        "Derivación",
         [
-          "@Corte y preparación del tubo"
-        ],
-        [
-          "Cortatubo",
-          "Ø 6 a 42 mm",
-          "Corte perpendicular del tubo de aluminio"
-        ],
-        [
-          "Cortatubo",
-          "Ø 6 a 67 mm",
-          "Para los diámetros mayores de la red"
-        ],
-        [
-          "Quitarrebabas cónico",
-          "Ø 20 a 50 mm",
-          "Elimina la rebaba interior tras el corte"
-        ],
-        [
-          "Escariador ajustable",
-          "Ø 50 a 63 mm",
-          "Calibra el extremo antes de meter el racor"
-        ],
-        [
-          "@Toma en carga"
-        ],
-        [
-          "Taladro simple 1/2″",
-          "Ø 12 · L 150 mm",
-          "Derivación con la red despresurizada"
-        ],
-        [
-          "Taladro simple 1″",
-          "Ø 20 · L 205 mm",
-          "Derivación de mayor sección"
-        ],
-        [
-          "Taladro con presión 1/2″",
-          "L 202 mm",
-          "Añade una toma sin vaciar la red"
-        ],
-        [
-          "@Montaje del racor"
-        ],
-        [
-          "Llaves de bloqueo",
-          "Ø 20, 25, 32, 40, 50 y 63",
-          "Sujetan el racor mientras se aprieta"
-        ],
-        [
-          "Llaves de apriete",
-          "Ø 20, 25, 32, 40, 50 y 63",
-          "Cierran el racor a su par"
+          "Taladro simple de 1/2″ y 1″",
+          "Taladro con presión de 1/2″",
+          "Para toma en carga sin parar la red"
         ]
       ],
-      "n1": "",
-      "n2": "",
-      "n3": "Secuencia de montaje del racor: marcar la introducción del tubo, introducirlo hasta la señal, posicionar las llaves y cerrar el racor.",
-      "pend": "",
-      "aviso": "",
-      "ben": [
+      [
+        "Apriete",
         [
-          "El corte decide la estanqueidad",
-          "Un corte perpendicular y sin rebaba es lo que permite que la junta del racor asiente. Con sierra de mano no se consigue."
-        ],
-        [
-          "Toma en carga",
-          "El taladro con presión añade una derivación sin vaciar la red: se amplia la instalación sin parar la producción."
-        ],
-        [
-          "Apriete al par",
-          "Las llaves de bloqueo y apriete cierran el racor en su punto: ni flojo, que fuga, ni pasado, que deforma la junta."
-        ],
-        [
-          "Una medida por diámetro",
-          "Juegos de Ø20 a Ø63, los mismos diámetros que la tubería de aluminio de la gama."
-        ],
-        [
-          "Montaje repetible",
-          "Con la secuencia de cuatro pasos, cualquier operario monta la red igual de bien."
-        ]
-      ],
-      "dis": [
-        [
-          "Corte",
-          [
-            "Cortatubos de Ø6 a 42 y de Ø6 a 67 mm",
-            "Quitarrebabas cónico de Ø20 a 50",
-            "Escariador ajustable de Ø50 a 63"
-          ]
-        ],
-        [
-          "Derivación",
-          [
-            "Taladro simple de 1/2″ y 1″",
-            "Taladro con presión de 1/2″",
-            "Para toma en carga sin parar la red"
-          ]
-        ],
-        [
-          "Apriete",
-          [
-            "Llaves de bloqueo Ø20 a Ø63",
-            "Llaves de apriete Ø20 a Ø63",
-            "Secuencia de montaje en cuatro pasos"
-          ]
+          "Llaves de bloqueo Ø20 a Ø63",
+          "Llaves de apriete Ø20 a Ø63",
+          "Secuencia de montaje en cuatro pasos"
         ]
       ]
-    }
-  };
+    ]
+  },
+  "TORNILLO": {
+    "eyebrow": "Compresores de tornillo",
+    "title": "Gama de compresores de tornillo serie JSC",
+    "claim": "Aire comprimido estable para producción continua, turno tras turno.",
+    "lead": "Tres series cubren todo el rango industrial. La diferencia entre ellas está en la configuración y el tipo de transmisión, no en la calidad de los componentes: todas montan air-end de alta durabilidad, motor de eficiencia IE3 y variador de frecuencia integrado.",
+    "fig": [
+      [
+        "25 modelos",
+        "De 3 a 315 kW",
+        ""
+      ],
+      [
+        "3 series",
+        "VTD, V y VD",
+        ""
+      ],
+      [
+        "Variador",
+        "De serie en toda la gama",
+        ""
+      ],
+      [
+        "7,5–13",
+        "Presiones de trabajo",
+        "bar"
+      ]
+    ],
+    "cols": [
+      "Serie",
+      "Potencia",
+      "Caudal a 10 bar",
+      "Configuración",
+      "Transmisión",
+      "Nivel sonoro"
+    ],
+    "rows": [
+      [
+        "JSC VTD",
+        "3–15 kW (4–20 CV)",
+        "0,35–2,11 m³/min",
+        "Sobre tanque de 300 o 500 L con secador integrado",
+        "Correa Poly-V",
+        "68–70 dB"
+      ],
+      [
+        "JSC V",
+        "3–45 kW (4–60 CV)",
+        "0,35–6,43 m³/min",
+        "Sobre bastidor",
+        "Correa",
+        "68–72 dB"
+      ],
+      [
+        "JSC VD",
+        "18,5–315 kW (25–430 CV)",
+        "2,85–46,42 m³/min",
+        "Sobre bastidor",
+        "Directa",
+        "71–79 dB"
+      ]
+    ],
+    "ben": [
+      [
+        "Especificaciones Jender y 20 años de experiencia",
+        "Definimos la configuración, los componentes críticos y los criterios de calidad de cada modelo, y respondemos de él durante toda su vida útil."
+      ],
+      [
+        "Variador de frecuencia de serie",
+        "Mientras otros lo ofrecen como opción de pago, en la serie JSC viene incluido en todos los modelos: ahorro energético, presión constante y arranque suave desde el primer día."
+      ],
+      [
+        "Mantenimiento sencillo y económico",
+        "Acceso frontal a los componentes de servicio, filtros estandarizados de gran tamaño, repuestos originales disponibles y kits de mantenimiento para todos los modelos."
+      ],
+      [
+        "Servicio técnico en toda España",
+        "Red SAT nacional, repuestos originales y mantenimiento preventivo programado. Porque la máquina más cara es la que está parada."
+      ],
+      [
+        "Calidad certificada",
+        "Certificados disponibles para descarga por modelo: ISO 9001:2015, CE, TÜV Austria, TSE y EAC."
+      ]
+    ],
+    "dis": [
+      [
+        "Serie VTD · sobre tanque con secador",
+        [
+          "Potencia 3–15 kW",
+          "Transmisión por correa Poly-V",
+          "Tanque de 300 o 500 L",
+          "Integra compresor, tanque y secador frigorífico con punto de rocío constante de 3 °C",
+          "Para pymes, estaciones de servicio y talleres de reparación y pintura"
+        ]
+      ],
+      [
+        "Serie V · variador sobre bastidor",
+        [
+          "Potencia 3–45 kW",
+          "Transmisión por correa",
+          "Nivel sonoro 68–72 dB",
+          "Cuando ya tienes calderín y tratamiento de aire y solo necesitas el equipo de compresión"
+        ]
+      ],
+      [
+        "Serie VD · transmisión directa",
+        [
+          "Potencia 18,5–315 kW",
+          "Transmisión directa",
+          "Intervalo de servicio 8.000 h",
+          "El acoplamiento directo elimina la correa y sus pérdidas",
+          "Para producción continua a alto rendimiento"
+        ]
+      ]
+    ],
+    "n1": "",
+    "n2": "",
+    "pend": "",
+    "n3": "",
+    "aviso": ""
+  },
+  "INSTALACION": {
+    "eyebrow": "Instalaciones de aire comprimido",
+    "title": "Todo lo que necesitas para tu instalación de aire comprimido",
+    "claim": "Un sistema modular de aluminio que se monta, se modifica y se amplía sin soldar.",
+    "lead": "Reduce los costes de mano de obra y el tiempo de montaje frente a las redes tradicionales de acero soldado, y soporta el trabajo industrial de mayor rendimiento. Cada componente está pensado para facilitar una instalación profesional, reducir las fugas y asegurar un suministro de aire estable.",
+    "fig": [
+      [
+        "8 familias",
+        "Componentes de red",
+        ""
+      ],
+      [
+        "Ø20–Ø63",
+        "Tubería de aluminio",
+        "mm"
+      ],
+      [
+        "270–900",
+        "Calderines",
+        "litros"
+      ],
+      [
+        "Sin soldar",
+        "Montaje modular",
+        ""
+      ]
+    ],
+    "cols": [
+      "Familia",
+      "Qué aporta a la red"
+    ],
+    "rows": [
+      [
+        "Tuberías de aluminio",
+        "Sistema modular de Ø20 a Ø63: se monta, se modifica y se amplía sin soldar"
+      ],
+      [
+        "Accesorios y racorería",
+        "Uniones, derivaciones y cambios de sección del mismo sistema modular"
+      ],
+      [
+        "Calderines y accesorios",
+        "De 270 a 900 litros, 11 bar, en acero al carbono y con documentación según directiva"
+      ],
+      [
+        "Enchufes rápidos",
+        "Un único enchufe para cuatro tipos de adaptador, en lugar de cuatro racores distintos"
+      ],
+      [
+        "Enrolladores automáticos",
+        "Manguera recogida, sin tropiezos y sin arrastrarla por el suelo del taller"
+      ],
+      [
+        "Espirales de poliuretano",
+        "Bajada flexible hasta el punto de uso sin manguera suelta"
+      ],
+      [
+        "Pistolas de soplado",
+        "Cinco versiones, incluida la de seguridad con silenciador"
+      ],
+      [
+        "Herramientas de montaje",
+        "Cortar recto, quitar rebaba y apretar: lo que hace falta para montar bien una red de aluminio"
+      ]
+    ],
+    "ben": [
+      [
+        "Especificaciones propias",
+        "Ingeniería Jender y respaldo de CST Ibérica, con un único interlocutor para el equipo y el servicio."
+      ],
+      [
+        "Una red de aire que no se para",
+        "Nuestra prioridad es que tu instalación no falle; y si algo ocurre, que vuelva a producir en el menor tiempo posible."
+      ],
+      [
+        "Posventa en toda España",
+        "Red de técnicos e instaladores en todo el territorio, con repuestos y servicio a precios competitivos."
+      ],
+      [
+        "Montaje más rápido y barato",
+        "El sistema modular reduce los costes de mano de obra y el tiempo de montaje frente al acero soldado."
+      ],
+      [
+        "Menos fugas",
+        "Cada componente está pensado para reducir las fugas y asegurar un suministro de aire estable."
+      ]
+    ],
+    "dis": [
+      [
+        "Te la instalamos nosotros",
+        [
+          "Estudiamos tu nave o taller",
+          "Calculamos caudales y presiones",
+          "Dimensionamos la red y la montamos con nuestro equipo",
+          "Te la entregamos lista para producir, con un único responsable de principio a fin"
+        ]
+      ],
+      [
+        "Te vendemos el material",
+        [
+          "Todos los componentes para montar una instalación completa",
+          "Tubería de aluminio ligera y resistente a la corrosión",
+          "Racorería, calderines, enchufes y enrolladores",
+          "Herramientas de montaje de la propia red"
+        ]
+      ],
+      [
+        "Sistema modular",
+        [
+          "Se monta, se modifica y se amplía sin soldar",
+          "Flexible frente a cambios de layout",
+          "Soporta trabajo industrial de alto rendimiento",
+          "Menos mano de obra y menos tiempo de montaje"
+        ]
+      ]
+    ],
+    "n1": "",
+    "n2": "",
+    "pend": "",
+    "n3": "",
+    "aviso": ""
+  }
+};
 
   /* Figuras tecnicas: datos numericos por modelo tomados del Catalogo Jender General 2026.
      [modelo, kW, caudal 7,5 bar, caudal 10 bar, caudal 13 bar, ancho mm, largo mm] */

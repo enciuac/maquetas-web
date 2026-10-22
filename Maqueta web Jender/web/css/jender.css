@@ -569,12 +569,10 @@ body.show-changes .menu li.nochg>a.active{color:rgba(255,255,255,.75)}
 .keyfig span{display:block;margin-top:7px;font-size:13.5px;font-weight:600;color:var(--muted)}
 .keyfig small{display:block;font-weight:500;font-size:12px;opacity:.8}
 .gblock{border-top:1px solid var(--grey-2);margin-top:34px}
-.gblock>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;
-  padding:24px 0 18px;font-family:"Barlow",sans-serif;font-weight:900;font-size:clamp(21px,2.2vw,27px);
-  text-transform:uppercase;color:var(--navy)}
-.gblock>summary::-webkit-details-marker{display:none}
-.gblock>summary::after{content:"";width:11px;height:11px;border-right:2.5px solid var(--navy);border-bottom:2.5px solid var(--navy);transform:rotate(45deg);transition:transform .2s;flex:none;margin-right:6px}
-.gblock[open]>summary::after{transform:rotate(-135deg)}
+/* Los bloques ya no se pliegan: el titulo es un h2 normal, sin cursor de
+   puntero ni flecha de desplegado. */
+.gblock>.gtit{margin:0;padding:24px 0 18px;font-family:"Barlow",sans-serif;font-weight:900;
+  font-size:clamp(21px,2.2vw,27px);text-transform:uppercase;color:var(--navy)}
 .gb{padding-bottom:12px}
 .bitem{padding:16px 0;border-bottom:1px solid var(--grey-2)}
 .bitem:last-child{border-bottom:0}

@@ -67,10 +67,10 @@
   const menu = [
     { t: 'Inicio', h: 'index.html', k: 'home', m: true },
     { t: 'Productos', h: '#', k: 'productos', c: [
-      { t: 'Compresores de tornillo', h: 'compresores-de-tornillo.html', m: true, c: [
-        { t: 'Con variador', h: 'compresores-de-tornillo-con-variador.html' },
-        { t: 'Con variador directo', h: 'compresores-de-tornillo-con-variador-directo.html' },
-        { t: 'Con variador y secador', h: 'compresores-de-tornillo-con-variador-y-secador.html' } ] },
+      /* Las tres series (V, VD y VTD) salen del menu: se llega a ellas desde el
+         bloque «Tres configuraciones» de la propia pagina de compresores de
+         tornillo, que es donde se explican y se comparan. */
+      { t: 'Compresores de tornillo', h: 'compresores-de-tornillo.html', m: true },
       { t: 'Compresores de pistón', h: 'compresores-de-piston.html' },
       { t: 'Instalaciones de aire comprimido', h: 'instalaciones-aire-comprimido.html', c: [
         { t: 'Accesorios', h: 'instalaciones-aire-comprimido-accesorios.html' },
@@ -3249,20 +3249,20 @@
           <div class="keyfig">${g.fig.map(f => `<div><b>${f[0]}</b><span>${f[1]}${f[2] ? `<small>${f[2]}</small>` : ''}</span></div>`).join('')}</div>
         </div>
 
-        <details class="gblock" id="g-beneficios" open><summary>Beneficios</summary><div class="gb">
+        <section class="gblock" id="g-beneficios"><h2 class="gtit">Beneficios</h2><div class="gb">
           ${g.ben.map(b => `<div class="bitem"><h4>${b[0]}</h4><p>${b[1]}</p></div>`).join('')}
-        </div></details>
+        </div></section>
 
-        <details class="gblock" id="g-diseno" open><summary>Dise\u00f1o</summary><div class="gb">
+        <section class="gblock" id="g-diseno"><h2 class="gtit">Dise\u00f1o</h2><div class="gb">
           <div class="dis">${g.dis.map(d => `<div><h4>${d[0]}</h4><ul>${d[1].map(x => `<li>${x}</li>`).join('')}</ul></div>`).join('')}</div>
-        </div></details>
+        </div></section>
 
-        ${DIMS[sec.dataset.gama.trim()] ? `<details class="gblock" id="g-figuras" open><summary>Dimensiones y caudal</summary><div class="gb figs">
+        ${DIMS[sec.dataset.gama.trim()] ? `<section class="gblock" id="g-figuras"><h2 class="gtit">Dimensiones y caudal</h2><div class="gb figs">
           ${figCaudal(sec.dataset.gama.trim())}
           ${figHuella(sec.dataset.gama.trim())}
-        </div></details>` : ''}
+        </div></section>` : ''}
 
-        <details class="gblock" id="g-specs" open><summary>Especificaciones t\u00e9cnicas</summary><div class="gb">
+        <section class="gblock" id="g-specs"><h2 class="gtit">Especificaciones t\u00e9cnicas</h2><div class="gb">
           <div class="tbl-wrap">
             <table class="info-table spec-t">
               <thead><tr>${g.cols.map(c => `<th>${c}</th>`).join('')}</tr></thead>
@@ -3276,7 +3276,7 @@
           ${g.n3 ? `<p class="fnote">${g.n3}</p>` : ''}
           ${g.aviso ? `<p class="fnote pend" data-k="val" data-porque="El cat\u00e1logo general 2026 tabula los modelos de la serie hasta 75 kW, pero la gama se anuncia hasta 315 kW." data-falta="Datos de los modelos por encima de 75 kW, o corregir el rango declarado de la serie.">${g.aviso}</p>` : ''}
           ${g.pend ? `<p class="fnote pend" data-k="val" data-porque="La tabla se queda a nivel de serie porque es el \u00fanico dato publicado por Jender. CompAir detalla cada modelo con su refrigeraci\u00f3n, FAD a dos presiones, dimensiones y peso." data-falta="Listado de modelos de la serie con potencia, FAD a 8 y 10 bar, nivel sonoro, dimensiones y peso.">${g.pend}</p>` : ''}
-        </div></details>
+        </div></section>
 
         <p class="gama-cat">Esta es la gama que publicamos en la web. <a href="catalogo.html">Ver el catálogo completo de Jender</a></p>
         <div class="gama-foot">
@@ -3312,9 +3312,9 @@
                 [...caja0.children].find(c => c.tagName === 'H3') || null;
       const tit = h ? h.textContent.trim() : '';
       if (!tit) { return 'continua'; }
-      const d = document.createElement('details');
-      d.className = 'gblock'; d.id = 'g-p' + idx; d.open = true;
-      const sum = document.createElement('summary'); sum.textContent = tit;
+      const d = document.createElement('section');
+      d.className = 'gblock'; d.id = 'g-p' + idx;
+      const sum = document.createElement('h2'); sum.className = 'gtit'; sum.textContent = tit;
       const caja = document.createElement('div'); caja.className = 'gb';
       const dentro = el.querySelector('.wrap') || el;
       h.remove();
@@ -3370,7 +3370,7 @@
     /* el indice se rellena con los bloques que han quedado, en su orden */
     const lista = sec.querySelector('.gama-nav ul');
     lista.innerHTML = [...cuerpo.querySelectorAll(':scope > .gblock')].map((d, i) =>
-      `<li><a href="#${d.id}"${i === 0 ? ' class="on"' : ''} title="${d.querySelector('summary').textContent.replace(/"/g, '&quot;')}">${d.querySelector('summary').textContent}</a></li>`).join('');
+      `<li><a href="#${d.id}"${i === 0 ? ' class="on"' : ''} title="${d.querySelector('.gtit').textContent.replace(/"/g, '&quot;')}">${d.querySelector('.gtit').textContent}</a></li>`).join('');
 
     /* tooltip de las barras: se reutiliza la ficha flotante del modo maqueta no,
        esta es propia de la figura y funciona siempre */

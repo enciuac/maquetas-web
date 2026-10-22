@@ -2816,7 +2816,7 @@
   },
   "INSTALACION": {
     "eyebrow": "Instalaciones de aire comprimido",
-    "title": "Todo lo que necesitas para tu instalación de aire comprimido",
+    "title": "Componentes de la red de aire comprimido",
     "claim": "Un sistema modular de aluminio que se monta, se modifica y se amplía sin soldar.",
     "lead": "Reduce los costes de mano de obra y el tiempo de montaje frente a las redes tradicionales de acero soldado, y soporta el trabajo industrial de mayor rendimiento. Cada componente está pensado para facilitar una instalación profesional, reducir las fugas y asegurar un suministro de aire estable.",
     "fig": [

@@ -746,3 +746,7 @@ button.burger::after{content:"";position:absolute;top:50%;left:50%;transform:tra
 /* Imagen suelta dentro de un bloque de gama: se le pone la misma medida
    que al resto en lugar de dejarla al ancho natural del archivo. */
 .gb > img.rimg{display:block;width:100%;max-width:720px}
+/* Linea descriptiva bajo el titular de las tarjetas de serie: el titular lleva
+   la nomenclatura (con variador, con variador directo, con variador y secador)
+   y aqui va en que se traduce. */
+.card .bd .serie-sub{display:block;margin:-6px 0 12px;font-size:14px;line-height:1.45;color:var(--muted)}

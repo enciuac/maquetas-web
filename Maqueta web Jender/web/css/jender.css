@@ -750,3 +750,39 @@ button.burger::after{content:"";position:absolute;top:50%;left:50%;transform:tra
    la nomenclatura (con variador, con variador directo, con variador y secador)
    y aqui va en que se traduce. */
 .card .bd .serie-sub{display:block;margin:-6px 0 12px;font-size:14px;line-height:1.45;color:var(--muted)}
+
+/* ===== Catalogo: rejilla de gamas ===== */
+.cat-intro{max-width:860px;margin:6px 0 24px;font-size:16.5px;line-height:1.65;color:var(--muted)}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.cat-card{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--grey-2);
+  border-radius:var(--radius);overflow:hidden;text-decoration:none;color:inherit;
+  transition:border-color .18s,box-shadow .18s,transform .18s}
+.cat-card:hover{border-color:var(--navy);box-shadow:0 16px 34px -24px rgba(0,20,60,.5);transform:translateY(-2px)}
+/* Fondo blanco: casi todas las fotos de producto vienen recortadas sobre blanco,
+   y sobre un gris quedaban como un rectangulo flotando. */
+.cat-img{background:#fff;border-bottom:1px solid var(--grey-2);height:190px;display:grid;place-items:center;padding:16px}
+.cat-img img{max-height:158px;width:auto;max-width:100%;object-fit:contain}
+.cat-dato{align-self:flex-start;margin:16px 18px 0;background:var(--navy);color:#fff;font-family:"Barlow",sans-serif;
+  font-weight:800;font-size:12.5px;letter-spacing:.03em;padding:4px 11px;border-radius:20px;white-space:nowrap}
+.cat-card h3{margin:10px 18px 2px;font-size:18px;line-height:1.25;color:var(--navy)}
+.cat-sub{display:block;margin:0 18px;font-size:13px;font-weight:600;color:var(--yellow-dark,#b98a00)}
+.cat-card p{margin:8px 18px 46px;font-size:14px;line-height:1.5;color:var(--muted)}
+.cat-go{position:absolute;right:16px;bottom:14px;width:26px;height:26px;border-radius:50%;background:var(--grey);
+  display:grid;place-items:center;transition:background .18s}
+.cat-go::after{content:"";width:7px;height:7px;border-top:2px solid var(--navy);border-right:2px solid var(--navy);
+  transform:rotate(45deg);margin-left:-2px}
+.cat-card:hover .cat-go{background:var(--yellow)}
+@media (max-width:1100px){.cat-grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:820px){.cat-grid{grid-template-columns:repeat(2,1fr)}.cat-img{height:160px}}
+/* En el telefono se mantienen dos columnas, como en cualquier tienda: con una
+   sola, recorrer 17 familias es un scroll interminable. */
+@media (max-width:560px){
+  .cat-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .cat-img{height:118px;padding:10px}
+  .cat-img img{max-height:98px}
+  .cat-dato{margin:11px 12px 0;font-size:11px;padding:3px 9px}
+  .cat-card h3{margin:7px 12px 2px;font-size:15px}
+  .cat-sub{margin:0 12px;font-size:11.5px}
+  .cat-card p{margin:6px 12px 38px;font-size:12.5px}
+  .cat-go{right:10px;bottom:10px;width:22px;height:22px}
+}

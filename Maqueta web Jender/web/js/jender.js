@@ -3378,11 +3378,7 @@
     };
 
     const intro = sec.querySelector('.gama-intro');
-    /* La rejilla de modelos va justo detras de la ficha: al entrar en una familia
-       lo primero que se ve es el producto, y el resto del contenido va despues.
-       Si no hubiera rejilla, las secciones siguen colgando de la ficha. */
-    const rejilla = sec.querySelector('#g-modelos');
-    let punto = rejilla || intro;            // se va moviendo para conservar el orden original
+    let punto = intro;                       // se va moviendo para conservar el orden original
     let ultimo = null;                       // ultimo bloque creado, para las continuaciones
 
     /* Una seccion sin titular propio no es un bloque nuevo: es continuacion de la
@@ -3408,20 +3404,6 @@
 
     /* la ficha pasa a ir inmediatamente despues del hero */
     if (hero && hero.parentNode) hero.parentNode.insertBefore(sec, hero.nextSibling);
-
-    /* Una categoria funciona como el catalogo: primero la rejilla de gamas y la
-       informacion completa al entrar en una. Si la pagina ya trae su propia
-       rejilla (con foto y enlace a cada gama), esa es la buena y sube la primera;
-       la rejilla de modelos generada sobraria, porque listaria lo mismo sin
-       enlaces. En las paginas de gama final no hay rejilla propia, asi que se
-       queda la de modelos. */
-    const propia = [...cuerpo.querySelectorAll(':scope > .gblock')]
-      .find(d => d.id !== 'g-modelos' && d.querySelector('.rcol, .cfg .card'));
-    if (propia) {
-      const gen = sec.querySelector('#g-modelos');
-      if (gen) gen.remove();
-      intro.after(propia);
-    }
 
     /* Las imagenes sueltas ya estan dentro de .gb, que no existia cuando se
        agruparon las galerias la primera vez: se vuelve a pasar. */

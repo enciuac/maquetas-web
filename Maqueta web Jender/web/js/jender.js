@@ -66,7 +66,7 @@
      sin m    = página sin cambios en esta maqueta (se bloquea en gris)       */
   const menu = [
     { t: 'Inicio', h: 'index.html', k: 'home', m: true },
-    { t: 'Productos', h: '#', k: 'productos', c: [
+    { t: 'Productos', h: 'catalogo.html', k: 'productos', m: true, c: [
       /* Las tres series (V, VD y VTD) salen del menu: se llega a ellas desde el
          bloque «Tres configuraciones» de la propia pagina de compresores de
          tornillo, que es donde se explican y se comparan. */
@@ -93,7 +93,7 @@
       { t: 'Industrial', h: 'soluciones-industrial.html' }, { t: 'Medicina', h: 'soluciones-medicina.html' },
       { t: 'Usos profesionales', h: 'soluciones-uso-profesional.html' }, { t: 'Sector agrícola', h: 'soluciones-sector-agricola.html' } ] },
     { t: 'Post-venta', h: 'posventa.html', k: 'posventa', m: true },
-    { t: 'Descargas', h: '#', k: 'descargas', c: [ { t: 'Catálogo', h: 'catalogo.html' }, { t: 'Fichas técnicas', h: 'fichas-tecnicas.html' } ] },
+    { t: 'Descargas', h: '#', k: 'descargas', c: [ { t: 'Catálogo en PDF', h: 'catalogo.html#pdf' }, { t: 'Fichas técnicas', h: 'fichas-tecnicas.html' } ] },
     { t: 'Sobre nosotros', h: 'sobre-nosotros.html', k: 'sobre', m: true },
     { t: 'Blog', h: 'blog.html', k: 'blog' },
     { t: 'Contacto', h: 'contacto.html', k: 'contacto' },

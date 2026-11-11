@@ -3226,6 +3226,42 @@
   });
   agruparGalerias();
 
+  /* Rejilla de modelos: cada fila de la tabla de especificaciones se presenta
+     tambien como tarjeta, con las tres primeras caracteristicas de su gama.
+     Las filas de un solo campo que empiezan por @ son cabeceras de subgrupo. */
+  const soloTexto = v => String(v).replace(/<[^>]+>/g, '').trim();
+  /* La cabecera de columna trae nombre, unidad tras un <br> y a veces llamadas
+     al pie. En la tarjeta el nombre va de etiqueta y la unidad acompana al dato. */
+  const parteColumna = c => {
+    const t = String(c).split('<br>');
+    return { nombre: soloTexto(t[0]).replace(/[¹²³\s]+$/, ''),
+             unidad: t[1] ? soloTexto(t[1]) : '' };
+  };
+  const fichasModelos = g => {
+    const etiquetas = (g.cols || []).slice(1, 4).map(parteColumna);
+    let html = '', n = 0;
+    (g.rows || []).forEach(r => {
+      if (r.length === 1 && String(r[0]).charAt(0) === '@') {
+        html += '<h4 class="mod-sub">' + String(r[0]).slice(1) + '</h4>';
+        return;
+      }
+      n++;
+      const datos = etiquetas.map((et, i) => {
+        const v = r[i + 1];
+        if (v === undefined || v === '' || v === '—') return '';
+        /* Algunas gamas traen una frase donde otras traen un dato corto. Cuando es
+           larga, etiqueta y valor se apilan: en paralelo quedaba todo partido. */
+        const larga = String(v).length > 30;
+        return '<li' + (larga ? ' class="larga"' : '') + '><span>' + et.nombre + '</span><b>' + v
+             + (et.unidad ? ' <small>' + et.unidad + '</small>' : '') + '</b></li>';
+      }).join('');
+      html += '<article class="mod-card"><h4>' + r[0] + '</h4>'
+            + '<ul class="mod-datos">' + datos + '</ul>'
+            + '<a class="mod-cta" href="#contacto">Solicitar precio</a></article>';
+    });
+    return { html: html, n: n };
+  };
+
   document.querySelectorAll('[data-gama]').forEach(sec => {
     const g = GAMA[sec.dataset.gama.trim()];
     if (!g) return;
@@ -3248,6 +3284,12 @@
           <p class="lead">${g.lead}</p>
           <div class="keyfig">${g.fig.map(f => `<div><b>${f[0]}</b><span>${f[1]}${f[2] ? `<small>${f[2]}</small>` : ''}</span></div>`).join('')}</div>
         </div>
+
+        ${(() => { const m = fichasModelos(g); return m.n ? `
+        <section class="gblock" id="g-modelos"><h2 class="gtit">Modelos</h2><div class="gb">
+          <p class="mod-intro">${m.n} modelos en la gama. Los datos completos de cada uno están en la tabla de especificaciones.</p>
+          <div class="mod-grid">${m.html}</div>
+        </div></section>` : ''; })()}
 
         <section class="gblock" id="g-beneficios"><h2 class="gtit">Beneficios</h2><div class="gb">
           ${g.ben.map(b => `<div class="bitem"><h4>${b[0]}</h4><p>${b[1]}</p></div>`).join('')}

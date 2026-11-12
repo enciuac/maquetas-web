@@ -66,7 +66,7 @@
      sin m    = página sin cambios en esta maqueta (se bloquea en gris)       */
   const menu = [
     { t: 'Inicio', h: 'index.html', k: 'home', m: true },
-    { t: 'Productos', h: 'catalogo.html', k: 'productos', m: true, c: [
+    { t: 'Productos', h: '#', k: 'productos', c: [
       /* Las tres series (V, VD y VTD) salen del menu: se llega a ellas desde el
          bloque «Tres configuraciones» de la propia pagina de compresores de
          tornillo, que es donde se explican y se comparan. */
@@ -799,7 +799,7 @@
         ""
       ],
       [
-        "12 modelos",
+        "10 modelos",
         "en la gama",
         ""
       ]
@@ -3229,6 +3229,19 @@
   /* Rejilla de modelos: cada fila de la tabla de especificaciones se presenta
      tambien como tarjeta, con las tres primeras caracteristicas de su gama.
      Las filas de un solo campo que empiezan por @ son cabeceras de subgrupo. */
+  /* El nombre de un modelo es lo que va antes del <br>: lo de debajo es una
+     nota («arrancador estrella-triangulo incluido»), no parte del nombre. */
+  const nombreModelo = v => String(v).split('<br>')[0].replace(/<[^>]+>/g, '').trim();
+  const notaModelo = v => {
+    const t = String(v).split('<br>');
+    return t[1] ? t.slice(1).join(' ').replace(/<[^>]+>/g, '').trim() : '';
+  };
+  /* El slug de un modelo: «JP 338 / 200 M» -> «jp-338-200-m». */
+  const slugModelo = v => nombreModelo(v).toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  const idModelo = v => 'm-' + slugModelo(v);
+  const pagModelo = v => 'compresor-de-piston-' + slugModelo(v) + '.html';
+
   const soloTexto = v => String(v).replace(/<[^>]+>/g, '').trim();
   /* La cabecera de columna trae nombre, unidad tras un <br> y a veces llamadas
      al pie. En la tarjeta el nombre va de etiqueta y la unidad acompana al dato. */
@@ -3262,9 +3275,342 @@
     return { html: html, n: n };
   };
 
+
+  /* Lo que cuelga de cada categoria. La parrilla usa las mismas tarjetas que el
+     catalogo general (.cat-card), pero listando solo lo de esa categoria: al
+     entrar en Compresores de tornillo se ven sus tres series, no las 17 gamas.
+     Pistol no tiene subpaginas, asi que lista sus modelos y cada uno baja a su
+     fila en la tabla de especificaciones. */
+  const HIJAS = {
+    'TORNILLO': { titulo: 'Series', de: [
+      { t: 'Con variador', sub: 'Serie V', dato: '3–45 kW',
+        d: 'Variador de frecuencia de serie, para instalaciones con demanda variable.',
+        img: 'img/compresor-v-m.png', h: 'compresores-de-tornillo-con-variador.html' },
+      { t: 'Con variador directo', sub: 'Serie VD', dato: '18,5–315 kW',
+        d: 'Acoplamiento directo motor-elemento compresor: sin correas ni pérdidas mecánicas.',
+        img: 'img/compresor-vd.png', h: 'compresores-de-tornillo-con-variador-directo.html' },
+      { t: 'Con variador y secador', sub: 'Serie VTD', dato: '3–15 kW',
+        d: 'Compresor, calderín y secador en un solo bastidor: la sala de aire resuelta.',
+        img: 'img/compresor-vtd-m.png', h: 'compresores-de-tornillo-con-variador-y-secador.html' } ] },
+
+    'INSTALACION': { titulo: 'Familias', de: [
+      { t: 'Tubería de aluminio', sub: 'Racorería modular', dato: 'Ø20 a Ø63 mm',
+        d: 'Se monta, se modifica y se amplía sin soldar.',
+        img: '@tuberia-aluminio-instalacion-aire-comprimido.jpg.webp', h: 'instalaciones-aire-comprimido-tuberias-de-aluminio.html' },
+      { t: 'Accesorios', sub: 'Uniones y derivaciones', dato: 'Sistema modular',
+        d: 'Uniones, derivaciones y cambios de sección de la propia red.',
+        img: '@accesorios-instalacion-aire-comprimido.jpg.webp', h: 'instalaciones-aire-comprimido-accesorios.html' },
+      { t: 'Calderines', sub: 'Acero al carbono', dato: '270–900 L',
+        d: '11 bar y documentación según la directiva de equipos a presión.',
+        img: '@calderin-instalacion-aire-comprimido.jpg.webp', h: 'instalaciones-aire-comprimido-calderines-y-accesorios.html' },
+      { t: 'Enchufes rápidos', sub: 'Multipresa', dato: '4 perfiles',
+        d: 'Un único enchufe para cuatro tipos de adaptador.',
+        img: '@enchufe-rapido-instalacion-aire-comprimido.jpg.webp', h: 'instalaciones-aire-comprimido-enchufes-rapidos.html' },
+      { t: 'Enrolladores automáticos', sub: 'Manguera recogida', dato: '1/4″ y 3/8″',
+        d: 'Sin tropiezos y sin arrastrar la manguera por el suelo.',
+        img: '@enrolladores-instalacion-aire-comprimido.jpg.webp', h: 'instalaciones-aire-comprimido-enrolladores-automaticos.html' },
+      { t: 'Espirales de poliuretano', sub: 'Bajada al punto de uso', dato: 'Flexible',
+        d: 'La bajada hasta la herramienta sin manguera suelta.',
+        img: '@espiral-poliuretano-instalacion-aire-comprimido.jpg.webp', h: 'instalaciones-aire-comprimido-espirales-de-poliuretano.html' },
+      { t: 'Pistolas de soplado', sub: 'Cinco versiones', dato: '5 modelos',
+        d: 'Incluida la de seguridad con silenciador.',
+        img: '@pistola-aire-instalacion-aire-comprimido.jpg.webp', h: 'instalaciones-aire-comprimido-pistolas-de-soplado.html' },
+      { t: 'Herramientas de montaje', sub: 'Corte y escariado', dato: 'Ø6 a 67 mm',
+        d: 'Cortar recto, quitar rebaba y apretar: montar la red bien.',
+        img: '@herramientas-instalacion-aire-comprimido.jpg.webp', h: 'instalaciones-aire-comprimido-herramientas.html' } ] },
+
+    'TRATAMIENTO': { titulo: 'Familias', de: [
+      { t: 'Secadores frigoríficos', sub: 'Serie JKEP', dato: '23–3.330 m³/h',
+        d: 'Punto de rocío estable y purga de cero pérdidas.',
+        img: '@secadores-jender-tratamiento-aire-removebg-preview.png', h: 'tratamientos-aire-comprimido-secador-frigorifico.html' },
+      { t: 'Filtros de línea', sub: 'Separación y prefiltración', dato: '1.500–28.000 l/min',
+        d: 'Separación ciclónica y prefiltración de 1 micra.',
+        img: '@filtros-jender-tratamiento-aire-removebg-preview.png', h: 'tratamientos-aire-comprimido-filtros-de-aire.html' },
+      { t: 'Purgas de condensado', sub: 'Tres tecnologías', dato: 'Hasta 10 m³/min',
+        d: 'Temporizada, de boya y capacitiva de cero pérdidas.',
+        img: '@purgas-jender-tratamiento-aire-removebg-preview.png', h: 'tratamientos-aire-comprimido-purgas-de-condensado.html' },
+      { t: 'Separadores agua-aceite', sub: 'JEP Premium', dato: '2–60 m³/min',
+        d: 'Menos de 5 ppm de aceite residual en el vertido.',
+        img: '@separador-jender-tratamiento-aire.png', h: 'tratamientos-aire-comprimido-separadores-de-aire.html' } ] }
+  };
+  const SUBIDAS = 'https://www.jender.es/wp-content/uploads/2026/04/';
+  const rutaImg = v => String(v).charAt(0) === '@' ? SUBIDAS + String(v).slice(1) : v;
+
+  /* Una columna como «Potencia HP / kW» con el valor «3 / 2,2» daria
+     «3 / 2,2 HP / kW», que no se entiende. Si valor y unidad se parten en el
+     mismo numero de trozos, cada numero se queda con la suya: «3 HP / 2,2 kW». */
+  const conUnidad = (v, u) => {
+    if (!u) return String(v);
+    const a = String(v).split('/'), b = String(u).split('/');
+    if (a.length > 1 && a.length === b.length) {
+      return a.map((x, i) => x.trim() + ' ' + b[i].trim()).join(' / ');
+    }
+    return v + ' ' + u;
+  };
+
+  /* Piston lista sus modelos: una tarjeta por fila de la tabla, con la foto de
+     la gama repetida porque no hay imagen por modelo. */
+  const hijasDeModelos = (g, foto) => {
+    const et = (g.cols || []).slice(1, 3).map(parteColumna);
+    const out = [];
+    let grupo = '';
+    (g.rows || []).forEach(r => {
+      if (r.length === 1 && String(r[0]).charAt(0) === '@') { grupo = String(r[0]).slice(1); return; }
+      const dato = r[1] ? conUnidad(r[1], et[0] && et[0].unidad) : '';
+      const extra = r[2] ? et[1].nombre + ' ' + conUnidad(r[2], et[1].unidad) : '';
+      const nota = notaModelo(r[0]);
+      out.push({ t: nombreModelo(r[0]), sub: grupo, dato: dato,
+                 d: extra + (nota ? ' \u00b7 ' + nota : ''), img: foto, h: pagModelo(r[0]) });
+    });
+    return out;
+  };
+
+  const tarjeta = x =>
+    '<a class="cat-card" href="' + x.h + '">' +
+    '<span class="cat-img"><img src="' + rutaImg(x.img) + '" alt="' + x.t + ' Jender" loading="lazy"></span>' +
+    (x.dato ? '<span class="cat-dato">' + x.dato + '</span>' : '') +
+    '<h3>' + x.t + '</h3>' +
+    (x.sub ? '<span class="cat-sub">' + x.sub + '</span>' : '') +
+    (x.d ? '<p>' + x.d + '</p>' : '') +
+    '<span class="cat-go" aria-hidden="true"></span></a>';
+
+  const parrillaCategoria = (g, clave) => {
+    let titulo = '', lista = [];
+    if (HIJAS[clave]) { titulo = HIJAS[clave].titulo; lista = HIJAS[clave].de; }
+    else if (clave === 'PISTON') {
+      titulo = 'Modelos';
+      lista = hijasDeModelos(g, SUBIDAS + 'compresor-lubricado-piston.jpg.webp');
+    }
+    if (!lista.length) return '';
+    const cards = lista.map(tarjeta).join('');
+    return '<section class="gblock" id="g-parrilla"><h2 class="gtit">' + titulo + '</h2><div class="gb">' +
+           '<div class="cat-grid">' + cards + '</div></div></section>';
+  };
+
+  /* Las secciones de texto que vivian en la pagina de categoria. La categoria
+     es ahora un escaparate, asi que se pintan dentro de cada ficha de su
+     familia. Estan aqui una sola vez: tocarlas aqui las cambia en todas. */
+  const COMUN = {
+    'INSTALACION': `
+<section class="section r "><div class="wrap"><div class="split rsplit"><div class="prose"><h2>Instalación de aire comprimido: dos formas de trabajar contigo</h2>
+<ul class="checklist"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span>Te la instalamos nosotros: Estudiamos tu nave o taller, calculamos caudales y presiones, dimensionamos la red y la montamos con nuestro equipo. Te la entregamos lista para producir, con un único responsable de principio a fin.</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span>Te vendemos el material: En Jender ponemos a tu disposición todos los componentes para montar una instalación completa: tubería de aluminio (ligera, resistente a la corrosión y con conexión rápida sin soldadura), calderines, enchufes rápidos, enrolladores, espirales de poliuretano y herramientas de montaje. <span class="mk" data-k="chg" data-antes="Directo de fábrica, sin intermediarios que encarezcan el precio." data-porque="Hablar de «fábrica» o «fabricamos» hace pensar que se produce en España. El informe propone explicar lo que sí hace Jender: diseñar, especificar y responder por el equipo (Lenguaje sobre fabricación y origen). «Sin intermediarios» puede no ser exacto si hay importación. El informe propone «con un único responsable» o «trato directo con la marca» (Expresiones que es mejor sustituir).">Trato directo con la marca, con un único responsable de principio a fin.</span></span></li></ul></div><div class="media"><img class="rimg" src="https://www.jender.es/wp-content/uploads/2026/04/instalaciones-aire-comprimido-pintura.jpg" alt="" loading="lazy"></div></div></div></section>
+<section class="section r "><div class="wrap"><div class="split rsplit"><div class="media"><img class="rimg" src="https://www.jender.es/wp-content/uploads/2026/07/red-de-aire-comprimido.jpg" alt="red de aire comprimido modular" loading="lazy"></div><div class="prose"><h2>Un sistema modular que reduce tiempo y coste de montaje</h2>
+<p>Hemos desarrollado un sistema modular de gran calidad, diseñado para que tus instalaciones sean flexibles y eficientes. Reduce los costes de mano de obra y el tiempo de montaje frente a las redes tradicionales de acero soldado, y soporta el trabajo industrial de mayor rendimiento. Cada producto está pensado para facilitar una instalación profesional, reducir las fugas y asegurar un suministro de aire estable en cada punto de consumo.</p></div></div></div></section>
+<section class="section r "><div class="wrap"><h2>¿Por qué instalar tu red de aire comprimido con Jender?</h2>
+<ul class="checklist"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span><span class="mk" data-k="chg" data-antes="Origen propio, precio directo: Ingeniería y fabricación propias y venta directa: la misma calidad, sin el sobreprecio de la cadena de intermediarios." data-porque="Hablar de «fábrica» o «fabricamos» hace pensar que se produce en España. El informe propone explicar lo que sí hace Jender: diseñar, especificar y responder por el equipo (Lenguaje sobre fabricación y origen).">Especificaciones propias, precio directo: ingeniería Jender y respaldo de CST Ibérica, con un único interlocutor para el equipo y el servicio.</span></span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span>Una red de aire que no se para: Nuestra prioridad es que tu instalación no falle; y si algo ocurre, que vuelva a producir en el menor tiempo posible.</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span><span class="mk" data-k="chg" data-antes="Postventa 24/365 en toda España:" data-porque="Un plazo publicado tiene que poder cumplirse y medirse; si no, genera desconfianza (Ajustes prioritarios de contenido: revisar promesas de 4 h, 24 h y 30 %).">Posventa en toda España:</span> Red de técnicos e instaladores en todo el territorio, con repuestos y servicio a precios competitivos.</span></li></ul>
+<img class="rimg" src="https://www.jender.es/wp-content/uploads/2026/04/instalacion-aire-comprimido-modular-jender.jpg.webp" alt="" loading="lazy"></div></section>
+<section class="section r "><div class="wrap"><h2>Preguntas frecuentes sobre instalaciones de aire comprimido</h2>
+<div class="faq"><details open><summary>¿Cuánto cuesta una instalación de aire comprimido?</summary><div class="a"><p>El precio depende del tamaño de la nave, el caudal necesario, los metros de tubería y los puntos de consumo. Preparamos un estudio a medida sin compromiso para darte una cifra ajustada a tu caso.</p></div></details><details><summary>¿Qué tubería se usa para aire comprimido?</summary><div class="a"><p>La tubería de aluminio es hoy el estándar en instalaciones industriales: no se corroe, mantiene el caudal limpio, es ligera y permite un montaje rápido y modular frente al acero o el cobre.</p></div></details><details><summary>¿Qué normativa regula la instalación de compresores de aire en España?</summary><div class="a"><p>Las instalaciones de aire comprimido se rigen por el reglamento de equipos a presión (Real Decreto 809/2021) y deben legalizarse ante el organismo de industria correspondiente. Nos encargamos de dejar la red conforme a normativa.</p></div></details><details><summary>¿Cuánto se tarda en montar una red de aire comprimido?</summary><div class="a"><p>Depende de la complejidad, pero una red modular de aluminio se instala mucho más rápido que una tradicional de acero soldado. Tras el estudio te damos un plazo concreto.</p></div></details></div></div></section>
+`,
+    'PISTON': `
+<section class="section r "><div class="wrap"><div class="split rsplit"><div class="prose"><h2>Compresores de pistón lubricados: por qué Jender apuesta por esta tecnología</h2>
+<p>Todos nuestros compresores de pistón son lubricados con aceite, y no es casualidad. Para talleres, industria y uso profesional, el lubricado supera al modelo sin aceite en lo que más importa.</p>
+<p>Mayor vida útil: La película de aceite protege el pistón y el cilindro frente al desgaste por fricción. El cabezal dura más y soporta ciclos de trabajo más exigentes sin sobrecalentarse.</p>
+<p>Más resistencia en uso intensivo: Si tu compresor trabaja varias horas al día, el lubricado aguanta mejor que uno sin aceite. Es la tecnología preferida en talleres mecánicos, carpinterías e instalaciones industriales.</p>
+<p>Mantenimiento sencillo y predecible: Solo necesitas controlar el nivel de aceite a diario y hacer un cambio completo cada 200-300 horas. Es una rutina simple que alarga la vida del equipo de forma notable.</p>
+<p>Los compresores sin aceite tienen sentido en aplicaciones donde el aire debe estar libre de cualquier traza de lubricante, como alimentación o laboratorios. Para el resto de usos profesionales, el lubricado es la opción más rentable a largo plazo, <span class="mk" data-k="chg" data-antes="y por eso es la única que fabricamos." data-porque="Hablar de «fábrica» o «fabricamos» hace pensar que se produce en España. El informe propone explicar lo que sí hace Jender: diseñar, especificar y responder por el equipo (Lenguaje sobre fabricación y origen).">y por eso es la única que ofrecemos.</span></p></div><div class="media"><img class="rimg" src="https://www.jender.es/wp-content/uploads/2026/04/compresor-lubricado-piston.jpg.webp" alt="" loading="lazy"></div></div></div></section>
+<section class="section r" data-k="new" data-porque="La página de pistón tenía la mitad de secciones que la de tornillo y se quedaba en lo comercial. Se le da la misma estructura técnica: régimen de trabajo, por qué elegir la gama, comparativa con tornillo y respaldo de servicio."><div class="wrap">
+  <div class="split rsplit" style="align-items:start;gap:44px">
+    <div class="prose">
+      <h2>Pensados para trabajo intermitente</h2>
+      <p>Un compresor de pistón comprime en ciclos: arranca, llena el calderín y para. Eso lo hace ideal cuando el consumo va a golpes —una pistola, una clavadora, el inflado de un neumático— y muy mal compañero cuando hay que dar aire sin descanso durante ocho horas.</p>
+      <p>La regla práctica es el <strong>factor de servicio</strong>: si el equipo va a trabajar más del 60 % del tiempo, el pistón se queda corto y toca pasar a tornillo. Por debajo de esa cifra, es la opción más razonable y con diferencia la más económica.</p>
+      <p>Por eso lo primero que preguntamos no es cuántos caballos quieres, sino <strong>qué herramientas vas a usar a la vez y cuántas horas al día</strong>.</p>
+      <h3 style="margin-top:26px">Los cuatro datos que deciden el equipo</h3>
+      <p><strong>Caudal de aire.</strong> Suma el consumo en l/min de las herramientas que vayas a usar a la vez y añade un 20 % de margen. Esa cifra marca la potencia mínima.</p>
+      <p><strong>Presión de trabajo.</strong> Para herramienta de taller, 8 bar bastan. Si necesitas 10–11 bar —arenado, pintura industrial— elige un modelo de dos etapas.</p>
+      <p><strong>Tamaño del calderín.</strong> Uso puntual, 25–100 L. Taller con varias tomas, 200–500 L. Un depósito mayor reduce arranques del motor y estabiliza la presión.</p>
+      <p style="margin:0"><strong>Alimentación eléctrica.</strong> Hasta 3 CV hay versiones monofásicas a 230 V. A partir de 4 CV, trifásico a 400 V: más eficiente y con menos intensidad de línea.</p>
+    </div>
+    <div class="table-scroll" style="background:var(--grey);border-radius:10px;padding:10px 12px">
+      <table class="spec">
+        <tr><th>Si tu uso es…</th><th>Lo que necesitas</th></tr>
+        <tr><td>Puntual, varias veces al día</td><td>Coaxial de 24–50 L</td></tr>
+        <tr><td>Taller con una o dos tomas</td><td>Correa de 100–200 L</td></tr>
+        <tr><td>Taller con varias tomas a la vez</td><td>Correa de 270–500 L, dos etapas</td></tr>
+        <tr><td>Producción continua</td><td>Compresor de tornillo</td></tr>
+      </table>
+    </div>
+  </div>
+</div></section>
+<section class="section r" data-k="new" data-porque="La página de pistón tenía la mitad de secciones que la de tornillo y se quedaba en lo comercial. Se le da la misma estructura técnica: régimen de trabajo, por qué elegir la gama, comparativa con tornillo y respaldo de servicio."><div class="wrap">
+  <h2 class="center" style="margin-bottom:40px">¿Por qué elegir un compresor de pistón Jender?</h2>
+  <div class="why5">
+    <div class="card-white"><div class="ic"><i data-i="target"></i></div><h3>Especificaciones propias</h3><p>Definimos la configuración y los componentes críticos de cada modelo, y respondemos de él durante toda su vida útil. Cilindro de hierro fundido en la gama compacta, por resistencia al desgaste.</p></div>
+    <div class="card-white"><div class="ic"><i data-i="gauge"></i></div><h3>Dos etapas para 11 bar</h3><p>Cuando el proceso pide presión —arenado, pintura industrial— la versión de dos etapas comprime en dos fases: menos esfuerzo térmico por etapa y más vida útil del cabezal.</p></div>
+    <div class="card-white"><div class="ic"><i data-i="shield"></i></div><h3>Calderín certificado</h3><p>Equipos a presión con su válvula de seguridad tarada, su manómetro y la documentación que exige la normativa, entregada con el equipo.</p></div>
+    <div class="card-white"><div class="ic"><i data-i="wrench"></i></div><h3>Mantenimiento sencillo</h3><p>Filtro de aspiración y nivel de aceite accesibles sin desmontar nada. El mantenimiento de un pistón lo puede hacer tu propio personal con formación básica.</p></div>
+    <div class="card-white"><div class="ic"><i data-i="map"></i></div><h3>Servicio técnico en toda España</h3><p>CST Ibérica, la empresa de servicio del grupo Jender Ibérica, atiende también los equipos de pistón: recambio original y técnicos propios.</p></div>
+    <div class="card-white"><div class="ic"><i data-i="box"></i></div><h3>Repuestos en stock</h3><p>Filtros, correas, válvulas y kits de mantenimiento de toda la gama, con expedición en 48 h laborables.</p></div>
+  </div>
+</div></section>
+<section class="section r" data-k="new" data-porque="La página de tornillo ya incluía esta comparativa; la de pistón no, así que quien entraba por aquí no tenía forma de saber si se estaba equivocando de tecnología."><div class="wrap">
+  <h2 style="margin-bottom:22px">Pistón o tornillo: cuál te corresponde</h2>
+  <div class="split rsplit" style="align-items:start;gap:40px">
+    <div>
+      <p>Un <strong>compresor de pistón</strong> encaja cuando el consumo es intermitente: picos de demanda seguidos de pausas, como en mantenimiento, pintura o inflado. Es la inversión más baja y el mantenimiento más barato.</p>
+      <p>Un <strong>compresor de tornillo</strong> es lo que necesitas si el aire tiene que estar disponible turno tras turno, con varios puntos de consumo a la vez. Cuesta más al comprarlo y menos al usarlo.</p>
+      <p style="margin:0">Si dudas, danos tu patrón de consumo y lo calculamos: en muchos casos la diferencia de factura eléctrica decide sola. <a class="btn btn-yellow btn-sm" style="margin-top:16px" href="compresores-de-tornillo.html">Catálogo de compresores de tornillo</a></p>
+    </div>
+    <div class="table-scroll" style="background:#fff;border-radius:10px;padding:8px 10px;border:1px solid var(--grey-2)">
+      <table class="spec">
+        <tr><th>Criterio</th><th>Pistón</th><th>Tornillo</th></tr>
+        <tr><td>Régimen de uso</td><td>Intermitente, con pausas</td><td>Continuo, ciclo del 100 %</td></tr>
+        <tr><td>Caudal</td><td>Con pulsaciones</td><td>Estable, sin pulsaciones</td></tr>
+        <tr><td>Nivel sonoro</td><td>73–82 dB(A)</td><td>68–79 dB(A)</td></tr>
+        <tr><td>Inversión inicial</td><td>Menor</td><td>Mayor</td></tr>
+        <tr><td>Coste energético</td><td>Mayor por m³ de aire</td><td>Menor, con variador de serie</td></tr>
+        <tr><td>Calderín</td><td>Imprescindible</td><td>Opcional según configuración</td></tr>
+      </table>
+    </div>
+  </div>
+</div></section>
+<section class="section r "><div class="wrap"><h2>Preguntas frecuentes sobre compresores de pistón</h2>
+<div class="faq"><details open><summary>¿Qué potencia (CV) de compresor de pistón necesito?</summary><div class="a"><p>Suma el consumo de aire (en l/min) de todas las herramientas que vayas a usar a la vez y añade un 20 % de margen: esa cifra marca la potencia mínima. Como referencia, los equipos de 2-3 CV cubren un taller pequeño y los de 5,5 a 10 CV, instalaciones con varias tomas simultáneas. Si tienes dudas, nuestro equipo técnico lo calcula contigo sin coste.</p></div></details><details><summary>¿Compresor de pistón monofásico o trifásico?</summary><div class="a"><p>Hasta 3 CV hay versiones monofásicas (230 V), ideales para uso puntual o talleres pequeños. A partir de 4 CV lo habitual es trifásico (400 V), más eficiente y recomendable para uso continuo o industrial.</p></div></details><details><summary>¿Cuántos litros de calderín necesito?</summary><div class="a"><p>Para uso puntual, un depósito de 25 a 100 litros es suficiente. En un taller con varias tomas o consumo frecuente, conviene de 200 a 500 litros: un calderín mayor reduce los arranques del motor y estabiliza la presión, alargando la vida del compresor.</p></div></details><details><summary>¿Me conviene un compresor de pistón o de tornillo?</summary><div class="a"><p>El de pistón es más económico y fácil de mantener, ideal para uso intermitente o con picos de consumo. El de tornillo da caudal continuo y está pensado para funcionar muchas horas seguidas. Si tu demanda de aire es constante y elevada, valora nuestros compresores de tornillo; para consumos variables, el pistón es más rentable.</p></div></details><details><summary>¿Qué servicio posventa y repuestos ofrece Jender?</summary><div class="a"><p><span class="mk" data-k="chg" data-antes="Damos soporte técnico los 365 días del año porque" data-porque="Un plazo publicado tiene que poder cumplirse y medirse; si no, genera desconfianza (Ajustes prioritarios de contenido: revisar promesas de 4 h, 24 h y 30 %).">Damos soporte técnico durante todo el año porque</span> sabemos que la máquina más cara es la que se para. <span class="mk" data-k="chg" data-antes="Al ser fabricantes, mantenemos" data-porque="Hablar de «fábrica» o «fabricamos» hace pensar que se produce en España. El informe propone explicar lo que sí hace Jender: diseñar, especificar y responder por el equipo (Lenguaje sobre fabricación y origen).">Como marca responsable del equipo, mantenemos</span> los repuestos originales en stock durante toda la vida útil del compresor, con precios de posventa competitivos.</p></div></details><details><summary>¿En cuánto tiempo recibo mi compresor de pistón?</summary><div class="a"><p>Los modelos en stock se envían desde nuestro almacén de Alicante en <span class="mk" data-k="val" data-porque="Un plazo publicado tiene que poder cumplirse y medirse; si no, genera desconfianza (Ajustes prioritarios de contenido: revisar promesas de 4 h, 24 h y 30 %)." data-falta="Confirmar que este plazo se cumple de forma habitual y en todas las zonas.">24-48 horas</span> a cualquier punto de España.</p></div></details></div></div></section>
+`,
+    'TORNILLO': `
+<section class="section r">
+  <div class="wrap">
+    <div class="sec-head"><h2>Cómo dimensionar tu compresor de tornillo</h2><p>Consideraciones a tener en cuenta antes de elegir un compresor:</p></div>
+    <div class="dim">
+      <div class="card-white"><div class="n">01</div><h3>Caudal necesario</h3><p>Suma el consumo de cada punto de uso y añade margen para futuras ampliaciones. Un compresor sobredimensionado entra en ciclos cortos que aceleran el desgaste; uno infradimensionado no mantiene la presión en los picos de demanda.</p></div>
+      <div class="card-white"><div class="n">02</div><h3>Presión de trabajo</h3><p>La mayoría de instalaciones trabajan a 10 bar. Si tus procesos requieren menos, un modelo de 7,5 bar consumirá menos energía. Para soplado de moldes o pruebas de estanqueidad, la gama llega a 13 bar.</p></div>
+      <div class="card-white"><div class="n">03</div><h3>Espacio y configuración</h3><p>Si el espacio es limitado o partes de cero, los VTD integran compresor, calderín y secador en una sola unidad. Si ya dispones de calderín y tratamiento, las series V y VD permiten una instalación más flexible.</p></div>
+    </div>
+    <div class="center" style="margin-top:30px" data-k="new" data-porque="El informe propone el botón «Dimensionar mi compresor» en las páginas de producto (Llamadas a la acción)."><a class="btn btn-navy btn-sm" href="#contacto">Dimensionar mi compresor</a></div>
+  </div>
+</section>
+<section class="section r">
+  <div class="wrap">
+    <h2 class="center" style="margin-bottom:40px">¿Por qué elegir un compresor de tornillo Jender?</h2>
+    <div class="why5">
+      <div class="card-white" data-k="chg" data-antes="Fabricante directo con 20 años de experiencia · Diseñamos, fabricamos y comercializamos desde nuestra planta en Alicante, sin intermediarios." data-porque="Hablar de «fábrica» o «fabricamos» hace pensar que se produce en España. El informe propone explicar lo que sí hace Jender: diseñar, especificar y responder por el equipo (Lenguaje sobre fabricación y origen)."><div class="ic"><i data-i="target"></i></div><h3>Especificaciones Jender y 20 años de experiencia</h3><p>Definimos la configuración, los componentes críticos y los criterios de calidad de cada modelo, y respondemos de él durante toda su vida útil. Podemos adaptar el equipo a tus especificaciones cuando el estándar no encaja.</p></div>
+      <div class="card-white"><div class="ic"><i data-i="gauge"></i></div><h3>Variador de frecuencia de serie</h3><p>Mientras otros lo ofrecen como opción de pago, en la serie JSC viene incluido en todos los modelos: ahorro energético, presión constante y arranque suave desde el primer día.</p></div>
+      <div class="card-white"><div class="ic"><i data-i="wrench"></i></div><h3>Mantenimiento sencillo y económico</h3><p>Acceso frontal a los componentes de servicio, filtros estandarizados de gran tamaño, repuestos originales disponibles y kits de mantenimiento para todos los modelos.</p></div>
+      <div class="card-white" data-k="chg" data-antes="Servicio técnico en toda España, 24 horas al día, 365 días al año · Con red de distribuidores, repuestos originales y mantenimiento preventivo programado." data-porque="Se quita la promesa 24/365 y «red de distribuidores», que contradice la venta directa (Ajustes prioritarios de contenido)."><div class="ic"><i data-i="map"></i></div><h3>Servicio técnico en toda España</h3><p>Red SAT nacional, repuestos originales y mantenimiento preventivo programado. Porque la máquina más cara es la que está parada.</p></div>
+      <div class="card-white" data-k="val" data-porque="El informe pide certificados descargables y claros por modelo (Evidencias para una marca nueva)." data-falta="Indicar a qué entidad corresponde cada certificado y enlazar los PDF."><div class="ic"><i data-i="award"></i></div><h3>Calidad certificada</h3><p>Certificados disponibles para descarga por modelo.</p><div class="certs"><span>ISO 9001:2015</span><span>CE</span><span>TÜV Austria</span><span>TSE</span><span>EAC</span></div></div>
+      <div class="card-white" data-k="new" data-porque="Curvas, fichas, manuales y garantía descargables por modelo (Información técnica prioritaria)."><div class="ic"><i data-i="file"></i></div><h3>Fichas y documentación</h3><p>Curvas, fichas técnicas, manuales y garantía descargables para cada modelo de la gama.</p><a class="btn btn-yellow btn-sm" href="fichas-tecnicas.html" style="margin-top:14px">Descargas</a></div>
+    </div>
+  </div>
+</section>
+<section class="section r">
+  <div class="wrap">
+    <h2 style="margin-bottom:22px">Compresor de tornillo o de pistón: cuál necesitas</h2>
+    <div class="split rsplit" style="align-items:start;gap:40px">
+      <div>
+        <p>Un <strong>compresor de tornillo</strong> es la mejor opción cuando necesitas suministro constante durante turnos prolongados: líneas de producción, automatización o múltiples puntos de consumo simultáneos.</p>
+        <p>Un <strong>compresor de pistón</strong> es más adecuado para un uso intermitente, con picos de demanda seguidos de pausas, como en talleres de mantenimiento, pintura o inflado.</p>
+        <p style="margin:0">Si no estás seguro, nuestro equipo técnico puede analizar tu patrón de consumo y recomendarte la solución más eficiente.</p>
+      </div>
+      <div class="table-scroll" style="background:#fff;border-radius:10px;padding:8px 10px">
+        <table class="spec">
+          <tr><th>Criterio</th><th>Tornillo</th><th>Pistón</th></tr>
+          <tr><td>Régimen de uso</td><td>Continuo, ciclo del 100 %</td><td>Intermitente, con pausas</td></tr>
+          <tr><td>Caudal</td><td>Estable, sin pulsaciones</td><td>Con pulsaciones</td></tr>
+          <tr><td>Nivel sonoro</td><td>68–79 dB</td><td>Notablemente superior</td></tr>
+          <tr><td>Inversión inicial</td><td>Mayor</td><td>Menor</td></tr>
+          <tr><td>Coste energético</td><td>Menor en uso intensivo</td><td>Menor en uso esporádico</td></tr>
+          <tr><td>Mantenimiento</td><td>Espaciado, técnico</td><td>Frecuente, más sencillo</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+`,
+    'TRATAMIENTO': `
+<section class="section r "><div class="wrap"><div class="split rsplit"><div class="prose"><h2>Equipos de tratamiento de aire comprimido para garantizar la calidad en tu instalación industrial</h2>
+<p>El tratamiento de aire comprimido es el conjunto de procesos que eliminan la humedad, las partículas sólidas y los restos de aceite que genera cualquier compresor durante su funcionamiento. Sin un sistema de tratamiento adecuado, estas impurezas llegan directamente a las herramientas, las máquinas y los procesos de producción, provocando corrosión en las tuberías, averías prematuras en los equipos y problemas de calidad en el producto final.</p>
+<p><span class="mk" data-k="chg" data-antes="En JENDER fabricamos y distribuimos todos los componentes" data-porque="Hablar de «fábrica» o «fabricamos» hace pensar que se produce en España. El informe propone explicar lo que sí hace Jender: diseñar, especificar y responder por el equipo (Lenguaje sobre fabricación y origen).">En JENDER desarrollamos y suministramos todos los componentes</span> necesarios para un tratamiento de aire comprimido completo: secadores frigoríficos que reducen el punto de rocío, filtros de línea con distintos grados de retención, separadores de agua y aceite, y purgas automáticas de condensado. Cada elemento cumple una función específica dentro de la cadena de tratamiento, y la combinación correcta depende del caudal de tu instalación, la calidad de aire requerida según la norma ISO 8573-1 y las condiciones ambientales de tu planta.</p></div><div class="media"><img class="rimg" src="https://www.jender.es/wp-content/uploads/2026/04/tratamientos-aire-comprimido.jpg.webp" alt="" loading="lazy"></div></div></div></section>
+`,
+  };
+
+  const familiaDe = ruta => {
+    const f = ruta.split('/').pop();
+    if (/^compresor-de-piston-/.test(f)) return 'PISTON';
+    if (/^compresores-de-tornillo-/.test(f)) return 'TORNILLO';
+    if (/^instalaciones-aire-comprimido-/.test(f)) return 'INSTALACION';
+    if (/^tratamientos-aire-comprimido-/.test(f)) return 'TRATAMIENTO';
+    return '';
+  };
+
+  /* Se insertan antes del cierre de la pagina para que el constructor de la
+     ficha las absorba como un bloque mas del indice, en su orden. */
+  (() => {
+    if (!document.querySelector('[data-gama]:not([data-solo])')) return;
+    const fam = familiaDe(location.pathname);
+    if (!fam || !COMUN[fam]) return;
+    const cta = document.querySelector('.cta-band');
+    const sitio = (cta && cta.closest('section')) || document.querySelector('#contacto');
+    if (sitio) sitio.insertAdjacentHTML('beforebegin', COMUN[fam]);
+  })();
+
+  /* Una ficha por modelo de piston. No se escriben a mano: salen de la tabla
+     de la gama, con sus datos en vertical y los bloques comunes de la gama.
+     Asi un cambio en la tabla llega solo a las diez fichas. */
+  (() => {
+    const P = GAMA['PISTON'];
+    if (!P) return;
+    const foto = SUBIDAS + 'compresor-lubricado-piston.jpg.webp';
+    const etiq = P.cols.map(c => String(c).replace(/<br>/g, ' ').replace(/<[^>]+>/g, '').trim());
+    const lista = [];
+    let grupo = '';
+    P.rows.forEach(r => {
+      if (r.length === 1 && String(r[0]).charAt(0) === '@') { grupo = String(r[0]).slice(1); return; }
+      lista.push({ r: r, grupo: grupo });
+    });
+    lista.forEach((m, i) => {
+      const r = m.r, nom = nombreModelo(r[0]), nota = notaModelo(r[0]);
+      const v = k => (r[k] === undefined || r[k] === '' || r[k] === '\u2014') ? '' : r[k];
+      const pares = [];
+      for (let k = 1; k < r.length; k++) { if (v(k)) pares.push([etiq[k], v(k)]); }
+      const otros = lista.filter((_, j) => j !== i).map(o => ({
+        t: nombreModelo(o.r[0]), sub: o.grupo,
+        dato: conUnidad(o.r[1], (parteColumna(P.cols[1]) || {}).unidad),
+        d: 'Dep\u00f3sito ' + o.r[2] + ' L', img: foto, h: pagModelo(o.r[0])
+      }));
+      GAMA['M_' + slugModelo(r[0])] = {
+        soloFicha: true,
+        eyebrow: 'Compresores de pist\u00f3n',
+        title: 'Compresor de pist\u00f3n ' + nom,
+        claim: m.grupo + (nota ? ', ' + nota : '') + '.',
+        lead: 'Calder\u00edn de ' + v(2) + ' litros y ' + v(4) + ' l/min de aire aspirado a '
+            + v(3) + ' bar. Los datos de ensayo, la alimentaci\u00f3n y las dimensiones est\u00e1n '
+            + 'completos m\u00e1s abajo; el kit de mantenimiento va incluido.',
+        fig: [[v(1).split('/')[0].trim() + ' HP', 'Potencia', v(1).split('/')[1] ? v(1).split('/')[1].trim() + ' kW' : ''],
+              [v(2) + ' L', 'Dep\u00f3sito', ''],
+              [v(3) + ' bar', 'Presi\u00f3n de trabajo', ''],
+              [v(4) + ' l/min', 'Aire aspirado', '']],
+        ben: P.ben, dis: P.dis, n3: P.n3,
+        cols: ['Caracter\u00edstica', 'Valor'],
+        rows: pares,
+        hermanos: otros.map(tarjeta).join('')
+      };
+    });
+  })();
+
   document.querySelectorAll('[data-gama]').forEach(sec => {
     const g = GAMA[sec.dataset.gama.trim()];
     if (!g) return;
+    const parrilla = parrillaCategoria(g, sec.dataset.gama.trim());
+
+    /* Una pagina de categoria es un escaparate: la ficha con su indice y sus
+       bloques vive dentro de cada producto, no aqui. Aqui solo la presentacion
+       de la gama y la parrilla de lo que hay dentro. */
+    if (sec.dataset.solo) {
+      sec.className = 'section cat-sec';
+      sec.id = 'modelos';
+      sec.innerHTML = `<div class="wrap">
+        <div class="cat-head">
+          <span class="eyebrow">${g.eyebrow}</span>
+          <h2>${g.title}</h2>
+          <p class="claim">${g.claim}</p>
+          <p class="lead">${g.lead}</p>
+        </div>
+        <div class="keyfig">${g.fig.map(f => `<div><b>${f[0]}</b><span>${f[1]}${f[2] ? `<small>${f[2]}</small>` : ''}</span></div>`).join('')}</div>
+        ${parrilla.replace(/^<section[^>]*>/, '').replace(/<\/section>$/, '')}
+      </div>`;
+      return;
+    }
     sec.className = 'section gama-sec';
     sec.id = 'modelos';
     sec.innerHTML = `<div class="wrap gama-layout">
@@ -3285,7 +3631,12 @@
           <div class="keyfig">${g.fig.map(f => `<div><b>${f[0]}</b><span>${f[1]}${f[2] ? `<small>${f[2]}</small>` : ''}</span></div>`).join('')}</div>
         </div>
 
-        ${(() => { const m = fichasModelos(g); return m.n ? `
+        ${parrilla}
+
+        ${(() => { /* Donde hay parrilla, esa ya es la lista: la rejilla de modelos
+             generada repetia lo mismo sin enlaces, asi que no se pinta. */
+          if (parrilla || g.soloFicha) return '';
+          const m = fichasModelos(g); return m.n ? `
         <section class="gblock" id="g-modelos"><h2 class="gtit">Modelos</h2><div class="gb">
           <p class="mod-intro">${m.n} modelos en la gama. Los datos completos de cada uno están en la tabla de especificaciones.</p>
           <div class="mod-grid">${m.html}</div>
@@ -3310,7 +3661,7 @@
               <thead><tr>${g.cols.map(c => `<th>${c}</th>`).join('')}</tr></thead>
               <tbody>${g.rows.map(r => r.length === 1
                 ? `<tr class="grp"><td colspan="${g.cols.length}">${r[0].slice(1)}</td></tr>`
-                : `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody>
+                : `<tr id="${idModelo(r[0])}">${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody>
             </table>
           </div>
           ${g.n1 ? `<p class="fnote"><sup>1</sup> ${g.n1}</p>` : ''}
@@ -3319,6 +3670,10 @@
           ${g.aviso ? `<p class="fnote pend" data-k="val" data-porque="El cat\u00e1logo general 2026 tabula los modelos de la serie hasta 75 kW, pero la gama se anuncia hasta 315 kW." data-falta="Datos de los modelos por encima de 75 kW, o corregir el rango declarado de la serie.">${g.aviso}</p>` : ''}
           ${g.pend ? `<p class="fnote pend" data-k="val" data-porque="La tabla se queda a nivel de serie porque es el \u00fanico dato publicado por Jender. CompAir detalla cada modelo con su refrigeraci\u00f3n, FAD a dos presiones, dimensiones y peso." data-falta="Listado de modelos de la serie con potencia, FAD a 8 y 10 bar, nivel sonoro, dimensiones y peso.">${g.pend}</p>` : ''}
         </div></section>
+
+        ${g.hermanos ? `<section class="gblock" id="g-hermanos"><h2 class="gtit">Otros modelos de la gama</h2><div class="gb">
+          <div class="cat-grid">${g.hermanos}</div>
+        </div></section>` : ''}
 
         <p class="gama-cat">Esta es la gama que publicamos en la web. <a href="catalogo.html">Ver el catálogo completo de Jender</a></p>
         <div class="gama-foot">
@@ -3378,7 +3733,10 @@
     };
 
     const intro = sec.querySelector('.gama-intro');
-    let punto = intro;                       // se va moviendo para conservar el orden original
+    /* Si la categoria trae parrilla, las secciones de la pagina se insertan
+       detras de ella, no entre la ficha y la parrilla: al entrar en una
+       categoria lo primero que se ve es la rejilla de lo que hay dentro. */
+    let punto = sec.querySelector('#g-parrilla') || intro;                       // se va moviendo para conservar el orden original
     let ultimo = null;                       // ultimo bloque creado, para las continuaciones
 
     /* Una seccion sin titular propio no es un bloque nuevo: es continuacion de la
@@ -3386,7 +3744,7 @@
        contenido se anade al bloque previo en lugar de crear uno sin nombre. */
     const volcar = (el) => {
       const dentro = el.querySelector('.wrap') || el;
-      const destino = ultimo ? ultimo.querySelector('.gb') : intro;
+      const destino = ultimo ? ultimo.querySelector('.gb') : (punto.querySelector('.gb') || intro);
       while (dentro.firstChild) destino.appendChild(dentro.firstChild);
       el.remove();
     };

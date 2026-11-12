@@ -142,6 +142,274 @@
     <button class="review-toggle" type="button"><span class="sw"></span>Ver cambios <small>(maqueta)</small></button>`;
   document.body.append(...footer.childNodes);
 
+  /* ---------- Tienda del area: listado con filtros y ficha ----------
+     El catalogo viene de catalogo-jender.js, que sale del Excel de producto.
+     Los filtros son los atributos de ese Excel: no hay lista escrita a mano,
+     se agrupan los pares atributo-valor de lo que hay y se recalculan con lo
+     que queda a la vista, asi que nunca se ofrece un filtro que deje la tabla
+     vacia. */
+  if (window.CATALOGO && document.querySelector('[data-tienda]')) {
+    const TODO = window.CATALOGO;
+    const caja = document.querySelector('[data-tienda]');
+    const ladoF = caja.querySelector('[data-facetas]');
+    const zona = caja.querySelector('[data-listado]');
+
+    const plano = t => String(t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const texto = new Map(TODO.map(p => [p.cod, plano(
+      p.cod + ' ' + p.nom + ' ' + p.erp + ' ' + p.sub + ' ' +
+      p.atr.map(a => a[0] + ' ' + a[1]).join(' '))]));
+
+    const sel = new Map();        // atributo -> Set de valores marcados
+    let busca = '', pag = 1, porPag = 20;
+
+    const pasa = p => {
+      if (busca && !texto.get(p.cod).includes(busca)) return false;
+      for (const [k, vs] of sel) {
+        if (!vs.size) continue;
+        const suyos = k === 'Categor\u00eda'
+          ? [p.fam, p.sub]
+          : p.atr.filter(a => a[0] === k).map(a => a[1]);
+        if (!suyos.some(v => vs.has(v))) return false;
+      }
+      return true;
+    };
+
+    /* Las facetas se cuentan sobre lo que pasaria si se marcase ese valor, no
+       sobre el total: un valor que dejaria la lista vacia no se ofrece. */
+    const facetas = visibles => {
+      const m = new Map();
+      const mete = (k, v) => {
+        if (!m.has(k)) m.set(k, new Map());
+        const c = m.get(k);
+        c.set(v, (c.get(v) || 0) + 1);
+      };
+      visibles.forEach(p => {
+        mete('Categor\u00eda', p.sub);
+        p.atr.forEach(a => mete(a[0], a[1]));
+      });
+      return m;
+    };
+
+    const ordenValor = (a, b) => {
+      const na = parseFloat(String(a).replace(',', '.'));
+      const nb = parseFloat(String(b).replace(',', '.'));
+      if (!isNaN(na) && !isNaN(nb) && String(na).length > 0) return na - nb;
+      return String(a).localeCompare(String(b), 'es');
+    };
+
+    const pintarFacetas = visibles => {
+      const m = facetas(visibles);
+      /* Primero la categoria; luego los atributos que mas productos tocan. */
+      const claves = [...m.keys()].filter(k => k !== 'Categor\u00eda')
+        .sort((a, b) => {
+          const sa = [...m.get(a).values()].reduce((x, y) => x + y, 0);
+          const sb = [...m.get(b).values()].reduce((x, y) => x + y, 0);
+          return sb - sa || a.localeCompare(b, 'es');
+        });
+      if (m.has('Categor\u00eda')) claves.unshift('Categor\u00eda');
+
+      const activos = [...sel].filter(([, v]) => v.size);
+      let html = '';
+      if (activos.length || busca) {
+        html += '<div class="fa-activos">' + activos.map(([k, vs]) =>
+          [...vs].map(v => '<button class="fa-chip" type="button" data-quita="' + k
+            + '|' + v + '">' + v + ' <span aria-hidden="true">\u00d7</span></button>').join('')
+        ).join('') + '<button class="fa-limpia" type="button" data-limpia>Quitar filtros</button></div>';
+      }
+
+      html += claves.map(k => {
+        const vals = [...m.get(k).entries()].sort((a, b) => ordenValor(a[0], b[0]));
+        const marcados = sel.get(k) || new Set();
+        const abierto = marcados.size || k === 'Categor\u00eda';
+        const muchos = vals.length > 8;
+        return '<details class="ac-fgrupo"' + (abierto ? ' open' : '') + '>'
+          + '<summary>' + k + (marcados.size ? ' <b>' + marcados.size + '</b>' : '') + '</summary>'
+          + '<div class="fa-vals' + (muchos ? ' muchos' : '') + '">'
+          + vals.map(([v, n]) =>
+            '<label><input type="checkbox" data-fa="' + k + '" value="' + v + '"'
+            + (marcados.has(v) ? ' checked' : '') + '> <span>' + v + '</span>'
+            + '<em>' + n + '</em></label>').join('')
+          + '</div></details>';
+      }).join('');
+      ladoF.innerHTML = html;
+    };
+
+    const eur = n => {
+      const t = Math.abs(n).toFixed(2).split('.');
+      return t[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + t[1] + '\u00a0\u20ac';
+    };
+
+    const pintarListado = visibles => {
+      const paginas = Math.max(1, Math.ceil(visibles.length / porPag));
+      if (pag > paginas) pag = paginas;
+      const trozo = visibles.slice((pag - 1) * porPag, pag * porPag);
+      const filas = trozo.map(p => {
+        const neto = p.pre * (1 - p.dto / 100);
+        const resumen = p.atr.slice(0, 3).map(a => a[0] + ' ' + a[1]).join(' \u00b7 ');
+        return '<tr>'
+          + '<td>' + p.cod + '</td>'
+          + '<td class="ancha"><a class="art" href="producto.html?ref=' + p.cod + '">'
+            + p.nom + '</a>' + (resumen ? '<span class="ac-var">' + resumen + '</span>' : '') + '</td>'
+          + '<td class="num"><span class="ac-pvp" data-eur="' + p.pre.toFixed(2) + '">'
+            + eur(p.pre) + '</span><b class="ac-neto" data-eur="' + neto.toFixed(2) + '">'
+            + eur(neto) + '</b></td>'
+          + '<td><span class="ac-chip gris">-' + p.dto + '\u00a0%</span></td>'
+          + '<td><span class="ac-add"><input class="cant" value="1" aria-label="Cantidad">'
+            + '<button class="btn btn-yellow btn-sm" type="button" data-anadir data-cod="' + p.cod
+            + '" data-nom="' + p.nom.replace(/"/g, '&quot;') + '" data-href="producto.html?ref='
+            + p.cod + '" data-precio="' + p.pre.toFixed(2) + '" data-dto="' + p.dto
+            + '">A\u00f1adir</button></span></td>'
+          + '</tr>';
+      }).join('');
+
+      zona.innerHTML =
+        '<div class="ac-buscar"><input type="search" data-busca placeholder="Buscar por c\u00f3digo, '
+        + 'nombre o caracter\u00edstica" aria-label="Buscar en el cat\u00e1logo" value="'
+        + busca.replace(/"/g, '&quot;') + '">'
+        + '<span class="ac-cuantos">' + visibles.length + ' de ' + TODO.length
+        + ' art\u00edculos</span></div>'
+        + '<div class="iva-barra"><span class="iva-aviso">' + svg('shield')
+        + '<span class="iva-nota">Precios sin IVA</span> \u00b7 con tu tarifa y tu descuento '
+        + 'aplicados</span><button class="iva-sw" type="button" aria-pressed="false">'
+        + '<span class="sw"></span><span class="iva-txt">Ver con IVA</span></button></div>'
+        + (visibles.length
+          ? '<div class="tbl-wrap"><table class="info-table ac-tabla"><thead><tr>'
+            + '<th>C\u00f3digo</th><th class="ancha">Art\u00edculo</th><th class="num">Precio ud.</th>'
+            + '<th>Dto.</th><th>Agregar</th></tr></thead><tbody>' + filas + '</tbody></table></div>'
+            + '<div class="ac-barra"><div>Mostrar <select data-porpag>'
+            + [20, 50, 100].map(n => '<option' + (n === porPag ? ' selected' : '') + '>' + n
+              + '</option>').join('')
+            + '</select> registros</div><div class="pag">'
+            + '<button type="button" data-pag="-1"' + (pag <= 1 ? ' disabled' : '') + '>Anterior</button>'
+            + '<b>' + pag + '</b><span>de ' + paginas + '</span>'
+            + '<button type="button" data-pag="1"' + (pag >= paginas ? ' disabled' : '')
+            + '>Siguiente</button></div></div>'
+          : '<p class="ac-sinnada">Ning\u00fan art\u00edculo cumple ese filtro. '
+            + '<button class="fa-limpia" type="button" data-limpia>Quitar filtros</button></p>');
+      if (window.jPintarPrecios) window.jPintarPrecios();
+    };
+
+    const pintar = () => {
+      const visibles = TODO.filter(pasa);
+      pintarFacetas(visibles);
+      pintarListado(visibles);
+    };
+
+    caja.addEventListener('change', e => {
+      const f = e.target.closest('[data-fa]');
+      if (f) {
+        const k = f.dataset.fa;
+        if (!sel.has(k)) sel.set(k, new Set());
+        const vs = sel.get(k);
+        if (f.checked) vs.add(f.value); else vs.delete(f.value);
+        pag = 1; pintar(); return;
+      }
+      const pp = e.target.closest('[data-porpag]');
+      if (pp) { porPag = parseInt(pp.value, 10) || 20; pag = 1; pintar(); }
+    });
+
+    caja.addEventListener('input', e => {
+      const b = e.target.closest('[data-busca]');
+      if (!b) return;
+      busca = plano(b.value.trim());
+      pag = 1;
+      const visibles = TODO.filter(pasa);
+      pintarFacetas(visibles);
+      pintarListado(visibles);
+      const nuevo = zona.querySelector('[data-busca]');
+      if (nuevo) { nuevo.focus(); nuevo.setSelectionRange(nuevo.value.length, nuevo.value.length); }
+    });
+
+    caja.addEventListener('click', e => {
+      const q = e.target.closest('[data-quita]');
+      if (q) {
+        const [k, v] = q.dataset.quita.split('|');
+        if (sel.has(k)) sel.get(k).delete(v);
+        pag = 1; pintar(); return;
+      }
+      if (e.target.closest('[data-limpia]')) { sel.clear(); busca = ''; pag = 1; pintar(); return; }
+      const n = e.target.closest('[data-pag]');
+      if (n && !n.disabled) { pag += parseInt(n.dataset.pag, 10); pintar(); }
+    });
+
+    pintar();
+  }
+
+  /* ---------- Ficha de producto del area ----------
+     Una sola pagina para todas las referencias: el articulo se elige con ?ref=
+     y se arma con los datos del catalogo. */
+  if (window.CATALOGO && document.querySelector('[data-ficha]')) {
+    const dest = document.querySelector('[data-ficha]');
+    const ref = new URLSearchParams(location.search).get('ref');
+    const p = window.CATALOGO.find(x => x.cod === ref);
+    const eur = n => {
+      const t = Math.abs(n).toFixed(2).split('.');
+      return t[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + t[1] + '\u00a0\u20ac';
+    };
+
+    if (!p) {
+      dest.innerHTML = '<p class="ac-sinnada">No encontramos esa referencia. '
+        + '<a href="area-cliente-comprar.html">Volver a Comprar</a></p>';
+    } else {
+      const neto = p.pre * (1 - p.dto / 100);
+      const hermanos = window.CATALOGO.filter(x => x.sub === p.sub && x.cod !== p.cod).slice(0, 4);
+      document.title = p.nom + ' \u00b7 ref. ' + p.cod + ' - Jender \u00b7 Maqueta';
+      const md = document.querySelector('meta[name="description"]');
+      if (md) md.setAttribute('content', p.meta);
+      const miga = document.querySelector('[data-miga]');
+      if (miga) miga.textContent = p.nom;
+
+      dest.innerHTML = ''
+        + '<div class="fp-top">'
+        + '<div class="fp-foto">' + (p.img
+            ? '<img src="' + p.img + '" alt="' + p.nom.replace(/"/g, '&quot;') + '" loading="lazy">'
+            : '<span class="fp-sinfoto">' + svg('box') + 'Sin foto</span>') + '</div>'
+        + '<div class="fp-datos ficha-compra">'
+        + '<span class="eyebrow">' + p.sub + '</span>'
+        + '<h2>' + p.nom + '</h2>'
+        + '<p class="fp-ref">Referencia <b>' + p.cod + '</b> \u00b7 marca JENDER</p>'
+        + '<div class="fp-precio"><div>'
+        + '<span class="fp-pvp">Tarifa <span data-eur="' + p.pre.toFixed(2) + '">' + eur(p.pre) + '</span></span>'
+        + '<b data-eur="' + neto.toFixed(2) + '">' + eur(neto) + '</b>'
+        + '<span class="fp-dto">Tu precio, con el ' + p.dto + '\u00a0% de descuento aplicado</span>'
+        + '</div><div class="fp-compra"><input class="cant" value="1" aria-label="Cantidad">'
+        + '<button class="btn btn-yellow" type="button" data-anadir data-cod="' + p.cod
+        + '" data-nom="' + p.nom.replace(/"/g, '&quot;') + '" data-href="producto.html?ref=' + p.cod
+        + '" data-precio="' + p.pre.toFixed(2) + '" data-dto="' + p.dto + '">A\u00f1adir</button>'
+        + '</div></div>'
+        + '<div class="iva-barra"><span class="iva-aviso">' + svg('shield')
+        + '<span class="iva-nota">Precios sin IVA</span> \u00b7 sin portes</span>'
+        + '<button class="iva-sw" type="button" aria-pressed="false"><span class="sw"></span>'
+        + '<span class="iva-txt">Ver con IVA</span></button></div>'
+        + (p.res ? '<div class="fp-resumen">' + p.res + '</div>' : '')
+        + '</div></div>'
+
+        + (p.atr.length ? '<div class="fp-bloque"><h3>Caracter\u00edsticas</h3>'
+            + '<div class="tbl-wrap"><table class="info-table ac-tabla"><thead><tr>'
+            + '<th class="ancha">Caracter\u00edstica</th><th>Valor</th></tr></thead><tbody>'
+            + '<tr><td class="ancha">Referencia</td><td>' + p.cod + '</td></tr>'
+            + p.atr.map(a => '<tr><td class="ancha">' + a[0] + '</td><td>' + a[1] + '</td></tr>').join('')
+            + '</tbody></table></div></div>' : '')
+
+        + (p.des ? '<div class="fp-bloque fp-detalle"><h3>Detalle</h3>' + p.des + '</div>' : '')
+
+        + (hermanos.length ? '<div class="fp-bloque"><h3>Otros de ' + p.sub.toLowerCase()
+            + '</h3><div class="cat-grid">'
+            + hermanos.map(o => '<a class="cat-card" href="producto.html?ref=' + o.cod + '">'
+              + '<span class="cat-img">' + (o.img ? '<img src="' + o.img + '" alt="' + o.nom.replace(/"/g, '&quot;')
+                + '" loading="lazy">' : '') + '</span>'
+              + '<span class="cat-dato" data-eur="' + (o.pre * (1 - o.dto / 100)).toFixed(2) + '">'
+              + eur(o.pre * (1 - o.dto / 100)) + '</span>'
+              + '<h3>' + o.nom + '</h3><span class="cat-sub">' + o.cod + '</span>'
+              + '<span class="cat-go" aria-hidden="true"></span></a>').join('')
+            + '</div></div>' : '')
+
+        + '<p class="fnote" style="margin-top:26px">'
+        + '<a href="area-cliente-comprar.html">\u2190 Volver a Comprar</a></p>';
+      if (window.jPintarPrecios) window.jPintarPrecios();
+    }
+  }
+
   /* ---------- Buscador de las tablas del area ----------
      Filtra las filas de la tabla que va justo debajo segun lo que se escribe.
      Sin tildes ni mayusculas, para que «Belen» encuentre «Belén». */
@@ -222,6 +490,7 @@
     try { localStorage.setItem(LLAVE_IVA, conIva ? '1' : '0'); } catch (err) {}
     pintarPrecios();
   });
+  window.jPintarPrecios = pintarPrecios;
   pintarPrecios();
 
   /* ---------- Carrito, solo dentro del area de clientes ----------

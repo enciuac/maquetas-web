@@ -3205,13 +3205,27 @@
     </figure>`;
   }
 
-  /* Varias fotos de producto amontonadas dentro de un contenedor pensado para una sola:
-     se descartan las repetidas y el resto se presenta como galeria en rejilla. */
+  /* Varias fotos de producto amontonadas dentro de un contenedor pensado para una
+     sola: se descartan las repetidas y el resto pasa a una galeria que se
+     desliza, con una flecha a cada lado. Las flechas solo salen si hay mas
+     fotos de las que caben, y se apagan al llegar a cada extremo. */
+  const flechaGal = (lado, titulo, signo) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'gal-nav ' + lado;
+    b.setAttribute('aria-label', titulo);
+    b.title = titulo;
+    b.textContent = signo;
+    return b;
+  };
+
   const agruparGalerias = () => document.querySelectorAll('.media, .prose, .rcol, .gb, .gb > div').forEach(box => {
     const imgs = [...box.children].filter(c => c.tagName === 'IMG');
     if (imgs.length < 2) return;
     const gal = document.createElement('div');
     gal.className = 'gal';
+    const pista = document.createElement('div');
+    pista.className = 'gal-pista';
     imgs[0].before(gal);
     const vistos = new Set();
     imgs.forEach(im => {
@@ -3221,8 +3235,28 @@
       const fig = document.createElement('figure');
       fig.className = 'gi';
       fig.appendChild(im);
-      gal.appendChild(fig);
+      pista.appendChild(fig);
     });
+    const atras = flechaGal('prev', 'Fotos anteriores', '\u2039');
+    const alante = flechaGal('next', 'Fotos siguientes', '\u203a');
+    gal.append(atras, pista, alante);
+
+    /* Se avanza casi una pantalla, dejando una foto a la vista para no perder
+       el hilo de por donde iba. */
+    const paso = () => Math.max(pista.clientWidth - 150, 150);
+    const pintar = () => {
+      const sobran = pista.scrollWidth - pista.clientWidth > 2;
+      gal.classList.toggle('con-flechas', sobran);
+      atras.disabled = pista.scrollLeft <= 2;
+      alante.disabled = pista.scrollLeft >= pista.scrollWidth - pista.clientWidth - 2;
+    };
+    atras.addEventListener('click', () => pista.scrollBy({ left: -paso(), behavior: 'smooth' }));
+    alante.addEventListener('click', () => pista.scrollBy({ left: paso(), behavior: 'smooth' }));
+    pista.addEventListener('scroll', pintar, { passive: true });
+    window.addEventListener('resize', pintar);
+    /* El ancho real no se sabe hasta que cargan las fotos. */
+    pista.querySelectorAll('img').forEach(im => im.addEventListener('load', pintar));
+    pintar();
   });
   agruparGalerias();
 
@@ -3324,22 +3358,79 @@
     return v + ' ' + u;
   };
 
-  /* Piston lista sus modelos: una tarjeta por fila de la tabla, con la foto de
-     la gama repetida porque no hay imagen por modelo. */
-  const hijasDeModelos = (g, foto) => {
-    const et = (g.cols || []).slice(1, 3).map(parteColumna);
-    const out = [];
-    let grupo = '';
-    (g.rows || []).forEach(r => {
-      if (r.length === 1 && String(r[0]).charAt(0) === '@') { grupo = String(r[0]).slice(1); return; }
-      const dato = r[1] ? conUnidad(r[1], et[0] && et[0].unidad) : '';
-      const extra = r[2] ? et[1].nombre + ' ' + conUnidad(r[2], et[1].unidad) : '';
-      const nota = notaModelo(r[0]);
-      out.push({ t: nombreModelo(r[0]), sub: grupo, dato: dato,
-                 d: extra + (nota ? ' \u00b7 ' + nota : ''), img: foto, h: pagModelo(r[0]) });
+  /* Los tres tipos de piston. El reparto de modelos no se escribe aqui: sale
+     de las filas @ de la tabla de la gama, en su orden. Esto es solo lo que la
+     tabla no puede decir —como se llama la pagina, la foto y el texto—. */
+  const TIPOS_PISTON = [
+    { slug: 'coaxiales',
+      titulo: 'Compresores de pist\u00f3n coaxiales',
+      corto: 'Coaxiales',
+      claim: 'Transmisi\u00f3n directa y formato portatil, para trabajo puntual.',
+      lead: 'El motor mueve el cabezal sin correas: menos piezas, menos mantenimiento y un '
+          + 'equipo que se transporta. Para una pistola de soplado, un inflador o una '
+          + 'clavadora de uso ocasional.',
+      img: SUBIDAS + 'compresor-lubricado-piston.jpg.webp' },
+    { slug: 'correa-una-etapa',
+      titulo: 'Compresores de pist\u00f3n de correa, una etapa',
+      corto: 'Correa, una etapa',
+      claim: 'El taller que trabaja a diario, con calder\u00edn de 100 a 200 litros.',
+      lead: 'La correa desacopla el motor del cabezal: el cabezal gira mas despacio, se '
+          + 'calienta menos y aguanta ciclos mas largos que un coaxial. Hay version '
+          + 'monofasica a 230 V y trifasica a 400 V.',
+      img: SUBIDAS + 'compresor-de-piston-jender.png' },
+    { slug: 'correa-dos-etapas',
+      titulo: 'Compresores de pist\u00f3n de correa, dos etapas',
+      corto: 'Correa, dos etapas',
+      claim: 'Dos fases de compresi\u00f3n para llegar a 11 bar sin castigar el cabezal.',
+      lead: 'El aire se comprime en dos etapas con enfriamiento intermedio: menos esfuerzo '
+          + 'termico por fase y mas vida util cuando el proceso pide presion, como el '
+          + 'arenado o la pintura industrial. Alimentacion trifasica a 400 V.',
+      img: SUBIDAS + 'COMPRESOR-DE-PISTON-1.jpeg' }
+  ];
+
+  const pagTipo = t => 'compresores-de-piston-' + t.slug + '.html';
+
+  /* Parte la tabla de la gama por sus filas @ y devuelve un grupo por cada una,
+     con sus modelos y con el texto del tipo que le toca. */
+  const gruposPiston = () => {
+    const P = GAMA['PISTON'];
+    if (!P) return [];
+    const fuera = [];
+    let act = null;
+    (P.rows || []).forEach(r => {
+      if (r.length === 1 && String(r[0]).charAt(0) === '@') {
+        act = { etiqueta: String(r[0]).slice(1), filas: [] };
+        fuera.push(act);
+        return;
+      }
+      if (act) act.filas.push(r);
     });
-    return out;
+    return fuera.map((g, i) => Object.assign({}, TIPOS_PISTON[i] || {
+      slug: 'tipo-' + (i + 1), titulo: g.etiqueta, corto: g.etiqueta,
+      claim: '', lead: '', img: SUBIDAS + 'compresor-lubricado-piston.jpg.webp'
+    }, g));
   };
+
+  /* El rango de una columna: «4 a 10 HP» si hay varios, «8 bar» si todos igual.
+     Se imprime el texto original de la celda, no el numero recalculado. */
+  const num = v => parseFloat(String(v).replace(/\./g, '').replace(',', '.'));
+  const rango = (filas, k, unidad) => {
+    const vs = filas.map(r => String(r[k]).split('/')[0].trim()).filter(v => v && v !== '\u2014');
+    if (!vs.length) return '';
+    let min = vs[0], max = vs[0];
+    vs.forEach(v => { if (num(v) < num(min)) min = v; if (num(v) > num(max)) max = v; });
+    return (min === max ? min : min + '\u2013' + max) + (unidad ? ' ' + unidad : '');
+  };
+
+  /* La celda de potencia es «4 / 3»: delante los HP y detras los kW. */
+  const rangoKw = filas => rango(filas.map(r => [r[0], String(r[1]).split('/')[1] || '']), 1, '');
+
+  const hijasDePiston = () => gruposPiston().map(g => ({
+    t: g.corto, sub: g.etiqueta,
+    dato: rango(g.filas, 1, 'HP'),
+    d: g.filas.length + ' modelos \u00b7 calder\u00edn de ' + rango(g.filas, 2, 'L'),
+    img: g.img, h: pagTipo(g)
+  }));
 
   const tarjeta = x =>
     '<a class="cat-card" href="' + x.h + '">' +
@@ -3354,8 +3445,8 @@
     let titulo = '', lista = [];
     if (HIJAS[clave]) { titulo = HIJAS[clave].titulo; lista = HIJAS[clave].de; }
     else if (clave === 'PISTON') {
-      titulo = 'Modelos';
-      lista = hijasDeModelos(g, SUBIDAS + 'compresor-lubricado-piston.jpg.webp');
+      titulo = 'Tipos de compresor de pist\u00f3n';
+      lista = hijasDePiston();
     }
     if (!lista.length) return '';
     const cards = lista.map(tarjeta).join('');
@@ -3372,9 +3463,8 @@
 <ul class="checklist"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span>Te la instalamos nosotros: Estudiamos tu nave o taller, calculamos caudales y presiones, dimensionamos la red y la montamos con nuestro equipo. Te la entregamos lista para producir, con un único responsable de principio a fin.</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span>Te vendemos el material: En Jender ponemos a tu disposición todos los componentes para montar una instalación completa: tubería de aluminio (ligera, resistente a la corrosión y con conexión rápida sin soldadura), calderines, enchufes rápidos, enrolladores, espirales de poliuretano y herramientas de montaje. <span class="mk" data-k="chg" data-antes="Directo de fábrica, sin intermediarios que encarezcan el precio." data-porque="Hablar de «fábrica» o «fabricamos» hace pensar que se produce en España. El informe propone explicar lo que sí hace Jender: diseñar, especificar y responder por el equipo (Lenguaje sobre fabricación y origen). «Sin intermediarios» puede no ser exacto si hay importación. El informe propone «con un único responsable» o «trato directo con la marca» (Expresiones que es mejor sustituir).">Trato directo con la marca, con un único responsable de principio a fin.</span></span></li></ul></div><div class="media"><img class="rimg" src="https://www.jender.es/wp-content/uploads/2026/04/instalaciones-aire-comprimido-pintura.jpg" alt="" loading="lazy"></div></div></div></section>
 <section class="section r "><div class="wrap"><div class="split rsplit"><div class="media"><img class="rimg" src="https://www.jender.es/wp-content/uploads/2026/07/red-de-aire-comprimido.jpg" alt="red de aire comprimido modular" loading="lazy"></div><div class="prose"><h2>Un sistema modular que reduce tiempo y coste de montaje</h2>
 <p>Hemos desarrollado un sistema modular de gran calidad, diseñado para que tus instalaciones sean flexibles y eficientes. Reduce los costes de mano de obra y el tiempo de montaje frente a las redes tradicionales de acero soldado, y soporta el trabajo industrial de mayor rendimiento. Cada producto está pensado para facilitar una instalación profesional, reducir las fugas y asegurar un suministro de aire estable en cada punto de consumo.</p></div></div></div></section>
-<section class="section r "><div class="wrap"><h2>¿Por qué instalar tu red de aire comprimido con Jender?</h2>
-<ul class="checklist"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span><span class="mk" data-k="chg" data-antes="Origen propio, precio directo: Ingeniería y fabricación propias y venta directa: la misma calidad, sin el sobreprecio de la cadena de intermediarios." data-porque="Hablar de «fábrica» o «fabricamos» hace pensar que se produce en España. El informe propone explicar lo que sí hace Jender: diseñar, especificar y responder por el equipo (Lenguaje sobre fabricación y origen).">Especificaciones propias, precio directo: ingeniería Jender y respaldo de CST Ibérica, con un único interlocutor para el equipo y el servicio.</span></span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span>Una red de aire que no se para: Nuestra prioridad es que tu instalación no falle; y si algo ocurre, que vuelva a producir en el menor tiempo posible.</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span><span class="mk" data-k="chg" data-antes="Postventa 24/365 en toda España:" data-porque="Un plazo publicado tiene que poder cumplirse y medirse; si no, genera desconfianza (Ajustes prioritarios de contenido: revisar promesas de 4 h, 24 h y 30 %).">Posventa en toda España:</span> Red de técnicos e instaladores en todo el territorio, con repuestos y servicio a precios competitivos.</span></li></ul>
-<img class="rimg" src="https://www.jender.es/wp-content/uploads/2026/04/instalacion-aire-comprimido-modular-jender.jpg.webp" alt="" loading="lazy"></div></section>
+<section class="section r "><div class="wrap"><div class="split rsplit"><div class="prose"><h2>¿Por qué instalar tu red de aire comprimido con Jender?</h2>
+<ul class="checklist"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span><span class="mk" data-k="chg" data-antes="Origen propio, precio directo: Ingeniería y fabricación propias y venta directa: la misma calidad, sin el sobreprecio de la cadena de intermediarios." data-porque="Hablar de «fábrica» o «fabricamos» hace pensar que se produce en España. El informe propone explicar lo que sí hace Jender: diseñar, especificar y responder por el equipo (Lenguaje sobre fabricación y origen).">Especificaciones propias, precio directo: ingeniería Jender y respaldo de CST Ibérica, con un único interlocutor para el equipo y el servicio.</span></span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span>Una red de aire que no se para: Nuestra prioridad es que tu instalación no falle; y si algo ocurre, que vuelva a producir en el menor tiempo posible.</span></li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span><span class="mk" data-k="chg" data-antes="Postventa 24/365 en toda España:" data-porque="Un plazo publicado tiene que poder cumplirse y medirse; si no, genera desconfianza (Ajustes prioritarios de contenido: revisar promesas de 4 h, 24 h y 30 %).">Posventa en toda España:</span> Red de técnicos e instaladores en todo el territorio, con repuestos y servicio a precios competitivos.</span></li></ul></div><div class="media"><img class="rimg" src="https://www.jender.es/wp-content/uploads/2026/04/instalacion-aire-comprimido-modular-jender.jpg.webp" alt="" loading="lazy"></div></div></div></section>
 <section class="section r "><div class="wrap"><h2>Preguntas frecuentes sobre instalaciones de aire comprimido</h2>
 <div class="faq"><details open><summary>¿Cuánto cuesta una instalación de aire comprimido?</summary><div class="a"><p>El precio depende del tamaño de la nave, el caudal necesario, los metros de tubería y los puntos de consumo. Preparamos un estudio a medida sin compromiso para darte una cifra ajustada a tu caso.</p></div></details><details><summary>¿Qué tubería se usa para aire comprimido?</summary><div class="a"><p>La tubería de aluminio es hoy el estándar en instalaciones industriales: no se corroe, mantiene el caudal limpio, es ligera y permite un montaje rápido y modular frente al acero o el cobre.</p></div></details><details><summary>¿Qué normativa regula la instalación de compresores de aire en España?</summary><div class="a"><p>Las instalaciones de aire comprimido se rigen por el reglamento de equipos a presión (Real Decreto 809/2021) y deben legalizarse ante el organismo de industria correspondiente. Nos encargamos de dejar la red conforme a normativa.</p></div></details><details><summary>¿Cuánto se tarda en montar una red de aire comprimido?</summary><div class="a"><p>Depende de la complejidad, pero una red modular de aluminio se instala mucho más rápido que una tradicional de acero soldado. Tras el estudio te damos un plazo concreto.</p></div></details></div></div></section>
 `,
@@ -3502,7 +3592,7 @@
 
   const familiaDe = ruta => {
     const f = ruta.split('/').pop();
-    if (/^compresor-de-piston-/.test(f)) return 'PISTON';
+    if (/^compresores-de-piston-/.test(f)) return 'PISTON';
     if (/^compresores-de-tornillo-/.test(f)) return 'TORNILLO';
     if (/^instalaciones-aire-comprimido-/.test(f)) return 'INSTALACION';
     if (/^tratamientos-aire-comprimido-/.test(f)) return 'TRATAMIENTO';
@@ -3520,46 +3610,26 @@
     if (sitio) sitio.insertAdjacentHTML('beforebegin', COMUN[fam]);
   })();
 
-  /* Una ficha por modelo de piston. No se escriben a mano: salen de la tabla
-     de la gama, con sus datos en vertical y los bloques comunes de la gama.
-     Asi un cambio en la tabla llega solo a las diez fichas. */
+  /* Una ficha por tipo de piston. No se escriben a mano: cada una se queda con
+     los modelos de su grupo en la tabla de la gama, de modo que un cambio en la
+     tabla llega solo a las tres. */
   (() => {
     const P = GAMA['PISTON'];
     if (!P) return;
-    const foto = SUBIDAS + 'compresor-lubricado-piston.jpg.webp';
-    const etiq = P.cols.map(c => String(c).replace(/<br>/g, ' ').replace(/<[^>]+>/g, '').trim());
-    const lista = [];
-    let grupo = '';
-    P.rows.forEach(r => {
-      if (r.length === 1 && String(r[0]).charAt(0) === '@') { grupo = String(r[0]).slice(1); return; }
-      lista.push({ r: r, grupo: grupo });
-    });
-    lista.forEach((m, i) => {
-      const r = m.r, nom = nombreModelo(r[0]), nota = notaModelo(r[0]);
-      const v = k => (r[k] === undefined || r[k] === '' || r[k] === '\u2014') ? '' : r[k];
-      const pares = [];
-      for (let k = 1; k < r.length; k++) { if (v(k)) pares.push([etiq[k], v(k)]); }
-      const otros = lista.filter((_, j) => j !== i).map(o => ({
-        t: nombreModelo(o.r[0]), sub: o.grupo,
-        dato: conUnidad(o.r[1], (parteColumna(P.cols[1]) || {}).unidad),
-        d: 'Dep\u00f3sito ' + o.r[2] + ' L', img: foto, h: pagModelo(o.r[0])
-      }));
-      GAMA['M_' + slugModelo(r[0])] = {
-        soloFicha: true,
+    const tipos = gruposPiston();
+    tipos.forEach((g, i) => {
+      GAMA['P_' + g.slug] = {
         eyebrow: 'Compresores de pist\u00f3n',
-        title: 'Compresor de pist\u00f3n ' + nom,
-        claim: m.grupo + (nota ? ', ' + nota : '') + '.',
-        lead: 'Calder\u00edn de ' + v(2) + ' litros y ' + v(4) + ' l/min de aire aspirado a '
-            + v(3) + ' bar. Los datos de ensayo, la alimentaci\u00f3n y las dimensiones est\u00e1n '
-            + 'completos m\u00e1s abajo; el kit de mantenimiento va incluido.',
-        fig: [[v(1).split('/')[0].trim() + ' HP', 'Potencia', v(1).split('/')[1] ? v(1).split('/')[1].trim() + ' kW' : ''],
-              [v(2) + ' L', 'Dep\u00f3sito', ''],
-              [v(3) + ' bar', 'Presi\u00f3n de trabajo', ''],
-              [v(4) + ' l/min', 'Aire aspirado', '']],
+        title: g.titulo,
+        claim: g.claim,
+        lead: g.lead,
+        fig: [[rango(g.filas, 1, 'HP'), 'Potencia', rangoKw(g.filas) + ' kW'],
+              [rango(g.filas, 2, 'L'), 'Dep\u00f3sito', ''],
+              [rango(g.filas, 3, 'bar'), 'Presi\u00f3n de trabajo', ''],
+              [g.filas.length + ' modelos', 'en este tipo', '']],
         ben: P.ben, dis: P.dis, n3: P.n3,
-        cols: ['Caracter\u00edstica', 'Valor'],
-        rows: pares,
-        hermanos: otros.map(tarjeta).join('')
+        cols: P.cols,
+        rows: g.filas
       };
     });
   })();
@@ -3637,10 +3707,6 @@
           ${g.aviso ? `<p class="fnote pend" data-k="val" data-porque="El cat\u00e1logo general 2026 tabula los modelos de la serie hasta 75 kW, pero la gama se anuncia hasta 315 kW." data-falta="Datos de los modelos por encima de 75 kW, o corregir el rango declarado de la serie.">${g.aviso}</p>` : ''}
           ${g.pend ? `<p class="fnote pend" data-k="val" data-porque="La tabla se queda a nivel de serie porque es el \u00fanico dato publicado por Jender. CompAir detalla cada modelo con su refrigeraci\u00f3n, FAD a dos presiones, dimensiones y peso." data-falta="Listado de modelos de la serie con potencia, FAD a 8 y 10 bar, nivel sonoro, dimensiones y peso.">${g.pend}</p>` : ''}
         </div></section>
-
-        ${g.hermanos ? `<section class="gblock" id="g-hermanos"><h2 class="gtit">Otros modelos de la gama</h2><div class="gb">
-          <div class="cat-grid">${g.hermanos}</div>
-        </div></section>` : ''}
 
         <p class="gama-cat">Esta es la gama que publicamos en la web. <a href="catalogo.html">Ver el catálogo completo de Jender</a></p>
         <div class="gama-foot">

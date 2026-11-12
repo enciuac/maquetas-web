@@ -139,6 +139,10 @@ body.show-changes .menu li:not(.nochg)>a:not(.active){text-decoration:underline;
 .sec-head p{font-size:17px}
 
 .split{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+/* Una columna de rejilla no baja del ancho de su contenido salvo que se le
+   diga: sin esto, la tira de la galeria estira su columna y con ella la pagina.
+   Solo la de la foto: la de texto puede llevar una tabla que no debe encogerse. */
+.split>.media,.rsplit>.media{min-width:0}
 .split.rev{grid-template-columns:.95fr 1.05fr}
 .split .media img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius);aspect-ratio:4/3}
 .split .media.wide img{aspect-ratio:16/10}
@@ -699,11 +703,28 @@ body.show-changes .menu li.nochg>a.active{color:rgba(255,255,255,.75)}
 @media (max-width:1280px){.figs{grid-template-columns:1fr;gap:44px}}
 @media (max-width:767px){.bar-row{grid-template-columns:64px 1fr 46px;gap:8px}.hu .ht{display:none}}
 
-/* galeria de producto: varias fotos en rejilla, todas al mismo tamaño */
-.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin:6px 0 4px}
-.gal .gi{margin:0;background:var(--grey);border:1px solid var(--grey-2);border-radius:8px;padding:10px;display:grid;place-items:center}
+/* galeria de producto: las fotos se deslizan en una tira, con una flecha a
+   cada lado que solo aparece si no caben todas */
+/* min-width:0 en los dos: dentro de una rejilla o un flex, una caja no baja
+   del ancho de su contenido salvo que se le diga, y la tira se llevaba la
+   pagina entera hacia la derecha. */
+.gal{position:relative;margin:8px 0 6px;min-width:0;max-width:100%}
+.gal-pista{display:flex;gap:12px;overflow-x:auto;padding:2px;min-width:0;max-width:100%;
+  scroll-snap-type:x proximity;scrollbar-width:none;-ms-overflow-style:none}
+.gal-pista::-webkit-scrollbar{display:none}
+.gal .gi{flex:0 0 168px;scroll-snap-align:start;margin:0;background:var(--grey);
+  border:1px solid var(--grey-2);border-radius:8px;padding:10px;display:grid;place-items:center}
 .gal .gi img{width:100%;height:auto;max-height:130px;object-fit:contain;display:block}
-@media (max-width:767px){.gal{grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:9px}}
+.gal-nav{display:none;position:absolute;top:50%;transform:translateY(-50%);z-index:2;
+  width:36px;height:36px;padding:0;border-radius:50%;border:1px solid var(--grey-2);
+  background:#fff;color:var(--navy);font-size:21px;line-height:1;cursor:pointer;
+  box-shadow:0 6px 18px -8px rgba(0,20,60,.45)}
+.gal.con-flechas .gal-nav{display:grid;place-items:center}
+.gal-nav.prev{left:4px}
+.gal-nav.next{right:4px}
+.gal-nav:disabled{opacity:.3;cursor:default;box-shadow:none}
+.gal-nav:hover:not(:disabled){border-color:var(--navy)}
+@media (max-width:767px){.gal .gi{flex:0 0 132px;gap:9px}.gal-nav{width:32px;height:32px;font-size:19px}}
 
 /* dentro de un bloque del índice, las dos columnas arrancan arriba: si se centran,
    el texto queda flotando en medio de un hueco blanco junto a la galería */

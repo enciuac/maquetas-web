@@ -142,6 +142,41 @@
     <button class="review-toggle" type="button"><span class="sw"></span>Ver cambios <small>(maqueta)</small></button>`;
   document.body.append(...footer.childNodes);
 
+  /* ---------- Buscador de las tablas del area ----------
+     Filtra las filas de la tabla que va justo debajo segun lo que se escribe.
+     Sin tildes ni mayusculas, para que «Belen» encuentre «Belén». */
+  document.querySelectorAll('input[data-filtra]').forEach(campo => {
+    const caja = campo.closest('.ac-buscar');
+    const tabla = caja && caja.nextElementSibling &&
+                  caja.nextElementSibling.querySelector('table');
+    if (!tabla) return;
+    const filas = [...tabla.tBodies[0].rows];
+    const cuantos = caja.querySelector('.ac-cuantos');
+    const plano = t => t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const texto = filas.map(f => plano(f.textContent));
+
+    const vacio = document.createElement('p');
+    vacio.className = 'ac-sinnada';
+    vacio.hidden = true;
+    vacio.textContent = 'No hay nada que coincida con esa b\u00fasqueda.';
+    caja.nextElementSibling.after(vacio);
+
+    const filtrar = () => {
+      const q = plano(campo.value.trim());
+      let n = 0;
+      filas.forEach((f, i) => {
+        const vale = !q || texto[i].includes(q);
+        f.hidden = !vale;
+        if (vale) n++;
+      });
+      vacio.hidden = n > 0;
+      cuantos.textContent = q ? n + ' de ' + filas.length : '';
+    };
+    campo.addEventListener('input', filtrar);
+    /* La cruz del campo de busqueda no lanza input en todos los navegadores. */
+    campo.addEventListener('search', filtrar);
+  });
+
   /* ---------- Carrito, solo dentro del area de clientes ----------
      En la web publica no hay precios ni pedido, asi que no hay carrito. Dentro
      se guarda en el navegador: una vez se anade algo, el panel sigue abierto al
@@ -183,7 +218,10 @@
         <footer>
           <div class="carro-tot"><span>Subtotal</span><b>0,00\u00a0\u20ac</b></div>
           <p class="carro-nota">Precios con tu descuento aplicado, sin IVA ni portes.</p>
-          <a class="btn btn-yellow" href="area-cliente-pedidos.html">Solicitar pedido</a>
+          <!-- Dos salidas: el pedido nos llega a nosotros; la oferta se la queda
+               el cliente para ofertar a su vez a un cliente suyo. -->
+          <a class="btn btn-yellow" href="area-cliente-pedidos.html">Tramitar pedido</a>
+          <a class="btn btn-ghost-navy btn-sm" href="area-cliente-ofertas-generadas.html">Generar oferta</a>
         </footer>
       </aside>`;
     document.body.appendChild(caja);

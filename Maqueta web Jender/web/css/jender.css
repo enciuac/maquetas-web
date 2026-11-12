@@ -878,7 +878,7 @@ body.zona-area .wrap{max-width:1280px}
    hueco. Con flex, las de cada fila crecen hasta llenar el ancho, se queden
    cuatro o tres, y al estrechar la pantalla se reparten solas. */
 .ac-grid{display:flex;flex-wrap:wrap;gap:18px;margin-top:8px}
-.ac-tile{flex:1 1 270px}
+.ac-tile{flex:1 1 320px}
 .ac-tile{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;
   background:var(--grey);border:1px solid var(--grey);border-radius:var(--radius);
   padding:26px 20px 24px;text-decoration:none;transition:border-color .18s,box-shadow .18s,transform .18s}
@@ -1082,3 +1082,31 @@ body.carro-acoplado{padding-right:var(--carro-w)}
 /* El dato que no se puede cambiar, en el perfil */
 .form input[readonly]{background:var(--grey-2);color:var(--muted);cursor:not-allowed}
 .form small.muted{display:block;margin-top:5px;font-size:12px}
+
+
+/* Sub-apartados dentro de un apartado: en Mis ofertas distinguen las que
+   manda Jender de las que genera el propio cliente. */
+.ac-sub{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 4px;
+  border-bottom:1px solid var(--grey-2)}
+.ac-sub a{padding:10px 16px 11px;font-size:14px;font-weight:700;color:var(--muted);
+  text-decoration:none;border-bottom:3px solid transparent;margin-bottom:-1px}
+.ac-sub a:hover{color:var(--navy)}
+.ac-sub a.on{color:var(--navy);border-bottom-color:var(--yellow)}
+
+/* Explicacion corta encima de una tabla */
+.ac-expl{max-width:820px;margin:0 0 18px;font-size:14.5px;color:var(--muted)}
+.ac-expl strong{color:var(--navy)}
+
+/* El enlace a soporte de la portada, que ya no tiene tarjeta propia */
+.ac-dudas{margin:24px 0 0;font-size:14.5px;color:var(--muted)}
+.ac-dudas a{color:var(--navy);font-weight:700}
+
+
+/* Buscador encima de una tabla del area */
+.ac-buscar{display:flex;align-items:center;gap:12px;margin:0 0 14px}
+.ac-buscar input{flex:1 1 320px;max-width:420px;padding:10px 14px;
+  border:1px solid var(--line);border-radius:8px;font:inherit;font-size:14.5px;
+  background:#fff;color:var(--navy)}
+.ac-buscar input:focus{outline:2px solid var(--yellow);outline-offset:1px;border-color:var(--navy)}
+.ac-cuantos{font-size:13px;color:var(--muted);white-space:nowrap}
+.ac-sinnada{margin:16px 0 0;font-size:14.5px;color:var(--muted)}

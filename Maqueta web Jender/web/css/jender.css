@@ -786,41 +786,6 @@ button.burger::after{content:"";position:absolute;top:50%;left:50%;transform:tra
   .cat-go{right:10px;bottom:10px;width:22px;height:22px}
 }
 
-/* ===== Rejilla de modelos dentro de cada gama ===== */
-.mod-intro{margin:0 0 18px;font-size:15px;color:var(--muted)}
-.mod-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-.mod-sub{grid-column:1/-1;margin:14px 0 2px;font-family:"Barlow",sans-serif;font-weight:800;font-size:13px;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--yellow-dark,#b98a00)}
-.mod-sub:first-child{margin-top:0}
-.mod-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--grey-2);border-radius:var(--radius);
-  padding:16px 16px 14px;transition:border-color .18s,box-shadow .18s}
-.mod-card:hover{border-color:var(--navy);box-shadow:0 14px 28px -22px rgba(0,20,60,.5)}
-.mod-card h4{margin:0 0 10px;font-size:16px;line-height:1.25;color:var(--navy)}
-.mod-datos{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:5px}
-.mod-datos li{display:flex;justify-content:space-between;gap:10px;align-items:baseline;min-width:0;
-  border-bottom:1px dashed var(--grey-2);padding-bottom:5px;font-size:13px}
-.mod-datos li:last-child{border-bottom:0}
-.mod-datos span{color:var(--muted)}
-.mod-datos b{font-weight:700;color:var(--navy);text-align:right;overflow-wrap:anywhere;min-width:0}
-.mod-cta{margin-top:auto;align-self:flex-start;font-size:13px;font-weight:600;color:var(--navy);
-  text-decoration:none;border-bottom:1px solid rgba(11,30,51,.3)}
-.mod-cta:hover{border-bottom-color:var(--navy)}
-@media (max-width:1100px){.mod-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:820px){.mod-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-/* Dos columnas tambien en el telefono: algunas gamas tienen 19 modelos y a una
-   columna el listado se hace interminable. */
-@media (max-width:560px){
-  .mod-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
-  .mod-card{padding:12px 12px 11px}
-  .mod-card h4{font-size:14px;margin-bottom:8px}
-  .mod-datos li{font-size:11.5px;padding-bottom:4px}
-  .mod-datos b small{font-size:10px}
-  .mod-cta{font-size:12px}
-}
-.mod-datos b small{font-weight:600;font-size:11px;color:var(--muted);margin-left:2px}
-.mod-datos li.larga{display:block}
-.mod-datos li.larga span{display:block;margin-bottom:2px;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}
-.mod-datos li.larga b{display:block;text-align:left;font-weight:600;line-height:1.45}
 
 /* Al llegar desde una tarjeta de modelo, su fila se para por debajo de la
    cabecera fija y se queda marcada para que se vea cual es. */

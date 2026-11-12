@@ -3244,42 +3244,18 @@
 
   const soloTexto = v => String(v).replace(/<[^>]+>/g, '').trim();
   /* La cabecera de columna trae nombre, unidad tras un <br> y a veces llamadas
-     al pie. En la tarjeta el nombre va de etiqueta y la unidad acompana al dato. */
+     al pie. En una tarjeta el nombre va de etiqueta y la unidad acompana al dato. */
   const parteColumna = c => {
     const t = String(c).split('<br>');
     return { nombre: soloTexto(t[0]).replace(/[¹²³\s]+$/, ''),
              unidad: t[1] ? soloTexto(t[1]) : '' };
-  };
-  const fichasModelos = g => {
-    const etiquetas = (g.cols || []).slice(1, 4).map(parteColumna);
-    let html = '', n = 0;
-    (g.rows || []).forEach(r => {
-      if (r.length === 1 && String(r[0]).charAt(0) === '@') {
-        html += '<h4 class="mod-sub">' + String(r[0]).slice(1) + '</h4>';
-        return;
-      }
-      n++;
-      const datos = etiquetas.map((et, i) => {
-        const v = r[i + 1];
-        if (v === undefined || v === '' || v === '—') return '';
-        /* Algunas gamas traen una frase donde otras traen un dato corto. Cuando es
-           larga, etiqueta y valor se apilan: en paralelo quedaba todo partido. */
-        const larga = String(v).length > 30;
-        return '<li' + (larga ? ' class="larga"' : '') + '><span>' + et.nombre + '</span><b>' + v
-             + (et.unidad ? ' <small>' + et.unidad + '</small>' : '') + '</b></li>';
-      }).join('');
-      html += '<article class="mod-card"><h4>' + r[0] + '</h4>'
-            + '<ul class="mod-datos">' + datos + '</ul>'
-            + '<a class="mod-cta" href="#contacto">Solicitar precio</a></article>';
-    });
-    return { html: html, n: n };
   };
 
 
   /* Lo que cuelga de cada categoria. La parrilla usa las mismas tarjetas que el
      catalogo general (.cat-card), pero listando solo lo de esa categoria: al
      entrar en Compresores de tornillo se ven sus tres series, no las 17 gamas.
-     Pistol no tiene subpaginas, asi que lista sus modelos y cada uno baja a su
+     Piston no tiene subpaginas, asi que lista sus modelos y cada uno baja a su
      fila en la tabla de especificaciones. */
   const HIJAS = {
     'TORNILLO': { titulo: 'Series', de: [
@@ -3632,15 +3608,6 @@
         </div>
 
         ${parrilla}
-
-        ${(() => { /* Donde hay parrilla, esa ya es la lista: la rejilla de modelos
-             generada repetia lo mismo sin enlaces, asi que no se pinta. */
-          if (parrilla || g.soloFicha) return '';
-          const m = fichasModelos(g); return m.n ? `
-        <section class="gblock" id="g-modelos"><h2 class="gtit">Modelos</h2><div class="gb">
-          <p class="mod-intro">${m.n} modelos en la gama. Los datos completos de cada uno están en la tabla de especificaciones.</p>
-          <div class="mod-grid">${m.html}</div>
-        </div></section>` : ''; })()}
 
         <section class="gblock" id="g-beneficios"><h2 class="gtit">Beneficios</h2><div class="gb">
           ${g.ben.map(b => `<div class="bitem"><h4>${b[0]}</h4><p>${b[1]}</p></div>`).join('')}

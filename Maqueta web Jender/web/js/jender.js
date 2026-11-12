@@ -147,9 +147,13 @@
      Sin tildes ni mayusculas, para que «Belen» encuentre «Belén». */
   document.querySelectorAll('input[data-filtra]').forEach(campo => {
     const caja = campo.closest('.ac-buscar');
-    const tabla = caja && caja.nextElementSibling &&
-                  caja.nextElementSibling.querySelector('table');
-    if (!tabla) return;
+    if (!caja) return;
+    /* La tabla es la que diga el campo; si no dice ninguna, la de debajo. */
+    const apunta = campo.getAttribute('data-filtra');
+    const destino = apunta ? document.querySelector(apunta)
+                           : caja.nextElementSibling;
+    const tabla = destino && destino.querySelector('table');
+    if (!tabla || !tabla.tBodies.length) return;
     const filas = [...tabla.tBodies[0].rows];
     const cuantos = caja.querySelector('.ac-cuantos');
     const plano = t => t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -159,7 +163,7 @@
     vacio.className = 'ac-sinnada';
     vacio.hidden = true;
     vacio.textContent = 'No hay nada que coincida con esa b\u00fasqueda.';
-    caja.nextElementSibling.after(vacio);
+    destino.after(vacio);
 
     const filtrar = () => {
       const q = plano(campo.value.trim());

@@ -1109,4 +1109,8 @@ body.carro-acoplado{padding-right:var(--carro-w)}
   background:#fff;color:var(--navy)}
 .ac-buscar input:focus{outline:2px solid var(--yellow);outline-offset:1px;border-color:var(--navy)}
 .ac-cuantos{font-size:13px;color:var(--muted);white-space:nowrap}
+/* El de Comprar va en la barra de filtros: en columna y a todo su ancho. */
+.ac-buscar-col{display:block;margin:0 0 4px}
+.ac-buscar-col input{max-width:none;width:100%}
+.ac-buscar-col .ac-cuantos{display:block;margin-top:7px}
 .ac-sinnada{margin:16px 0 0;font-size:14.5px;color:var(--muted)}

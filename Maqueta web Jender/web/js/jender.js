@@ -252,11 +252,14 @@
       </button>
       <aside class="carro-panel" hidden aria-label="Tu pedido">
         <header><h3>Tu pedido</h3>
+          <span class="carro-modo"></span>
           <button class="carro-x" type="button" aria-label="Cerrar el pedido">\u00d7</button></header>
         <div class="carro-lista"></div>
         <footer>
-          <div class="carro-tot"><span>Subtotal</span><b>0,00\u00a0\u20ac</b></div>
-          <p class="carro-nota">Con tu descuento aplicado, sin portes. <span class="iva-nota">Precios sin IVA</span>.</p>
+          <div class="carro-sumas"></div>
+          <p class="carro-nota">Con tu descuento aplicado y sin portes.</p>
+          <button class="iva-sw" type="button" aria-pressed="false">
+            <span class="sw"></span><span class="iva-txt">Ver con IVA</span></button>
           <!-- Dos salidas: el pedido nos llega a nosotros; la oferta se la queda
                el cliente para ofertar a su vez a un cliente suyo. -->
           <a class="btn btn-yellow" href="area-cliente-pedidos.html">Tramitar pedido</a>
@@ -269,7 +272,8 @@
     const cuenta = caja.querySelector('.carro-n');
     const panel = caja.querySelector('.carro-panel');
     const lista = caja.querySelector('.carro-lista');
-    const total = caja.querySelector('.carro-tot b');
+    const sumas = caja.querySelector('.carro-sumas');
+    const modo = caja.querySelector('.carro-modo');
 
     const abrir = (v, recordar) => {
       panel.hidden = !v;
@@ -303,7 +307,22 @@
             <button class="carro-quitar" type="button" data-i="${i}" aria-label="Quitar">\u00d7</button>
           </article>`).join('');
       }
-      total.textContent = eur(l.reduce((a, p) => a + neto(p) * p.uds, 0));
+      /* El desglose: con IVA puesto se ve de donde sale el total, y sin IVA
+         se dice que el total aun no lo lleva. Asi no hay que acordarse de en
+         que modo estaba la pantalla. */
+      const base = l.reduce((a, p) => a + p.precio * (1 - p.dto / 100) * p.uds, 0);
+      const cuota = base * IVA / 100;
+      modo.className = 'carro-modo ac-chip ' + (conIva ? 'ok' : 'gris');
+      modo.textContent = conIva ? 'IVA incluido' : 'Sin IVA';
+      sumas.innerHTML = conIva
+        ? '<div class="carro-fila"><span>Base imponible</span><b>' + eur(base) + '</b></div>'
+          + '<div class="carro-fila"><span>IVA ' + IVA + '\u00a0%</span><b>' + eur(cuota) + '</b></div>'
+          + '<div class="carro-tot"><span>Total <small>IVA incluido</small></span><b>'
+          + eur(base + cuota) + '</b></div>'
+        : '<div class="carro-tot"><span>Subtotal <small>sin IVA</small></span><b>'
+          + eur(base) + '</b></div>'
+          + '<div class="carro-fila apagada"><span>IVA ' + IVA + '\u00a0% no incluido</span><b>+ '
+          + eur(cuota) + '</b></div>';
     };
 
     const anadir = d => {

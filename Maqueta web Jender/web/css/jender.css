@@ -1114,3 +1114,22 @@ body.carro-acoplado{padding-right:var(--carro-w)}
 .ac-buscar-col input{max-width:none;width:100%}
 .ac-buscar-col .ac-cuantos{display:block;margin-top:7px}
 .ac-sinnada{margin:16px 0 0;font-size:14.5px;color:var(--muted)}
+
+
+/* Aviso de IVA y boton para cambiar de modo */
+.iva-barra{display:flex;flex-wrap:wrap;align-items:center;gap:14px;
+  justify-content:space-between;margin:0 0 14px}
+.iva-aviso{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted)}
+.iva-aviso svg{width:17px;height:17px;color:var(--yellow);flex:0 0 auto}
+.iva-aviso .iva-nota{font-weight:700;color:var(--navy)}
+.iva-sw{display:inline-flex;align-items:center;gap:9px;padding:8px 15px;border-radius:999px;
+  border:1px solid var(--line);background:#fff;color:var(--navy);font:inherit;
+  font-size:13.5px;font-weight:700;cursor:pointer}
+.iva-sw:hover{border-color:var(--navy)}
+.iva-sw .sw{width:34px;height:19px;border-radius:10px;background:var(--grey-2);
+  position:relative;transition:background .18s;flex:0 0 auto}
+.iva-sw .sw::after{content:"";position:absolute;top:2px;left:2px;width:15px;height:15px;
+  border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,20,60,.35);transition:left .18s}
+.iva-sw.on{border-color:var(--navy);background:var(--navy);color:#fff}
+.iva-sw.on .sw{background:var(--yellow)}
+.iva-sw.on .sw::after{left:17px}

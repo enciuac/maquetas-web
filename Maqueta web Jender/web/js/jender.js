@@ -181,6 +181,49 @@
     campo.addEventListener('search', filtrar);
   });
 
+  /* ---------- Precios sin IVA o con IVA ----------
+     La tarifa de cliente es sin IVA; esto solo cambia como se muestra, nunca
+     lo que vale. Cada importe lleva su valor base en data-eur, asi que se
+     repinta sin recargar. La eleccion se recuerda entre paginas. */
+  let conIva = false;
+  const IVA = 21;
+  const LLAVE_IVA = 'jender-con-iva';
+  try { conIva = localStorage.getItem(LLAVE_IVA) === '1'; } catch (e) {}
+
+  /* El importe se escribe a mano y no con toLocaleString: segun el navegador
+     se queda sin el punto de los miles. */
+  const eur = n => {
+    const t = Math.abs(n).toFixed(2).split('.');
+    return (n < 0 ? '-' : '') + t[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+           + ',' + t[1] + '\u00a0\u20ac';
+  };
+  const conImpuesto = n => conIva ? n * (1 + IVA / 100) : n;
+
+  const pintarPrecios = () => {
+    document.querySelectorAll('[data-eur]').forEach(el => {
+      el.textContent = eur(conImpuesto(parseFloat(el.dataset.eur)));
+    });
+    document.querySelectorAll('.iva-nota').forEach(el => {
+      el.textContent = conIva ? 'Precios con IVA del ' + IVA + '\u00a0% incluido'
+                              : 'Precios sin IVA';
+    });
+    document.querySelectorAll('.iva-sw').forEach(b => {
+      b.classList.toggle('on', conIva);
+      b.setAttribute('aria-pressed', conIva ? 'true' : 'false');
+      const t = b.querySelector('.iva-txt');
+      if (t) t.textContent = conIva ? 'Viendo con IVA' : 'Ver con IVA';
+    });
+    if (window.jPintarCarro) window.jPintarCarro();
+  };
+
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.iva-sw')) return;
+    conIva = !conIva;
+    try { localStorage.setItem(LLAVE_IVA, conIva ? '1' : '0'); } catch (err) {}
+    pintarPrecios();
+  });
+  pintarPrecios();
+
   /* ---------- Carrito, solo dentro del area de clientes ----------
      En la web publica no hay precios ni pedido, asi que no hay carrito. Dentro
      se guarda en el navegador: una vez se anade algo, el panel sigue abierto al
@@ -198,15 +241,7 @@
       try { return JSON.parse(localStorage.getItem(LLAVE) || '[]'); } catch (e) { return []; }
     };
     const guardar = l => { try { localStorage.setItem(LLAVE, JSON.stringify(l)); } catch (e) {} };
-    /* El importe se escribe a mano y no con toLocaleString: segun el navegador
-       se queda sin el punto de los miles, y entonces el carrito pone 3884,40
-       donde la tabla pone 3.884,40. */
-    const eur = n => {
-      const t = Math.abs(n).toFixed(2).split('.');
-      return (n < 0 ? '-' : '') + t[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-             + ',' + t[1] + '\u00a0\u20ac';
-    };
-    const neto = p => p.precio * (1 - p.dto / 100);
+    const neto = p => conImpuesto(p.precio * (1 - p.dto / 100));
     const cabe = () => window.innerWidth >= ACOPLA;
 
     const caja = document.createElement('div');
@@ -221,7 +256,7 @@
         <div class="carro-lista"></div>
         <footer>
           <div class="carro-tot"><span>Subtotal</span><b>0,00\u00a0\u20ac</b></div>
-          <p class="carro-nota">Precios con tu descuento aplicado, sin IVA ni portes.</p>
+          <p class="carro-nota">Con tu descuento aplicado, sin portes. <span class="iva-nota">Precios sin IVA</span>.</p>
           <!-- Dos salidas: el pedido nos llega a nosotros; la oferta se la queda
                el cliente para ofertar a su vez a un cliente suyo. -->
           <a class="btn btn-yellow" href="area-cliente-pedidos.html">Tramitar pedido</a>
@@ -322,6 +357,7 @@
       else if (!panel.hidden) document.body.classList.add('carro-acoplado');
     });
 
+    window.jPintarCarro = pintar;
     pintar();
     let seguia = false;
     try { seguia = localStorage.getItem(LLAVE_ABIERTO) === '1'; } catch (e) {}

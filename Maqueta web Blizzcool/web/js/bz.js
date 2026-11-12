@@ -258,15 +258,17 @@
     w.classList.add('nochg-w');
   });
 
-  var KEY = 'blizzcool-maqueta-cambios';
+  // «Ver cambios» nunca arranca encendido: no se guarda en el navegador. Se
+  // mantiene al cambiar de página porque los enlaces se van con #cambios, y la
+  // dirección refleja el estado, así que recargar tampoco lo enciende solo.
   function set(on) {
     body.classList.toggle('show-changes', on);
     BZ.paused = on;
-    try { localStorage.setItem(KEY, on ? '1' : '0'); } catch (e) {}
+    try {
+      history.replaceState(null, '', location.pathname + location.search + (on ? '#cambios' : ''));
+    } catch (e) {}
   }
-  var on = location.hash === '#cambios';
-  try { on = on || localStorage.getItem(KEY) === '1'; } catch (e) {}
-  set(on);
+  if (location.hash === '#cambios') { body.classList.add('show-changes'); BZ.paused = true; }
   sw.addEventListener('click', function () { set(!body.classList.contains('show-changes')); });
 
   // ficha flotante al pasar el ratón: no tapa el texto y separa «Antes» y «Por qué»

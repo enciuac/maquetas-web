@@ -146,13 +146,15 @@
   document.querySelectorAll('i[data-i]').forEach(el => { el.outerHTML = svg(el.dataset.i); });
 
   const t = document.querySelector('.review-toggle');
-  /* "Ver cambios" se mantiene activo al cambiar de página (localStorage + #cambios en los enlaces) */
-  const KEY = 'jender-maqueta-cambios';
-  let on = location.hash === '#cambios';
-  try { on = on || localStorage.getItem(KEY) === '1'; } catch (e) {}
-  if (on) document.body.classList.add('show-changes');
-  const save = v => { try { localStorage.setItem(KEY, v ? '1' : '0'); } catch (e) {} };
-  t.addEventListener('click', () => { save(document.body.classList.toggle('show-changes')); });
+  /* "Ver cambios" nunca arranca encendido: no se guarda en el navegador. Se
+     mantiene al cambiar de pagina porque los enlaces se van con #cambios, y la
+     direccion refleja el estado, asi que recargar tampoco lo enciende solo. */
+  if (location.hash === '#cambios') document.body.classList.add('show-changes');
+  const marcaUrl = v => {
+    try { history.replaceState(null, '', location.pathname + location.search + (v ? '#cambios' : '')); }
+    catch (e) {}
+  };
+  t.addEventListener('click', () => { marcaUrl(document.body.classList.toggle('show-changes')); });
   document.addEventListener('click', e => {
     const a = e.target.closest('a[href]');
     if (!a || e.defaultPrevented) return;
@@ -162,7 +164,6 @@
     if (document.body.classList.contains('show-changes')) a.setAttribute('href', base + '#cambios');
     else a.setAttribute('href', base + (h.includes('#') && !h.endsWith('#cambios') ? '#' + h.split('#')[1] : ''));
   });
-  if (location.hash === '#cambios') save(true);
 
   /* En "Ver cambios", los enlaces a páginas sin cambios se bloquean con un aviso */
   const tip = document.createElement('div');

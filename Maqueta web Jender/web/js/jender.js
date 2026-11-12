@@ -3800,6 +3800,23 @@
        agruparon las galerias la primera vez: se vuelve a pasar. */
     agruparGalerias();
 
+    /* Un bloque que es texto + foto se reordena: el titulo baja a la columna
+       del texto, para que titulo y descripcion queden juntos a un lado, y la
+       foto se queda con la columna ancha. */
+    cuerpo.querySelectorAll(':scope > .gblock').forEach(d => {
+      const gb = d.querySelector(':scope > .gb');
+      if (!gb) return;   // basta con que el bloque empiece por las dos columnas
+      const sp = gb.firstElementChild;
+      if (!sp || !sp.classList.contains('rsplit')) return;
+      const prosa = sp.querySelector(':scope > .prose');
+      const foto = sp.querySelector(':scope > .media');
+      if (!prosa || !foto) return;
+      const tit = d.querySelector(':scope > .gtit');
+      if (tit) { prosa.prepend(tit); d.classList.add('tit-dentro'); }
+      sp.classList.add('ancho-foto');
+      if (sp.firstElementChild === foto) sp.classList.add('foto-izq');
+    });
+
     /* el indice se rellena con los bloques que han quedado, en su orden */
     const lista = sec.querySelector('.gama-nav ul');
     lista.innerHTML = [...cuerpo.querySelectorAll(':scope > .gblock')].map((d, i) =>

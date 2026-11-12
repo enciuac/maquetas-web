@@ -461,6 +461,20 @@ body.show-changes .bg-navy .mk,body.show-changes .hero .mk,body.show-changes .rc
 .rsplit{margin:10px 0}
 .rsplit .media img{width:100%;border-radius:var(--radius);aspect-ratio:auto;object-fit:cover;max-height:460px}
 .rsplit .prose .btns{margin-top:18px}
+
+/* Bloque de ficha a dos columnas: el titulo esta dentro de la columna de texto
+   (lo mueve el constructor), asi que todo el texto queda a un lado y la foto
+   se lleva la columna ancha. Si la foto va primera, se invierte el reparto. */
+.rsplit.ancho-foto{grid-template-columns:1fr 1.3fr;gap:44px}
+.rsplit.ancho-foto.foto-izq{grid-template-columns:1.3fr 1fr}
+.gblock.tit-dentro{padding-top:24px}
+.prose>.gtit{margin:0 0 14px;padding:0;font-family:"Barlow",sans-serif;font-weight:900;
+  font-size:clamp(21px,2.2vw,27px);text-transform:uppercase;color:var(--navy)}
+.gb .rsplit.ancho-foto .media img{max-height:520px}
+@media (max-width:900px){
+  .rsplit.ancho-foto,.rsplit.ancho-foto.foto-izq{grid-template-columns:1fr}
+  .gblock.tit-dentro{padding-top:18px}
+}
 .rimg{border-radius:var(--radius);max-height:440px;object-fit:cover;margin:10px 0}
 .rgrid{display:grid;grid-template-columns:repeat(var(--n),1fr);gap:20px;margin:14px 0 18px}
 .rgrid .rimg{width:100%;height:200px;object-fit:contain;background:#f3f5f8;margin:0 0 14px}

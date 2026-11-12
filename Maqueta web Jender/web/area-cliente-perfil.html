@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mi perfil - Área del cliente - Jender · Maqueta</title>
-<meta name="description" content="Datos de empresa, direcciones de entrega y usuarios con acceso al área privada.">
+<meta name="description" content="Datos de empresa, dirección de entrega y datos de acceso del cliente.">
 <meta name="robots" content="noindex">
-<link rel="stylesheet" href="css/jender.css?v=34">
+<link rel="stylesheet" href="css/jender.css?v=38">
 </head>
-<body class="zona-area" data-page="acceso" data-header="static" data-k="new" data-porque="El área de clientes era una pantalla de acceso que no llevaba a ninguna parte: al entrar no había nada construido. Se diseña la zona privada completa —portada con sus ocho apartados, consulta de compras con filtros y tarifa, pedidos, ofertas, albaranes, facturas, descuentos, perfil y soporte— para que el desarrollo sepa qué pantallas hay que montar.">
+<body class="zona-area" data-page="acceso" data-header="static" data-k="new" data-porque="El área de clientes era una pantalla de acceso que no llevaba a ninguna parte. Se diseña la zona privada completa, con ficha por producto y carrito, para que el desarrollo sepa qué pantallas hay que montar.">
 <section class="section ac-top"><div class="wrap">
   <div class="crumbs"><a href="../index.html">Home</a> - <a href="acceso-clientes.html">Acceso</a> - <a href="area-cliente.html">Área del cliente</a> - Mi perfil</div>
   <div class="ac-cab">
@@ -20,10 +20,10 @@
     <div class="ac-user"><i data-i="user"></i><div><b>Talleres Montalbán, S.L.</b><span>Cliente 04871 · Andrea Almeida</span></div>
       <a class="btn btn-ghost-navy btn-sm" href="acceso-clientes.html">Salir</a></div>
   </div>
-  <nav class="ac-tabs" aria-label="Apartados del área de clientes"><a href="area-cliente.html">Área del cliente</a><a href="area-cliente-compras.html">Consultar compras</a><a href="area-cliente-pedidos.html">Pedidos B2B</a><a href="area-cliente-ofertas.html">Mis ofertas</a><a href="area-cliente-albaranes.html">Mis albaranes</a><a href="area-cliente-facturas.html">Mis facturas</a><a href="area-cliente-descuentos.html">Mis descuentos</a><a href="area-cliente-perfil.html" class="on">Mi perfil</a><a href="area-cliente-ayuda.html">Ayuda y soporte</a></nav>
+  <nav class="ac-tabs" aria-label="Apartados del área de clientes"><a href="area-cliente.html">Área del cliente</a><a href="area-cliente-comprar.html">Comprar</a><a href="area-cliente-pedidos.html">Mis pedidos</a><a href="area-cliente-ofertas.html">Mis ofertas</a><a href="area-cliente-albaranes.html">Mis albaranes</a><a href="area-cliente-facturas.html">Mis facturas</a><a href="area-cliente-perfil.html" class="on">Mi perfil</a><a href="area-cliente-ayuda.html">Ayuda y soporte</a></nav>
 </div></section>
 <section class="section" style="padding-top:6px"><div class="wrap">
-  <div class="ac-aviso"><i data-i="shield"></i><div>Vista de maqueta: no hay sesión ni datos reales detrás. Las referencias son las del catálogo, pero <strong>precios, descuentos, fechas e importes son de ejemplo</strong>.</div></div>
+  <div class="ac-aviso"><i data-i="shield"></i><div>Vista de maqueta: no hay sesión ni datos reales detrás. Las referencias y las características son las del catálogo, pero <strong>precios, descuentos, fechas e importes son de ejemplo</strong>.</div></div>
   <div class="duo">
     <div class="card-grey">
       <h3>Datos de la empresa</h3>
@@ -54,16 +54,30 @@
   </div>
 
   <div class="card-grey" style="margin-top:22px">
-    <h3>Usuarios con acceso</h3>
-    <div class="tbl-wrap"><table class="info-table ac-tabla"><thead><tr><th>Usuario</th><th>Correo</th><th>Permisos</th><th>Último acceso</th><th></th></tr></thead><tbody><tr><td>Andrea Almeida</td><td>a.almeida@••••••.es</td><td><span class="ac-chip ok">Administradora</span></td><td>12/11/2026</td><td><a class="art" href="#">Editar</a></td></tr><tr><td>Javier Ruiz</td><td>j.ruiz@••••••.es</td><td><span class="ac-chip gris">Solo consulta</span></td><td>04/11/2026</td><td><a class="art" href="#">Editar</a></td></tr><tr><td>Compras</td><td>compras@••••••.es</td><td><span class="ac-chip gris">Pedidos y ofertas</span></td><td>28/10/2026</td><td><a class="art" href="#">Editar</a></td></tr></tbody></table></div>
+    <h3>Mi cuenta</h3>
+    <p class="muted" style="margin:6px 0 0;font-size:14px">Los datos con los que entras
+    al área privada. El código de cliente lo asigna Jender y no se puede cambiar.</p>
+    <form class="form" onsubmit="return false" style="margin-top:16px">
+      <div class="row">
+        <div><label>Código de cliente</label>
+          <input value="04871" readonly aria-describedby="fijo">
+          <small id="fijo" class="muted">Asignado por Jender</small></div>
+        <div><label>Nombre y apellidos</label><input value="Andrea Almeida"></div>
+      </div>
+      <div class="row">
+        <div><label>Correo de acceso</label><input type="email" value="a.almeida@••••••.es"></div>
+        <div><label>Teléfono</label><input value="6•• ••• •••"></div>
+      </div>
+      <div><label>Cargo</label><input value="Responsable de compras"></div>
+      <button class="btn btn-yellow" style="justify-self:start">Guardar mis datos</button>
+    </form>
     <div class="btns" style="margin-top:18px">
-      <a class="btn btn-navy btn-sm" href="#">Añadir usuario</a>
       <a class="btn btn-ghost-navy btn-sm" href="#">Cambiar mi contraseña</a>
     </div>
   </div>
 </div></section>
 
-<script src="js/jender.js?v=34"></script>
+<script src="js/jender.js?v=38"></script>
 <script src="../../_inicio/volver.js?v=2"></script>
 </body>
 </html>

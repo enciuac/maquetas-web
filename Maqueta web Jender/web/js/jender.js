@@ -139,11 +139,158 @@
       <div><h4>Información</h4><ul><li><a href="#">Aplazamiento de pago</a></li><li><a href="#">Aviso legal</a></li><li><a href="#">Política de privacidad</a></li><li><a href="#">Política de cookies</a></li><li><a href="#">Envíos y devoluciones</a></li></ul></div>
     </div></footer><div class="copy">© 2026 JENDER Ibérica. Todos los derechos reservados.</div>
     <a class="float-wa" href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg></a>
-    <div class="float-list">${svg('cart')}Ver lista</div>
     <button class="review-toggle" type="button"><span class="sw"></span>Ver cambios <small>(maqueta)</small></button>`;
   document.body.append(...footer.childNodes);
 
-  document.querySelectorAll('i[data-i]').forEach(el => { el.outerHTML = svg(el.dataset.i); });
+  /* ---------- Carrito, solo dentro del area de clientes ----------
+     En la web publica no hay precios ni pedido, asi que no hay carrito. Dentro
+     se guarda en el navegador: una vez se anade algo, el panel sigue abierto al
+     cambiar de pagina, hasta que se cierra a mano.
+
+     No tapa la pagina: cuando hay sitio se acopla al lado derecho y el contenido
+     se estrecha lo justo. Donde no cabe acoplado (tablet y movil) se superpone,
+     pero entonces no se queda abierto al navegar. */
+  if (document.body.classList.contains('zona-area')) {
+    const LLAVE = 'jender-carrito';
+    const LLAVE_ABIERTO = 'jender-carrito-abierto';
+    const ACOPLA = 1100;              // por debajo de esto no cabe al lado
+
+    const leer = () => {
+      try { return JSON.parse(localStorage.getItem(LLAVE) || '[]'); } catch (e) { return []; }
+    };
+    const guardar = l => { try { localStorage.setItem(LLAVE, JSON.stringify(l)); } catch (e) {} };
+    /* El importe se escribe a mano y no con toLocaleString: segun el navegador
+       se queda sin el punto de los miles, y entonces el carrito pone 3884,40
+       donde la tabla pone 3.884,40. */
+    const eur = n => {
+      const t = Math.abs(n).toFixed(2).split('.');
+      return (n < 0 ? '-' : '') + t[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+             + ',' + t[1] + '\u00a0\u20ac';
+    };
+    const neto = p => p.precio * (1 - p.dto / 100);
+    const cabe = () => window.innerWidth >= ACOPLA;
+
+    const caja = document.createElement('div');
+    caja.className = 'carro';
+    caja.innerHTML = `
+      <button class="carro-btn" type="button" aria-label="Abrir el pedido">
+        ${svg('cart')}<span class="carro-n">0</span>
+      </button>
+      <aside class="carro-panel" hidden aria-label="Tu pedido">
+        <header><h3>Tu pedido</h3>
+          <button class="carro-x" type="button" aria-label="Cerrar el pedido">\u00d7</button></header>
+        <div class="carro-lista"></div>
+        <footer>
+          <div class="carro-tot"><span>Subtotal</span><b>0,00\u00a0\u20ac</b></div>
+          <p class="carro-nota">Precios con tu descuento aplicado, sin IVA ni portes.</p>
+          <a class="btn btn-yellow" href="area-cliente-pedidos.html">Solicitar pedido</a>
+        </footer>
+      </aside>`;
+    document.body.appendChild(caja);
+
+    const btn = caja.querySelector('.carro-btn');
+    const cuenta = caja.querySelector('.carro-n');
+    const panel = caja.querySelector('.carro-panel');
+    const lista = caja.querySelector('.carro-lista');
+    const total = caja.querySelector('.carro-tot b');
+
+    const abrir = (v, recordar) => {
+      panel.hidden = !v;
+      document.body.classList.toggle('carro-abierto', v);
+      /* Acoplado solo donde cabe: si no, se superpone y no se recuerda. */
+      document.body.classList.toggle('carro-acoplado', v && cabe());
+      if (recordar !== false) {
+        try { localStorage.setItem(LLAVE_ABIERTO, v && cabe() ? '1' : '0'); } catch (e) {}
+      }
+    };
+
+    const pintar = () => {
+      const l = leer();
+      cuenta.textContent = l.reduce((a, p) => a + p.uds, 0);
+      caja.classList.toggle('con-algo', l.length > 0);
+      if (!l.length) {
+        lista.innerHTML = '<p class="carro-vacio">Todav\u00eda no has a\u00f1adido nada. '
+          + 'Desde <a href="area-cliente-comprar.html">Comprar</a> puedes repetir '
+          + 'cualquier producto con tu tarifa.</p>';
+      } else {
+        lista.innerHTML = l.map((p, i) => `
+          <article class="carro-li">
+            <div>
+              <a class="carro-nom" href="${p.href}">${p.nom}</a>
+              <span class="carro-cod">${p.cod}</span>
+            </div>
+            <div class="carro-pr">
+              <b>${eur(neto(p) * p.uds)}</b>
+              <span>${p.uds} \u00d7 ${eur(neto(p))}</span>
+            </div>
+            <button class="carro-quitar" type="button" data-i="${i}" aria-label="Quitar">\u00d7</button>
+          </article>`).join('');
+      }
+      total.textContent = eur(l.reduce((a, p) => a + neto(p) * p.uds, 0));
+    };
+
+    const anadir = d => {
+      const l = leer();
+      const ya = l.find(p => p.cod === d.cod);
+      if (ya) ya.uds += d.uds; else l.push(d);
+      guardar(l);
+      pintar();
+      abrir(true);
+    };
+
+    document.addEventListener('click', e => {
+      /* Repetir un pedido: entran de una vez todas sus lineas, sumandose a lo
+         que ya hubiera en el carrito. */
+      const rep = e.target.closest('[data-repetir]');
+      if (rep) {
+        e.preventDefault();
+        let lins = [];
+        try { lins = JSON.parse(rep.dataset.repetir); } catch (err) { lins = []; }
+        if (!lins.length) return;
+        const l = leer();
+        lins.forEach(d => {
+          const ya = l.find(p => p.cod === d.cod);
+          if (ya) ya.uds += d.uds; else l.push(d);
+        });
+        guardar(l); pintar(); abrir(true);
+        return;
+      }
+      const b = e.target.closest('[data-anadir]');
+      if (b) {
+        e.preventDefault();
+        const fila = b.closest('tr, .ficha-compra');
+        const campo = fila && fila.querySelector('.cant');
+        anadir({
+          cod: b.dataset.cod, nom: b.dataset.nom, href: b.dataset.href,
+          precio: parseFloat(b.dataset.precio), dto: parseFloat(b.dataset.dto || '0'),
+          uds: Math.max(1, parseInt((campo && campo.value) || '1', 10) || 1)
+        });
+        return;
+      }
+      const q = e.target.closest('.carro-quitar');
+      if (q) { const l = leer(); l.splice(+q.dataset.i, 1); guardar(l); pintar(); }
+    });
+
+    btn.addEventListener('click', () => abrir(true));
+    caja.querySelector('.carro-x').addEventListener('click', () => abrir(false));
+    /* Al estrechar la ventana el panel acoplado dejaria de caber: se recoge
+       solo, sin perder lo que lleva dentro. */
+    window.addEventListener('resize', () => {
+      if (!panel.hidden && !cabe()) abrir(false, false);
+      else if (!panel.hidden) document.body.classList.add('carro-acoplado');
+    });
+
+    pintar();
+    let seguia = false;
+    try { seguia = localStorage.getItem(LLAVE_ABIERTO) === '1'; } catch (e) {}
+    if (seguia && leer().length && cabe()) abrir(true, false);
+  }
+
+  /* Cualquier <i data-i> que haya en la pagina pasa a ser su icono. Se puede
+     llamar otra vez: el contenido que se inserta despues trae los suyos. */
+  const pintarIconos = () =>
+    document.querySelectorAll('i[data-i]').forEach(el => { el.outerHTML = svg(el.dataset.i); });
+  pintarIconos();
 
   const t = document.querySelector('.review-toggle');
   /* "Ver cambios" nunca arranca encendido: no se guarda en el navegador. Se
@@ -3610,7 +3757,9 @@
     if (!fam || !COMUN[fam]) return;
     const cta = document.querySelector('.cta-band');
     const sitio = (cta && cta.closest('section')) || document.querySelector('#contacto');
-    if (sitio) sitio.insertAdjacentHTML('beforebegin', COMUN[fam]);
+    if (!sitio) return;
+    sitio.insertAdjacentHTML('beforebegin', COMUN[fam]);
+    pintarIconos();   // estos bloques entran despues de la primera pasada
   })();
 
   /* Una ficha por tipo de piston. No se escriben a mano: cada una se queda con

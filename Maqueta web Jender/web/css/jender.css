@@ -204,14 +204,19 @@ body.show-changes .menu li:not(.nochg)>a:not(.active){text-decoration:underline;
 
 /* Contacto */
 .contact{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.contact .navy-card{background:var(--navy);color:#fff;border-radius:var(--radius);padding:40px}
-.contact h2{color:#fff;font-size:34px;margin-bottom:12px}
-.contact .data{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:14px;font-weight:600}
-.contact .data li{display:flex;gap:12px;align-items:flex-start}
+/* La tarjeta azul y su lista de datos estaban atadas a la pagina de
+   contacto: fuera de ahi salian sin fondo ni margenes. Valen en cualquier sitio. */
+.navy-card{background:var(--navy);color:#fff;border-radius:var(--radius);padding:40px}
+.navy-card h2,.navy-card h3{color:#fff}
+.contact h2{font-size:34px;margin-bottom:12px}
+.navy-card h3{font-size:21px;margin:0 0 12px}
+.navy-card p{color:#d9e3f2}
+.data{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:14px;font-weight:600}
+.data li{display:flex;gap:12px;align-items:flex-start}
 .contact .urgent{margin-top:34px;padding:22px;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18)}
 .contact .urgent b{display:block;font-family:"Barlow",sans-serif;font-weight:900;text-transform:uppercase;font-size:22px;color:var(--yellow);margin-bottom:6px}
 .contact .urgent p{font-size:15px;color:#d9e3f2}
-.contact .data svg{width:20px;height:20px;color:var(--yellow);flex:none;margin-top:3px}
+.data svg{width:20px;height:20px;color:var(--yellow);flex:none;margin-top:3px}
 .form{background:var(--grey);border-radius:var(--radius);padding:34px;display:grid;gap:12px}
 .form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .form label{font-size:13px;font-weight:700;display:block;margin-bottom:4px}
@@ -231,11 +236,9 @@ body.show-changes .menu li:not(.nochg)>a:not(.active){text-decoration:underline;
 .site-footer a:hover{color:var(--yellow)}
 .copy{background:var(--yellow);color:#fff;text-align:center;font-weight:600;font-size:14px;padding:15px 0}
 
-/* Flotantes (WhatsApp / Ver lista) */
+/* Flotante de WhatsApp */
 .float-wa{position:fixed;left:24px;bottom:24px;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.2);z-index:60}
 .float-wa svg{width:30px;height:30px;color:#fff}
-.float-list{position:fixed;right:24px;bottom:30px;background:var(--navy);color:#fff;border-radius:30px;padding:12px 20px;font-weight:700;font-size:15px;display:flex;gap:8px;align-items:center;box-shadow:0 6px 18px rgba(0,0,0,.2);z-index:60}
-.float-list svg{width:18px;height:18px}
 
 /* ---------- Posventa ---------- */
 .stats{background:var(--yellow);color:var(--navy)}
@@ -437,7 +440,7 @@ body.show-changes .bg-navy .mk,body.show-changes .hero .mk,body.show-changes .rc
   .sol-card .img{min-height:200px}
   .form .row{grid-template-columns:1fr}
   .section{padding:64px 0}
-  .card-grey,.contact .navy-card,.mission{padding:28px}
+  .card-grey,.navy-card,.mission{padding:28px}
   .feature-card{padding:22px}
   .table-scroll{overflow-x:auto}
   .float-list{display:none}
@@ -871,7 +874,11 @@ body.zona-area .wrap{max-width:1280px}
 .ac-tabs a.on:hover{background:#fff}
 
 /* las ocho tarjetas de la portada del area */
-.ac-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:8px}
+/* Rejilla con siete tarjetas: en cuatro columnas la ultima fila dejaba un
+   hueco. Con flex, las de cada fila crecen hasta llenar el ancho, se queden
+   cuatro o tres, y al estrechar la pantalla se reparten solas. */
+.ac-grid{display:flex;flex-wrap:wrap;gap:18px;margin-top:8px}
+.ac-tile{flex:1 1 270px}
 .ac-tile{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;
   background:var(--grey);border:1px solid var(--grey);border-radius:var(--radius);
   padding:26px 20px 24px;text-decoration:none;transition:border-color .18s,box-shadow .18s,transform .18s}
@@ -883,6 +890,9 @@ body.zona-area .wrap{max-width:1280px}
 
 /* apartado con filtros a un lado */
 .ac-layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:30px;align-items:start}
+/* Sin esto, la columna crece hasta el ancho de la tabla y en el telefono la
+   pagina entera se iba a 726 px: el navegador la encogia para que cupiera. */
+.ac-layout>*{min-width:0}
 .ac-filtros{background:var(--grey);border-radius:var(--radius);padding:22px 20px;position:sticky;top:96px}
 .ac-filtros h3{margin:0 0 4px;font-size:15px;color:var(--navy)}
 .ac-filtros .cuenta{display:block;font-size:13px;color:var(--muted);margin-bottom:16px}
@@ -910,6 +920,7 @@ body.zona-area .wrap{max-width:1280px}
    lineas era el nombre del articulo, y solo ese necesita envolver. */
 .ac-tabla th,.ac-tabla td{white-space:nowrap}
 .ac-tabla .ancha{white-space:normal;min-width:250px}
+@media (max-width:620px){.ac-tabla .ancha{min-width:170px}}
 .ac-tabla td:first-child{font-variant-numeric:tabular-nums}
 .ac-tabla tbody tr:nth-child(even){background:#fafbfc}
 .ac-tabla .art{font-weight:600;color:var(--navy);text-decoration:none}
@@ -934,13 +945,140 @@ body.zona-area .wrap{max-width:1280px}
 @media (max-width:1000px){
   .ac-layout{grid-template-columns:1fr}
   .ac-filtros{position:static}
-  .ac-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:620px){
   .ac-cab{gap:16px}
   .ac-user{width:100%}
-  .ac-tile{padding:20px 14px 18px}
+  /* En el telefono, dos por fila como en el resto del sitio. */
+  .ac-tile{flex:1 1 140px;padding:20px 14px 18px}
   .ac-tile h3{font-size:14.5px}
   .ac-tile p{font-size:12.5px}
   .ac-tile svg{width:28px;height:28px}
 }
+
+
+/* ==========================================================================
+   Carrito de la zona privada. No es una ventana que tape la pagina: donde hay
+   sitio se acopla al lado derecho y el contenido se estrecha lo justo, de modo
+   que se puede seguir navegando con el pedido a la vista. Donde no cabe
+   acoplado se superpone, pero solo mientras se mira.
+   ========================================================================== */
+:root{--carro-w:340px}
+
+.carro .carro-btn{display:none;position:fixed;right:24px;bottom:30px;z-index:70;
+  align-items:center;gap:9px;background:var(--navy);color:#fff;border:0;
+  border-radius:30px;padding:13px 20px;font:inherit;font-weight:700;font-size:15px;
+  cursor:pointer;box-shadow:0 8px 22px -6px rgba(0,20,60,.5)}
+.carro.con-algo .carro-btn{display:inline-flex}
+body.carro-abierto .carro-btn{display:none}
+.carro-btn:hover{background:var(--navy-dark)}
+.carro-btn svg{width:19px;height:19px}
+.carro-n{display:grid;place-items:center;min-width:22px;height:22px;padding:0 6px;
+  border-radius:11px;background:var(--yellow);color:var(--navy);font-size:12.5px;font-weight:800}
+
+.carro-panel{position:fixed;top:0;right:0;z-index:81;width:var(--carro-w);height:100%;
+  background:#fff;border-left:1px solid var(--grey-2);
+  box-shadow:-18px 0 44px -30px rgba(0,20,60,.5);display:flex;flex-direction:column}
+.carro-panel[hidden]{display:none}
+/* Acoplado: la pagina se estrecha ese mismo ancho y no queda nada debajo. */
+body.carro-acoplado{padding-right:var(--carro-w)}
+.carro-panel header{display:flex;align-items:center;justify-content:space-between;
+  padding:18px 20px;border-bottom:1px solid var(--grey-2)}
+.carro-panel header h3{margin:0;font-size:18px;color:var(--navy)}
+.carro-x{border:0;background:none;font-size:28px;line-height:1;color:var(--muted);
+  cursor:pointer;padding:0 4px}
+.carro-x:hover{color:var(--navy)}
+.carro-lista{flex:1;overflow-y:auto;padding:4px 20px}
+.carro-vacio{font-size:14px;color:var(--muted);padding:20px 0;margin:0}
+.carro-li{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;
+  padding:14px 0;border-bottom:1px solid var(--grey-2)}
+.carro-nom{display:block;font-size:14px;font-weight:600;color:var(--navy);
+  text-decoration:none;line-height:1.3}
+.carro-nom:hover{text-decoration:underline}
+.carro-cod{display:block;font-size:11.5px;color:var(--muted);margin-top:3px;
+  font-variant-numeric:tabular-nums}
+.carro-pr{text-align:right;white-space:nowrap}
+.carro-pr b{display:block;font-size:14px;color:var(--navy)}
+.carro-pr span{display:block;font-size:11.5px;color:var(--muted);margin-top:2px}
+.carro-quitar{border:0;background:none;font-size:20px;line-height:1;color:var(--muted);
+  cursor:pointer;padding:0 2px}
+.carro-quitar:hover{color:#9c2b2b}
+.carro-panel footer{border-top:1px solid var(--grey-2);padding:16px 20px 20px;display:grid;gap:9px}
+.carro-tot{display:flex;align-items:baseline;justify-content:space-between;
+  font-size:15px;color:var(--navy)}
+.carro-tot b{font-family:"Barlow",sans-serif;font-weight:900;font-size:23px}
+.carro-nota{margin:0;font-size:12px;color:var(--muted)}
+
+@media (max-width:1099px){
+  /* No cabe al lado: se superpone, pero no bloquea el scroll de la pagina. */
+  .carro-panel{width:min(360px,100%);box-shadow:-18px 0 44px -22px rgba(0,20,60,.55)}
+  body.carro-abierto{padding-right:0}
+}
+@media (max-width:620px){
+  .carro .carro-btn{right:16px;bottom:84px;padding:11px 16px;font-size:14px}
+  .carro-panel{width:100%}
+}
+
+/* ==========================================================================
+   Ficha de producto de la zona privada: foto a un lado, precio y compra al
+   otro, y debajo la tabla de caracteristicas de su gama.
+   ========================================================================== */
+.ficha-prod{padding-top:6px}
+.fp-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:40px;
+  align-items:start;margin-bottom:12px}
+.fp-foto{background:#fff;border:1px solid var(--grey-2);border-radius:var(--radius);
+  padding:26px;display:grid;place-items:center;min-height:320px}
+.fp-foto img{width:100%;height:auto;max-height:380px;object-fit:contain}
+.fp-datos .eyebrow a{color:inherit;text-decoration:none}
+.fp-datos .eyebrow a:hover{text-decoration:underline}
+.fp-datos h2{margin:8px 0 6px;font-size:clamp(23px,2.6vw,32px)}
+.fp-datos .claim{font-weight:700;color:var(--navy);font-size:17px;margin:0 0 6px}
+.fp-ref{margin:0 0 20px;font-size:13.5px;color:var(--muted)}
+.fp-ref b{color:var(--navy);font-variant-numeric:tabular-nums}
+.fp-precio{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;
+  justify-content:space-between;background:var(--grey);border-radius:var(--radius);
+  padding:20px 22px}
+.fp-pvp{display:block;font-size:13px;color:var(--muted);text-decoration:line-through}
+.fp-precio b{display:block;font-family:"Barlow",sans-serif;font-weight:900;
+  font-size:clamp(28px,3.4vw,38px);line-height:1.05;color:var(--navy);margin:4px 0 4px}
+.fp-dto{display:block;font-size:12.5px;color:var(--muted)}
+.fp-compra{display:flex;align-items:center;gap:10px}
+.fp-compra .cant{width:60px;padding:11px 8px;border:1px solid var(--line);
+  border-radius:8px;font:inherit;font-size:15px;text-align:center;color:var(--navy)}
+.fp-incluye{margin:22px 0 20px}
+.fp-bloque{border-top:1px solid var(--grey-2);margin-top:34px;padding-top:26px}
+.fp-bloque .cat-grid{display:flex;flex-wrap:wrap;gap:18px}
+.fp-bloque .cat-card{flex:1 1 260px}
+.fp-bloque h3{margin:0 0 16px;font-family:"Barlow",sans-serif;font-weight:900;
+  font-size:clamp(19px,2.1vw,24px);text-transform:uppercase;color:var(--navy)}
+@media (max-width:900px){
+  .fp-top{grid-template-columns:1fr;gap:26px}
+  .fp-foto{min-height:0;padding:18px}
+}
+
+/* En la tabla de Comprar, la tarifa tachada encima del precio con descuento */
+.ac-pvp{display:block;font-size:12px;color:var(--muted);text-decoration:line-through}
+.ac-neto{display:block;font-size:15px;color:var(--navy);font-weight:700}
+.ac-var{display:block;font-size:12.5px;color:var(--muted);font-weight:500;margin-top:2px}
+
+
+/* Ficha de un pedido o de una oferta: el resumen arriba y las lineas debajo */
+.doc-resumen{background:var(--grey);border-radius:var(--radius);padding:24px 26px}
+.doc-cab{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;
+  justify-content:space-between}
+.doc-cab h2{margin:6px 0 4px;font-size:clamp(23px,2.6vw,30px)}
+.doc-cab .claim{margin:0;font-weight:700;color:var(--navy);font-size:16px}
+.doc-acciones{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+.doc-datos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 26px;
+  margin-top:22px;padding-top:20px;border-top:1px solid var(--grey-2)}
+/* Solo la etiqueta: si se coge cualquier span, la etiqueta de estado que va
+   dentro del valor se vuelve un bloque y la pastilla se estira a lo ancho. */
+.doc-datos>div>span{display:block;font-size:12.5px;text-transform:uppercase;
+  letter-spacing:.05em;color:var(--muted)}
+.doc-datos b{display:block;margin-top:4px;font-size:15px;color:var(--navy);font-weight:700}
+@media (max-width:760px){.doc-datos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.doc-datos{grid-template-columns:1fr}}
+
+/* El dato que no se puede cambiar, en el perfil */
+.form input[readonly]{background:var(--grey-2);color:var(--muted);cursor:not-allowed}
+.form small.muted{display:block;margin-top:5px;font-size:12px}

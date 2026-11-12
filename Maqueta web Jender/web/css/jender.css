@@ -836,3 +836,111 @@ button.burger::after{content:"";position:absolute;top:50%;left:50%;transform:tra
 .cat-head h2{margin-bottom:12px}
 .cat-head .claim{font-weight:700;color:var(--navy);font-size:17px;margin-bottom:12px}
 .cat-sec .keyfig{margin:30px 0 40px}
+
+
+/* ==========================================================================
+   Area de clientes. Es la parte privada: no lleva cabecera de foto, sino una
+   barra con quien ha entrado y las pestanas de sus apartados.
+   ========================================================================== */
+/* La zona privada es una vista de trabajo, con tablas de siete columnas y
+   filtros al lado: se le da algo mas de ancho que al resto del sitio, y se lo
+   damos tambien a la cabecera y al pie para que todo siga alineado. */
+body.zona-area .wrap{max-width:1280px}
+.ac-top{padding:26px 0 0}
+.ac-cab{display:flex;gap:26px;align-items:flex-start;justify-content:space-between;
+  flex-wrap:wrap;margin:14px 0 26px}
+.ac-cab h1{display:flex;align-items:center;gap:12px;margin:6px 0 0;font-size:clamp(26px,3vw,36px)}
+.ac-cab h1 svg{width:30px;height:30px;color:var(--yellow);flex:0 0 auto}
+.ac-cab .lead{margin:10px 0 0;max-width:620px}
+
+/* quien ha entrado */
+.ac-user{display:flex;align-items:center;gap:14px;background:var(--grey);
+  border-radius:var(--radius);padding:14px 18px}
+.ac-user>svg{width:26px;height:26px;color:var(--navy);flex:0 0 auto}
+.ac-user b{display:block;font-size:14.5px;color:var(--navy);line-height:1.25}
+.ac-user span{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
+
+/* pestanas de los apartados */
+.ac-tabs{display:flex;flex-wrap:wrap;gap:9px;padding:2px 0 14px;min-width:0}
+.ac-tabs a{flex:0 0 auto;display:inline-flex;align-items:center;padding:9px 17px;
+  border-radius:999px;background:var(--navy);color:#fff;text-decoration:none;
+  font-size:13.5px;font-weight:600;border:1px solid var(--navy);white-space:nowrap;
+  transition:background .15s,color .15s}
+.ac-tabs a:hover{background:var(--navy-dark);border-color:var(--navy-dark)}
+.ac-tabs a.on{background:#fff;color:var(--navy)}
+.ac-tabs a.on:hover{background:#fff}
+
+/* las ocho tarjetas de la portada del area */
+.ac-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:8px}
+.ac-tile{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;
+  background:var(--grey);border:1px solid var(--grey);border-radius:var(--radius);
+  padding:26px 20px 24px;text-decoration:none;transition:border-color .18s,box-shadow .18s,transform .18s}
+.ac-tile:hover{border-color:var(--navy);transform:translateY(-2px);
+  box-shadow:0 16px 30px -24px rgba(0,20,60,.6)}
+.ac-tile svg{width:34px;height:34px;color:var(--navy);margin-bottom:4px}
+.ac-tile h3{margin:0;font-size:16px;color:var(--navy)}
+.ac-tile p{margin:0;font-size:13.5px;line-height:1.45;color:var(--muted)}
+
+/* apartado con filtros a un lado */
+.ac-layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:30px;align-items:start}
+.ac-filtros{background:var(--grey);border-radius:var(--radius);padding:22px 20px;position:sticky;top:96px}
+.ac-filtros h3{margin:0 0 4px;font-size:15px;color:var(--navy)}
+.ac-filtros .cuenta{display:block;font-size:13px;color:var(--muted);margin-bottom:16px}
+.ac-filtros input[type=search]{width:100%;padding:9px 12px;border:1px solid var(--line);
+  border-radius:8px;font:inherit;font-size:13.5px;background:#fff;color:var(--navy)}
+.ac-fgrupo{margin-top:20px}
+.ac-fgrupo h4{margin:0 0 9px;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--navy)}
+.ac-fgrupo label{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted);
+  padding:3px 0;cursor:pointer}
+.ac-fgrupo label:hover{color:var(--navy)}
+
+/* barra de la tabla: cuantos registros y paginas */
+.ac-barra{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  flex-wrap:wrap;margin:16px 0 0;font-size:13.5px;color:var(--muted)}
+.ac-barra select,.ac-barra .pag b{border:1px solid var(--line);border-radius:8px;
+  padding:6px 10px;background:#fff;color:var(--navy);font:inherit;font-size:13.5px}
+.ac-barra .pag{display:flex;align-items:center;gap:10px}
+.ac-barra .pag a{color:var(--navy);text-decoration:none;font-weight:600}
+.ac-barra .pag a:hover{text-decoration:underline}
+
+/* la tabla del area: compacta, con su cabecera azul */
+.ac-tabla{font-size:14px}
+.ac-tabla th,.ac-tabla td{padding:11px 14px;vertical-align:middle}
+/* Por defecto cada celda en una linea: lo que partia las filas en cuatro
+   lineas era el nombre del articulo, y solo ese necesita envolver. */
+.ac-tabla th,.ac-tabla td{white-space:nowrap}
+.ac-tabla .ancha{white-space:normal;min-width:250px}
+.ac-tabla td:first-child{font-variant-numeric:tabular-nums}
+.ac-tabla tbody tr:nth-child(even){background:#fafbfc}
+.ac-tabla .art{font-weight:600;color:var(--navy);text-decoration:none}
+.ac-tabla .art:hover{text-decoration:underline}
+.ac-tabla .num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.ac-tabla .cant{width:52px;padding:5px 7px;border:1px solid var(--line);border-radius:6px;
+  font:inherit;font-size:13px;text-align:center;color:var(--navy)}
+.ac-add{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.ac-chip{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;
+  white-space:nowrap}
+.ac-chip.ok{background:#e5f4ea;color:#1c7a3f}
+.ac-chip.esp{background:#fdf3d8;color:#8a6500}
+.ac-chip.no{background:#fbe9e9;color:#9c2b2b}
+.ac-chip.gris{background:var(--grey-2);color:var(--muted)}
+
+/* aviso de que los datos son de ejemplo */
+.ac-aviso{display:flex;gap:11px;align-items:flex-start;background:#fdf3d8;
+  border-left:4px solid var(--yellow);border-radius:8px;padding:13px 16px;
+  font-size:13.5px;color:#6b5200;margin:0 0 22px}
+.ac-aviso svg{width:19px;height:19px;flex:0 0 auto;margin-top:1px}
+
+@media (max-width:1000px){
+  .ac-layout{grid-template-columns:1fr}
+  .ac-filtros{position:static}
+  .ac-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:620px){
+  .ac-cab{gap:16px}
+  .ac-user{width:100%}
+  .ac-tile{padding:20px 14px 18px}
+  .ac-tile h3{font-size:14.5px}
+  .ac-tile p{font-size:12.5px}
+  .ac-tile svg{width:28px;height:28px}
+}

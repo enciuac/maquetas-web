@@ -565,15 +565,23 @@
       } else {
         lista.innerHTML = l.map((p, i) => `
           <article class="carro-li">
-            <div>
+            <div class="carro-art">
               <a class="carro-nom" href="${p.href}">${p.nom}</a>
               <span class="carro-cod">${p.cod}</span>
+              <div class="carro-uds">
+                <button type="button" data-uds="-1" data-i="${i}"
+                  aria-label="Una unidad menos de ${p.nom.replace(/"/g, '&quot;')}">\u2212</button>
+                <input class="carro-cant" type="text" inputmode="numeric" value="${p.uds}"
+                  data-i="${i}" aria-label="Unidades de ${p.nom.replace(/"/g, '&quot;')}">
+                <button type="button" data-uds="1" data-i="${i}"
+                  aria-label="Una unidad mas de ${p.nom.replace(/"/g, '&quot;')}">+</button>
+              </div>
             </div>
             <div class="carro-pr">
               <b>${eur(neto(p) * p.uds)}</b>
-              <span>${p.uds} \u00d7 ${eur(neto(p))}</span>
+              <span>${eur(neto(p))} / ud.</span>
             </div>
-            <button class="carro-quitar" type="button" data-i="${i}" aria-label="Quitar">\u00d7</button>
+            <button class="carro-quitar" type="button" data-i="${i}" aria-label="Quitar del pedido">\u00d7</button>
           </article>`).join('');
       }
       /* El desglose: con IVA puesto se ve de donde sale el total, y sin IVA
@@ -633,7 +641,50 @@
         return;
       }
       const q = e.target.closest('.carro-quitar');
-      if (q) { const l = leer(); l.splice(+q.dataset.i, 1); guardar(l); pintar(); }
+      if (q) { const l = leer(); l.splice(+q.dataset.i, 1); guardar(l); pintar(); return; }
+
+      /* Mas y menos de cada linea. Bajar de una unidad quita la linea: es lo
+         que se espera al llegar a cero, y evita dejar lineas a cero. */
+      const u = e.target.closest('[data-uds]');
+      if (u) {
+        const l = leer();
+        const p = l[+u.dataset.i];
+        if (!p) return;
+        p.uds += parseInt(u.dataset.uds, 10);
+        if (p.uds < 1) l.splice(+u.dataset.i, 1);
+        guardar(l); pintar();
+      }
+    });
+
+    /* Escribir la cantidad directamente. Se repinta para que cuadren el
+       importe de la linea, el subtotal y el contador del boton, y se devuelve
+       el cursor al mismo sitio para poder seguir escribiendo. */
+    caja.addEventListener('input', e => {
+      const c = e.target.closest('.carro-cant');
+      if (!c) return;
+      const i = +c.dataset.i;
+      const n = parseInt(c.value.replace(/[^0-9]/g, ''), 10);
+      if (!n || n < 1) return;        // vacio o cero: se espera a que acabe
+      const l = leer();
+      if (!l[i]) return;
+      l[i].uds = Math.min(n, 9999);
+      guardar(l); pintar();
+      const otra = lista.querySelector('.carro-cant[data-i="' + i + '"]');
+      if (otra) { otra.focus(); otra.setSelectionRange(otra.value.length, otra.value.length); }
+    });
+
+    /* Al salir del campo, lo que no sea un numero valido vuelve a una unidad.
+       Solo se repinta si hay algo que corregir: repintar siempre destruia el
+       boton que se acababa de pulsar y el clic se perdia. */
+    caja.addEventListener('focusout', e => {
+      const c = e.target.closest('.carro-cant');
+      if (!c) return;
+      const n = parseInt(c.value, 10);
+      if (n && n >= 1) return;
+      const l = leer();
+      const p = l[+c.dataset.i];
+      if (p) { p.uds = 1; guardar(l); }
+      pintar();
     });
 
     btn.addEventListener('click', () => abrir(true));

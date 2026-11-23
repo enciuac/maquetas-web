@@ -292,56 +292,59 @@
   var APPS = ['Taller o nave cerrada', 'Nave con ventilación abundante', 'Obra o exterior', 'Explotación ganadera'];
 
   /* Dentro de la pagina de ganaderia la tabla de industria no dice nada: quien
-     entra ahi ya sabe que su caso es ganadero. Las columnas pasan a ser por
-     especie y por como es el alojamiento, que es lo que decide. */
+     entra ahi ya sabe que su caso es ganadero. Las columnas pasan a ser el
+     grado de cierre del alojamiento, que es lo que decide: una nave de pollos
+     cerrada y una paridera cerrada tienen el mismo problema con los gases. La
+     especie va dentro de la celda, como ejemplo, no como columna. */
   var APPS_GAN = [
-    'Avicultura<small>Nave cerrada de ambiente controlado</small>',
-    'Porcino<small>Maternidad y transición</small>',
-    'Ovino y caprino<small>Parideras y naves semiabiertas</small>',
-    'Equino y vacuno<small>Boxes y naves abiertas</small>'
+    'Nave cerrada<small>Ambiente controlado, ventilaci\u00f3n forzada</small>',
+    'Nave semiabierta<small>Ventilaci\u00f3n natural, laterales abiertos</small>',
+    'Nave abierta o cobertizo<small>Aire libre o resguardo sin cerrar</small>',
+    'Calentar una zona<small>Paridera, nido, box o \u00e1rea de recr\u00eda</small>'
   ];
 
   /* La duda que no se resuelve en ficha y hay que confirmar con el fabricante. */
-  var F_IP = 'Confirmar por modelo el grado IP frente al amoniaco y al lavado a presión de la nave.';
-  var F_DIST = 'Confirmar con el fabricante la distancia mínima a cama, pienso y materiales combustibles.';
+  var F_IP = 'Confirmar por modelo el grado IP frente al amoniaco y al lavado a presi\u00f3n de la nave.';
+  var F_DIST = 'Confirmar con el fabricante la distancia m\u00ednima a cama, pienso y materiales combustibles.';
 
   var MX_GAN = {
-    BTE: ['Eléctricos · 5 a 15 kW · BTE 50, 90, 150, 150R', [
-      ['c', 'Sin gases ni consumo de oxígeno, pero 5–15 kW calienta zonas, no una nave entera', F_IP],
-      ['r', 'Sin combustión en la sala de partos: apoyo por zonas sobre la cama', F_IP],
-      ['r', 'Sin gases en la paridera, que es donde están los recién nacidos', F_IP],
-      ['c', 'Vale para box, enfermería o sala de curas; no para el volumen de la nave', F_IP]]],
+    BTE: ['El\u00e9ctricos \u00b7 5 a 15 kW \u00b7 BTE 50, 90, 150, 150R', [
+      ['c', 'No gasta ox\u00edgeno ni emite gases, pero 5\u201315 kW cubre zonas, no el volumen de una nave', F_IP],
+      ['c', 'Sin gases, aunque en volumen grande se queda corto frente a un ca\u00f1\u00f3n', F_IP],
+      ['n', 'A la intemperie el calor se va antes de llegar al animal', F_IP],
+      ['r', 'El caso que mejor le va: calor sin combusti\u00f3n justo donde est\u00e1 el animal', F_IP]]],
 
-    BTI: ['Infrarrojos sin evacuación · 20 y 40 kW · BTI 20, 45', [
-      ['n', 'Sin evacuación: los gases se quedan en el aire que respiran las aves', null],
-      ['n', 'Sin evacuación: sala cerrada y animales sensibles', null],
-      ['c', 'Solo en paridera muy abierta y con la distancia a la cama resuelta', F_DIST],
-      ['c', 'Solo en nave abierta o cobertizo, con renovación de aire suficiente', F_DIST]]],
+    BTI: ['Infrarrojos sin evacuaci\u00f3n \u00b7 20 y 40 kW \u00b7 BTI 20, 45', [
+      ['n', 'Sin evacuaci\u00f3n: los gases se quedan en el aire que respiran los animales', null],
+      ['c', 'Solo si la renovaci\u00f3n de aire est\u00e1 resuelta y hay distancia a la cama', F_DIST],
+      ['r', 'Calor dirigido donde el aire se renueva solo', F_DIST],
+      ['c', 'Calienta bien la zona, pero sin humos fuera: solo donde entre aire de sobra', F_DIST]]],
 
-    BTC: ['Infrarrojos con extracción de humos · 13 y 18 kW · BTC 13, 18', [
-      ['c', 'Gases fuera por chimenea; falta resolver el lavado y el amoniaco', F_IP],
-      ['r', 'Calor dirigido sobre el nido con los gases fuera: el caso que mejor encaja', F_DIST],
-      ['r', 'Calor dirigido sobre los corderos sin meter gases en la paridera', F_DIST],
-      ['r', 'Calienta el box o el puesto sin calentar toda la nave', F_DIST]]],
+    BTC: ['Infrarrojos con extracci\u00f3n de humos \u00b7 13 y 18 kW \u00b7 BTC 13, 18', [
+      ['c', 'Gases fuera por chimenea; queda por resolver el lavado y el amoniaco', F_IP],
+      ['r', 'Calor dirigido con los gases fuera, sin cargar el ambiente', F_DIST],
+      ['r', 'Calor dirigido y gases conducidos', F_DIST],
+      ['r', 'Calienta el nido o la paridera sin calentar la nave entera', F_DIST]]],
 
-    BTG: ['Gas directo · 15 y 50 kW · BTG 15, 30', [
-      ['n', 'Con aves dentro, no. Se usa para precalentar la nave vacía antes de la entrada', null],
-      ['n', 'Combustión directa en sala cerrada: los gases se quedan con los animales', null],
-      ['n', 'Combustión directa: los gases se quedan con los animales', null],
-      ['n', 'Combustión directa: los gases se quedan con los animales', null]]],
+    BTG: ['Gas directo \u00b7 15 y 50 kW \u00b7 BTG 15, 30', [
+      ['n', 'Con animales dentro, no. Se usa para precalentar la nave vac\u00eda antes de la entrada', null],
+      ['n', 'Combusti\u00f3n directa: los gases se quedan con los animales', null],
+      ['c', 'Solo a cielo abierto o bajo cobertizo, con los animales fuera del chorro', F_DIST],
+      ['n', 'Para una zona peque\u00f1a sobra potencia y sobran gases', null]]],
 
-    BTD: ['Gasóleo directo · 20 a 51 kW · BTD 20, 30, 50', [
-      ['n', 'Con aves dentro, no. Se usa para precalentar la nave vacía antes de la entrada', null],
-      ['n', 'Combustión directa en sala cerrada: los gases se quedan con los animales', null],
-      ['n', 'Combustión directa: los gases se quedan con los animales', null],
-      ['n', 'Combustión directa: los gases se quedan con los animales', null]]],
+    BTD: ['Gas\u00f3leo directo \u00b7 20 a 51 kW \u00b7 BTD 20, 30, 50', [
+      ['n', 'Con animales dentro, no. Se usa para precalentar la nave vac\u00eda antes de la entrada', null],
+      ['n', 'Combusti\u00f3n directa: los gases se quedan con los animales', null],
+      ['c', 'Solo a cielo abierto o bajo cobertizo, con los animales fuera del chorro', F_DIST],
+      ['n', 'Para una zona peque\u00f1a sobra potencia y sobran gases', null]]],
 
-    BTH: ['Gasóleo indirecto · 30 y 51 kW · BTH 30, 50', [
-      ['r', 'Aire limpio y gases fuera por chimenea: la opción para nave cerrada', F_IP],
-      ['r', 'Calienta la sala entera sin meter gases de combustión', F_IP],
-      ['r', 'Potencia para la nave con el aire limpio', F_IP],
-      ['r', 'La que cubre el volumen de una nave grande sin ensuciar el aire', F_IP]]]
+    BTH: ['Gas\u00f3leo indirecto \u00b7 30 y 51 kW \u00b7 BTH 30, 50', [
+      ['r', 'Aire limpio y gases fuera por chimenea: la opci\u00f3n para nave cerrada', F_IP],
+      ['r', 'Cubre el volumen sin ensuciar el aire', F_IP],
+      ['r', 'Potencia y autonom\u00eda con los humos conducidos', F_IP],
+      ['c', 'Calienta mucho m\u00e1s que una zona: se justifica si tambi\u00e9n hay que templar la nave', F_IP]]]
   };
+
   /* Columna de ganadería resuelta por familia: lo que decide es si la combustión queda
      con los animales, y eso sí consta en las fichas. Lo que sigue abierto por modelo
      (IP frente a amoniaco y lavado, distancias a cama y pienso) va en el tercer campo. */
@@ -374,7 +377,7 @@
     sec.setAttribute('data-t', 'new');
     sec.setAttribute('data-porque', 'El informe pide indicar para cada equipo si es recomendado, condicionado o no recomendado según la aplicación, y no presentar ninguno como «ideal para ganaderías» sin validar especie, fase y ventilación (Sección 10 · Comparador mínimo · Aplicación; Sección 06 · Regla comercial; Sección 12 · Matriz de aplicación).');
     var cab = gan
-      ? '<div class="eyebrow">Por especie y alojamiento</div><h2 class="h2">¿Qué equipo le vale a <span class="hl">tu explotación?</span></h2><p>Lo que decide no es la especie por sí sola, sino cuánto se cierra la nave: cuanto más cerrada, menos margen hay para que los gases de la combustión se queden dentro. Con animales alojados, un equipo sin evacuación de humos no vale en nave cerrada. La potencia y la instalación se ajustan después, con el volumen y la ventilación reales.</p>'
+      ? '<div class="eyebrow">Por tipo de alojamiento</div><h2 class="h2">¿Qué equipo le vale a <span class="hl">tu explotación?</span></h2><p>Lo que decide no es la especie, sino cuánto se cierra el alojamiento: cuanto más cerrado, menos margen hay para que los gases de la combustión se queden dentro. Con animales alojados, un equipo sin evacuación de humos no vale en nave cerrada, sea de la especie que sea. La potencia y la instalación se ajustan después, con el volumen y la ventilación reales.</p>'
       : '<div class="eyebrow">Matriz de aplicación</div><h2 class="h2">¿Para qué uso es <span class="hl">cada equipo?</span></h2><p>Orientación por tecnología. En ganadería la regla es simple: si la combustión se queda en el aire que respiran los animales, el equipo no vale para una nave cerrada. La decisión final depende del volumen, la ventilación y las condiciones de instalación.</p>';
     sec.innerHTML = '<div class="in"><div class="safe-head">' + cab + '</div>' +
       '<div class="cmp-wrap"><table class="mx"><thead><tr><th></th>' + cols.map(function (x) { return '<th>' + x + '</th>'; }).join('') + '</tr></thead><tbody>' +

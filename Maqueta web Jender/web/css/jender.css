@@ -1206,3 +1206,42 @@ body.carro-acoplado{padding-right:var(--carro-w)}
 .fp-detalle p{font-size:15px;line-height:1.65}
 .fp-sinfoto{display:grid;place-items:center;gap:8px;color:var(--muted);font-size:13.5px}
 .fp-sinfoto svg{width:40px;height:40px;opacity:.5}
+
+
+/* ==========================================================================
+   Cabecera de una pagina de categoria. En vez de un banner de ambiente, la
+   foto del equipo con sus miniaturas a un lado y lo que es al otro.
+   ========================================================================== */
+.prod-top{padding:30px 0 10px}
+.pt-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:46px;
+  align-items:start}
+.pt-foto{display:grid;grid-template-columns:76px minmax(0,1fr);gap:14px;align-items:start}
+.pt-minis{display:grid;gap:10px}
+.pt-mini{padding:6px;background:#fff;border:1px solid var(--grey-2);border-radius:8px;
+  cursor:pointer;display:grid;place-items:center;height:72px}
+.pt-mini img{max-width:100%;max-height:58px;object-fit:contain}
+.pt-mini:hover{border-color:var(--navy)}
+.pt-mini.on{border-color:var(--navy);box-shadow:0 0 0 1px var(--navy) inset}
+.pt-grande{background:#fff;border:1px solid var(--grey-2);border-radius:var(--radius);
+  padding:26px;display:grid;place-items:center;min-height:360px}
+.pt-grande img{width:100%;height:auto;max-height:400px;object-fit:contain}
+
+.pt-info .crumbs{margin-bottom:14px}
+.pt-info h1{margin:0 0 10px}
+.pt-serie{margin:0 0 20px;font-size:14px;font-weight:700;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.05em}
+.pt-info .claim{font-weight:700;color:var(--navy);font-size:17px;margin:0 0 12px}
+.pt-info p{max-width:620px}
+.pt-btns{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
+.pt-btns .btn-yellow{flex:1 1 100%;justify-content:center}
+
+@media (max-width:900px){
+  .pt-grid{grid-template-columns:1fr;gap:26px}
+  .pt-grande{min-height:0;padding:18px}
+  .pt-btns .btn-yellow{flex:0 0 auto}
+}
+@media (max-width:560px){
+  .pt-foto{grid-template-columns:1fr;gap:10px}
+  .pt-minis{grid-auto-flow:column;grid-auto-columns:72px;justify-content:start;order:2}
+  .pt-mini{height:62px}
+}

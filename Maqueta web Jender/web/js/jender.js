@@ -4218,7 +4218,7 @@
         <div class="cat-head">
           <span class="eyebrow">${g.eyebrow}</span>
           <h2>${g.title}</h2>
-          <p class="claim">${g.claim}</p>
+          <!-- El claim ya va en la cabecera de producto, arriba: aqui se repetia. -->
           <p class="lead">${g.lead}</p>
         </div>
         <div class="keyfig">${g.fig.map(f => `<div><b>${f[0]}</b><span>${f[1]}${f[2] ? `<small>${f[2]}</small>` : ''}</span></div>`).join('')}</div>
@@ -4417,6 +4417,22 @@
         links.forEach(l => l.classList.toggle('on', l.getAttribute('href') === '#' + e.target.id)); });
     }, { rootMargin: '-25% 0px -65% 0px' });
     sec.querySelectorAll('.gblock').forEach(d => io2.observe(d));
+  });
+
+  /* ---------- Fotos de la cabecera de categoria ----------
+     Las miniaturas cambian la foto grande. Si el JS no llega, la grande ya
+     viene puesta en el HTML y las miniaturas se quedan como lo que son. */
+  document.querySelectorAll('.pt-foto').forEach(function (caja) {
+    const grande = caja.querySelector('[data-grande]');
+    if (!grande) return;
+    caja.addEventListener('click', e => {
+      const m = e.target.closest('.pt-mini');
+      if (!m) return;
+      grande.src = m.dataset.foto;
+      const img = m.querySelector('img');
+      if (img) grande.alt = img.alt;
+      caja.querySelectorAll('.pt-mini').forEach(x => x.classList.toggle('on', x === m));
+    });
   });
 
   /* ---------- Carrusel del hero: flechas, autoplay, pausa al pasar el ratón y en «Ver cambios» ---------- */

@@ -546,6 +546,9 @@ body.review .nochg>a,body.review a.nochg{opacity:.35 !important;filter:grayscale
 .mx tr:nth-child(even) td{background:#fbfbfa}
 .mx td.fam{font:600 14px/20px Poppins,sans-serif;color:#111;width:24%}
 .mx small{display:block;margin-top:6px;color:#666;font-size:12.5px;line-height:18px}
+/* La cabecera de la matriz de ganaderia lleva la especie y, debajo, como es el
+   alojamiento: lo segundo es lo que decide, pero no puede pesar como un titulo. */
+.mx th small{margin-top:4px;color:#b9b9b9;font-weight:400;font-size:11.5px;line-height:15px}
 .bdg{display:inline-flex;align-items:center;gap:6px;font:600 12px/1 Poppins,sans-serif;padding:6px 10px;border-radius:999px}
 .bdg::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
 .bdg.ok{background:#e8f6ec;color:#15803d}.bdg.cond{background:#fff4e6;color:#c2410c}.bdg.no{background:#fdecec;color:#b91c1c}.bdg.val{background:#f1f1f1;color:#555}

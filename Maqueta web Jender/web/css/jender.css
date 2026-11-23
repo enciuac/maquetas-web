@@ -1216,6 +1216,9 @@ body.carro-acoplado{padding-right:var(--carro-w)}
 .pt-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:46px;
   align-items:start}
 .pt-foto{display:grid;grid-template-columns:76px minmax(0,1fr);gap:14px;align-items:start}
+/* Cuando la pagina solo tiene una foto del equipo no hay miniaturas que poner,
+   y la columna de la izquierda sobraria. */
+.pt-foto.sola{grid-template-columns:minmax(0,1fr)}
 .pt-minis{display:grid;gap:10px}
 .pt-mini{padding:6px;background:#fff;border:1px solid var(--grey-2);border-radius:8px;
   cursor:pointer;display:grid;place-items:center;height:72px}

@@ -4296,7 +4296,10 @@
     const cuerpo = sec.querySelector('.gama-body');
     const todas = [...document.querySelectorAll('body > section, main > section')];
     const iF = todas.indexOf(sec);
-    const absorbibles = todas.filter(x => x !== sec && !x.classList.contains('hero') && x.id !== 'contacto');
+    /* La cabecera de producto hace de hero: no se absorbe como un bloque mas
+       del indice, igual que no se absorbe el banner ni el formulario final. */
+    const absorbibles = todas.filter(x => x !== sec && !x.classList.contains('hero')
+                                     && !x.classList.contains('prod-top') && x.id !== 'contacto');
     const antes = absorbibles.filter(x => todas.indexOf(x) < iF);
     const despues = absorbibles.filter(x => todas.indexOf(x) > iF);
 
